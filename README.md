@@ -22,6 +22,7 @@ Perhaps the user would create different wish lists for different occasions (date
 
 References relative to JSON:
 
-JSON Information
-www.json.org
+https://en.wikipedia.org/wiki/JSON#:~:text=After%20RFC%204627%20had%20been%20available%20as%20its,was%20also%20standardized%20as%20ISO%20%2F%20IEC%2021778%3A2017.
+http://www.json.org/
+
 I will provide 1 or more suitable java libraries for parsing json text, later.

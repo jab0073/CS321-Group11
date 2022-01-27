@@ -21,6 +21,7 @@ Perhaps the user would create different wish lists for different occasions (date
     - There needs to be a way for the system to be configured to find/store that file's location for repeated use by the system on launch.
 
 References relative to JSON:
-• JSON Information
-• www.json.org
-• I will provide 1 or more suitable java libraries for parsing json text, later.
+
+JSON Information
+www.json.org
+I will provide 1 or more suitable java libraries for parsing json text, later.

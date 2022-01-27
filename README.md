@@ -1,9 +1,13 @@
 # CS321-Group11
 
 Finding a movie to watch can be a dilemma. People looking for entertainment certainly know that interests them, but not necessarily which movies fit the bill.
+
 Someone may be interested in certain movies due to internet buzz or friends' recommendations, but they are unsure if it is something that they enjoy.
 
+
 I am proposing a movie library tool, similar to the book library tools such as Goodreads.
+
+
 The system will import a collection of available movies and provide the user the ability to search, sort, collect, review and save information to their personal collections.
 
 Perhaps the user would create different wish lists for different occasions (date night, best sports movies ever) and need to be able to filter through thousands of titles to find candidates they can add to their wish lists.
@@ -22,7 +26,8 @@ Perhaps the user would create different wish lists for different occasions (date
 
 References relative to JSON:
 
-https://en.wikipedia.org/wiki/JSON#:~:text=After%20RFC%204627%20had%20been%20available%20as%20its,was%20also%20standardized%20as%20ISO%20%2F%20IEC%2021778%3A2017.
+https://en.wikipedia.org/wiki/JSON#:~:text=After%20RFC%204627%20had%20been%20available%20as%20its,was%20also%20standardized%20as%20ISO%20%2F%20IEC%2021778%3A2017
+
 http://www.json.org/
 
 I will provide 1 or more suitable java libraries for parsing json text, later.

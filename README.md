@@ -6,7 +6,7 @@
 [Project Requirements link](https://docs.google.com/document/d/1jK5SMebc2KZXrWDSEhD-Uoqr7eXiCwLy30pSULupH8M/edit?usp=sharing)
 
 ###### Project UML diagrams.net link:
-[Diagrams.net link](127.0. 0.1) - COMING SOON
+[Diagrams.net link](http://www.google.com) - COMING SOON
 
 ## Project Proposal
 

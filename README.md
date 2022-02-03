@@ -1,8 +1,11 @@
 # CS321-Group11
-*Shawn Burnham
-*James Haywood
-*Jarred Long
-*Justin Bushue
+- Shawn Burnham
+
+- James Haywood
+
+- Jarred Long
+
+- Justin Bushue
 
 ## Collaborative Project Documentation links
 

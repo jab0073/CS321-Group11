@@ -7,6 +7,9 @@
 
 - Justin Bushue
 
+## Class/Work Schedules
+[Class/Work Schedules](https://docs.google.com/spreadsheets/d/1Zj6V2qRDIKM7VogGnZrPiUvWgQ8GM8AiMRLizCSQWl0/edit?usp=sharing)
+
 ## Collaborative Project Documentation links
 
 ###### Project Requirements Google Doc link:

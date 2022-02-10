@@ -235,8 +235,8 @@ public class Movie {
 		mpcrRatings = new ArrayList<>(Arrays.asList("G","PG","PG-13","R","NR"));
 	}
 
-	public Movie(List<String> mpcrRatings, String title, String plot, String rating, String year, String released, String genre, String runtime, String director, String writer, String awards, String language, String poster, String metaScore, String imdbRating, String imdbVotes, String imdbID, String type, String dvd, String boxOffice, String production, String website, String response, String actors) {
-		this.mpcrRatings = mpcrRatings;
+	public Movie(String title, String plot, String rating, String year, String released, String genre, String runtime, String director, String writer, String awards, String language, String poster, String metaScore, String imdbRating, String imdbVotes, String imdbID, String type, String dvd, String boxOffice, String production, String website, String response, String actors) {
+		mpcrRatings = new ArrayList<>(Arrays.asList("G","PG","PG-13","R","NR"));
 		this.title = title;
 		this.plot = plot;
 		if (mpcrRatings.contains(rating.toUpperCase())) {

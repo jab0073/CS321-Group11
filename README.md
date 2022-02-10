@@ -52,3 +52,21 @@ References relative to JSON:
 [Official JSON Organization Website](http://www.json.org/)
 
 I will provide 1 or more suitable java libraries for parsing json text, later.
+
+
+###### Phase 1 - Use Cases and Functional Requirements
+
+- Please refer to the document: Final Project Document Template.docx for the items required during this Requirements phase. You must produce sections 3.0 Use Cases and 4.0 Requirements.
+- You must have at least 4 use cases. Diagram them appropriately.
+- Include a cover sheet to your document with a summary of your meetings so far. (How many did you have, a one or two sentence recap of the outcomes of each).
+- You must capture regular meeting minutes and assigned action items. Please store your meeting minutes and discussions in canvas where I can see and review them in your team's space.
+
+###### Phase 2 - Design
+
+- The Design Documentation format is described in section 5.0 of the Final Project Document Template.docx
+- To turn in for this phase of the project you must include section 5.0 of the document along with UML diagrams for the major classes and interactions that are important to your project. These must include UML class diagrams as well as activity/sequence diagrams where appropriate. You do not need to diagram fundamental classes such as common data structures or utilities (for example ArrayList<>).
+- Include the CDC cards for your main classes. These can be scanned in. Note that they will be an appendix in the project documentation. They are not ordinarily kept with project documentation.
+- The purpose of the design is to identify the classes you need to implement, their internal fields and the methods you invoke on the objects of that class. Please remember the features of good class design:
+-- Encapsulation - the utilizer of a class should not be overly concerned with the details of how the class implements internals
+-- Visibility - do not use public attributes except in very rare cases of things like shared constants, etc.
+-- The other features presented in Chapter 3: clarity, cohesion, consistency

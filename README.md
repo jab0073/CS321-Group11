@@ -67,6 +67,6 @@ I will provide 1 or more suitable java libraries for parsing json text, later.
 - To turn in for this phase of the project you must include section 5.0 of the document along with UML diagrams for the major classes and interactions that are important to your project. These must include UML class diagrams as well as activity/sequence diagrams where appropriate. You do not need to diagram fundamental classes such as common data structures or utilities (for example ArrayList<>).
 - Include the CDC cards for your main classes. These can be scanned in. Note that they will be an appendix in the project documentation. They are not ordinarily kept with project documentation.
 - The purpose of the design is to identify the classes you need to implement, their internal fields and the methods you invoke on the objects of that class. Please remember the features of good class design:
--- Encapsulation - the utilizer of a class should not be overly concerned with the details of how the class implements internals
--- Visibility - do not use public attributes except in very rare cases of things like shared constants, etc.
--- The other features presented in Chapter 3: clarity, cohesion, consistency
+- Encapsulation - the utilizer of a class should not be overly concerned with the details of how the class implements internals
+- Visibility - do not use public attributes except in very rare cases of things like shared constants, etc.
+- The other features presented in Chapter 3: clarity, cohesion, consistency

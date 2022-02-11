@@ -20,12 +20,12 @@
 - You must capture regular meeting minutes and assigned action items. Please store your meeting minutes and discussions in canvas where I can see and review them in your team's space.
 
 ###### Project Requirements Google Doc link:
-[Project Requirements link](https://docs.google.com/document/d/1jK5SMebc2KZXrWDSEhD-Uoqr7eXiCwLy30pSULupH8M/edit?usp=sharing)
+[Project Requirements](https://docs.google.com/document/d/1jK5SMebc2KZXrWDSEhD-Uoqr7eXiCwLy30pSULupH8M/edit?usp=sharing)
 - This will be used as the base for the Final Project Documentation.
 - The first edit you should do is the include your name on the copyright page.
 
 ###### Project UML diagrams.net link:
-[Diagrams.net link](https://drive.google.com/file/d/1ZrRywBNkzC5qNdocyuXb9DE71RfPt1kw/view?usp=sharing)
+[Diagrams.net](https://drive.google.com/file/d/1ZrRywBNkzC5qNdocyuXb9DE71RfPt1kw/view?usp=sharing)
 
 ## Phase 2 - Design
 
@@ -38,16 +38,16 @@
 - The other features presented in Chapter 3: clarity, cohesion, consistency
 
 ###### Schedule Appointment with Ms. Allen
-*THIS STILL NEEDS TO BE SCHEDULED
+_**THIS STILL NEEDS TO BE SCHEDULED**_
 
 ###### Project Design Google Doc Link:
-[Project Design Link](https://docs.google.com/document/d/10F8aMiHMLQmdriyXlFgvTpuQxof5Ho8EHYjcVTVhb0U/edit?usp=sharing) - This will be appended to the Final Project Documentation.
+[Project Design](https://docs.google.com/document/d/10F8aMiHMLQmdriyXlFgvTpuQxof5Ho8EHYjcVTVhb0U/edit?usp=sharing) - This will be appended to the Final Project Documentation.
 
 ###### Class Diagram Link:
-[Class Diagram Link](https://drive.google.com/file/d/1asyjjNQfIKeHKEU_L7dTbDRP5gQ68bH7/view?usp=sharing)
+[Class Diagram](https://drive.google.com/file/d/1asyjjNQfIKeHKEU_L7dTbDRP5gQ68bH7/view?usp=sharing)
 
 ###### Sequence Diagram Link:
-[Sequence Diagram Link](https://drive.google.com/file/d/1Pj4RPgoOQPjRVnAHSAXAva-sTQz_6TvE/view?usp=sharing)
+[Sequence Diagram](https://drive.google.com/file/d/1Pj4RPgoOQPjRVnAHSAXAva-sTQz_6TvE/view?usp=sharing)
 
 ## Project Proposal
 

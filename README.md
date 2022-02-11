@@ -12,7 +12,8 @@
 
 # Collaborative Project Documentation
 
-## Phase 1 - Use Cases and Functional Requirements - Submitted on 02/10/2021 by Justin
+## Phase 1 - Use Cases and Functional Requirements
+_**Submitted on 02/10/2021 by Justin**_
 
 - Please refer to the document: Final Project Document Template.docx for the items required during this Requirements phase. You must produce sections 3.0 Use Cases and 4.0 Requirements.
 - You must have at least 4 use cases. Diagram them appropriately.

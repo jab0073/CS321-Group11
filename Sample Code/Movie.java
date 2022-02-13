@@ -43,7 +43,7 @@ public class Movie {
 	}
 
 	public int getYear() {
-		return Integer.parseInt(this.released);
+		return Integer.parseInt(this.year);
 	}
 
 	public void setYear(int year) {

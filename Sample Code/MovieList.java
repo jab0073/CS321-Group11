@@ -113,4 +113,8 @@ public class MovieList {
 		}
 		return filteredMovies;
 	}
+	
+	public void clearFilteredList() {
+		filteredMovies.clear();
+	}
 }

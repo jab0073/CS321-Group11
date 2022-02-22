@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 @SuppressWarnings("unused")
 public class Movie {
-	private final List<String> mpcrRatings;
+	private final List<String> mpcrRatings = new ArrayList<>(Arrays.asList("G","PG","PG-13","R","NR"));
 	private String title;
 	private String plot;
 	private String rating;
@@ -37,6 +37,49 @@ public class Movie {
 	private String website;
 	private String response;
 	private String actors;
+	private List<Review> userReviews = null;
+
+	public Movie(){
+		userReviews = new ArrayList<>();
+	}
+
+	public Movie(String title, String plot, String rating, String year, String released, String genre, String runtime, String director, String writer, String awards, String language, String poster, String metaScore, String imdbRating, String imdbVotes, String imdbID, String type, String dvd, String boxOffice, String production, String website, String response, String actors) {
+		userReviews = new ArrayList<>();
+		this.title = title;
+		this.plot = plot;
+		if (mpcrRatings.contains(rating.toUpperCase())) {
+			this.rating = rating;
+		} else {
+			this.rating = "N/A";
+		}
+		this.year = year;
+		this.released = released;
+		this.genre = genre;
+		this.runtime = runtime;
+		this.director = director;
+		this.writer = writer;
+		this.awards = awards;
+		this.language = language;
+		this.poster = poster;
+		this.metaScore = metaScore;
+		this.imdbRating = imdbRating;
+		this.imdbVotes = imdbVotes;
+		this.imdbID = imdbID;
+		this.type = type;
+		this.dvd = dvd;
+		this.boxOffice = boxOffice;
+		this.production = production;
+		this.website = website;
+		this.response = response;
+		this.actors = actors;
+	}
+
+	public Movie(String title, String plot, String rating, String year) {
+		this.title = title;
+		this.plot = plot;
+		this.rating = rating;
+		this.year = year;
+	}
 
 	public void setPlot(String plot) {
 		this.plot = plot;
@@ -215,10 +258,6 @@ public class Movie {
 		return plot;
 	}
 
-	public void setDescription(String description) {
-		this.plot = description;
-	}
-
 	public String getRating() {
 		return rating;
 	}
@@ -231,38 +270,15 @@ public class Movie {
 		return true;
 	}
 
-	public Movie(){
-		mpcrRatings = new ArrayList<>(Arrays.asList("G","PG","PG-13","R","NR"));
+	public void addUserRating(Review r) {
+		userReviews.add(r);
 	}
 
-	public Movie(String title, String plot, String rating, String year, String released, String genre, String runtime, String director, String writer, String awards, String language, String poster, String metaScore, String imdbRating, String imdbVotes, String imdbID, String type, String dvd, String boxOffice, String production, String website, String response, String actors) {
-		mpcrRatings = new ArrayList<>(Arrays.asList("G","PG","PG-13","R","NR"));
-		this.title = title;
-		this.plot = plot;
-		if (mpcrRatings.contains(rating.toUpperCase())) {
-			this.rating = rating;
-		} else {
-			this.rating = "N/A";
-		}
-		this.year = year;
-		this.released = released;
-		this.genre = genre;
-		this.runtime = runtime;
-		this.director = director;
-		this.writer = writer;
-		this.awards = awards;
-		this.language = language;
-		this.poster = poster;
-		this.metaScore = metaScore;
-		this.imdbRating = imdbRating;
-		this.imdbVotes = imdbVotes;
-		this.imdbID = imdbID;
-		this.type = type;
-		this.dvd = dvd;
-		this.boxOffice = boxOffice;
-		this.production = production;
-		this.website = website;
-		this.response = response;
-		this.actors = actors;
+	public Movie getThis() {
+		return this;
+	}
+
+	public String getAttributes() {
+		return String.join("; ",title, rating, year, genre, director, writer, language, actors);
 	}
 }

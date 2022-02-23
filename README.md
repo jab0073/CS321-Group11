@@ -10,6 +10,8 @@
 ## Class/Work Schedules
 [Class/Work Schedules](https://docs.google.com/spreadsheets/d/1Zj6V2qRDIKM7VogGnZrPiUvWgQ8GM8AiMRLizCSQWl0/edit?usp=sharing)
 
+_**Tenative Weekly Meetings: Saturdays @ 1:00 PM**_
+
 # Collaborative Project Documentation
 
 ## Phase 1 - Use Cases and Functional Requirements

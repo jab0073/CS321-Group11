@@ -41,6 +41,10 @@ _**Submitted on 02/10/2021 by Justin**_
 ###### Schedule Appointment with Ms. Allen
 _**THIS STILL NEEDS TO BE SCHEDULED**_
 
+###### CRC Cards link:
+[CRC Cards](https://docs.google.com/presentation/d/1GOsnx2NHszYy-sL2_1o1KaVt6TZ-FgG1nOWxgyRE9Bc/edit?usp=sharing)
+
+
 ###### Project Design Google Doc Link:
 [Project Design](https://docs.google.com/document/d/10F8aMiHMLQmdriyXlFgvTpuQxof5Ho8EHYjcVTVhb0U/edit?usp=sharing) - This will be appended to the Final Project Documentation.
 

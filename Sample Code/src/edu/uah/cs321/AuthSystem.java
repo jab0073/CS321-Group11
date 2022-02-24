@@ -15,7 +15,7 @@ import java.util.HashMap;
  * @version 1.0
  */
 public class AuthSystem {
-	private static HashMap<String,String> userPass;
+	private static HashMap<String,String> userPass = new HashMap<>();
 	private final static AuthSystem instance = new AuthSystem();
 
 	// The constructor is private, so it cannot be called outside the class.
@@ -41,7 +41,7 @@ public class AuthSystem {
 	/**
 	 * This function writes the userPass object to a file called userpass.gw
 	 */
-	public void close() throws IOException {
+	public static void close() throws IOException {
 		FileOutputStream fileOut = new FileOutputStream(ResourceUtils.getAuthMap());
 		ObjectOutputStream out = new ObjectOutputStream(fileOut);
 		out.writeObject(userPass);
@@ -64,10 +64,11 @@ public class AuthSystem {
 	 * @param password The password to check.
 	 * @return A boolean value.
 	 */
-	private boolean checkPasswordComplexity(String password) {
+	private static boolean checkPasswordComplexity(String password) {
 		if(password.length() >= 8) {
 			for(int i = 0 ; i < password.length() ; i++) {
 				if (!Character.isLetterOrDigit(password.charAt(i)) || Character.isWhitespace(password.charAt(i))) {
+					System.out.println("Password too weak");
 					return false;
 				}
 			}
@@ -83,8 +84,8 @@ public class AuthSystem {
 	 * @param password The password to check.
 	 * @return The return value is boolean.
 	 */
-	private boolean checkPassword(String userName, String password) {
-		return userPass.get(userName).equals(password);
+	private static boolean checkPassword(String userName, String password) {
+		return password.equals(userPass.get(userName));
 	}
 
 	/**
@@ -94,10 +95,11 @@ public class AuthSystem {
 	 * @param password The password to be added to the userPass map.
 	 * @return Nothing.
 	 */
-	public User addUser(String userName, String password) {
-		if(checkUserName(userName) && checkPasswordComplexity(password)) {
+	public static User addUser(String userName, String password) {
+		if(!checkUserName(userName) && checkPasswordComplexity(password)) {
 			userPass.put(userName, password);
-			return new User();
+			System.out.println("User was created with username: " + userName);
+			return new User("","",userName);
 		}
 		return null;
 	}
@@ -109,7 +111,7 @@ public class AuthSystem {
 	 * @param password The password to check.
 	 * @return A boolean value.
 	 */
-	public boolean removeUser(String userName, String password) {
+	public static boolean removeUser(String userName, String password) {
 		if(checkPassword(userName, password)){
 			userPass.remove(userName);
 			return true;
@@ -124,8 +126,11 @@ public class AuthSystem {
 	 * @param password The password to check.
 	 * @return A boolean value.
 	 */
-	public boolean login(String userName, String password) {
-		return checkPassword(userName, password);
+	public static User login(String userName, String password) {
+		if(checkPassword(userName, password)) {
+			return UserDatabase.getUserAccount(userName);
+		}
+		return null;
 	}
 
 	/**
@@ -133,7 +138,7 @@ public class AuthSystem {
 	 *
 	 * @return The instance of the AuthSystem class.
 	 */
-	public AuthSystem getInstance() {
+	public static AuthSystem getInstance() {
 		return instance;
 	}
 }

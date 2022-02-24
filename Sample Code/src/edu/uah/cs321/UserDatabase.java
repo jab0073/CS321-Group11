@@ -14,7 +14,7 @@ import java.util.Optional;
  */
 @SuppressWarnings("unused")
 public class UserDatabase {
-	private static List<User> users;
+	private static List<User> users = new ArrayList<>();
 	private final static UserDatabase instance = new UserDatabase();
 
 	// This is the constructor for the UserDatabase class. It is used to initialize the users list.
@@ -23,7 +23,7 @@ public class UserDatabase {
 			FileInputStream fileIn = new FileInputStream(ResourceUtils.getUserDatabase());
 			ObjectInputStream in = new ObjectInputStream(fileIn);
 			try {
-				users = (List<User>) in.readObject();
+				users = (ArrayList<User>) in.readObject();
 			}
 			catch(ClassNotFoundException e) {
 				System.out.println("Unable to read Username and Password File. Creating a new data set.");
@@ -31,7 +31,7 @@ public class UserDatabase {
 			}
 		}
 		catch(IOException ioe) {
-			System.out.println("Username and Password File not found. Creating a new data set.");
+			System.out.println("User File not found. Creating a new data set.");
 			users = new ArrayList<>();
 		}
 	}
@@ -41,8 +41,17 @@ public class UserDatabase {
 	 *
 	 * @param u The user to be added to the list.
 	 */
-	public void addUser(User u) {
+	public static void addUser(User u) {
+		if(checkUserExists(u)){
+			System.out.println("User already exists");
+			return;
+		}
+		System.out.println("Adding user: " + u);
 		users.add(u);
+	}
+
+	public static boolean checkUserExists(User u) {
+		return users.contains(u);
 	}
 
 	/**
@@ -50,7 +59,7 @@ public class UserDatabase {
 	 *
 	 * @param u The user to be removed.
 	 */
-	public void removeUser(User u) {
+	public static void removeUser(User u) {
 		users.remove(u);
 	}
 
@@ -60,16 +69,27 @@ public class UserDatabase {
 	 * @param userName The username to search for.
 	 * @return Nothing or a user.
 	 */
-	public Optional<User> getUserAccount(String userName) {
-		return users.stream()
-				.filter(u -> u.compareUserNameTo(userName))
+	public static User getUserAccount(String userName) {
+		Optional<User> ou = users.stream()
+				.filter(u -> {
+					if(u != null) {
+						return userName.equals(u.getUserName());
+					}
+					return false;
+				})
+				.map(u-> u.getThis())
 				.findFirst();
+		if(ou.isPresent()) {
+			System.out.println("User account found with username: " + userName);
+			return ou.get();
+		}
+		return null;
 	}
 
 	/**
 	 * Writes the users object to a file
 	 */
-	public void close() throws IOException {
+	public static void close() throws IOException {
 		FileOutputStream fileOut = new FileOutputStream(ResourceUtils.getUserDatabase());
 		ObjectOutputStream out = new ObjectOutputStream(fileOut);
 		out.writeObject(users);
@@ -80,7 +100,7 @@ public class UserDatabase {
 	 *
 	 * @return The instance of the UserDatabase class.
 	 */
-	public UserDatabase getInstance() {
+	public static UserDatabase getInstance() {
 		return instance;
 	}
 }

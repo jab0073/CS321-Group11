@@ -1,5 +1,6 @@
 package edu.uah.cs321;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -199,6 +200,21 @@ public class ResourceUtils {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		}
+	}
+
+	public static void init() {
+		ResourceUtils.setAuthMap(Constants.DefaultAuthMapDir);
+		ResourceUtils.setUserDatabase(Constants.DefaultUserDatabaseDir);
+
+		File dir = new File(Constants.DefaultAuthMapDir);
+		if (!dir.exists()){
+			dir.mkdirs();
+		}
+
+		dir = new File(Constants.DefaultUserDatabaseDir);
+		if (!dir.exists()){
+			dir.mkdirs();
 		}
 	}
 }

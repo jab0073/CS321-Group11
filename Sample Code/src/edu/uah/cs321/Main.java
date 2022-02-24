@@ -2,6 +2,7 @@ package edu.uah.cs321;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 /***
  * Project Name: GroupProject-InitialThoughts
@@ -12,15 +13,40 @@ import java.util.List;
  */
 public class Main {
 
-	private static MovieList ml;
-
 	public static void main(String[] args) throws IOException {
 
+		ResourceUtils.init();
+
 		JsonReader js = new JsonReader();
+		AuthSystem as = AuthSystem.getInstance();
+		UserDatabase ud = UserDatabase.getInstance();
+		User u = null;
+		if(!AuthSystem.checkUserName("master")) {
+			u = AuthSystem.addUser("master", "password");
+			u.setFirstName("master");
+			u.setLastName("account");
+			u.setAboutMe("master account");
+		}
+		else {
+			u = new User("master","account","master account","master");
+		}
+		System.out.println(u);
 
-		List<Movie> movies = js.getMasterMovieList();
+		//UserDatabase.addUser(u);
 
-		//movies.forEach(m -> System.out.println(m.toString()));
+
+
+		User p = AuthSystem.login("master", "password");
+
+		/*p.setFirstName("master");
+		p.setLastName("account");
+		p.setAboutMe("master account");*/
+		System.out.println(p);
+
+
+		/*List<Movie> movies = js.getMasterMovieList();
+
+		movies.forEach(m -> System.out.println(m.toString()));
 
 		MovieList ml = new MovieList(movies);
 
@@ -38,6 +64,9 @@ public class Main {
 
 		String key = "Star";
 
-		ml.searchForMovie(key).forEach(m ->  System.out.println("search: " + m.getTitle()));
+		ml.searchForMovie(key).forEach(m ->  System.out.println("search: " + m.getTitle()));*/
+
+		AuthSystem.close();
+		UserDatabase.close();
 	}
 }

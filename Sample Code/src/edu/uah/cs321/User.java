@@ -61,6 +61,7 @@ public class User implements Serializable {
 	public String getUserName() {
 		return userName;
 	}
+
 	/**
 	 * This function compares the username of the current user to the username passed in as a parameter
 	 *
@@ -68,7 +69,7 @@ public class User implements Serializable {
 	 * @return The boolean value of the equals method.
 	 */
 	public boolean compareUserNameTo(String u) {
-		return this.userName.equals(u);
+		return u.equals(this.userName);
 	}
 
 	/**
@@ -265,5 +266,9 @@ public class User implements Serializable {
 	 */
 	public void setFavoriteOther(List<String> favoriteOther) {
 		this.favoriteOther = favoriteOther;
+	}
+	@Override
+	public String toString() {
+		return String.join("; ", firstName, lastName, aboutMe);
 	}
 }

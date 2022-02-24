@@ -11,6 +11,7 @@ public class Constants {
 	public static final String jsonFileName = "SampleMovieFile.json";
 	public static final String AuthMapFileName = "userpass.gw";
 	public static final String UserDatabaseFileName = "users.gw";
-	public static final String DefaultAuthMapDir = "C:\\CS321G11\\GoodWatches\\";
-	public static final String DefaultUserDatabaseDir = "C:\\CS321G11\\GoodWatches\\";
+	public static final String WindowsDefaultDir = "C:\\CS321G11\\GoodWatches\\";
+	public static final String MacBeginningDir = "/Users/";
+	public static final String MacDefaultDir = "/Documents/CS321G11/GoodWatches/";
 }

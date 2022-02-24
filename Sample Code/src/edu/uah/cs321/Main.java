@@ -1,8 +1,6 @@
 package edu.uah.cs321;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.Optional;
 
 /***
  * Project Name: GroupProject-InitialThoughts
@@ -17,10 +15,8 @@ public class Main {
 
 		ResourceUtils.init();
 
-		JsonReader js = new JsonReader();
-		AuthSystem as = AuthSystem.getInstance();
-		UserDatabase ud = UserDatabase.getInstance();
-		User u = null;
+		new JsonReader();
+		User u;
 		if(!AuthSystem.checkUserName("master")) {
 			u = AuthSystem.addUser("master", "password");
 			u.setFirstName("master");

@@ -20,7 +20,7 @@ public class UserDatabase {
 	// This is the constructor for the UserDatabase class. It is used to initialize the users list.
 	private UserDatabase() {
 		try {
-			FileInputStream fileIn = new FileInputStream("users.gw");
+			FileInputStream fileIn = new FileInputStream(ResourceUtils.getUserDatabase());
 			ObjectInputStream in = new ObjectInputStream(fileIn);
 			try {
 				users = (List<User>) in.readObject();
@@ -70,7 +70,7 @@ public class UserDatabase {
 	 * Writes the users object to a file
 	 */
 	public void close() throws IOException {
-		FileOutputStream fileOut = new FileOutputStream("users.gw");
+		FileOutputStream fileOut = new FileOutputStream(ResourceUtils.getUserDatabase());
 		ObjectOutputStream out = new ObjectOutputStream(fileOut);
 		out.writeObject(users);
 	}

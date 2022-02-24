@@ -22,7 +22,7 @@ public class AuthSystem {
 	// Tries to open the userpass.gw that contains the username password map
 	private AuthSystem() {
 		try {
-			FileInputStream fileIn = new FileInputStream("userpass.gw");
+			FileInputStream fileIn = new FileInputStream(ResourceUtils.getAuthMap());
 			ObjectInputStream in = new ObjectInputStream(fileIn);
 			try {
 				userPass = (HashMap<String, String>) in.readObject();
@@ -42,7 +42,7 @@ public class AuthSystem {
 	 * This function writes the userPass object to a file called userpass.gw
 	 */
 	public void close() throws IOException {
-		FileOutputStream fileOut = new FileOutputStream("userpass.gw");
+		FileOutputStream fileOut = new FileOutputStream(ResourceUtils.getAuthMap());
 		ObjectOutputStream out = new ObjectOutputStream(fileOut);
 		out.writeObject(userPass);
 	}

@@ -15,29 +15,31 @@ import java.util.ArrayList;
  */
 public class Movie {
 	private final List<String> mpcrRatings = new ArrayList<>(Arrays.asList("G","PG","PG-13","R","NR"));
-	private String title;
-	private String plot;
-	private String rating;
-	private String year;
-	private String released;
-	private String genre;
-	private String runtime;
-	private String director;
-	private String writer;
-	private String awards;
-	private String language;
-	private String poster;
-	private String metaScore;
+	private String Title;
+	private String Plot;
+	private String Rating;
+	private String Year;
+	private String Released;
+	private String Genre;
+	private String Runtime;
+	private String Director;
+	private String Writer;
+	private String Awards;
+	private String Language;
+	private String Country;
+	private String Poster;
+	private List<Rating> Ratings;
+	private String Metascore;
 	private String imdbRating;
 	private String imdbVotes;
 	private String imdbID;
-	private String type;
-	private String dvd;
-	private String boxOffice;
-	private String production;
-	private String website;
-	private String response;
-	private String actors;
+	private String Type;
+	private String DVD;
+	private String BoxOffice;
+	private String Production;
+	private String Website;
+	private String Response;
+	private String Actors;
 	private List<Review> userReviews = null;
 
 	// This is a constructor for the Movie class. It initializes the userReviews list to an empty list.
@@ -47,469 +49,253 @@ public class Movie {
 	// This is a constructor for the Movie class. It initializes all the fields to their corresponding parameter.
 	public Movie(String title, String plot, String rating, String year, String released, String genre, String runtime, String director, String writer, String awards, String language, String poster, String metaScore, String imdbRating, String imdbVotes, String imdbID, String type, String dvd, String boxOffice, String production, String website, String response, String actors) {
 		userReviews = new ArrayList<>();
-		this.title = title;
-		this.plot = plot;
+		this.Title = title;
+		this.Plot = plot;
 		if (mpcrRatings.contains(rating.toUpperCase())) {
-			this.rating = rating;
+			this.Rating = rating;
 		} else {
-			this.rating = "N/A";
+			this.Rating = "N/A";
 		}
-		this.year = year;
-		this.released = released;
-		this.genre = genre;
-		this.runtime = runtime;
-		this.director = director;
-		this.writer = writer;
-		this.awards = awards;
-		this.language = language;
-		this.poster = poster;
-		this.metaScore = metaScore;
+		this.Year = year;
+		this.Released = released;
+		this.Genre = genre;
+		this.Runtime = runtime;
+		this.Director = director;
+		this.Writer = writer;
+		this.Awards = awards;
+		this.Language = language;
+		this.Poster = poster;
+		this.Metascore = metaScore;
 		this.imdbRating = imdbRating;
 		this.imdbVotes = imdbVotes;
 		this.imdbID = imdbID;
-		this.type = type;
-		this.dvd = dvd;
-		this.boxOffice = boxOffice;
-		this.production = production;
-		this.website = website;
-		this.response = response;
-		this.actors = actors;
+		this.Type = type;
+		this.DVD = dvd;
+		this.BoxOffice = boxOffice;
+		this.Production = production;
+		this.Website = website;
+		this.Response = response;
+		this.Actors = actors;
 	}
 
 	// This is a constructor for the Movie class. It initializes all the fields to their corresponding parameter.
 	public Movie(String title, String plot, String rating, String year) {
-		this.title = title;
-		this.plot = plot;
-		this.rating = rating;
-		this.year = year;
+		this.Title = title;
+		this.Plot = plot;
+		this.Rating = rating;
+		this.Year = year;
 	}
 
-	/**
-	 * It sets the plot of the movie.
-	 *
-	 * @param plot The plot of the movie.
-	 */
+	public String getTitle() {
+		return Title;
+	}
+
+	public void setTitle(String title) {
+		Title = title;
+	}
+
+	public String getPlot() {
+		return Plot;
+	}
+
 	public void setPlot(String plot) {
-		this.plot = plot;
+		Plot = plot;
 	}
 
-	/**
-	 * Returns the year of the movie.
-	 *
-	 * @return The year as an integer.
-	 */
+	public String getRating() {
+		return Rating;
+	}
+
+	public void setRating(String rating) {
+		Rating = rating;
+	}
+
 	public int getYear() {
-		return Integer.parseInt(this.year);
+		return Integer.parseInt(Year);
 	}
 
-	/**
-	 * It sets the year of the movie.
-	 *
-	 * @param year The year of the movie.
-	 */
 	public void setYear(int year) {
-		this.year = String.valueOf(year);
+		Year = Integer.toString(year);
 	}
 
-	/**
-	 * Returns the value of the released property
-	 *
-	 * @return The released variable.
-	 */
 	public String getReleased() {
-		return released;
+		return Released;
 	}
 
-	/**
-	 * It sets the released attribute of the object to the value passed in.
-	 *
-	 * @param released The date the movie was released.
-	 */
 	public void setReleased(String released) {
-		this.released = released;
+		Released = released;
 	}
 
-	/**
-	 * Returns the genre of the movie
-	 *
-	 * @return The genre of the movie.
-	 */
 	public String getGenre() {
-		return genre;
+		return Genre;
 	}
 
-	/**
-	 * It sets the genre of the movie.
-	 *
-	 * @param genre The genre of the movie.
-	 */
 	public void setGenre(String genre) {
-		this.genre = genre;
+		Genre = genre;
 	}
 
-	/**
-	 * Returns the runtime of the movie
-	 *
-	 * @return The runtime of the movie.
-	 */
 	public String getRuntime() {
-		return runtime;
+		return Runtime;
 	}
 
-	/**
-	 * It sets the runtime of the movie.
-	 *
-	 * @param runtime The runtime to use for the job.
-	 */
 	public void setRuntime(String runtime) {
-		this.runtime = runtime;
+		Runtime = runtime;
 	}
 
-	/**
-	 * Returns the director of the movie
-	 *
-	 * @return The director field of the Movie object.
-	 */
 	public String getDirector() {
-		return director;
+		return Director;
 	}
 
-	/**
-	 * It sets the director of the movie.
-	 *
-	 * @param director The name of the director of the movie.
-	 */
 	public void setDirector(String director) {
-		this.director = director;
+		Director = director;
 	}
 
-	/**
-	 * Returns the writer of the movie
-	 *
-	 * @return The writer variable.
-	 */
 	public String getWriter() {
-		return writer;
+		return Writer;
 	}
 
-	/**
-	 * It sets the writer of the movie.
-	 *
-	 * @param writer The name of the writer.
-	 */
 	public void setWriter(String writer) {
-		this.writer = writer;
+		Writer = writer;
 	}
 
-	/**
-	 * Returns the awards field
-	 *
-	 * @return The awards string.
-	 */
 	public String getAwards() {
-		return awards;
+		return Awards;
 	}
 
-	/**
-	 * It sets the awards field of the object to the value of the awards parameter.
-	 *
-	 * @param awards The awards the movie won.
-	 */
 	public void setAwards(String awards) {
-		this.awards = awards;
+		Awards = awards;
 	}
 
-	/**
-	 * Returns the language of the movie
-	 *
-	 * @return The language variable is being returned.
-	 */
 	public String getLanguage() {
-		return language;
+		return Language;
 	}
 
-	/**
-	 * It sets the language of the movie.
-	 *
-	 * @param language The language of the movie.
-	 */
 	public void setLanguage(String language) {
-		this.language = language;
+		Language = language;
 	}
 
-	/**
-	 * This function returns the poster url of the movie
-	 *
-	 * @return The method returns the value of the poster field.
-	 */
+	public String getCountry() {
+		return Country;
+	}
+
+	public void setCountry(String country) {
+		Country = country;
+	}
+
 	public String getPoster() {
-		return poster;
+		return Poster;
 	}
 
-	/**
-	 * It sets the poster url of the movie.
-	 *
-	 * @param poster The URL of the poster image.
-	 */
 	public void setPoster(String poster) {
-		this.poster = poster;
+		Poster = poster;
 	}
 
-	/**
-	 * This function returns the value of the metaScore variable
-	 *
-	 * @return The value of the metaScore variable.
-	 */
-	public String getMetaScore() {
-		return metaScore;
+	public List<edu.uah.cs321.Rating> getRatings() {
+		return Ratings;
 	}
 
-	/**
-	 * This function sets the value of the metaScore variable to the value of the metaScore parameter
-	 *
-	 * @param metaScore The Metascore (out of 100?) for the movie, if available.
-	 */
-	public void setMetaScore(String metaScore) {
-		this.metaScore = metaScore;
+	public void setRatings(List<edu.uah.cs321.Rating> ratings) {
+		Ratings = ratings;
 	}
 
-	/**
-	 * This function returns the imdbRating of the movie
-	 *
-	 * @return The imdbRating field of the Movie object.
-	 */
+	public String getMetascore() {
+		return Metascore;
+	}
+
+	public void setMetascore(String metascore) {
+		Metascore = metascore;
+	}
+
 	public String getImdbRating() {
 		return imdbRating;
 	}
 
-	/**
-	 * It sets the imdbRating of the movie.
-	 *
-	 * @param imdbRating The IMDB rating of the movie.
-	 */
 	public void setImdbRating(String imdbRating) {
 		this.imdbRating = imdbRating;
 	}
 
-	/**
-	 * This function returns the value of the imdbVotes field
-	 *
-	 * @return The imdbVotes variable is being returned.
-	 */
 	public String getImdbVotes() {
 		return imdbVotes;
 	}
 
-	/**
-	 * This function sets the imdbVotes field of the Movie object to the value of the imdbVotes parameter
-	 *
-	 * @param imdbVotes The number of votes the movie received on IMDb.
-	 */
 	public void setImdbVotes(String imdbVotes) {
 		this.imdbVotes = imdbVotes;
 	}
 
-	/**
-	 * This function returns the imdbID of the movie
-	 *
-	 * @return The imdbID is being returned as a float.
-	 */
-	public float getImdbID() {
-		return Float.parseFloat(imdbID);
+	public String getImdbID() {
+		return imdbID;
 	}
 
-	/**
-	 * This function sets the imdbID of the movie to the value of the imdbID parameter
-	 *
-	 * @param imdbID The IMDB ID of the movie.
-	 */
-	public void setImdbID(float imdbID) {
-		this.imdbID = String.valueOf(imdbID);
+	public void setImdbID(String imdbID) {
+		this.imdbID = imdbID;
 	}
 
-	/**
-	 * Returns the type of the movie
-	 *
-	 * @return The type of the movie.
-	 */
 	public String getType() {
-		return type;
+		return Type;
 	}
 
-	/**
-	 * It sets the type of the movie.
-	 *
-	 * @param type The type of the parameter. This is a string.
-	 */
 	public void setType(String type) {
-		this.type = type;
+		Type = type;
 	}
 
-	/**
-	 * Returns the value of the dvd field
-	 *
-	 * @return The value of the dvd field.
-	 */
-	public String getDvd() {
-		return dvd;
+	public String getDVD() {
+		return DVD;
 	}
 
-	/**
-	 * It sets the dvd field to the value of the dvd parameter.
-	 *
-	 * @param dvd The name of the DVD.
-	 */
-	public void setDvd(String dvd) {
-		this.dvd = dvd;
+	public void setDVD(String DVD) {
+		this.DVD = DVD;
 	}
 
-	/**
-	 * It returns the box office of the movie.
-	 *
-	 * @return The box office value.
-	 */
 	public String getBoxOffice() {
-		return boxOffice;
+		return BoxOffice;
 	}
 
-	/**
-	 * It sets the box office value.
-	 *
-	 * @param boxOffice The box office of the movie.
-	 */
 	public void setBoxOffice(String boxOffice) {
-		this.boxOffice = boxOffice;
+		BoxOffice = boxOffice;
 	}
 
-	/**
-	 * It returns the production of the movie.
-	 *
-	 * @return The production of the movie.
-	 */
 	public String getProduction() {
-		return production;
+		return Production;
 	}
 
-	/**
-	 * It sets the production of the movie.
-	 *
-	 * @param production The name of the production.
-	 */
 	public void setProduction(String production) {
-		this.production = production;
+		Production = production;
 	}
 
-	/**
-	 * This function returns the website of the movie
-	 *
-	 * @return The website field of the Movie object.
-	 */
 	public String getWebsite() {
-		return website;
+		return Website;
 	}
 
-	/**
-	 * It sets the website of the Movie.
-	 *
-	 * @param website The website of the Movie.
-	 */
 	public void setWebsite(String website) {
-		this.website = website;
+		Website = website;
 	}
 
-	/**
-	 * This function returns the response of the Movie
-	 *
-	 * @return The response string.
-	 */
 	public String getResponse() {
-		return response;
+		return Response;
 	}
 
-	/**
-	 * It sets the response variable to the value of the response parameter.
-	 *
-	 * @param response The response of the movie.
-	 */
 	public void setResponse(String response) {
-		this.response = response;
+		Response = response;
 	}
 
-	/**
-	 * Returns a list of actors in the movie
-	 *
-	 * @return A list of actors as strings.
-	 */
 	public List<String> getActors() {
-		return Arrays.asList(actors.split(", "));
+		return Arrays.asList(Actors.split(", "));
 	}
 
-	/**
-	 * It takes a list of actors as strings and joins them with a comma and space.
-	 *
-	 * @param actors A list of actors that are in the movie.
-	 */
 	public void setActors(List<String> actors) {
-		this.actors = String.join(", ", actors);
+		Actors = String.join(", ", actors);
 	}
 
-	/**
-	 * It returns the title of the movie.
-	 *
-	 * @return The title of the movie.
-	 */
-	public String getTitle() {
-		return title;
+	public List<Review> getUserReviews() {
+		return userReviews;
 	}
 
-	/**
-	 * It sets the title of the movie.
-	 *
-	 * @param title The title of the movie.
-	 */
-	public void setTitle(String title) {
-		this.title = title;
+	public void setUserReviews(List<Review> userReviews) {
+		this.userReviews = userReviews;
 	}
 
-	/**
-	 * It returns the plot of the movie.
-	 *
-	 * @return The plot of the movie.
-	 */
-	public String getPlot() {
-		return plot;
-	}
-
-	/**
-	 * This function returns the rating of the movie
-	 *
-	 * @return The rating of the movie.
-	 */
-	public String getRating() {
-		return rating;
-	}
-
-	/**
-	 * This function sets the rating of the movie to the given MPCR rating
-	 *
-	 * @param mpcr The MPCR rating.
-	 * @return Nothing.
-	 */
-	public boolean setRating(String mpcr) {
-		if(!mpcrRatings.contains(mpcr.toUpperCase())){
-			return false;
-		}
-		this.rating = mpcr.toUpperCase();
-		return true;
-	}
-
-	/**
-	 * Adds a review to the user's list of reviews
-	 *
-	 * @param r The review to add to the user's list of reviews.
-	 */
-	public void addUserRating(Review r) {
-		userReviews.add(r);
+	public void addReview(Review review) {
+		this.userReviews.add(review);
 	}
 
 	/**
@@ -527,6 +313,10 @@ public class Movie {
 	 * @return The string "title; rating; year; genre; director; writer; language; actors"
 	 */
 	public String getAttributes() {
-		return String.join("; ",title, rating, year, genre, director, writer, language, actors);
+		return toString();
 	}
+
+	@Override
+	public String toString() {
+		return String.join("; ",Title, Rating, Year, Genre, Director, Writer, Language, Actors);	}
 }

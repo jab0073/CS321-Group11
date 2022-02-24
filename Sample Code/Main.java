@@ -1,5 +1,6 @@
 package edu.uah.cs321;
 
+import java.io.IOException;
 import java.util.List;
 
 /***
@@ -11,33 +12,28 @@ import java.util.List;
  */
 public class Main {
 
-	public static void main(String[] args) {
-		Movie FellowshipOfTheRings = new Movie("Lord of the Rings: Fellowship of the Ring", "A 2001 epic fantasy adventure film directed by Peter Jackson, based on the 1954 novel The Fellowship of the Ring,\nthe first volume of J. R. R. Tolkien's The Lord of the Rings.\n\nThe film is the first installment in the Lord of the Rings trilogy.\n\nSet in Middle-earth, the story tells of the Dark Lord Sauron, who seeks the One Ring, which contains part of his soul,in order to return to power.\nThe Ring has found its way to the young hobbit Frodo Baggins.The fate of Middle-earth hangs in the balance as Frodo and eight companions\n(who form the Fellowship of the Ring) begin their journey to Mount Doom in the land of Mordor,the only place where the Ring can be destroyed.", "PG-13", "2001");
+	private static MovieList ml;
 
-		Movie GenericMovie = new Movie();
-		GenericMovie.setTitle("Lord of the Rings: The Two Towers");
-		if(GenericMovie.setRating("PG-13")) {
-			System.out.println();
-		}
-		GenericMovie.setLanguage("English");
-		GenericMovie.setDirector("Peter Jackson");
-		GenericMovie.setYear(2002);
-		MovieList ml = new MovieList();
+	public static void main(String[] args) throws IOException {
 
-		ml.addMovie(FellowshipOfTheRings);
-		ml.addMovie(GenericMovie);
+		JsonReader js = new JsonReader();
 
-		List<Movie> yearList = ml.filterByYear(2001);
+		List<Movie> movies = js.getMasterMovieList();
 
-		yearList.forEach(m -> System.out.println("year filter: " + m.getTitle()));
+		//movies.forEach(m -> System.out.println(m.toString()));
+
+		MovieList ml = new MovieList(movies);
+
+		List<Movie> yearList = ml.filterByYear(2000, '>');
+
+		yearList.forEach(m -> System.out.println("year filter > 2000: " + m.getTitle() + " year: " + m.getYear()));
 
 		ml.clearFilteredList();
 
 		ml.getAllTitles().forEach(m -> System.out.println("get all titles: " + m));
 
-		String key = "Lord";
+		//String key = "Lord";
 
-		ml.searchForMovie(key).forEach(m -> System.out.println("search: " + m.getTitle()));
-
+		//ml.searchForMovie(key).forEach(m ->  System.out.println("search: " + m.getTitle()));
 	}
 }

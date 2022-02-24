@@ -31,6 +31,7 @@ public class MovieList {
 	// list.
 	public MovieList(List<Movie> movieList) {
 		MovieList.movieList = movieList;
+		filteredMovies = new ArrayList<>();
 	}
 
 	/**
@@ -154,20 +155,55 @@ public class MovieList {
 	 * @param year the year to filter by
 	 * @return A list of movies that match the year.
 	 */
-	public List<Movie> filterByYear(int year) {
-		if(filteredMovies.isEmpty()) {
-			filteredMovies = movieList.stream()
-					.filter(a -> a.getYear() == year)
-					.map(Movie::getThis)
-					.collect(toList());
+	public List<Movie> filterByYear(int year , char greaterThanLessThanEqual) {
+		switch(greaterThanLessThanEqual) {
+			case '<': {
+				if(filteredMovies.isEmpty()) {
+					filteredMovies = movieList.stream()
+							.filter(a -> a.getYear() < year)
+							.map(Movie::getThis)
+							.collect(toList());
+				}
+				else {
+					filteredMovies = filteredMovies.stream()
+							.filter(a -> a.getYear() < year)
+							.map(Movie::getThis)
+							.collect(toList());
+				}
+				return filteredMovies;
+			}
+			case '>': {
+				if(filteredMovies.isEmpty()) {
+					filteredMovies = movieList.stream()
+							.filter(a -> a.getYear() > year)
+							.map(Movie::getThis)
+							.collect(toList());
+				}
+				else {
+					filteredMovies = filteredMovies.stream()
+							.filter(a -> a.getYear() > year)
+							.map(Movie::getThis)
+							.collect(toList());
+				}
+				return filteredMovies;
+			}
+			case '=': {
+				if(filteredMovies.isEmpty()) {
+					filteredMovies = movieList.stream()
+							.filter(a -> a.getYear() == year)
+							.map(Movie::getThis)
+							.collect(toList());
+				}
+				else {
+					filteredMovies = filteredMovies.stream()
+							.filter(a -> a.getYear() == year)
+							.map(Movie::getThis)
+							.collect(toList());
+				}
+				return filteredMovies;
+			}
 		}
-		else {
-			filteredMovies = filteredMovies.stream()
-					.filter(a -> a.getYear() == year)
-					.map(Movie::getThis)
-					.collect(toList());
-		}
-		return filteredMovies;
+		return null;
 	}
 
 	/**

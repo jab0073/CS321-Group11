@@ -1,0 +1,14 @@
+package edu.uah.cs321;
+
+/***
+ * Project Name: GroupProject-InitalThoughts
+ * File Name: Constants
+ * Description: This class contains constants that are used throughout the program
+ * @auth justinbushue
+ * @version 1.0
+ */
+public class Constants {
+	public static final String jsonFileName = "SampleMovieFile.json";
+	public static final String AuthMapFileName = "userpass.gw";
+	public static final String UserDatabaseFileName = "users.gw";
+}

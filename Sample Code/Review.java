@@ -3,10 +3,11 @@ package edu.uah.cs321;
 /***
  * Project Name: GroupProject-InitialThoughts
  * File Name: Review
- * Description: 
+ * Description: A Review is a movie review written by a user
  * @auth justinbushue
  * @version 1.0
  */
+@SuppressWarnings("unused")
 public class Review {
 	String author;
 	Movie movie;

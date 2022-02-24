@@ -38,7 +38,7 @@ public class ResourceUtils {
 			return input;
 		}
 	}
-
+	
 	/**
 	 * Create a copy of the requested file to return to the caller.
 	 *
@@ -50,7 +50,7 @@ public class ResourceUtils {
 		Files.copy(ResourceUtils.getFileFromResourceAsStream(fileName), temp, StandardCopyOption.REPLACE_EXISTING);
 		return new FileInputStream(temp.toFile());
 	}
-
+	/*
 	private static final String preferencesPath = "SOFTWARE\\CS321G11\\GoodWatches\\Preferences";
 	private static final HKEY REGKEY = WinReg.HKEY_CURRENT_USER;
 
@@ -187,7 +187,7 @@ public class ResourceUtils {
 		}
 		return false;
 	}
-
+	*/
 	/**
 	 * If the path doesn't exist, create it
 	 *
@@ -204,8 +204,8 @@ public class ResourceUtils {
 	}
 
 	public static void init() {
-		ResourceUtils.setAuthMap(Constants.DefaultAuthMapDir);
-		ResourceUtils.setUserDatabase(Constants.DefaultUserDatabaseDir);
+		//ResourceUtils.setAuthMap(Constants.DefaultAuthMapDir);
+		//ResourceUtils.setUserDatabase(Constants.DefaultUserDatabaseDir);
 
 		File dir = new File(Constants.DefaultAuthMapDir);
 		if (!dir.exists()){

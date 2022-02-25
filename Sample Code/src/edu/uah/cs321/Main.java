@@ -15,32 +15,24 @@ public class Main {
 
 		ResourceUtils.init();
 
-		new JsonReader();
 		User u;
 		if(!AuthSystem.checkUserName("master")) {
 			u = AuthSystem.addUser("master", "password");
 			u.setFirstName("master");
 			u.setLastName("account");
 			u.setAboutMe("master account");
+			//UserDatabase.addUser(u);
 		}
 		else {
-			u = new User("master","account","master account","master");
+			u = AuthSystem.login("master", "password");
 		}
 		System.out.println(u);
 
-		//UserDatabase.addUser(u);
+		/*
+		
+		JsonReader js = new JsonReader();
 
-
-
-		User p = AuthSystem.login("master", "password");
-
-		/*p.setFirstName("master");
-		p.setLastName("account");
-		p.setAboutMe("master account");*/
-		System.out.println(p);
-
-
-		/*List<Movie> movies = js.getMasterMovieList();
+		List<Movie> movies = js.getMasterMovieList();
 
 		movies.forEach(m -> System.out.println(m.toString()));
 

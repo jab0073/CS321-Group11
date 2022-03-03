@@ -17,8 +17,9 @@ import static java.util.stream.Collectors.toList;
  */
 @SuppressWarnings("unused")
 public class MovieList {
-	private static List<Movie> movieList;
-	private static List<Movie> filteredMovies;
+	private String listName;
+	private List<Movie> movieList;
+	private List<Movie> filteredMovies;
 
 	// This is the constructor for the MovieList class. It initializes the movieList and filteredMovies variables to an empty
 	// list.
@@ -30,8 +31,34 @@ public class MovieList {
 	// This is the constructor for the MovieList class. It initializes the movieList and filteredMovies variables to an empty
 	// list.
 	public MovieList(List<Movie> movieList) {
-		MovieList.movieList = movieList;
+		this.movieList = movieList;
 		filteredMovies = new ArrayList<>();
+	}
+
+	// This is the constructor for the MovieList class. It initializes the movieList and filteredMovies variables to an empty
+	// list.
+	public MovieList(String listName, List<Movie> movieList) {
+		this.listName = listName;
+		this.movieList = movieList;
+		filteredMovies = new ArrayList<>();
+	}
+
+	/**
+	 * Returns the name of the list
+	 *
+	 * @return The listName variable is being returned.
+	 */
+	public String getListName() {
+		return listName;
+	}
+
+	/**
+	 * It sets the listName variable to the value of the parameter listName.
+	 *
+	 * @param listName The name of the list to be created.
+	 */
+	public void setListName(String listName) {
+		this.listName = listName;
 	}
 
 	/**
@@ -58,7 +85,7 @@ public class MovieList {
 	 * @param movieList The list of movies to be displayed.
 	 */
 	public void setMovieList(List<Movie> movieList) {
-		MovieList.movieList = movieList;
+		this.movieList = movieList;
 	}
 
 	/**

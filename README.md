@@ -40,9 +40,6 @@ _**Submitted on 02/10/2021 by Justin**_
 - Visibility - do not use public attributes except in very rare cases of things like shared constants, etc.
 - The other features presented in Chapter 3: clarity, cohesion, consistency
 
-###### Schedule Appointment with Ms. Allen
-_**2/23/2022 @ 7:30 PM**_
-
 ###### CRC Cards link:
 [CRC Cards](https://docs.google.com/presentation/d/1GOsnx2NHszYy-sL2_1o1KaVt6TZ-FgG1nOWxgyRE9Bc/edit?usp=sharing)
 

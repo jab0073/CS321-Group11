@@ -7,6 +7,19 @@
 
 - Justin Bushue
 
+# Table of Contents
+- [Project Proposal](https://github.com/jab0073/CS321-Group11#project-proposal)
+
+- [Class/Work Schedules](https://github.com/jab0073/CS321-Group11#classwork-schedules)
+
+- [Collaborative Project Documentation](https://github.com/jab0073/CS321-Group11#collaborative-project-documentation)
+
+ * [Phase 1](https://github.com/jab0073/CS321-Group11/blob/main/README.md#phase-1---use-cases-and-functional-requirements)
+
+ * [Phase 2](https://github.com/jab0073/CS321-Group11/blob/main/README.md#phase-2---design)
+
+ * [Phase 3](https://github.com/jab0073/CS321-Group11/blob/main/README.md#phase-3---implementation)
+
 ## Project Proposal
 
 Finding a movie to watch can be a dilemma. People looking for entertainment certainly know that interests them, but not necessarily which movies fit the bill.

@@ -14,11 +14,11 @@
 
 - [Collaborative Project Documentation](https://github.com/jab0073/CS321-Group11#collaborative-project-documentation)
 
- * [Phase 1](https://github.com/jab0073/CS321-Group11/blob/main/README.md#phase-1---use-cases-and-functional-requirements)
+    - [Phase 1](https://github.com/jab0073/CS321-Group11/blob/main/README.md#phase-1---use-cases-and-functional-requirements)
 
- * [Phase 2](https://github.com/jab0073/CS321-Group11/blob/main/README.md#phase-2---design)
+    - [Phase 2](https://github.com/jab0073/CS321-Group11/blob/main/README.md#phase-2---design)
 
- * [Phase 3](https://github.com/jab0073/CS321-Group11/blob/main/README.md#phase-3---implementation)
+    - [Phase 3](https://github.com/jab0073/CS321-Group11/blob/main/README.md#phase-3---implementation)
 
 ## Project Proposal
 

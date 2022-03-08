@@ -14,6 +14,8 @@ _**Tenative Weekly Meetings: Saturdays @ 1:00 PM**_
 
 # Collaborative Project Documentation
 
+[Final Project Documentation](https://docs.google.com/document/d/1gjTqStX6FBkAt3OKbrzCFy5J3OV_Pv2U2Q-0uU_9xlw/edit?usp=sharing)
+
 ## Phase 1 - Use Cases and Functional Requirements
 _**Submitted on 02/10/2021 by Justin**_
 

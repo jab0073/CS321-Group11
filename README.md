@@ -62,7 +62,7 @@ _**Tenative Weekly Meetings: Saturdays @ 1:00 PM**_
 [Final Project Documentation](https://docs.google.com/document/d/1gjTqStX6FBkAt3OKbrzCFy5J3OV_Pv2U2Q-0uU_9xlw/edit?usp=sharing)
 
 ## Phase 1 - Use Cases and Functional Requirements
-_**Submitted on 02/10/2021 by Justin**_
+_**Submitted on 02/10/2022 by Justin**_
 
 - Please refer to the document: Final Project Document Template.docx for the items required during this Requirements phase. You must produce sections 3.0 Use Cases and 4.0 Requirements.
 - You must have at least 4 use cases. Diagram them appropriately.
@@ -78,6 +78,7 @@ _**Submitted on 02/10/2021 by Justin**_
 [Diagrams.net](https://drive.google.com/file/d/1ZrRywBNkzC5qNdocyuXb9DE71RfPt1kw/view?usp=sharing)
 
 ## Phase 2 - Design
+_**Submitted on 03/05/2022 by James**_
 
 - The Design Documentation format is described in section 5.0 of the Final Project Document Template.docx
 - To turn in for this phase of the project you must include section 5.0 of the document along with UML diagrams for the major classes and interactions that are important to your project. These must include UML class diagrams as well as activity/sequence diagrams where appropriate. You do not need to diagram fundamental classes such as common data structures or utilities (for example ArrayList<>).

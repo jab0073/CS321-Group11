@@ -7,15 +7,6 @@
 
 - Justin Bushue
 
-## Class/Work Schedules
-[Class/Work Schedules](https://docs.google.com/spreadsheets/d/1Zj6V2qRDIKM7VogGnZrPiUvWgQ8GM8AiMRLizCSQWl0/edit?usp=sharing)
-
-_**Tenative Weekly Meetings: Saturdays @ 1:00 PM**_
-
-# Collaborative Project Documentation
-
-[Final Project Documentation](https://docs.google.com/document/d/1gjTqStX6FBkAt3OKbrzCFy5J3OV_Pv2U2Q-0uU_9xlw/edit?usp=sharing)
-
 ## Project Proposal
 
 Finding a movie to watch can be a dilemma. People looking for entertainment certainly know that interests them, but not necessarily which movies fit the bill.
@@ -47,6 +38,15 @@ Perhaps the user would create different wish lists for different occasions (date
 [Wikipedia JSON](https://en.wikipedia.org/wiki/JSON#:~:text=After%20RFC%204627%20had%20been%20available%20as%20its,was%20also%20standardized%20as%20ISO%20%2F%20IEC%2021778%3A2017)
 
 [Official JSON Organization Website](http://www.json.org/)
+
+## Class/Work Schedules
+[Class/Work Schedules](https://docs.google.com/spreadsheets/d/1Zj6V2qRDIKM7VogGnZrPiUvWgQ8GM8AiMRLizCSQWl0/edit?usp=sharing)
+
+_**Tenative Weekly Meetings: Saturdays @ 1:00 PM**_
+
+# Collaborative Project Documentation
+
+[Final Project Documentation](https://docs.google.com/document/d/1gjTqStX6FBkAt3OKbrzCFy5J3OV_Pv2U2Q-0uU_9xlw/edit?usp=sharing)
 
 ## Phase 1 - Use Cases and Functional Requirements
 _**Submitted on 02/10/2021 by Justin**_

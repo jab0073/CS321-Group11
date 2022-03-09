@@ -1,4 +1,4 @@
-![GoodWatches Logo](https://github.com/jab0073/CS321-Group11/blob/33483196562bd76dd8e0fcdeed600373abde7d2c/Documentation/goodwatches%20logo.png)
+![GoodWatches Logo](https://github.com/jab0073/CS321-Group11/blob/5fbba99f6a03984a138dcdc97a0339b5bc912e1f/Documentation/goodwatches%20logo.png)
 
 # CS321-Group11
 - Shawn Burnham

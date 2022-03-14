@@ -112,3 +112,24 @@ _**Submitted on 03/05/2022 by James**_
 ###### Assigned Tasks Link:
 [Assigned Tasks](https://docs.google.com/spreadsheets/d/1Edy5DPGPyGy-__11zUdGLXaPj5TFPLLDmdI75xgVwGg/edit?usp=sharing)
 
+This is your software implementation. You will need to turn in
+- The software project your system compiles in
+- Instructions for building, configuring and executing your code
+- A pre-compiled executable version that I can run directly from the command line of java
+
+You must arrange to demo a working version of your software to me sometime during the
+week of April 20th. (see below).
+
+Our final is scheduled for April 28. Finals week begins for all
+students on April 25th. I need all outstanding work turned in by Friday, April 22rd.
+- You will upload a zipped copy of your final project to Canvas no later than April 22rd. You must
+also ensure I have a working copy installed at home so it is probably best not to wait until the
+last minute. You may also add me to your github or gitlab project for me to clone to my
+desktop.
+
+Each team will schedule a session with me to demonstrate their project to me. All members are required to attend. I will reserve 45 minutes for each appointment, although I anticipate these being no more than 30 minutes.
+
+- Each team member should be prepared to discuss the part of the code they worked on the most and answer questions. Make sure you can hit on the main flow of execution for your system.
+The grading rubric is below.
+- Deliver a prepared powerpoint or pdf presentation of the presentation assignment to canvas before our meeting.
+- Each team should select an appointment via the appointment finder on Canvas Calendar.

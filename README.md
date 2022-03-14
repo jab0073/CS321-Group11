@@ -108,10 +108,6 @@ _**Submitted on 03/05/2022 by James**_
 
 ## Phase 3 - Implementation
 
-
-###### Assigned Tasks Link:
-[Assigned Tasks](https://docs.google.com/spreadsheets/d/1Edy5DPGPyGy-__11zUdGLXaPj5TFPLLDmdI75xgVwGg/edit?usp=sharing)
-
 This is your software implementation. You will need to turn in
 - The software project your system compiles in
 - Instructions for building, configuring and executing your code
@@ -133,3 +129,7 @@ Each team will schedule a session with me to demonstrate their project to me. Al
 The grading rubric is below.
 - Deliver a prepared powerpoint or pdf presentation of the presentation assignment to canvas before our meeting.
 - Each team should select an appointment via the appointment finder on Canvas Calendar.
+
+
+###### Assigned Tasks Link:
+[Assigned Tasks](https://docs.google.com/spreadsheets/d/1Edy5DPGPyGy-__11zUdGLXaPj5TFPLLDmdI75xgVwGg/edit?usp=sharing)

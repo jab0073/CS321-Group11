@@ -78,6 +78,16 @@ public class ResourceUtils {
 		return null;
 	}
 
+	public static String getGoodWatchesDirectory() {
+		if(System.getProperty("os.name").toLowerCase().startsWith("win")) {
+			return Constants.WindowsBeginningDefaultDir + System.getProperty("user.name") + Constants.WindowsEndingDefaultDir;
+		}
+		else if(System.getProperty("os.name").toLowerCase().startsWith("mac")) {
+			return Constants.MacBeginningDir + System.getProperty("user.name") + Constants.MacDefaultDir;
+		}
+		return null;
+	}
+
 	/**
 	 * If the path doesn't exist, create it
 	 *
@@ -86,7 +96,7 @@ public class ResourceUtils {
 	public static void ensurePath(String path) {
 		if (!Files.exists(Paths.get(path))){
 			try {
-				Files.createDirectory(Paths.get(path));
+				Files.createDirectories(Paths.get(path));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

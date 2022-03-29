@@ -41,7 +41,7 @@ public final class AuthSystem {
 	 * This function writes the userPass object to a file called userpass.gw
 	 */
 	public static void close() throws IOException {
-		ResourceUtils.ensurePath(ResourceUtils.getAuthMap());
+		ResourceUtils.ensurePath(ResourceUtils.getGoodWatchesDirectory());
 		FileOutputStream fileOut = new FileOutputStream(Objects.requireNonNull(ResourceUtils.getAuthMap()));
 		ObjectOutputStream out = new ObjectOutputStream(fileOut);
 		out.writeObject(userPass);

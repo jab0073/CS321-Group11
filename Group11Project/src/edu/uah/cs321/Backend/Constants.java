@@ -8,11 +8,13 @@ package edu.uah.cs321.Backend;
  */
 public final class Constants {
 	public static final String jsonFileName = "SampleMovieFile.json";
-	public static final String logoFileName = "goodwatcheslogo.png";
+
 	public static final String AuthMapFileName = "userpass.gw";
 	public static final String UserDatabaseFileName = "users.gw";
-	public static final String WindowsBeginningDefaultDir = "C:\\";
+
+	public static final String WindowsBeginningDefaultDir = "C:\\Users\\";
 	public static final String WindowsEndingDefaultDir = "\\Documents\\CS321G11\\GoodWatches\\";
+
 	public static final String MacBeginningDir = "/Users/";
 	public static final String MacDefaultDir = "/Documents/CS321G11/GoodWatches/";
 }

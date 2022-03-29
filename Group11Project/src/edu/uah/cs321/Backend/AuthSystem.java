@@ -5,7 +5,6 @@ import java.util.HashMap;
 
 @SuppressWarnings("unused")
 /**
- * Project Name: Group11Project
  * File Name: AuthSystem
  * Description: The AuthSystem class is a class that contains a HashMap of usernames and passwords. It also contains a method to add a
  * user to the HashMap, a method to remove a user from the HashMap, a method to check if a username is in the HashMap, a
@@ -119,6 +118,8 @@ public final class AuthSystem {
 	public static boolean removeUser(String userName, String password) {
 		if(checkPassword(userName, password)){
 			userPass.remove(userName);
+			User u = UserDatabase.getUserAccount(userName);
+			UserDatabase.removeUser(u);
 			return true;
 		}
 		return false;

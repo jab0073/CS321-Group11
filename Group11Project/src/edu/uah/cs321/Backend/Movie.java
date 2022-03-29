@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 @SuppressWarnings("unused")
 /**
- * Project Name: Group11Project
  * File Name: AuthSystem
  * Description: A Movie object contains all the information about a movie
  * @author justinbushue

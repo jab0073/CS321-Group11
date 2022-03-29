@@ -9,10 +9,9 @@ import java.util.stream.Collectors;
 import static java.util.stream.Collectors.toList;
 
 /***
- * Project Name: Group11Project
  * File Name: MovieList
  * Description: MovieList is a class that holds a list of movies and provides methods to filter the list of movies by actor, director, genre, rating, year, and title
- * @author justinbushue
+ * @auth justinbushue
  * @version 1.0
  */
 @SuppressWarnings("unused")
@@ -183,15 +182,14 @@ public class MovieList {
 	 * @return A list of movies that match the year.
 	 */
 	public List<Movie> filterByYear(int year , char greaterThanLessThanEqual) {
-		switch(greaterThanLessThanEqual) {
-			case '<': {
-				if(filteredMovies.isEmpty()) {
+		switch (greaterThanLessThanEqual) {
+			case '<' -> {
+				if (filteredMovies.isEmpty()) {
 					filteredMovies = movieList.stream()
 							.filter(a -> a.getYear() < year)
 							.map(Movie::getThis)
 							.collect(toList());
-				}
-				else {
+				} else {
 					filteredMovies = filteredMovies.stream()
 							.filter(a -> a.getYear() < year)
 							.map(Movie::getThis)
@@ -199,14 +197,13 @@ public class MovieList {
 				}
 				return filteredMovies;
 			}
-			case '>': {
-				if(filteredMovies.isEmpty()) {
+			case '>' -> {
+				if (filteredMovies.isEmpty()) {
 					filteredMovies = movieList.stream()
 							.filter(a -> a.getYear() > year)
 							.map(Movie::getThis)
 							.collect(toList());
-				}
-				else {
+				} else {
 					filteredMovies = filteredMovies.stream()
 							.filter(a -> a.getYear() > year)
 							.map(Movie::getThis)
@@ -214,14 +211,13 @@ public class MovieList {
 				}
 				return filteredMovies;
 			}
-			case '=': {
-				if(filteredMovies.isEmpty()) {
+			case '=' -> {
+				if (filteredMovies.isEmpty()) {
 					filteredMovies = movieList.stream()
 							.filter(a -> a.getYear() == year)
 							.map(Movie::getThis)
 							.collect(toList());
-				}
-				else {
+				} else {
 					filteredMovies = filteredMovies.stream()
 							.filter(a -> a.getYear() == year)
 							.map(Movie::getThis)
@@ -263,7 +259,6 @@ public class MovieList {
 				.map(Movie::getActors)
 				.flatMap(Collection::stream)
 				.sorted(Comparator.naturalOrder())
-				.distinct()
 				.collect(toList());
 	}
 
@@ -276,7 +271,6 @@ public class MovieList {
 		return movieList.stream()
 				.map(Movie::getGenre)
 				.sorted(Comparator.naturalOrder())
-				.distinct()
 				.collect(toList());
 	}
 
@@ -289,7 +283,6 @@ public class MovieList {
 		return movieList.stream()
 				.map(Movie::getTitle)
 				.sorted(Comparator.naturalOrder())
-				.distinct()
 				.collect(toList());
 	}
 
@@ -302,7 +295,6 @@ public class MovieList {
 		return movieList.stream()
 				.map(Movie::getDirector)
 				.sorted(Comparator.naturalOrder())
-				.distinct()
 				.collect(toList());
 	}
 
@@ -315,7 +307,6 @@ public class MovieList {
 		return movieList.stream()
 				.map(Movie::getWriter)
 				.sorted(Comparator.naturalOrder())
-				.distinct()
 				.collect(toList());
 	}
 
@@ -328,7 +319,6 @@ public class MovieList {
 		return movieList.stream()
 				.map(Movie::getLanguage)
 				.sorted(Comparator.naturalOrder())
-				.distinct()
 				.collect(toList());
 	}
 

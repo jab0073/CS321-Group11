@@ -7,9 +7,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.List;
 
 /***
- * Project Name: Group11Project
  * File Name: ResourceUtils
  * Description: The ResourceUtils class is a utility class that provides methods for reading and writing files from the resource folder
  * as well as retrieving and setting the user specified locations for the AuthSystem map and UserDatabase list.
@@ -18,6 +18,7 @@ import java.nio.file.StandardCopyOption;
  */
 @SuppressWarnings("unused")
 public class ResourceUtils {
+	private static MovieList masterMovieLst;
 	/**
 	 * Given a file name, return the InputStream for that file
 	 *
@@ -105,6 +106,14 @@ public class ResourceUtils {
 		}
 
 		ResourceUtils.ensurePath(dir);
+	}
+
+	public static void setMasterMovieList(List<Movie> ml) {
+		masterMovieLst = new MovieList(ml);
+	}
+
+	public static MovieList getMasterMovieList() {
+		return masterMovieLst;
 	}
 }
 

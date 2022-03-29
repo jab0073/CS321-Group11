@@ -9,10 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /***
- * Project Name: Group11Project
  * File Name: JsonReader
  * Description: 
- * @author justinbushue
+ * @auth justinbushue
  * @version 1.0
  */
 @SuppressWarnings("unused")
@@ -29,13 +28,6 @@ public final class JsonReader {
 		Type movieListType = new TypeToken<ArrayList<Movie>>(){}.getType();
 
 		movieList = gson.fromJson(json, movieListType);
-	}
-
-	/***
-	 * Used to get the Master Movie List
-	 * @return the master movie list
-	 */
-	public static List<Movie> getMasterMovieList() {
-		return movieList;
+		ResourceUtils.setMasterMovieList(movieList);
 	}
 }

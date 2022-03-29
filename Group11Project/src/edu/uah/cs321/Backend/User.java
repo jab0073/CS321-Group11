@@ -5,10 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /***
- * Project Name: Group11Project
  * File Name: User
  * Description: A user has a first name, last name, about me, and a username. The user can have a list of movie lists. The user can have a list of favorite actors, movies, genres, directors, and other
- * @author justinbushue
+ * @auth justinbushue
  * @version 1.0
  */
 @SuppressWarnings("unused")
@@ -27,9 +26,9 @@ public class User implements Serializable {
 	// and favorite other.
 	public User() {
 		entitlement = false;
-		firstName = "";
-		lastName = "";
-		aboutMe = "";
+		firstName = "Guest";
+		lastName = "Account";
+		aboutMe = "I'm A Guest :)";
 		userName = null;
 		movieLists = new ArrayList<>();
 		favoriteMovies = new ArrayList<>();

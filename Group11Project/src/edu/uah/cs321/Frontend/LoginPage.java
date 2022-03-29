@@ -12,10 +12,9 @@ import java.awt.event.ActionListener;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 /***
- * Project Name: Group11Project
  * File Name: LoginPage
  * Description: 
- * @author justinbushue
+ * @auth justinbushue
  * @version 1.0
  */
 public class LoginPage extends JPanel {
@@ -72,27 +71,18 @@ public class LoginPage extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String username = usernameField.getText();
-				String password = passwordField.getText();
+				String password = String.valueOf(passwordField.getPassword());
 
 				User u = AuthSystem.login(username, password);
 				if(u != null) {
 					usernameField.setText("");
 					passwordField.setText("");
-					AccountPage.setUser(u);
+					AccountPage ac = new AccountPage(u);
+					Application.getContentPanel().add(ac,"accountPage");
 					Application.showPage("accountPage");
 				}
 				else {
-					JDialog jd = new JDialog();
-					jd.setTitle("Login Failed...");
-					JPanel jdP = new JPanel();
-					jd.add(jdP);
-					jdP.add(new JLabel("Login Failed..."));
-					jd.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-					jd.setPreferredSize(new Dimension(200,100));
-					jd.setSize(new Dimension(200,100));
-
-					jd.setVisible(true);
-
+					SimpleDialog jd = new SimpleDialog("Login Failed...","Login Failed...");
 				}
 			}
 		});

@@ -1,10 +1,9 @@
 package edu.uah.cs321.Backend;
 
 /***
- * Project Name: Group11Project
  * File Name: Review
  * Description: A Review is a movie review written by a user
- * @author justinbushue
+ * @auth justinbushue
  * @version 1.0
  */
 @SuppressWarnings("unused")

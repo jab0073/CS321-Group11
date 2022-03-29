@@ -1,10 +1,9 @@
 package edu.uah.cs321.Backend;
 
 /***
- * Project Name: Group11Project
  * File Name: Rating
  * Description: 
- * @author justinbushue
+ * @auth justinbushue
  * @version 1.0
  */
 public class Rating {

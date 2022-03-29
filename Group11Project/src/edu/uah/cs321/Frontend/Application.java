@@ -10,20 +10,19 @@ import java.awt.event.WindowEvent;
 import java.io.IOException;
 
 /***
- * Project Name: Group11Project
  * File Name: Application
  * Description: 
- * @author justinbushue
+ * @auth justinbushue
  * @version 1.0
  */
 public class Application extends JFrame {
 	private static JPanel contentPanel;
 	private static MainPage mainPage;
 	private static LoginPage loginPage;
-	private static AccountPage accountPage;
+	private static CreateAccountPage createAccountPage;
 	private static CardLayout cl;
 
-	public Application(String title) {
+	public Application(String title) throws IOException {
 		super(title);
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		addWindowListener(new WindowAdapter()
@@ -43,17 +42,18 @@ public class Application extends JFrame {
 			}
 		});
 
-		setSize( 480, 480 );
+		setSize( 840, 480 );
 
 		contentPanel = new JPanel(new CardLayout());
 
 		mainPage = new MainPage();
 		loginPage = new LoginPage();
-		accountPage = new AccountPage();
+		createAccountPage = new CreateAccountPage();
 
 		contentPanel.add(mainPage,"mainPage");
 		contentPanel.add(loginPage, "loginPage");
-		contentPanel.add(accountPage,"accountPage");
+		contentPanel.add(createAccountPage, "createAccountPage");
+		//contentPanel.add(accountPage,"accountPage");
 
 		cl = (CardLayout) contentPanel.getLayout();
 
@@ -67,4 +67,7 @@ public class Application extends JFrame {
 		cl.show(contentPanel, cardName);
 	}
 
+	public static JPanel getContentPanel() {
+		return contentPanel;
+	}
 }

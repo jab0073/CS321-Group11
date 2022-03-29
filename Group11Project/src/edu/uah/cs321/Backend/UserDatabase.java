@@ -7,10 +7,9 @@ import java.util.Objects;
 import java.util.Optional;
 
 /***
- * Project Name: Group11Project
  * File Name: UserDatabase
  * Description: This class is used to store and retrieve user accounts
- * @author justinbushue
+ * @auth justinbushue
  * @version 1.0
  */
 @SuppressWarnings("unused")
@@ -61,6 +60,7 @@ public final class UserDatabase {
 	 * @param u The user to be removed.
 	 */
 	public static void removeUser(User u) {
+		System.out.println("Removing " + u);
 		users.remove(u);
 	}
 

@@ -1,15 +1,20 @@
 package edu.uah.cs321.Frontend;
 
+import edu.uah.cs321.Backend.Constants;
+import edu.uah.cs321.Backend.ResourceUtils;
+import edu.uah.cs321.Backend.User;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.Objects;
 
 /***
- * Project Name: Group11Project
  * File Name: MainPage
  * Description: 
- * @author justinbushue
+ * @auth justinbushue
  * @version 1.0
  */
 public class MainPage extends JPanel {
@@ -22,13 +27,14 @@ public class MainPage extends JPanel {
 	private static JPanel       buttonPanel;
 	private static BoxLayout    layout;
 
-	public MainPage() {
+	public MainPage() throws IOException {
 		contentPanel = new JPanel();
 		layout = new BoxLayout(contentPanel,BoxLayout.Y_AXIS);
 		contentPanel.setLayout(layout);
 
 		titlePanel = new JPanel();
-		title = new JLabel("GoodWatches!");
+		ImageIcon logoImg = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("Images/goodwatcheslogo.png")));
+		title = new JLabel(logoImg);
 		titlePanel.add(title, Component.CENTER_ALIGNMENT);
 		contentPanel.add(titlePanel, Component.CENTER_ALIGNMENT);
 
@@ -43,13 +49,16 @@ public class MainPage extends JPanel {
 
 		contentPanel.add(buttonPanel, Component.CENTER_ALIGNMENT);
 
-		loginButton.addActionListener(new ActionListener() {
+		loginButton.addActionListener(e -> goToLoginPage());
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				goToLoginPage();
-			}
+		guestButton.addActionListener(e ->{
+			User guest = new User();
+			AccountPage ac = new AccountPage(guest);
+			Application.getContentPanel().add(ac,"guestAccountPage");
+			Application.showPage("guestAccountPage");
 		});
+
+		createAccountButton.addActionListener(e -> goToCreateAccountPage());
 
 		add(contentPanel, Component.CENTER_ALIGNMENT);
 		setVisible(true);

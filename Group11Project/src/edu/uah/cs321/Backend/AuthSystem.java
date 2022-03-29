@@ -2,6 +2,7 @@ package edu.uah.cs321.Backend;
 
 import java.io.*;
 import java.util.HashMap;
+import java.util.Objects;
 
 @SuppressWarnings("unused")
 /**
@@ -40,7 +41,8 @@ public final class AuthSystem {
 	 * This function writes the userPass object to a file called userpass.gw
 	 */
 	public static void close() throws IOException {
-		FileOutputStream fileOut = new FileOutputStream(ResourceUtils.getAuthMap());
+		ResourceUtils.ensurePath(ResourceUtils.getAuthMap());
+		FileOutputStream fileOut = new FileOutputStream(Objects.requireNonNull(ResourceUtils.getAuthMap()));
 		ObjectOutputStream out = new ObjectOutputStream(fileOut);
 		out.writeObject(userPass);
 	}

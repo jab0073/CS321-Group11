@@ -90,6 +90,7 @@ public final class UserDatabase {
 	 * Writes the users object to a file
 	 */
 	public static void close() throws IOException {
+		ResourceUtils.ensurePath(ResourceUtils.getUserDatabase());
 		FileOutputStream fileOut = new FileOutputStream(Objects.requireNonNull(ResourceUtils.getUserDatabase()));
 		ObjectOutputStream out = new ObjectOutputStream(fileOut);
 		out.writeObject(users);

@@ -5,8 +5,6 @@
 
 - James Haywood
 
-- Jarred Long
-
 - Justin Bushue
 
 # Table of Contents

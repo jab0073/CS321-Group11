@@ -55,7 +55,7 @@ public class ResourceUtils {
 	 */
 	public static String getUserDatabase() {
 		if(System.getProperty("os.name").toLowerCase().startsWith("win")) {
-			return Constants.WindowsDefaultDir + "\\" + Constants.UserDatabaseFileName;
+			return Constants.WindowsBeginningDefaultDir + System.getProperty("user.name") + Constants.WindowsEndingDefaultDir + Constants.UserDatabaseFileName;
 		}
 		else if(System.getProperty("os.name").toLowerCase().startsWith("mac")) {
 			return Constants.MacBeginningDir + System.getProperty("user.name") + Constants.MacDefaultDir + Constants.UserDatabaseFileName;
@@ -70,7 +70,7 @@ public class ResourceUtils {
 	 */
 	public static String getAuthMap() {
 		if(System.getProperty("os.name").toLowerCase().startsWith("win")) {
-			return Constants.WindowsDefaultDir + Constants.AuthMapFileName;
+			return Constants.WindowsBeginningDefaultDir + System.getProperty("user.name") + Constants.WindowsEndingDefaultDir + Constants.AuthMapFileName;
 		}
 		else if(System.getProperty("os.name").toLowerCase().startsWith("mac")) {
 			return Constants.MacBeginningDir + System.getProperty("user.name") + Constants.MacDefaultDir + Constants.AuthMapFileName;
@@ -99,7 +99,7 @@ public class ResourceUtils {
 	public static void init() {
 		String dir = "";
 		if(System.getProperty("os.name").toLowerCase().startsWith("win")) {
-			dir = Constants.WindowsDefaultDir;
+			dir = Constants.WindowsBeginningDefaultDir + System.getProperty("user.name") + Constants.WindowsEndingDefaultDir;
 		}
 		else if(System.getProperty("os.name").toLowerCase().startsWith("mac")) {
 			dir = Constants.MacBeginningDir + System.getProperty("user.name") + Constants.MacDefaultDir;

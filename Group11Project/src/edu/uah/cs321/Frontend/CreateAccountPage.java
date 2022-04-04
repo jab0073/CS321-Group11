@@ -25,6 +25,7 @@ public class CreateAccountPage extends JPanel {
 	private static JTextField lastNameField;
 	private static JLabel aboutMeLabel;
 	private static JTextArea aboutMeArea;
+	private static JScrollPane aboutMePane;
 	private static JLabel usernameLabel;
 	private static JTextField usernameField;
 	private static JLabel passwordLabel;
@@ -38,6 +39,7 @@ public class CreateAccountPage extends JPanel {
 	private static BoxLayout contentPanelLayout;
 	private static BoxLayout buttonPanelLayout;
 	private static BoxLayout fieldPanelLayout;
+
 
 	public CreateAccountPage() {
 		super();
@@ -61,7 +63,9 @@ public class CreateAccountPage extends JPanel {
 		lastNameField = new JTextField();
 
 		aboutMeLabel = new JLabel("About Me");
-		aboutMeArea = new JTextArea();
+		aboutMeArea = new JTextArea(3,10);
+		aboutMePane = new JScrollPane(aboutMeArea);
+		aboutMeArea.setLineWrap(true);
 
 		usernameLabel = new JLabel("Username");
 		usernameField = new JTextField();
@@ -69,7 +73,7 @@ public class CreateAccountPage extends JPanel {
 		passwordLabel = new JLabel("Password");
 		passwordField = new JPasswordField();
 
-		confirmPasswordLabel = new JLabel("Confirm Password");
+		confirmPasswordLabel = new JLabel("Confirm Password", SwingConstants.CENTER);
 		confirmPasswordField = new JPasswordField();
 
 		createAccountButton = new JButton("Create Account");
@@ -85,7 +89,7 @@ public class CreateAccountPage extends JPanel {
 		fieldPanel.add(lastNameField);
 
 		fieldPanel.add(aboutMeLabel);
-		fieldPanel.add(aboutMeArea);
+		fieldPanel.add(aboutMePane);
 
 		fieldPanel.add(usernameLabel);
 		fieldPanel.add(usernameField);
@@ -100,31 +104,31 @@ public class CreateAccountPage extends JPanel {
 		buttonPanel.add(backButton);
 
 		createAccountButton.addActionListener(e -> {
-			String firstName = firstNameField.getText();
-			String lastName = lastNameField.getText();
-			String aboutMe = aboutMeArea.getText();
-			String uname = usernameField.getText();
-			String pw = String.valueOf(passwordField.getPassword());
-			String cpw = String.valueOf(confirmPasswordField.getPassword());
-			if(cpw == null || (!pw.equals(cpw))) {
-				SimpleDialog jd = new SimpleDialog("Error Creating Account...","Please ensure the passwords match.");
-			}
-			if(!AuthSystem.checkUserName(uname)) {
-				User u = AuthSystem.addUser(firstName,lastName,uname,pw);
-				u.setAboutMe(aboutMe);
-				if(u != null) {
-					PreferencePage ac = new PreferencePage(u,0);
-					Application.getContentPanel().add(ac,"preferencePage0");
-					Application.showPage("preferencePage0");
+					String firstName = firstNameField.getText();
+					String lastName = lastNameField.getText();
+					String aboutMe = aboutMeArea.getText();
+					String uname = usernameField.getText();
+					String pw = String.valueOf(passwordField.getPassword());
+					String cpw = String.valueOf(confirmPasswordField.getPassword());
+					if (cpw == null || (!pw.equals(cpw))) {
+						SimpleDialog jd = new SimpleDialog("Error Creating Account...", "Please ensure the passwords match.");
+					} else {
+						if (!AuthSystem.checkUserName(uname)) {
+							User u = AuthSystem.addUser(firstName, lastName, uname, pw);
+							u.setAboutMe(aboutMe);
+							if (u != null) {
+								PreferencePage ac = new PreferencePage(u, 0);
+								Application.getContentPanel().add(ac, "preferencePage0");
+								Application.showPage("preferencePage0");
+							} else {
+								SimpleDialog jd = new SimpleDialog("Error Creating Account...", "The password is not complex enough. Make sure it is greater than 8 characters and only contains letters and numbers.");
+							}
+						} else {
+							SimpleDialog jd = new SimpleDialog("Error Creating Account...", "The username entered already exists. Please choose a new username.");
+						}
+					}
 				}
-				else {
-					SimpleDialog jd = new SimpleDialog("Error Creating Account...", "The password is not complex enought. Make sure it is greater than 8 characters and only contains letters and numbers.");
-				}
-			}
-			else {
-				SimpleDialog jd = new SimpleDialog("Error Creating Account...","The username entered already exists. Please choose a new username.");
-			}
-		});
+		);
 
 		backButton.addActionListener(e -> {
 			usernameField.setText("");

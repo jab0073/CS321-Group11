@@ -21,6 +21,7 @@ public class Application extends JFrame {
 	private static LoginPage loginPage;
 	private static CreateAccountPage createAccountPage;
 	private static CardLayout cl;
+	private static SearchPage searchPage;
 
 	public Application(String title) throws IOException {
 		super(title);
@@ -49,11 +50,13 @@ public class Application extends JFrame {
 		mainPage = new MainPage();
 		loginPage = new LoginPage();
 		createAccountPage = new CreateAccountPage();
+		searchPage = new SearchPage();
 
 		contentPanel.add(mainPage,"mainPage");
 		contentPanel.add(loginPage, "loginPage");
 		contentPanel.add(createAccountPage, "createAccountPage");
 		//contentPanel.add(accountPage,"accountPage");
+		contentPanel.add(searchPage, "searchPage");
 
 		cl = (CardLayout) contentPanel.getLayout();
 

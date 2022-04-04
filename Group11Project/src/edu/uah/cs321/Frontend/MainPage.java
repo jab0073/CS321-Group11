@@ -54,8 +54,8 @@ public class MainPage extends JPanel {
 		guestButton.addActionListener(e ->{
 			User guest = new User();
 			AccountPage ac = new AccountPage(guest);
-			Application.getContentPanel().add(ac,"guestAccountPage");
-			Application.showPage("guestAccountPage");
+			Application.getContentPanel().add(ac,"accountPage");
+			Application.showPage("accountPage");
 		});
 
 		createAccountButton.addActionListener(e -> goToCreateAccountPage());

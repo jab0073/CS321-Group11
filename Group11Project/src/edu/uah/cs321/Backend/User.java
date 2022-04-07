@@ -28,7 +28,7 @@ public class User implements Serializable {
 		entitlement = false;
 		firstName = "Guest";
 		lastName = "Account";
-		aboutMe = "I'm A Guest :)";
+		aboutMe = "I'm A Guest :)\nI can't do anything but search for a movie :(\nI should make an account!";
 		userName = null;
 		movieLists = new ArrayList<>();
 		favoriteMovies = new ArrayList<>();

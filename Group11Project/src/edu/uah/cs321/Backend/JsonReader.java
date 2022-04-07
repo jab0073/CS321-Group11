@@ -30,4 +30,14 @@ public final class JsonReader {
 		movieList = gson.fromJson(json, movieListType);
 		ResourceUtils.setMasterMovieList(movieList);
 	}
+
+	public List<Movie> getMovieList(){
+		return movieList;
+	}
+
+	public void printMovieList(){
+		for (Movie m : movieList){
+			System.out.println(m.getTitle()+"\n");
+		}
+	}
 }

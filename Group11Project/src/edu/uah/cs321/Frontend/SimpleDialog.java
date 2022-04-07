@@ -23,4 +23,6 @@ public class SimpleDialog extends JDialog {
 
 		setVisible(true);
 	}
+
+
 }

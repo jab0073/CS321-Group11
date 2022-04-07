@@ -1,13 +1,13 @@
 package edu.uah.cs321.Frontend;
 
-import edu.uah.cs321.Backend.AuthSystem;
-import edu.uah.cs321.Backend.UserDatabase;
+import edu.uah.cs321.Backend.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
+import java.util.List;
 
 /***
  * File Name: Application
@@ -22,6 +22,8 @@ public class Application extends JFrame {
 	private static CreateAccountPage createAccountPage;
 	private static CardLayout cl;
 	private static SearchPage searchPage;
+
+	private static  List<Movie> movieFile;
 
 	public Application(String title) throws IOException {
 		super(title);
@@ -43,7 +45,7 @@ public class Application extends JFrame {
 			}
 		});
 
-		setSize( 1000, 1000 );
+		setSize( 750, 1000 );
 
 		contentPanel = new JPanel(new CardLayout());
 
@@ -64,6 +66,10 @@ public class Application extends JFrame {
 		cl.show(contentPanel,"mainPage");
 		contentPanel.setVisible(true);
 		this.add(contentPanel);
+
+
+
+
 	}
 
 	public static void showPage(String cardName) {
@@ -73,4 +79,6 @@ public class Application extends JFrame {
 	public static JPanel getContentPanel() {
 		return contentPanel;
 	}
+
+
 }

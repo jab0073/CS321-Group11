@@ -43,7 +43,7 @@ public class Application extends JFrame {
 			}
 		});
 
-		setSize( 840, 480 );
+		setSize( 1000, 1000 );
 
 		contentPanel = new JPanel(new CardLayout());
 

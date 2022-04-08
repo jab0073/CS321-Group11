@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentListener;
 
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
@@ -45,7 +46,6 @@ public class AccountPage extends JPanel {
 
 	public AccountPage(User u) {
 		super();
-
 		this.setLayout(new BorderLayout());
 		AccountPage.u = u;
 		System.out.println(u);

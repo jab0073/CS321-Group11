@@ -22,8 +22,7 @@ public class Application extends JFrame {
 	private static CreateAccountPage createAccountPage;
 	private static CardLayout cl;
 	private static SearchPage searchPage;
-
-	private static  List<Movie> movieFile;
+	private static AccountPage accountPage;
 
 	public Application(String title) throws IOException {
 		super(title);
@@ -57,7 +56,6 @@ public class Application extends JFrame {
 		contentPanel.add(mainPage,"mainPage");
 		contentPanel.add(loginPage, "loginPage");
 		contentPanel.add(createAccountPage, "createAccountPage");
-		//contentPanel.add(accountPage,"accountPage");
 		contentPanel.add(searchPage, "searchPage");
 
 		cl = (CardLayout) contentPanel.getLayout();
@@ -66,9 +64,6 @@ public class Application extends JFrame {
 		cl.show(contentPanel,"mainPage");
 		contentPanel.setVisible(true);
 		this.add(contentPanel);
-
-
-
 
 	}
 
@@ -80,5 +75,12 @@ public class Application extends JFrame {
 		return contentPanel;
 	}
 
+	public static void setAccountPage(AccountPage ap) {
+		Application.accountPage = ap;
+		Application.contentPanel.add(ap, "accountPage");
+	}
 
+	public static AccountPage getAccountPage() {
+		return Application.accountPage;
+	}
 }

@@ -149,7 +149,7 @@ public class PreferencePage extends JPanel {
 				}
 				doneButton.addActionListener(e -> {
 					AccountPage ac = new AccountPage(u);
-					Application.getContentPanel().add(ac,"accountPage");
+					Application.setAccountPage(ac);
 					Application.showPage("accountPage");
 				});
 				buttonPanel.add(doneButton);

@@ -1,6 +1,7 @@
 package edu.uah.cs321.Frontend;
 
 import edu.uah.cs321.Backend.Movie;
+import edu.uah.cs321.Backend.User;
 
 import javax.swing.*;
 import java.awt.*;
@@ -50,7 +51,10 @@ public class MoviePage extends JPanel {
 
 		addToFavoritesButton = new JButton("<3");
 		addToFavoritesButton.addActionListener(a -> {
-			AccountPage.getUser().addMovieToFavoriteMovies(movie);
+			User u = AccountPage.getUser();
+			u.addMovieToFavoriteMovies(movie);
+			AccountPage ac = new AccountPage(u);
+			Application.setAccountPage(ac);
 		});
 
 		movieInfoPanel.add(movieTitleLabel, Component.CENTER_ALIGNMENT);

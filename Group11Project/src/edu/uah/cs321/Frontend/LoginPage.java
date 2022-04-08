@@ -78,7 +78,7 @@ public class LoginPage extends JPanel {
 					usernameField.setText("");
 					passwordField.setText("");
 					AccountPage ac = new AccountPage(u);
-					Application.getContentPanel().add(ac,"accountPage");
+					Application.setAccountPage(ac);
 					Application.showPage("accountPage");
 				}
 				else {

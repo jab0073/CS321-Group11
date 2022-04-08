@@ -253,6 +253,15 @@ public class User implements Serializable {
 		this.favoriteMovies = favoriteMovies;
 	}
 
+	public void addMovieToFavoriteMovies(Movie movie) {
+		if(favoriteMovies.contains(movie)){
+			return;
+		}
+		else {
+			favoriteMovies.add(movie);
+		}
+	}
+
 	/**
 	 * Get the list of favorite genres
 	 *

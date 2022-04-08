@@ -6,7 +6,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
@@ -28,10 +27,9 @@ public class SearchPage extends JPanel {
 
 	private static JPanel displayedMovies;
 	private static JScrollPane displayedMoviesScroller;
-	private static MovieList displayedMovieList;
-	private static MovieList masterMovieList;
 
-	public SearchPage() throws IOException {
+
+	public SearchPage() {
 		confirmation = new JLabel("You are on the search page");
 		confirmation.setAlignmentX(CENTER_ALIGNMENT);
 		backButton = new JButton("Go back to account page");
@@ -61,8 +59,7 @@ public class SearchPage extends JPanel {
 
 
 		//This adds the buttons in the search page that open up the MoviePage for each Movie
-		masterMovieList = ResourceUtils.getMasterMovieList();
-		for (Movie m : masterMovieList.getMovieList()){
+		ResourceUtils.getMasterMovieList().getMovieList().forEach(m -> {
 			JButton movieButton = new JButton(m.getTitle());
 			movieButton.setMaximumSize(new Dimension(400,100));
 			movieButton.setHorizontalAlignment(SwingConstants.LEFT);
@@ -78,7 +75,7 @@ public class SearchPage extends JPanel {
 				}
 			});
 			displayedMovies.add(movieButton);
-		}
+		});
 
 
 		contentPanel.add(displayedMoviesScroller);

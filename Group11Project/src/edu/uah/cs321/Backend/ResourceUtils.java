@@ -119,11 +119,11 @@ public class ResourceUtils {
 	}
 
 	public static void setMasterMovieList(List<Movie> ml) {
-		masterMovieLst = new MovieList(ml);
+		ResourceUtils.masterMovieLst = new MovieList(ml);
 	}
 
 	public static MovieList getMasterMovieList() {
-		return masterMovieLst;
+		return ResourceUtils.masterMovieLst;
 	}
 }
 

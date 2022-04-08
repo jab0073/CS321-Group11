@@ -1,5 +1,6 @@
 package edu.uah.cs321.Backend;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
  * @author justinbushue
  * @version 1.0
  */
-public class Movie {
+public class Movie implements Serializable {
 	private final List<String> mpcrRatings = new ArrayList<>(Arrays.asList("G","PG","PG-13","R","NR"));
 	private String Title;
 	private String Plot;

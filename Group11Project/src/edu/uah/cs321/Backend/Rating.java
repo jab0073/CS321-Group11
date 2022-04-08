@@ -1,12 +1,14 @@
 package edu.uah.cs321.Backend;
 
+import java.io.Serializable;
+
 /***
  * File Name: Rating
  * Description: 
  * @auth justinbushue
  * @version 1.0
  */
-public class Rating {
+public class Rating implements Serializable {
 	private String Source;
 	private String Value;
 

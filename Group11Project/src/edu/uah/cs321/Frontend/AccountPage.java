@@ -1,6 +1,7 @@
 package edu.uah.cs321.Frontend;
 
 import edu.uah.cs321.Backend.Movie;
+import edu.uah.cs321.Backend.MovieList;
 import edu.uah.cs321.Backend.User;
 
 import javax.swing.*;
@@ -18,7 +19,7 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
  */
 public class AccountPage extends JPanel {
 	private static JPanel contentPanel;
-	private User u;
+	private static User u;
 	private static JLabel usersNameLabel;
 	private static JPanel aboutPanel;
 	private static JTextArea aboutMeTextArea;
@@ -38,11 +39,15 @@ public class AccountPage extends JPanel {
 	private static JLabel movieListLabel;
 	private static JLabel favoriteListLabel;
 
+	private static java.util.List<MovieList> usersCustomMovieLists;
+	private static java.util.List<Movie> usersCustomFavoriteMovies;
+
 
 	public AccountPage(User u) {
 		super();
+
 		this.setLayout(new BorderLayout());
-		this.u = u;
+		AccountPage.u = u;
 		System.out.println(u);
 
 		//about Panel has information about the user. (username, description, preferences??)
@@ -67,6 +72,8 @@ public class AccountPage extends JPanel {
 			aboutMeTextArea = new JTextArea(u.getAboutMe());
 			aboutMeTextArea.setLineWrap(true);
 			aboutMeScroller = new JScrollPane(aboutMeTextArea);
+			usersCustomMovieLists = u.getMovieLists();
+			usersCustomFavoriteMovies = u.getFavoriteMovies();
 		}
 		else {
 			usersNameLabel = new JLabel("Error Occurred");
@@ -92,9 +99,6 @@ public class AccountPage extends JPanel {
 		editPreferencesButton.setMaximumSize(new Dimension(175,50));
 		editPreferencesButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		contentPanel.add(editPreferencesButton);
-
-
-
 
 
 		//Adds a button to go to movie search
@@ -141,15 +145,20 @@ public class AccountPage extends JPanel {
 		usersMovieLists.setLayout(new BoxLayout(usersMovieLists, BoxLayout.PAGE_AXIS));
 		usersMovieLists.setAlignmentX(LEFT_ALIGNMENT);
 		//adds buttons to the User's custom lists
-		for (int i=0; i<50; i++){
-			JButton movieListButton = new JButton("Movie List");
-			movieListButton.setMaximumSize(new Dimension(400, 100));
-			movieListButton.setMinimumSize(new Dimension(400, 100));
-			movieListButton.setAlignmentX(LEFT_ALIGNMENT);
-			movieListButton.setHorizontalAlignment(SwingConstants.LEFT);
-			usersMovieLists.add(movieListButton);
+		if(usersCustomMovieLists != null) {
+			usersCustomMovieLists.forEach(ml -> {
+				JButton movieListButton = new JButton(ml.getListName());
+				movieListButton.setMaximumSize(new Dimension(400, 100));
+				movieListButton.setMinimumSize(new Dimension(400, 100));
+				movieListButton.setAlignmentX(LEFT_ALIGNMENT);
+				movieListButton.setHorizontalAlignment(SwingConstants.LEFT);
+				movieListButton.addActionListener(a -> {
+					System.out.println("Create MovieList Viewer Class");
+					SimpleDialog sd = new SimpleDialog("Create MovieList Viewer Class","Create MovieList Viewer Class");
+				});
+				usersMovieLists.add(movieListButton);
+			});
 		}
-
 		customListScroller = new JScrollPane(usersMovieLists);
 		customListScroller.setAlignmentX(LEFT_ALIGNMENT);
 		customListPanel.add(customListScroller);
@@ -160,13 +169,24 @@ public class AccountPage extends JPanel {
 		favoriteMovieList.setLayout(new BoxLayout(favoriteMovieList, BoxLayout.PAGE_AXIS));
 		favoriteMovieList.setAlignmentX(LEFT_ALIGNMENT);
 
-		for (int i=0; i<50; i++){
-			JButton movieButton = new JButton("Favorite Movie");
-			movieButton.setMaximumSize(new Dimension(400, 100));
-			movieButton.setMinimumSize(new Dimension(400, 100));
-			movieButton.setAlignmentX(LEFT_ALIGNMENT);
-			movieButton.setHorizontalAlignment(SwingConstants.LEFT);
-			favoriteMovieList.add(movieButton);
+		if(usersCustomFavoriteMovies != null) {
+			usersCustomFavoriteMovies.forEach(m -> {
+				JButton movieButton = new JButton(m.getTitle());
+				movieButton.setMaximumSize(new Dimension(400, 100));
+				movieButton.setMinimumSize(new Dimension(400, 100));
+				movieButton.setAlignmentX(LEFT_ALIGNMENT);
+				movieButton.setHorizontalAlignment(SwingConstants.LEFT);
+				movieButton.addActionListener(a -> {
+					JDialog movieInfo = new JDialog();
+					movieInfo.setMaximumSize(new Dimension(750,750));
+					movieInfo.setMinimumSize(new Dimension(750,750));
+					MoviePage moviePage = new MoviePage(m);
+					movieInfo.add(moviePage);
+					movieInfo.setVisible(true);
+					movieInfo.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+				});
+				favoriteMovieList.add(movieButton);
+			});
 		}
 		//This bit of code should work (since its identical to the search Page code) but it can't be tested right now because user can't add to favorites.
 //		for (Movie m : u.getFavoriteMovies()){
@@ -209,6 +229,9 @@ public class AccountPage extends JPanel {
 		this.setVisible(true);
 	}
 
+	public static User getUser() {
+		return u;
+	}
 
 }
 

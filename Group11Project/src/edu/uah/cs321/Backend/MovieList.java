@@ -1,9 +1,11 @@
 package edu.uah.cs321.Backend;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
@@ -11,11 +13,11 @@ import static java.util.stream.Collectors.toList;
 /***
  * File Name: MovieList
  * Description: MovieList is a class that holds a list of movies and provides methods to filter the list of movies by actor, director, genre, rating, year, and title
- * @auth justinbushue
+ * @author justinbushue
  * @version 1.0
  */
 @SuppressWarnings("unused")
-public class MovieList {
+public class MovieList implements Serializable {
 	private String listName;
 	private List<Movie> movieList;
 	private List<Movie> filteredMovies;
@@ -23,6 +25,7 @@ public class MovieList {
 	// This is the constructor for the MovieList class. It initializes the movieList and filteredMovies variables to an empty
 	// list.
 	public MovieList() {
+		listName = "Default Name";
 		movieList = new ArrayList<>();
 		filteredMovies = new ArrayList<>();
 	}
@@ -30,7 +33,14 @@ public class MovieList {
 	// This is the constructor for the MovieList class. It initializes the movieList and filteredMovies variables to an empty
 	// list.
 	public MovieList(List<Movie> movieList) {
+		listName = "Default Name";
 		this.movieList = movieList;
+		this.movieList.forEach(m -> {
+			String title = m.getTitle();
+			int year = m.getYear();
+			m.setTitle(title + " (" + year + ")");
+		});
+		this.movieList.sort(Comparator.comparing(m -> m.getTitle()));
 		filteredMovies = new ArrayList<>();
 	}
 
@@ -39,6 +49,12 @@ public class MovieList {
 	public MovieList(String listName, List<Movie> movieList) {
 		this.listName = listName;
 		this.movieList = movieList;
+		this.movieList.forEach(m -> {
+			String title = m.getTitle();
+			int year = m.getYear();
+			m.setTitle(title + " (" + year + ")");
+		});
+		this.movieList.sort(Comparator.comparing(m -> m.getTitle()));
 		filteredMovies = new ArrayList<>();
 	}
 
@@ -322,4 +338,18 @@ public class MovieList {
 				.collect(toList());
 	}
 
+	@Override
+	public String toString() {
+		AtomicReference<String> str = new AtomicReference<>("");
+		movieList.forEach(m -> {
+			String curr = str.get();
+			curr += m.getTitle() + "\n";
+			str.set(curr);
+		});
+		return str.get();
+	}
+
+	public void print() {
+		System.out.println(this);
+	}
 }

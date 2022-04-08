@@ -4,6 +4,7 @@ import edu.uah.cs321.Backend.Movie;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 /***
  * File Name: MoviePage
@@ -27,6 +28,8 @@ public class MoviePage extends JPanel {
 	private static JPanel contentPanel;
 	private static JPanel movieInfoPanel;
 
+	private static JButton addToFavoritesButton;
+
 
 	public MoviePage(Movie movie) {
 		super();
@@ -45,6 +48,11 @@ public class MoviePage extends JPanel {
 		movieActorsLabel = new JLabel(String.join(", ", this.movie.getActors()));
 		movieRuntimesLabel = new JLabel(this.movie.getRuntime());
 
+		addToFavoritesButton = new JButton("<3");
+		addToFavoritesButton.addActionListener(a -> {
+			AccountPage.getUser().addMovieToFavoriteMovies(movie);
+		});
+
 		movieInfoPanel.add(movieTitleLabel, Component.CENTER_ALIGNMENT);
 		movieInfoPanel.add(movieActorsLabel, Component.CENTER_ALIGNMENT);
 		movieInfoPanel.add(movieDirectorLabel,Component.CENTER_ALIGNMENT);
@@ -52,6 +60,7 @@ public class MoviePage extends JPanel {
 		movieInfoPanel.add(movieGenresLabel,Component.CENTER_ALIGNMENT);
 
 		contentPanel.add(movieInfoPanel, Component.CENTER_ALIGNMENT);
+		contentPanel.add(addToFavoritesButton, Component.CENTER_ALIGNMENT);
 		add(contentPanel,Component.CENTER_ALIGNMENT);
 	}
 }

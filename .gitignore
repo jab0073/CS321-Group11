@@ -1,0 +1,13 @@
+
+.DS_Store
+Documentation/PROJECT REQUIREMENTS.pdf
+Group11Project/.idea/compiler.xml
+Group11Project/.idea/libraries/gson_2_8_9.xml
+Group11Project/.idea/misc.xml
+Group11Project/.idea/modules.xml
+Group11Project/.idea/vcs.xml
+Group11Project/.idea/workspace.xml
+Documentation/PROJECT REQUIREMENTS.pdf
+*.class
+Group11Project/out/production/Group11Project/edu/uah/cs321/Frontend/Images/goodwatcheslogo.png
+Group11Project/out/production/Group11Project/SampleMovieFile.json

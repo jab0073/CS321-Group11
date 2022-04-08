@@ -1,5 +1,7 @@
 package edu.uah.cs321.Backend;
 
+import java.io.Serializable;
+
 /***
  * File Name: Review
  * Description: A Review is a movie review written by a user
@@ -7,7 +9,7 @@ package edu.uah.cs321.Backend;
  * @version 1.0
  */
 @SuppressWarnings("unused")
-public class Review {
+public class Review implements Serializable {
 	String author;
 	Movie movie;
 	Double rating;

@@ -8,7 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-import static edu.uah.cs321.Backend.ResourceUtils.getMasterMovieList;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 
@@ -65,7 +64,7 @@ public class SearchPage extends JPanel {
 
 		//This adds the buttons in the search page that open up the MoviePage for each Movie
 		JsonReader js = new JsonReader();
-		masterMovieList = getMasterMovieList();
+		masterMovieList = ResourceUtils.getMasterMovieList();
 		for (Movie m : masterMovieList.getMovieList()){
 			JButton movieButton = new JButton(m.getTitle());
 			movieButton.setMaximumSize(new Dimension(400,100));

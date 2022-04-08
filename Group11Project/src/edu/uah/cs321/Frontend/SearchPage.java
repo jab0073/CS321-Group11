@@ -1,9 +1,6 @@
 package edu.uah.cs321.Frontend;
 
-import edu.uah.cs321.Backend.JsonReader;
-import edu.uah.cs321.Backend.Movie;
-import edu.uah.cs321.Backend.User;
-import edu.uah.cs321.Backend.MovieList;
+import edu.uah.cs321.Backend.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+import static edu.uah.cs321.Backend.ResourceUtils.getMasterMovieList;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 
@@ -32,7 +30,7 @@ public class SearchPage extends JPanel {
 	private static JPanel displayedMovies;
 	private static JScrollPane displayedMoviesScroller;
 	private static MovieList displayedMovieList;
-	private static MovieList defaultMovieList;
+	private static MovieList masterMovieList;
 
 	private static JsonReader js;
 
@@ -67,8 +65,8 @@ public class SearchPage extends JPanel {
 
 		//This adds the buttons in the search page that open up the MoviePage for each Movie
 		JsonReader js = new JsonReader();
-		defaultMovieList = new MovieList(js.getMovieList());
-		for (Movie m : js.getMovieList()){
+		masterMovieList = getMasterMovieList();
+		for (Movie m : masterMovieList.getMovieList()){
 			JButton movieButton = new JButton(m.getTitle());
 			movieButton.setMaximumSize(new Dimension(400,100));
 			movieButton.setHorizontalAlignment(SwingConstants.LEFT);
@@ -88,7 +86,6 @@ public class SearchPage extends JPanel {
 
 
 		contentPanel.add(displayedMoviesScroller);
-
 
 		this.add(contentPanel);
 		contentPanel.setVisible(true);

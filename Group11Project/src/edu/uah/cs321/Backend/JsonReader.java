@@ -31,13 +31,4 @@ public final class JsonReader {
 		ResourceUtils.setMasterMovieList(movieList);
 	}
 
-	public List<Movie> getMovieList(){
-		return movieList;
-	}
-
-	public void printMovieList(){
-		for (Movie m : movieList){
-			System.out.println(m.getTitle()+"\n");
-		}
-	}
 }

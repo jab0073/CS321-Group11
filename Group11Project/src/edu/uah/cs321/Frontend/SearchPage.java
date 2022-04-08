@@ -31,8 +31,6 @@ public class SearchPage extends JPanel {
 	private static MovieList displayedMovieList;
 	private static MovieList masterMovieList;
 
-	private static JsonReader js;
-
 	public SearchPage() throws IOException {
 		confirmation = new JLabel("You are on the search page");
 		confirmation.setAlignmentX(CENTER_ALIGNMENT);
@@ -63,7 +61,6 @@ public class SearchPage extends JPanel {
 
 
 		//This adds the buttons in the search page that open up the MoviePage for each Movie
-		JsonReader js = new JsonReader();
 		masterMovieList = ResourceUtils.getMasterMovieList();
 		for (Movie m : masterMovieList.getMovieList()){
 			JButton movieButton = new JButton(m.getTitle());

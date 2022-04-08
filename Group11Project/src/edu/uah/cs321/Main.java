@@ -15,12 +15,15 @@ public class Main {
 
 	public static void main(String[] args) throws IOException {
 
+
+		JsonReader js = new JsonReader();
+
 		Application app = new Application("GoodWatches");
 		app.setVisible(true);
 
+
 		ResourceUtils.init();
 
-		//JsonReader js = new JsonReader();
 
 
 

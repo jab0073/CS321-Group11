@@ -38,6 +38,9 @@ public class MoviePage extends JPanel {
 
 		contentPanel = new JPanel();
 		movieInfoPanel = new JPanel();
+		movieInfoPanel.setMinimumSize(new Dimension(300,1000));
+		movieInfoPanel.setMaximumSize(new Dimension(300,1000));
+		movieInfoPanel.setLayout(new BoxLayout(movieInfoPanel,BoxLayout.Y_AXIS));
 
 		movieTitleLabel = new JLabel(this.movie.getTitle());
 		movieDirectorLabel = new JLabel(this.movie.getDirector());
@@ -49,7 +52,7 @@ public class MoviePage extends JPanel {
 		movieActorsLabel = new JLabel(String.join(", ", this.movie.getActors()));
 		movieRuntimesLabel = new JLabel(this.movie.getRuntime());
 
-		addToFavoritesButton = new JButton("<3");
+		addToFavoritesButton = new JButton("Favorite");
 		addToFavoritesButton.addActionListener(a -> {
 			User u = AccountPage.getUser();
 			u.addMovieToFavoriteMovies(movie);
@@ -58,9 +61,13 @@ public class MoviePage extends JPanel {
 		});
 
 		movieInfoPanel.add(movieTitleLabel, Component.CENTER_ALIGNMENT);
+		movieInfoPanel.add(Box.createVerticalGlue());
 		movieInfoPanel.add(movieActorsLabel, Component.CENTER_ALIGNMENT);
+		movieInfoPanel.add(Box.createVerticalGlue());
 		movieInfoPanel.add(movieDirectorLabel,Component.CENTER_ALIGNMENT);
+		movieInfoPanel.add(Box.createVerticalGlue());
 		movieInfoPanel.add(movieYearLabel, Component.CENTER_ALIGNMENT);
+		movieInfoPanel.add(Box.createVerticalGlue());
 		movieInfoPanel.add(movieGenresLabel,Component.CENTER_ALIGNMENT);
 
 		contentPanel.add(movieInfoPanel, Component.CENTER_ALIGNMENT);

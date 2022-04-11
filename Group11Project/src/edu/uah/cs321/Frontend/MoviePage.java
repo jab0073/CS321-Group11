@@ -63,7 +63,7 @@ public class MoviePage extends JPanel {
 		movieReleaseLabel = new JLabel("Release Date:  " + this.movie.getReleased());
 		movieActorsLabel = new JLabel("Actors:  " + String.join(", ", this.movie.getActors()));
 		movieRuntimesLabel = new JLabel("Runtime:  " + this.movie.getRuntime());
-		ratingLabel = new JLabel("Rating");
+		ratingLabel = new JLabel("Rating (1-10)");
 		reviewLabel = new JLabel("Review");
 
 
@@ -83,7 +83,8 @@ public class MoviePage extends JPanel {
 
 		saveReviewButton = new JButton("Save");
 		saveReviewButton.addActionListener(e -> {
-			//unfinished
+			double rating = Double.valueOf(ratingTextField.getText());
+			String review = reviewLabel.getText();
 		});
 
 		movieInfoPanel.add(movieTitleLabel, Component.CENTER_ALIGNMENT);

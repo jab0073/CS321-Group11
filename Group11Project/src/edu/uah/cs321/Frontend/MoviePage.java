@@ -4,10 +4,16 @@ import edu.uah.cs321.Backend.Movie;
 import edu.uah.cs321.Backend.Review;
 import edu.uah.cs321.Backend.User;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.text.ParseException;
 
 /***
  * File Name: MoviePage
@@ -43,7 +49,7 @@ public class MoviePage extends JPanel {
 	private static JButton saveReviewButton;
 
 
-	public MoviePage(Movie movie) {
+	public MoviePage(Movie movie){
 		super();
 		this.movie = movie;
 		u=AccountPage.getUser();
@@ -54,6 +60,20 @@ public class MoviePage extends JPanel {
 		movieInfoPanel.setLayout(new BoxLayout(movieInfoPanel,BoxLayout.Y_AXIS));
 		userReviewPanel = new JPanel();
 		userReviewPanel.setLayout(new BoxLayout(userReviewPanel,BoxLayout.Y_AXIS));
+
+		String posterURL = MoviePage.movie.getPoster();
+		if(posterURL != null && posterURL.length() > 0) {
+			JLabel posterLabel = new JLabel();
+			try {
+				URL url = new URL(posterURL);
+				BufferedImage image = ImageIO.read(url);
+				ImageIcon imgicon = new ImageIcon(image);
+				Image img = imgicon.getImage().getScaledInstance((int)(image.getWidth()*.8),(int)(image.getHeight()*.8),Image.SCALE_DEFAULT);
+				imgicon = new ImageIcon(img);
+				posterLabel.setIcon(imgicon);
+				movieInfoPanel.add(posterLabel);
+			} catch(IOException ignored) {}
+		}
 
 		movieTitleLabel = new JLabel("Title:  " + this.movie.getTitle());
 		movieDirectorLabel = new JLabel("Director:  " + this.movie.getDirector());
@@ -76,15 +96,23 @@ public class MoviePage extends JPanel {
 		});
 
 		//im unsure how to make this less wide.
-		ratingTextField = new JTextField(5);
+		ratingTextField = new JTextField(4);
 		reviewTextArea = new JTextArea(10,25);
 		reviewPane = new JScrollPane(reviewTextArea);
 		reviewTextArea.setLineWrap(true);
 
 		saveReviewButton = new JButton("Save");
 		saveReviewButton.addActionListener(e -> {
-			double rating = Double.valueOf(ratingTextField.getText());
-			String review = reviewLabel.getText();
+			try {
+				double rating = Double.parseDouble(ratingTextField.getText());
+				String review = reviewLabel.getText();
+				Review userReview = new Review(AccountPage.getUser(), MoviePage.movie,rating,review);
+				AccountPage.getUser().addReview(userReview);
+				MoviePage.movie.addReview(userReview);
+			}catch(NumberFormatException | NullPointerException ignored){
+				SimpleDialog sd = new SimpleDialog("Error...", "Please enter a valid numerical rating.\n(5.0, 4.8, 9.8, etc.)");
+				return;
+			}
 		});
 
 		movieInfoPanel.add(movieTitleLabel, Component.CENTER_ALIGNMENT);

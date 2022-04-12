@@ -13,6 +13,7 @@ import java.util.List;
 @SuppressWarnings("unused")
 public class User implements Serializable {
 	protected String firstName, lastName, aboutMe, userName;
+	protected List<Review> reviews;
 	protected List<MovieList> movieLists;
 	protected List<String> favoriteActors;
 	protected List<Movie> favoriteMovies;
@@ -90,6 +91,9 @@ public class User implements Serializable {
 		this.entitlement = entitlement;
 	}
 
+	public void addReview(Review r) {
+		reviews.add(r);
+	}
 	/**
 	 * Returns the username of the user object
 	 *

@@ -10,30 +10,30 @@ import java.io.Serializable;
  */
 @SuppressWarnings("unused")
 public class Review implements Serializable {
-	String author;
+	User author;
 	Movie movie;
 	Double rating;
 	String body;
 
 	public Review() {
-		author = "";
+		author = null;
 		movie = null;
 		rating = 0.0;
 		body = "";
 	}
 
-	public Review(String author, Movie movie, Double rating, String body) {
+	public Review(User author, Movie movie, Double rating, String body) {
 		this.author = author;
 		this.movie = movie;
 		this.rating = rating;
 		this.body = body;
 	}
 
-	public String getAuthor() {
+	public User getAuthor() {
 		return author;
 	}
 
-	public void setAuthor(String author) {
+	public void setAuthor(User author) {
 		this.author = author;
 	}
 

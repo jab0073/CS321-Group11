@@ -1,23 +1,22 @@
 package edu.uah.cs321.Backend;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 
 /***
+ * Project Name: Group11Project
  * File Name: MovieList
  * Description: MovieList is a class that holds a list of movies and provides methods to filter the list of movies by actor, director, genre, rating, year, and title
  * @author justinbushue
  * @version 1.0
  */
 @SuppressWarnings("unused")
-public class MovieList implements Serializable {
+public class MovieList {
 	private String listName;
 	private List<Movie> movieList;
 	private List<Movie> filteredMovies;
@@ -25,7 +24,6 @@ public class MovieList implements Serializable {
 	// This is the constructor for the MovieList class. It initializes the movieList and filteredMovies variables to an empty
 	// list.
 	public MovieList() {
-		listName = "Default Name";
 		movieList = new ArrayList<>();
 		filteredMovies = new ArrayList<>();
 	}
@@ -33,14 +31,7 @@ public class MovieList implements Serializable {
 	// This is the constructor for the MovieList class. It initializes the movieList and filteredMovies variables to an empty
 	// list.
 	public MovieList(List<Movie> movieList) {
-		listName = "Default Name";
 		this.movieList = movieList;
-		this.movieList.forEach(m -> {
-			String title = m.getTitle();
-			int year = m.getYear();
-			m.setTitle(title + " (" + year + ")");
-		});
-		this.movieList.sort(Comparator.comparing(m -> m.getTitle()));
 		filteredMovies = new ArrayList<>();
 	}
 
@@ -49,12 +40,6 @@ public class MovieList implements Serializable {
 	public MovieList(String listName, List<Movie> movieList) {
 		this.listName = listName;
 		this.movieList = movieList;
-		this.movieList.forEach(m -> {
-			String title = m.getTitle();
-			int year = m.getYear();
-			m.setTitle(title + " (" + year + ")");
-		});
-		this.movieList.sort(Comparator.comparing(m -> m.getTitle()));
 		filteredMovies = new ArrayList<>();
 	}
 
@@ -198,14 +183,15 @@ public class MovieList implements Serializable {
 	 * @return A list of movies that match the year.
 	 */
 	public List<Movie> filterByYear(int year , char greaterThanLessThanEqual) {
-		switch (greaterThanLessThanEqual) {
-			case '<' -> {
-				if (filteredMovies.isEmpty()) {
+		switch(greaterThanLessThanEqual) {
+			case '<': {
+				if(filteredMovies.isEmpty()) {
 					filteredMovies = movieList.stream()
 							.filter(a -> a.getYear() < year)
 							.map(Movie::getThis)
 							.collect(toList());
-				} else {
+				}
+				else {
 					filteredMovies = filteredMovies.stream()
 							.filter(a -> a.getYear() < year)
 							.map(Movie::getThis)
@@ -213,13 +199,14 @@ public class MovieList implements Serializable {
 				}
 				return filteredMovies;
 			}
-			case '>' -> {
-				if (filteredMovies.isEmpty()) {
+			case '>': {
+				if(filteredMovies.isEmpty()) {
 					filteredMovies = movieList.stream()
 							.filter(a -> a.getYear() > year)
 							.map(Movie::getThis)
 							.collect(toList());
-				} else {
+				}
+				else {
 					filteredMovies = filteredMovies.stream()
 							.filter(a -> a.getYear() > year)
 							.map(Movie::getThis)
@@ -227,13 +214,14 @@ public class MovieList implements Serializable {
 				}
 				return filteredMovies;
 			}
-			case '=' -> {
-				if (filteredMovies.isEmpty()) {
+			case '=': {
+				if(filteredMovies.isEmpty()) {
 					filteredMovies = movieList.stream()
 							.filter(a -> a.getYear() == year)
 							.map(Movie::getThis)
 							.collect(toList());
-				} else {
+				}
+				else {
 					filteredMovies = filteredMovies.stream()
 							.filter(a -> a.getYear() == year)
 							.map(Movie::getThis)
@@ -275,6 +263,7 @@ public class MovieList implements Serializable {
 				.map(Movie::getActors)
 				.flatMap(Collection::stream)
 				.sorted(Comparator.naturalOrder())
+				.distinct()
 				.collect(toList());
 	}
 
@@ -287,6 +276,7 @@ public class MovieList implements Serializable {
 		return movieList.stream()
 				.map(Movie::getGenre)
 				.sorted(Comparator.naturalOrder())
+				.distinct()
 				.collect(toList());
 	}
 
@@ -299,6 +289,7 @@ public class MovieList implements Serializable {
 		return movieList.stream()
 				.map(Movie::getTitle)
 				.sorted(Comparator.naturalOrder())
+				.distinct()
 				.collect(toList());
 	}
 
@@ -311,6 +302,7 @@ public class MovieList implements Serializable {
 		return movieList.stream()
 				.map(Movie::getDirector)
 				.sorted(Comparator.naturalOrder())
+				.distinct()
 				.collect(toList());
 	}
 
@@ -323,6 +315,7 @@ public class MovieList implements Serializable {
 		return movieList.stream()
 				.map(Movie::getWriter)
 				.sorted(Comparator.naturalOrder())
+				.distinct()
 				.collect(toList());
 	}
 
@@ -335,21 +328,8 @@ public class MovieList implements Serializable {
 		return movieList.stream()
 				.map(Movie::getLanguage)
 				.sorted(Comparator.naturalOrder())
+				.distinct()
 				.collect(toList());
 	}
 
-	@Override
-	public String toString() {
-		AtomicReference<String> str = new AtomicReference<>("");
-		movieList.forEach(m -> {
-			String curr = str.get();
-			curr += m.getTitle() + "\n";
-			str.set(curr);
-		});
-		return str.get();
-	}
-
-	public void print() {
-		System.out.println(this);
-	}
 }

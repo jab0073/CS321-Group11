@@ -29,7 +29,7 @@ public class SearchPage extends JPanel {
 	private static JScrollPane displayedMoviesScroller;
 
 
-	public SearchPage() {
+	public SearchPage(MovieList movieList) {
 		confirmation = new JLabel("You are on the search page");
 		confirmation.setAlignmentX(CENTER_ALIGNMENT);
 		backButton = new JButton("Go back to account page");
@@ -59,7 +59,7 @@ public class SearchPage extends JPanel {
 
 
 		//This adds the buttons in the search page that open up the MoviePage for each Movie
-		ResourceUtils.getMasterMovieList().getMovieList().forEach(m -> {
+		movieList.getMovieList().forEach(m -> {
 			JButton movieButton = new JButton(m.getTitle());
 			movieButton.setMaximumSize(new Dimension(400,100));
 			movieButton.setHorizontalAlignment(SwingConstants.LEFT);

@@ -130,8 +130,8 @@ public class MoviePage extends JPanel {
 		movieInfoPanel.add(movieRuntimesLabel,Component.CENTER_ALIGNMENT);
 		movieInfoPanel.add(new Box.Filler(new Dimension(0,5),new Dimension(0,5),new Dimension(0,5)));
 		//Plot Label shifts everything to the right and I can't figure out how to fix it
-		//movieInfoPanel.add(moviePlotLabel,Component.CENTER_ALIGNMENT);
-		//userReviewPanel.add(new Box.Filler(new Dimension(0,5),new Dimension(0,5),new Dimension(0,5)));
+		movieInfoPanel.add(moviePlotLabel,Component.CENTER_ALIGNMENT);
+		userReviewPanel.add(new Box.Filler(new Dimension(0,5),new Dimension(0,5),new Dimension(0,5)));
 
 		userReviewPanel.add(addToFavoritesButton, Component.CENTER_ALIGNMENT);
 		userReviewPanel.add(new Box.Filler(new Dimension(0,20),new Dimension(0,20),new Dimension(0,20)));

@@ -134,8 +134,7 @@ public class AccountPage extends JPanel {
 				movieListButton.setAlignmentX(LEFT_ALIGNMENT);
 				movieListButton.setHorizontalAlignment(SwingConstants.LEFT);
 				movieListButton.addActionListener(e -> {
-					System.out.println("Create MovieList Viewer Class");
-					SimpleDialog sd = new SimpleDialog("Create MovieList Viewer Class", "Create MovieList Viewer Class");
+					openMovieList(customMovieList);
 				});
 				usersMovieLists.add(movieListButton);
 				u.addMovieListToMovieLists(customMovieList);
@@ -180,8 +179,7 @@ public class AccountPage extends JPanel {
 				movieListButton.setAlignmentX(LEFT_ALIGNMENT);
 				movieListButton.setHorizontalAlignment(SwingConstants.LEFT);
 				movieListButton.addActionListener(a -> {
-					System.out.println("Create MovieList Viewer Class");
-					SimpleDialog sd = new SimpleDialog("Create MovieList Viewer Class", "Create MovieList Viewer Class");
+					openMovieList(ml);
 				});
 				usersMovieLists.add(movieListButton);
 			});
@@ -241,6 +239,15 @@ public class AccountPage extends JPanel {
 
 	public static User getUser() {
 		return u;
+	}
+
+	public void openMovieList(MovieList movieList){
+		System.out.println("Opened movie list: " + movieList);
+		SimpleDialog sd = new SimpleDialog("Movie List " + movieList, null);
+		SearchPage listViewer = new SearchPage(movieList);
+		sd.setMaximumSize(new Dimension(659,800));
+		sd.setMinimumSize(new Dimension(650,800));
+		sd.add(listViewer);
 	}
 
 }

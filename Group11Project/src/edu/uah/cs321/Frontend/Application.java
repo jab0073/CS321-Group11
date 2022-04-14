@@ -51,7 +51,7 @@ public class Application extends JFrame {
 		mainPage = new MainPage();
 		loginPage = new LoginPage();
 		createAccountPage = new CreateAccountPage();
-		searchPage = new SearchPage();
+		searchPage = new SearchPage(ResourceUtils.getMasterMovieList());
 
 		contentPanel.add(mainPage,"mainPage");
 		contentPanel.add(loginPage, "loginPage");

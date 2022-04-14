@@ -38,7 +38,9 @@ public class MovieList implements Serializable {
 		this.movieList.forEach(m -> {
 			String title = m.getTitle();
 			int year = m.getYear();
-			m.setTitle(title + " (" + year + ")");
+			if(!title.contains(" (" + year + ")")) {
+				m.setTitle(title + " (" + year + ")");
+			}
 		});
 		this.movieList.sort(Comparator.comparing(m -> m.getTitle()));
 		filteredMovies = new ArrayList<>();
@@ -52,7 +54,9 @@ public class MovieList implements Serializable {
 		this.movieList.forEach(m -> {
 			String title = m.getTitle();
 			int year = m.getYear();
-			m.setTitle(title + " (" + year + ")");
+			if(!title.contains(" (" + year + ")")) {
+				m.setTitle(title + " (" + year + ")");
+			}
 		});
 		this.movieList.sort(Comparator.comparing(m -> m.getTitle()));
 		filteredMovies = new ArrayList<>();

@@ -1,5 +1,6 @@
 package edu.uah.cs321.Backend;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
@@ -16,7 +17,7 @@ import static java.util.stream.Collectors.toList;
  * @version 1.0
  */
 @SuppressWarnings("unused")
-public class MovieList {
+public class MovieList implements Serializable {
 	private String listName;
 	private List<Movie> movieList;
 	private List<Movie> filteredMovies;

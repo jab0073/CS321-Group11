@@ -4,8 +4,7 @@ import edu.uah.cs321.Backend.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
@@ -104,6 +103,16 @@ public class SearchPage extends JPanel {
 
 
 	public void updateSearchResults(){
+
+	}
+
+	/**
+	 * Changes the header of the search page. Used when viewing a MovieList.
+	 * @param ml
+	 */
+	public void removeHeader(){
+		contentPanel.remove(confirmation);
+		contentPanel.remove(backButton);
 
 	}
 }

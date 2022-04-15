@@ -2,6 +2,7 @@ package edu.uah.cs321.Frontend;
 
 import edu.uah.cs321.Backend.Movie;
 import edu.uah.cs321.Backend.MovieList;
+import edu.uah.cs321.Backend.ResourceUtils;
 import edu.uah.cs321.Backend.User;
 
 import javax.swing.*;
@@ -9,6 +10,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentListener;
+import java.awt.event.WindowEvent;
 
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
@@ -237,19 +239,52 @@ public class AccountPage extends JPanel {
 		this.setVisible(true);
 	}
 
+	/**
+	 * Returns the User the AccountPage is using
+	 * @return User
+	 */
 	public static User getUser() {
 		return u;
 	}
 
+
+	/***
+	 * Opens up a dialog containing the inputted movieList
+	 * @param movieList
+	 */
 	public void openMovieList(MovieList movieList){
 		System.out.println("Opened movie list: " + movieList);
-		SimpleDialog sd = new SimpleDialog("Movie List " + movieList, null);
-		SearchPage listViewer = new SearchPage(movieList);
-		sd.setMaximumSize(new Dimension(659,800));
-		sd.setMinimumSize(new Dimension(650,800));
-		sd.add(listViewer);
-	}
+		JDialog jd = new JDialog();
+		JLabel confirmation = new JLabel("Now viewing movie list: " + movieList.getListName());
+		jd.setMaximumSize(new Dimension(700,800));
+		jd.setMinimumSize(new Dimension(700,800));
+		jd.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		JButton deleteMovieListButton = new JButton("Delete this movie list?");
+		deleteMovieListButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+		deleteMovieListButton.setMaximumSize(new Dimension(100,50));
+		deleteMovieListButton.setMinimumSize(new Dimension(100,50));
+		deleteMovieListButton.addActionListener(a ->{
+			int n = JOptionPane.showConfirmDialog(this,"Are you sure you want to delete this list?","Deletion Confirmation",JOptionPane.YES_NO_OPTION);
+			//n=0 is yes and n=1 is no
+			if (n==0){
+				AccountPage.getUser().removeMovieListFromMovieLists(movieList);
+				jd.dispose();
 
+			}
+		});
+
+		SearchPage listViewer = new SearchPage(ResourceUtils.getMasterMovieList());
+		listViewer.removeHeader();
+
+		JPanel contentPanel = new JPanel();
+		contentPanel.add(confirmation);
+		contentPanel.add(deleteMovieListButton);
+		contentPanel.add(listViewer);
+
+		jd.add(contentPanel);
+
+		jd.setVisible(true);
+	}
 }
 
 

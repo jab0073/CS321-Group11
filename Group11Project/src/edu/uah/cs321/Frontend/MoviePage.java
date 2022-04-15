@@ -28,7 +28,7 @@ public class MoviePage extends JPanel {
 	private static JLabel movieTitleLabel;
 	private static JLabel movieDirectorLabel;
 	private static JLabel movieWritersLabel;
-	private static JLabel moviePlotLabel;
+	private static JTextArea moviePlotLabel;
 	private static JLabel movieGenresLabel;
 	private static JLabel movieReleaseLabel;
 	private static JLabel movieActorsLabel;
@@ -78,7 +78,9 @@ public class MoviePage extends JPanel {
 		movieTitleLabel = new JLabel("Title:  " + this.movie.getTitle());
 		movieDirectorLabel = new JLabel("Director:  " + this.movie.getDirector());
 		movieWritersLabel = new JLabel("Writers:  " + this.movie.getWriter());
-		moviePlotLabel = new JLabel("Plot:  " + this.movie.getPlot());
+		moviePlotLabel = new JTextArea("Plot:  " + this.movie.getPlot());
+		moviePlotLabel.setMaximumSize(new Dimension(400,200));
+		moviePlotLabel.setLineWrap(true); moviePlotLabel.setWrapStyleWord(true); moviePlotLabel.setEditable(false);
 		movieGenresLabel = new JLabel("Genre:  " + this.movie.getGenre());
 		movieReleaseLabel = new JLabel("Release Date:  " + this.movie.getReleased());
 		movieActorsLabel = new JLabel("Actors:  " + String.join(", ", this.movie.getActors()));
@@ -97,7 +99,7 @@ public class MoviePage extends JPanel {
 
 		//im unsure how to make this less wide.
 		ratingTextField = new JTextField(4);
-		reviewTextArea = new JTextArea(10,25);
+		reviewTextArea = new JTextArea(10,15);
 		reviewPane = new JScrollPane(reviewTextArea);
 		reviewTextArea.setLineWrap(true);
 
@@ -130,7 +132,7 @@ public class MoviePage extends JPanel {
 		movieInfoPanel.add(movieRuntimesLabel,Component.CENTER_ALIGNMENT);
 		movieInfoPanel.add(new Box.Filler(new Dimension(0,5),new Dimension(0,5),new Dimension(0,5)));
 		//Plot Label shifts everything to the right and I can't figure out how to fix it
-		movieInfoPanel.add(moviePlotLabel,Component.CENTER_ALIGNMENT);
+		//movieInfoPanel.add(moviePlotLabel,Component.CENTER_ALIGNMENT);
 		userReviewPanel.add(new Box.Filler(new Dimension(0,5),new Dimension(0,5),new Dimension(0,5)));
 
 		userReviewPanel.add(addToFavoritesButton, Component.CENTER_ALIGNMENT);

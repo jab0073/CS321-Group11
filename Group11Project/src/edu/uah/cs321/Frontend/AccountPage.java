@@ -198,23 +198,7 @@ public class AccountPage extends JPanel {
 		favoriteMovieList.setAlignmentX(LEFT_ALIGNMENT);
 
 		if(usersCustomFavoriteMovies != null) {
-			usersCustomFavoriteMovies.forEach(m -> {
-				JButton movieButton = new JButton(m.getTitle());
-				movieButton.setMaximumSize(new Dimension(400, 40));
-				movieButton.setMinimumSize(new Dimension(400, 40));
-				movieButton.setAlignmentX(LEFT_ALIGNMENT);
-				movieButton.setHorizontalAlignment(SwingConstants.LEFT);
-				movieButton.addActionListener(a -> {
-					JDialog movieInfo = new JDialog();
-					movieInfo.setMaximumSize(new Dimension(750,750));
-					movieInfo.setMinimumSize(new Dimension(750,750));
-					MoviePage moviePage = new MoviePage(m);
-					movieInfo.add(moviePage);
-					movieInfo.setVisible(true);
-					movieInfo.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-				});
-				favoriteMovieList.add(movieButton);
-			});
+			populateCustomList(usersCustomMovieLists);
 		}
 
 		favoriteScroller = new JScrollPane(favoriteMovieList);
@@ -259,6 +243,7 @@ public class AccountPage extends JPanel {
 		jd.setMaximumSize(new Dimension(700,800));
 		jd.setMinimumSize(new Dimension(700,800));
 		jd.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
 		JButton deleteMovieListButton = new JButton("Delete this movie list?");
 		deleteMovieListButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		deleteMovieListButton.setMaximumSize(new Dimension(100,50));
@@ -269,6 +254,9 @@ public class AccountPage extends JPanel {
 			if (n==0){
 				AccountPage.getUser().removeMovieListFromMovieLists(movieList);
 				jd.dispose();
+				usersMovieLists.removeAll();
+				populateCustomList(u.getMovieLists());
+				revalidate();
 
 			}
 		});
@@ -284,6 +272,20 @@ public class AccountPage extends JPanel {
 		jd.add(contentPanel);
 
 		jd.setVisible(true);
+	}
+
+	public void populateCustomList(java.util.List<MovieList> usersCustomLists){
+		usersCustomLists.forEach(ml -> {
+			JButton movieListButton = new JButton(ml.getListName());
+			movieListButton.setMaximumSize(new Dimension(400, 40));
+			movieListButton.setMinimumSize(new Dimension(400, 40));
+			movieListButton.setAlignmentX(LEFT_ALIGNMENT);
+			movieListButton.setHorizontalAlignment(SwingConstants.LEFT);
+			movieListButton.addActionListener(a -> {
+				openMovieList(ml);
+			});
+			usersMovieLists.add(movieListButton);
+		});
 	}
 }
 

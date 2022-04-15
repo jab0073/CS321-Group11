@@ -188,23 +188,7 @@ public class AccountPage extends JPanel {
 		favoriteMovieList.setAlignmentX(LEFT_ALIGNMENT);
 
 		if(usersCustomFavoriteMovies != null) {
-			usersCustomFavoriteMovies.forEach(m -> {
-				JButton movieButton = new JButton(m.getTitle());
-				movieButton.setMaximumSize(new Dimension(400, 40));
-				movieButton.setMinimumSize(new Dimension(400, 40));
-				movieButton.setAlignmentX(LEFT_ALIGNMENT);
-				movieButton.setHorizontalAlignment(SwingConstants.LEFT);
-				movieButton.addActionListener(a -> {
-					JDialog movieInfo = new JDialog();
-					movieInfo.setMaximumSize(new Dimension(750,750));
-					movieInfo.setMinimumSize(new Dimension(750,750));
-					MoviePage moviePage = new MoviePage(m);
-					movieInfo.add(moviePage);
-					movieInfo.setVisible(true);
-					movieInfo.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-				});
-				favoriteMovieList.add(movieButton);
-			});
+			populateCustomList(usersCustomMovieLists);
 		}
 
 		favoriteScroller = new JScrollPane(favoriteMovieList);

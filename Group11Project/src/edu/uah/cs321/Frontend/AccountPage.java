@@ -174,17 +174,7 @@ public class AccountPage extends JPanel {
 		usersMovieLists.setAlignmentX(LEFT_ALIGNMENT);
 		//adds buttons to the User's custom lists
 		if(usersCustomMovieLists != null) {
-			usersCustomMovieLists.forEach(ml -> {
-				JButton movieListButton = new JButton(ml.getListName());
-				movieListButton.setMaximumSize(new Dimension(400, 40));
-				movieListButton.setMinimumSize(new Dimension(400, 40));
-				movieListButton.setAlignmentX(LEFT_ALIGNMENT);
-				movieListButton.setHorizontalAlignment(SwingConstants.LEFT);
-				movieListButton.addActionListener(a -> {
-					openMovieList(ml);
-				});
-				usersMovieLists.add(movieListButton);
-			});
+			populateCustomList(usersCustomMovieLists);
 		}
 		customListScroller = new JScrollPane(usersMovieLists);
 		customListScroller.setAlignmentX(LEFT_ALIGNMENT);
@@ -259,6 +249,7 @@ public class AccountPage extends JPanel {
 		jd.setMaximumSize(new Dimension(700,800));
 		jd.setMinimumSize(new Dimension(700,800));
 		jd.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
 		JButton deleteMovieListButton = new JButton("Delete this movie list?");
 		deleteMovieListButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		deleteMovieListButton.setMaximumSize(new Dimension(100,50));
@@ -269,6 +260,9 @@ public class AccountPage extends JPanel {
 			if (n==0){
 				AccountPage.getUser().removeMovieListFromMovieLists(movieList);
 				jd.dispose();
+				usersMovieLists.removeAll();
+				populateCustomList(u.getMovieLists());
+				revalidate();
 
 			}
 		});
@@ -284,6 +278,20 @@ public class AccountPage extends JPanel {
 		jd.add(contentPanel);
 
 		jd.setVisible(true);
+	}
+
+	public void populateCustomList(java.util.List<MovieList> usersCustomLists){
+		usersCustomLists.forEach(ml -> {
+			JButton movieListButton = new JButton(ml.getListName());
+			movieListButton.setMaximumSize(new Dimension(400, 40));
+			movieListButton.setMinimumSize(new Dimension(400, 40));
+			movieListButton.setAlignmentX(LEFT_ALIGNMENT);
+			movieListButton.setHorizontalAlignment(SwingConstants.LEFT);
+			movieListButton.addActionListener(a -> {
+				openMovieList(ml);
+			});
+			usersMovieLists.add(movieListButton);
+		});
 	}
 }
 

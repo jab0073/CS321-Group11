@@ -262,12 +262,15 @@ public class AccountPage extends JPanel {
 				jd.dispose();
 				usersMovieLists.removeAll();
 				populateCustomList(u.getMovieLists());
-				revalidate();
+				usersMovieLists.revalidate();
+				usersMovieLists.repaint();
 
 			}
 		});
 
+		//This listViewer is just for testing purposes to see if a list will load.
 		SearchPage listViewer = new SearchPage(ResourceUtils.getMasterMovieList());
+		//SearchPage listViewer = new SearchPage(movieList);
 		listViewer.removeHeader();
 
 		JPanel contentPanel = new JPanel();

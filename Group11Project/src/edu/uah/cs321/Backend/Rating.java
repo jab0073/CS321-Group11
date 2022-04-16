@@ -37,4 +37,22 @@ public class Rating implements Serializable {
 	public void setValue(String value) {
 		Value = value;
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Rating)) return false;
+
+		Rating rating = (Rating) o;
+
+		if (!getSource().equals(rating.getSource())) return false;
+		return getValue().equals(rating.getValue());
+	}
+
+	@Override
+	public int hashCode() {
+		int result = getSource().hashCode();
+		result = 31 * result + getValue().hashCode();
+		return result;
+	}
 }

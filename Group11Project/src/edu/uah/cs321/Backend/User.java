@@ -320,6 +320,49 @@ public class User implements Serializable {
 		this.favoriteOther = favoriteOther;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof User)) return false;
+
+		User user = (User) o;
+
+		if (entitlement != user.entitlement) return false;
+		if (!getFirstName().equals(user.getFirstName())) return false;
+		if (!getLastName().equals(user.getLastName())) return false;
+		if (!getAboutMe().equals(user.getAboutMe())) return false;
+		if (!getUserName().equals(user.getUserName())) return false;
+		if (!reviews.equals(user.reviews)) return false;
+		if (getMovieLists() != null ? !getMovieLists().equals(user.getMovieLists()) : user.getMovieLists() != null)
+			return false;
+		if (getFavoriteActors() != null ? !getFavoriteActors().equals(user.getFavoriteActors()) : user.getFavoriteActors() != null)
+			return false;
+		if (getFavoriteMovies() != null ? !getFavoriteMovies().equals(user.getFavoriteMovies()) : user.getFavoriteMovies() != null)
+			return false;
+		if (getFavoriteGenres() != null ? !getFavoriteGenres().equals(user.getFavoriteGenres()) : user.getFavoriteGenres() != null)
+			return false;
+		if (getFavoriteDirectors() != null ? !getFavoriteDirectors().equals(user.getFavoriteDirectors()) : user.getFavoriteDirectors() != null)
+			return false;
+		return getFavoriteOther() != null ? getFavoriteOther().equals(user.getFavoriteOther()) : user.getFavoriteOther() == null;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = getFirstName().hashCode();
+		result = 31 * result + getLastName().hashCode();
+		result = 31 * result + getAboutMe().hashCode();
+		result = 31 * result + getUserName().hashCode();
+		result = 31 * result + reviews.hashCode();
+		result = 31 * result + (getMovieLists() != null ? getMovieLists().hashCode() : 0);
+		result = 31 * result + (getFavoriteActors() != null ? getFavoriteActors().hashCode() : 0);
+		result = 31 * result + (getFavoriteMovies() != null ? getFavoriteMovies().hashCode() : 0);
+		result = 31 * result + (getFavoriteGenres() != null ? getFavoriteGenres().hashCode() : 0);
+		result = 31 * result + (getFavoriteDirectors() != null ? getFavoriteDirectors().hashCode() : 0);
+		result = 31 * result + (getFavoriteOther() != null ? getFavoriteOther().hashCode() : 0);
+		result = 31 * result + (entitlement ? 1 : 0);
+		return result;
+	}
+
 	/**
 	 * This function returns a string that contains the user's name, whether they are a guest or registered user, and their
 	 * about me text

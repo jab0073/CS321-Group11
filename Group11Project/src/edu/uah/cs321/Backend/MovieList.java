@@ -37,7 +37,7 @@ public class MovieList implements Serializable {
 		this.movieList = movieList;
 		this.movieList.forEach(m -> {
 			String title = m.getTitle();
-			int year = m.getYear();
+			int year = Integer.parseInt(m.getYear());;
 			if(!title.contains(" (" + year + ")")) {
 				m.setTitle(title + " (" + year + ")");
 			}
@@ -53,7 +53,7 @@ public class MovieList implements Serializable {
 		this.movieList = movieList;
 		this.movieList.forEach(m -> {
 			String title = m.getTitle();
-			int year = m.getYear();
+			int year = Integer.parseInt(m.getYear());
 			if(!title.contains(" (" + year + ")")) {
 				m.setTitle(title + " (" + year + ")");
 			}
@@ -206,12 +206,12 @@ public class MovieList implements Serializable {
 			case '<' -> {
 				if (filteredMovies.isEmpty()) {
 					filteredMovies = movieList.stream()
-							.filter(a -> a.getYear() < year)
+							.filter(a -> Integer.parseInt(a.getYear()) < year)
 							.map(Movie::getThis)
 							.collect(toList());
 				} else {
 					filteredMovies = filteredMovies.stream()
-							.filter(a -> a.getYear() < year)
+							.filter(a -> Integer.parseInt(a.getYear()) < year)
 							.map(Movie::getThis)
 							.collect(toList());
 				}
@@ -220,12 +220,12 @@ public class MovieList implements Serializable {
 			case '>' -> {
 				if (filteredMovies.isEmpty()) {
 					filteredMovies = movieList.stream()
-							.filter(a -> a.getYear() > year)
+							.filter(a -> Integer.parseInt(a.getYear()) > year)
 							.map(Movie::getThis)
 							.collect(toList());
 				} else {
 					filteredMovies = filteredMovies.stream()
-							.filter(a -> a.getYear() > year)
+							.filter(a -> Integer.parseInt(a.getYear()) > year)
 							.map(Movie::getThis)
 							.collect(toList());
 				}
@@ -234,12 +234,12 @@ public class MovieList implements Serializable {
 			case '=' -> {
 				if (filteredMovies.isEmpty()) {
 					filteredMovies = movieList.stream()
-							.filter(a -> a.getYear() == year)
+							.filter(a -> Integer.parseInt(a.getYear()) == year)
 							.map(Movie::getThis)
 							.collect(toList());
 				} else {
 					filteredMovies = filteredMovies.stream()
-							.filter(a -> a.getYear() == year)
+							.filter(a -> Integer.parseInt(a.getYear()) == year)
 							.map(Movie::getThis)
 							.collect(toList());
 				}

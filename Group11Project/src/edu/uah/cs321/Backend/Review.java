@@ -60,4 +60,26 @@ public class Review implements Serializable {
 	public void setBody(String body) {
 		this.body = body;
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Review)) return false;
+
+		Review review = (Review) o;
+
+		if (!getAuthor().equals(review.getAuthor())) return false;
+		if (!getMovie().equals(review.getMovie())) return false;
+		if (!getRating().equals(review.getRating())) return false;
+		return getBody().equals(review.getBody());
+	}
+
+	@Override
+	public int hashCode() {
+		int result = getAuthor().hashCode();
+		result = 31 * result + getMovie().hashCode();
+		result = 31 * result + getRating().hashCode();
+		result = 31 * result + getBody().hashCode();
+		return result;
+	}
 }

@@ -39,6 +39,7 @@ public class Movie implements Serializable {
 	private String Website;
 	private String Response;
 	private String Actors;
+
 	private List<Review> userReviews = null;
 
 	// This is a constructor for the Movie class. It initializes the userReviews list to an empty list.
@@ -113,12 +114,12 @@ public class Movie implements Serializable {
 		Rating = rating;
 	}
 
-	public int getYear() {
-		return Integer.parseInt(Year);
+	public String getYear() {
+		return Year;
 	}
 
-	public void setYear(int year) {
-		Year = Integer.toString(year);
+	public void setYear(String year) {
+		Year = year;
 	}
 
 	public String getReleased() {
@@ -317,6 +318,81 @@ public class Movie implements Serializable {
 	 */
 	public String getAttributes() {
 		return toString();
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Movie)) return false;
+
+		Movie movie = (Movie) o;
+
+		if (mpcrRatings != null ? !mpcrRatings.equals(movie.mpcrRatings) : movie.mpcrRatings != null) return false;
+		if (!getTitle().equals(movie.getTitle())) return false;
+		if (!getPlot().equals(movie.getPlot())) return false;
+		if (getRating() != null ? !getRating().equals(movie.getRating()) : movie.getRating() != null) return false;
+		if (!getYear().equals(movie.getYear())) return false;
+		if (!getReleased().equals(movie.getReleased())) return false;
+		if (!getGenre().equals(movie.getGenre())) return false;
+		if (getRuntime() != null ? !getRuntime().equals(movie.getRuntime()) : movie.getRuntime() != null) return false;
+		if (!getDirector().equals(movie.getDirector())) return false;
+		if (!getWriter().equals(movie.getWriter())) return false;
+		if (getAwards() != null ? !getAwards().equals(movie.getAwards()) : movie.getAwards() != null) return false;
+		if (getLanguage() != null ? !getLanguage().equals(movie.getLanguage()) : movie.getLanguage() != null)
+			return false;
+		if (getCountry() != null ? !getCountry().equals(movie.getCountry()) : movie.getCountry() != null) return false;
+		if (getPoster() != null ? !getPoster().equals(movie.getPoster()) : movie.getPoster() != null) return false;
+		if (getRatings() != null ? !getRatings().equals(movie.getRatings()) : movie.getRatings() != null) return false;
+		if (getMetascore() != null ? !getMetascore().equals(movie.getMetascore()) : movie.getMetascore() != null)
+			return false;
+		if (getImdbRating() != null ? !getImdbRating().equals(movie.getImdbRating()) : movie.getImdbRating() != null)
+			return false;
+		if (getImdbVotes() != null ? !getImdbVotes().equals(movie.getImdbVotes()) : movie.getImdbVotes() != null)
+			return false;
+		if (getImdbID() != null ? !getImdbID().equals(movie.getImdbID()) : movie.getImdbID() != null) return false;
+		if (getType() != null ? !getType().equals(movie.getType()) : movie.getType() != null) return false;
+		if (getDVD() != null ? !getDVD().equals(movie.getDVD()) : movie.getDVD() != null) return false;
+		if (getBoxOffice() != null ? !getBoxOffice().equals(movie.getBoxOffice()) : movie.getBoxOffice() != null)
+			return false;
+		if (getProduction() != null ? !getProduction().equals(movie.getProduction()) : movie.getProduction() != null)
+			return false;
+		if (getWebsite() != null ? !getWebsite().equals(movie.getWebsite()) : movie.getWebsite() != null) return false;
+		if (getResponse() != null ? !getResponse().equals(movie.getResponse()) : movie.getResponse() != null)
+			return false;
+		if (!getActors().equals(movie.getActors())) return false;
+		return getUserReviews() != null ? getUserReviews().equals(movie.getUserReviews()) : movie.getUserReviews() == null;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = mpcrRatings != null ? mpcrRatings.hashCode() : 0;
+		result = 31 * result + getTitle().hashCode();
+		result = 31 * result + getPlot().hashCode();
+		result = 31 * result + (getRating() != null ? getRating().hashCode() : 0);
+		result = 31 * result + getYear().hashCode();
+		result = 31 * result + getReleased().hashCode();
+		result = 31 * result + getGenre().hashCode();
+		result = 31 * result + (getRuntime() != null ? getRuntime().hashCode() : 0);
+		result = 31 * result + getDirector().hashCode();
+		result = 31 * result + getWriter().hashCode();
+		result = 31 * result + (getAwards() != null ? getAwards().hashCode() : 0);
+		result = 31 * result + (getLanguage() != null ? getLanguage().hashCode() : 0);
+		result = 31 * result + (getCountry() != null ? getCountry().hashCode() : 0);
+		result = 31 * result + (getPoster() != null ? getPoster().hashCode() : 0);
+		result = 31 * result + (getRatings() != null ? getRatings().hashCode() : 0);
+		result = 31 * result + (getMetascore() != null ? getMetascore().hashCode() : 0);
+		result = 31 * result + (getImdbRating() != null ? getImdbRating().hashCode() : 0);
+		result = 31 * result + (getImdbVotes() != null ? getImdbVotes().hashCode() : 0);
+		result = 31 * result + (getImdbID() != null ? getImdbID().hashCode() : 0);
+		result = 31 * result + (getType() != null ? getType().hashCode() : 0);
+		result = 31 * result + (getDVD() != null ? getDVD().hashCode() : 0);
+		result = 31 * result + (getBoxOffice() != null ? getBoxOffice().hashCode() : 0);
+		result = 31 * result + (getProduction() != null ? getProduction().hashCode() : 0);
+		result = 31 * result + (getWebsite() != null ? getWebsite().hashCode() : 0);
+		result = 31 * result + (getResponse() != null ? getResponse().hashCode() : 0);
+		result = 31 * result + getActors().hashCode();
+		result = 31 * result + (getUserReviews() != null ? getUserReviews().hashCode() : 0);
+		return result;
 	}
 
 	@Override

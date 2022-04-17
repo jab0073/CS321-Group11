@@ -5,6 +5,7 @@ import edu.uah.cs321.Backend.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.List;
 
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
@@ -26,6 +27,7 @@ public class SearchPage extends JPanel {
 
 	private static JPanel displayedMovies;
 	private static JScrollPane displayedMoviesScroller;
+	private static String parameterState;
 
 
 	public SearchPage(MovieList movieList) {
@@ -57,7 +59,7 @@ public class SearchPage extends JPanel {
 		displayedMoviesScroller.setMaximumSize(new Dimension(400,600));
 
 		//This adds the buttons in the search page that open up the MoviePage for each Movie
-		populateSearchList(movieList, "");
+		populateSearchList(masterMovieList.getMovieList());
 
 
 		contentPanel.add(displayedMoviesScroller);
@@ -78,38 +80,72 @@ public class SearchPage extends JPanel {
 		searchBar.add(searchBarLabel,c);
 
 		searchArea = new JTextField("Enter Text to Search");
-		c.gridx=0; c.gridy=1; c.gridwidth=10; c.ipadx = 50; c.ipady=5;
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.gridx=0; c.gridy=1; c.gridwidth=10; c.ipadx = 0; c.ipady=5; c.anchor = GridBagConstraints.LINE_START;
 		searchBar.add(searchArea,c);
 
 		//n will be the search state
 		//n=0 -> default title search.
-		int n=0;
+		parameterState="";
 
 		JButton searchEnter = new JButton("Search");
 		c.gridx=11; c.gridy=1; c.gridwidth=1; c.ipadx=0; c.ipady=0;
 		searchEnter.addActionListener(a->{
-			updateSearchResults(n, masterMovieList, searchArea.getText());
+			updateSearchResults(parameterState, masterMovieList, searchArea.getText());
 			contentPanel.revalidate();
 
 		});
 		searchBar.add(searchEnter,c);
+
 
 		JLabel searchParameters = new JLabel("Search by:");
 		c.gridx=0; c.gridy=2;
 		searchBar.add(searchParameters,c);
 
 
+		String[] parameterList = new String[]{"Title","Actor","Director"};
+		for (int i=0; i<parameterList.length; i++){
+			JToggleButton parameterButton = new JToggleButton(parameterList[i], false);
+			int a=i;
+			c.gridx=i; c.gridy=3;
+			parameterButton.addActionListener(e->{
+				boolean state = parameterButton.isSelected();
+				if (state==true){
+					parameterState = parameterState + parameterList[a];
+
+				}
+				if (state==false){
+					parameterState= parameterState.substring(0,parameterState.length()-parameterList[a].length());
+
+				}
+			});
+			searchBar.add(parameterButton,c);
+
+		}
+
 		p.add(searchBar);
 	}
 
 
-	public void updateSearchResults(int n, MovieList ml, String input){
+	public void updateSearchResults(String State, MovieList ml, String input){
 		displayedMovies.removeAll();
-		switch (n) {
+		//Okay so
+		switch (State) {
 			//Search by Title
-			case 1: populateSearchList(ml, input);
-					break;
-			default: populateSearchList(ml, input);
+			case "Title":
+				populateSearchList(ml.searchForMovie(input));
+				break;
+			case "Actor":
+				populateSearchList(ml.filterByActor(input));
+				ml.clearFilteredList();
+				break;
+			case "Director":
+				populateSearchList(ml.filterByDirector(input));
+				ml.clearFilteredList();
+				break;
+				//Default case is search by title
+			default:
+				populateSearchList(ml.searchForMovie(input));
 				break;
 		}
 	}
@@ -124,8 +160,9 @@ public class SearchPage extends JPanel {
 
 	}
 
-	public void populateSearchList(MovieList movieList, String Input){
-		movieList.searchForMovie(Input).forEach(m -> {
+
+	public void populateSearchList(List<Movie> ml){
+		ml.forEach(m -> {
 			JButton movieButton = new JButton(m.getTitle());
 			movieButton.setMaximumSize(new Dimension(400,100));
 			movieButton.setHorizontalAlignment(SwingConstants.LEFT);
@@ -142,5 +179,9 @@ public class SearchPage extends JPanel {
 			});
 			displayedMovies.add(movieButton);
 		});
+		if (ml.isEmpty()) {
+			JLabel noResults = new JLabel("No Results");
+			displayedMovies.add(noResults);
+		}
 	}
 }

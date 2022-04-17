@@ -22,13 +22,14 @@ public class SearchPage extends JPanel {
 	private static JPanel searchBar;
 	private static JTextField searchArea;
 	private static JLabel searchBarLabel;
-	private static JButton searchButton;
+	private static MovieList masterMovieList;
 
 	private static JPanel displayedMovies;
 	private static JScrollPane displayedMoviesScroller;
 
 
 	public SearchPage(MovieList movieList) {
+		masterMovieList = movieList;
 		confirmation = new JLabel("You are on the search page");
 		confirmation.setAlignmentX(CENTER_ALIGNMENT);
 		backButton = new JButton("Go back to account page");
@@ -46,7 +47,7 @@ public class SearchPage extends JPanel {
 		contentPanel.add(backButton);
 
 		//This will add the search bar to the content panel. Doesn't work rn.
-		//addSearchBar(contentPanel);
+		addSearchBar(contentPanel);
 
 
 		displayedMovies = new JPanel();
@@ -55,10 +56,76 @@ public class SearchPage extends JPanel {
 		displayedMoviesScroller.setAlignmentX(CENTER_ALIGNMENT);
 		displayedMoviesScroller.setMaximumSize(new Dimension(400,600));
 
-
-
 		//This adds the buttons in the search page that open up the MoviePage for each Movie
-		movieList.getMovieList().forEach(m -> {
+		populateSearchList(movieList, "");
+
+
+		contentPanel.add(displayedMoviesScroller);
+
+		this.add(contentPanel);
+		contentPanel.setVisible(true);
+		this.setVisible(true);
+
+
+	}
+
+	public void addSearchBar(JPanel p){
+		searchBar = new JPanel(new GridBagLayout());
+		GridBagConstraints c = new GridBagConstraints();
+
+		searchBarLabel = new JLabel("Search Bar");
+		c.gridx=0; c.gridy=0;
+		searchBar.add(searchBarLabel,c);
+
+		searchArea = new JTextField("Enter Text to Search");
+		c.gridx=0; c.gridy=1; c.gridwidth=10; c.ipadx = 50; c.ipady=5;
+		searchBar.add(searchArea,c);
+
+		//n will be the search state
+		//n=0 -> default title search.
+		int n=0;
+
+		JButton searchEnter = new JButton("Search");
+		c.gridx=11; c.gridy=1; c.gridwidth=1; c.ipadx=0; c.ipady=0;
+		searchEnter.addActionListener(a->{
+			updateSearchResults(n, masterMovieList, searchArea.getText());
+			contentPanel.revalidate();
+
+		});
+		searchBar.add(searchEnter,c);
+
+		JLabel searchParameters = new JLabel("Search by:");
+		c.gridx=0; c.gridy=2;
+		searchBar.add(searchParameters,c);
+
+
+		p.add(searchBar);
+	}
+
+
+	public void updateSearchResults(int n, MovieList ml, String input){
+		displayedMovies.removeAll();
+		switch (n) {
+			//Search by Title
+			case 1: populateSearchList(ml, input);
+					break;
+			default: populateSearchList(ml, input);
+				break;
+		}
+	}
+
+	/**
+	 * Changes the header of the search page. Used when viewing a MovieList.
+	 *
+	 */
+	public void removeHeader(){
+		contentPanel.remove(confirmation);
+		contentPanel.remove(backButton);
+
+	}
+
+	public void populateSearchList(MovieList movieList, String Input){
+		movieList.searchForMovie(Input).forEach(m -> {
 			JButton movieButton = new JButton(m.getTitle());
 			movieButton.setMaximumSize(new Dimension(400,100));
 			movieButton.setHorizontalAlignment(SwingConstants.LEFT);
@@ -75,44 +142,5 @@ public class SearchPage extends JPanel {
 			});
 			displayedMovies.add(movieButton);
 		});
-
-
-		contentPanel.add(displayedMoviesScroller);
-
-		this.add(contentPanel);
-		contentPanel.setVisible(true);
-		this.setVisible(true);
-
-
-	}
-
-	public void addSearchBar(JPanel p){
-		searchBar = new JPanel(new GridBagLayout());
-		GridBagConstraints c = new GridBagConstraints();
-		searchBarLabel = new JLabel("Search Bar");
-		c.gridx=0; c.gridy=0;
-		searchBar.add(searchBarLabel,c);
-
-		searchArea = new JTextField("Enter Text to Search");
-		c.gridx=0; c.gridy=1; c.gridwidth=3;
-		searchBar.add(searchArea,c);
-
-
-		p.add(searchBar);
-	}
-
-
-	public void updateSearchResults(){
-
-	}
-
-	/**
-	 * Changes the header of the search page. Used when viewing a MovieList.
-	 * @param ml
-	 */
-	public void removeHeader(){
-		contentPanel.remove(confirmation);
-		contentPanel.remove(backButton);
-
 	}
 }

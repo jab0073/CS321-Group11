@@ -95,12 +95,14 @@ public class MoviePage extends JPanel {
 			addToFavoritesButton.setText("Unfavorite");
 		}
 		addToFavoritesButton.addActionListener(a -> {
+			//if it contains the movie
 			if (u.getFavoriteMovies().contains(movie)){
 				addToFavoritesButton.setText("Favorite");
-			} else {
+				u.getFavoriteMovies().remove(movie);
+			} else { //if it does not contain the movie
 				addToFavoritesButton.setText("Unfavorite");
+				u.getFavoriteMovies().add(movie);
 			}
-			u.toggleFavoriteMovie(movie);
 			Application.getAccountPage().populateFavoriteList(u.getFavoriteMovies());
 			Application.getAccountPage().revalidate();
 

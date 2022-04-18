@@ -11,6 +11,7 @@ public final class Constants {
 
 	public static final String AuthMapFileName = "userpass.gw";
 	public static final String UserDatabaseFileName = "users.gw";
+	public static final String MasterMovieListCache = "mastermovielist.gw";
 
 	public static final String WindowsBeginningDefaultDir = "C:\\Users\\";
 	public static final String WindowsEndingDefaultDir = "\\Documents\\CS321G11\\GoodWatches\\";

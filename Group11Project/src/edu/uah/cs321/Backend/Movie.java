@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 @SuppressWarnings("unused")
 /**
@@ -39,6 +40,7 @@ public class Movie implements Serializable {
 	private String Website;
 	private String Response;
 	private String Actors;
+	private List<String> distinctWords;
 
 	private List<Review> userReviews = null;
 
@@ -78,6 +80,7 @@ public class Movie implements Serializable {
 		this.Website = website;
 		this.Response = response;
 		this.Actors = actors;
+
 	}
 
 	// This is a constructor for the Movie class. It initializes all the fields to their corresponding parameter.
@@ -318,6 +321,25 @@ public class Movie implements Serializable {
 	 */
 	public String getAttributes() {
 		return toString();
+	}
+
+	public void generateDistinctWords() {
+		List<String> words = new ArrayList<String>();
+		words.addAll(List.of(getTitle().replaceAll("[^A-Za-z0-9 ]", "").split(" ")));
+		words.addAll(List.of(getPlot().replaceAll("[^A-Za-z0-9 ]", "").split(" ")));
+		words.addAll(List.of(getGenre().replaceAll("[^A-Za-z0-9 ]", "").split(" ")));
+		words.addAll(List.of(getDirector().replaceAll("[^A-Za-z0-9 ]", "").split(" ")));
+		words.addAll(List.of(getWriter().replaceAll("[^A-Za-z0-9 ]", "").split(" ")));
+		words.addAll(getActors());
+		words = words.stream().map(String::toLowerCase).collect(Collectors.toList());
+		distinctWords = words.stream().distinct().collect(Collectors.toList());
+
+		System.out.println(getTitle());
+		distinctWords.forEach(w -> System.out.println("\t" + w));
+	}
+
+	public List<String> getDistinctWords() {
+		return distinctWords;
 	}
 
 	@Override

@@ -9,6 +9,7 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toSet;
 
 /***
  * File Name: MovieList
@@ -41,6 +42,7 @@ public class MovieList implements Serializable {
 			if(!title.contains(" (" + year + ")")) {
 				m.setTitle(title + " (" + year + ")");
 			}
+			m.generateDistinctWords();
 		});
 		this.movieList.sort(Comparator.comparing(m -> m.getTitle()));
 		filteredMovies = new ArrayList<>();
@@ -57,6 +59,7 @@ public class MovieList implements Serializable {
 			if(!title.contains(" (" + year + ")")) {
 				m.setTitle(title + " (" + year + ")");
 			}
+			m.generateDistinctWords();
 		});
 		this.movieList.sort(Comparator.comparing(m -> m.getTitle()));
 		filteredMovies = new ArrayList<>();
@@ -86,7 +89,9 @@ public class MovieList implements Serializable {
 	 * @param movie The movie to be added to the list.
 	 */
 	public void addMovie(Movie movie) {
-		movieList.add(movie);
+		if(!movieList.contains(movie)) {
+			movieList.add(movie);
+		}
 	}
 
 	/**
@@ -247,6 +252,27 @@ public class MovieList implements Serializable {
 			}
 		}
 		return null;
+	}
+
+	public List<Movie> searchForAny(String query) {
+		if(query.equals("")) {
+			return movieList;
+		}
+		List<String> query_split = List.of(query.replaceAll("[^A-Za-z0-9 ]", "").split(" "));
+		query_split = query_split.stream().map(String::toLowerCase).collect(Collectors.toList());
+		List<Movie> searchResults = new ArrayList<>();
+
+		query_split.forEach(q -> {
+			movieList.forEach(m -> {
+				if(m.getDistinctWords().contains(q)) {
+					System.out.println(m.getTitle());
+					if(!searchResults.contains(m))
+						searchResults.add(m);
+				}
+			});
+		});
+		System.out.println("Result Size: " + searchResults.size());
+		return searchResults;
 	}
 
 	/**

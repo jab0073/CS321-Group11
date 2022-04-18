@@ -78,6 +78,16 @@ public class ResourceUtils {
 		return null;
 	}
 
+	public static String getMasterMovieListCache() {
+		if(System.getProperty("os.name").toLowerCase().startsWith("win")) {
+			return Constants.WindowsBeginningDefaultDir + System.getProperty("user.name") + Constants.WindowsEndingDefaultDir + Constants.MasterMovieListCache;
+		}
+		else if(System.getProperty("os.name").toLowerCase().startsWith("mac")) {
+			return Constants.MacBeginningDir + System.getProperty("user.name") + Constants.MacDefaultDir + Constants.MasterMovieListCache;
+		}
+		return null;
+	}
+
 	public static String getGoodWatchesDirectory() {
 		if(System.getProperty("os.name").toLowerCase().startsWith("win")) {
 			return Constants.WindowsBeginningDefaultDir + System.getProperty("user.name") + Constants.WindowsEndingDefaultDir;
@@ -120,6 +130,10 @@ public class ResourceUtils {
 
 	public static void setMasterMovieList(List<Movie> ml) {
 		ResourceUtils.masterMovieLst = new MovieList(ml);
+	}
+
+	public static void setMasterMovieList(MovieList ml) {
+		ResourceUtils.masterMovieLst = ml;
 	}
 
 	public static MovieList getMasterMovieList() {

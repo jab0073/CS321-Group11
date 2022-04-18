@@ -325,6 +325,7 @@ public class MovieList implements Serializable {
 	public List<String> getAllGenres() {
 		return movieList.stream()
 				.map(Movie::getGenre)
+				.flatMap(Collection::stream)
 				.sorted(Comparator.naturalOrder())
 				.collect(toList());
 	}

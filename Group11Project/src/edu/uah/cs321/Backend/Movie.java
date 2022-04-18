@@ -133,12 +133,12 @@ public class Movie implements Serializable {
 		Released = released;
 	}
 
-	public String getGenre() {
-		return Genre;
+	public List<String> getGenre() {
+		return List.of(Genre.split(", "));
 	}
 
-	public void setGenre(String genre) {
-		Genre = genre;
+	public void setGenre(List<String> genre) {
+		Genre = String.join(", ", genre);
 	}
 
 	public String getRuntime() {
@@ -327,7 +327,7 @@ public class Movie implements Serializable {
 		List<String> words = new ArrayList<String>();
 		words.addAll(List.of(getTitle().replaceAll("[^A-Za-z0-9 ]", "").split(" ")));
 		words.addAll(List.of(getPlot().replaceAll("[^A-Za-z0-9 ]", "").split(" ")));
-		words.addAll(List.of(getGenre().replaceAll("[^A-Za-z0-9 ]", "").split(" ")));
+		words.addAll(getGenre());
 		words.addAll(List.of(getDirector().replaceAll("[^A-Za-z0-9 ]", "").split(" ")));
 		words.addAll(List.of(getWriter().replaceAll("[^A-Za-z0-9 ]", "").split(" ")));
 		words.addAll(getActors());

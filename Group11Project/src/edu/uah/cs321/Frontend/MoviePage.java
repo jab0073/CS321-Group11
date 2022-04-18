@@ -42,19 +42,23 @@ public class MoviePage extends JPanel {
 
 	private static JScrollPane reviewPane;
 
-	private static JTextField ratingTextField;
 	private static JTextArea reviewTextArea;
 
 	private static JButton addToFavoritesButton;
 	private static JButton saveReviewButton;
 
+	private static Color avgColor;
+	private static Color contrastColor;
+
 
 	public MoviePage(Movie movie){
 		super();
-		this.movie = movie;
+		MoviePage.movie = movie;
 		u=AccountPage.getUser();
 
+
 		contentPanel = new JPanel();
+
 		contentPanel.setLayout(new BoxLayout(contentPanel,BoxLayout.Y_AXIS));
 		movieInfoPanel = new JPanel();
 		movieInfoPanel.setLayout(new BoxLayout(movieInfoPanel,BoxLayout.Y_AXIS));
@@ -67,6 +71,8 @@ public class MoviePage extends JPanel {
 			try {
 				URL url = new URL(posterURL);
 				BufferedImage image = ImageIO.read(url);
+				avgColor = averageColor(image);
+				contrastColor = getContrastColor(avgColor);
 				ImageIcon imgicon = new ImageIcon(image);
 				Image img = imgicon.getImage().getScaledInstance((int)(image.getWidth()*.8),(int)(image.getHeight()*.8),Image.SCALE_DEFAULT);
 				imgicon = new ImageIcon(img);
@@ -75,22 +81,51 @@ public class MoviePage extends JPanel {
 			} catch(IOException ignored) {}
 		}
 
-		movieTitleLabel = new JLabel("Title:  " + this.movie.getTitle());
-		movieDirectorLabel = new JLabel("Director:  " + this.movie.getDirector());
-		movieWritersLabel = new JLabel("Writers:  " + this.movie.getWriter());
-		moviePlotLabel = new JTextArea("Plot:  " + this.movie.getPlot(),5,25);
+		contentPanel.setBackground(avgColor);
+		movieInfoPanel.setBackground(avgColor);
+		userReviewPanel.setBackground(avgColor);
+		this.setBackground(avgColor);
+
+		movieTitleLabel = new JLabel("Title:  " + MoviePage.movie.getTitle());
+		movieTitleLabel.setBackground(avgColor);
+		movieTitleLabel.setForeground(contrastColor);
+		movieDirectorLabel = new JLabel("Director:  " + MoviePage.movie.getDirector());
+		movieDirectorLabel.setBackground(avgColor);
+		movieDirectorLabel.setForeground(contrastColor);
+		movieWritersLabel = new JLabel("Writers:  " + MoviePage.movie.getWriter());
+		movieWritersLabel.setBackground(avgColor);
+		movieWritersLabel.setForeground(contrastColor);
+		moviePlotLabel = new JTextArea("Plot:  " + MoviePage.movie.getPlot(),5,25);
 		moviePlotLabel.setMaximumSize(new Dimension(400,100));
-		moviePlotLabel.setLineWrap(true); moviePlotLabel.setWrapStyleWord(true); moviePlotLabel.setEditable(false);
+		moviePlotLabel.setLineWrap(true);
+		moviePlotLabel.setBackground(avgColor);
+		moviePlotLabel.setForeground(contrastColor);
+		moviePlotLabel.setWrapStyleWord(true);
+		moviePlotLabel.setEditable(false);
 		moviePlotLabel.setAlignmentX(LEFT_ALIGNMENT);
-		movieGenresLabel = new JLabel("Genre:  " + this.movie.getGenre());
-		movieReleaseLabel = new JLabel("Release Date:  " + this.movie.getReleased());
-		movieActorsLabel = new JLabel("Actors:  " + String.join(", ", this.movie.getActors()));
-		movieRuntimesLabel = new JLabel("Runtime:  " + this.movie.getRuntime());
+		movieGenresLabel = new JLabel("Genre:  " + String.join(", ", MoviePage.movie.getGenre()));
+		movieGenresLabel.setBackground(avgColor);
+		movieGenresLabel.setForeground(contrastColor);
+		movieReleaseLabel = new JLabel("Release Date:  " + MoviePage.movie.getReleased());
+		movieReleaseLabel.setBackground(avgColor);
+		movieReleaseLabel.setForeground(contrastColor);
+		movieActorsLabel = new JLabel("Actors:  " + String.join(", ", MoviePage.movie.getActors()));
+		movieActorsLabel.setBackground(avgColor);
+		movieActorsLabel.setForeground(contrastColor);
+		movieRuntimesLabel = new JLabel("Runtime:  " + MoviePage.movie.getRuntime());
+		movieRuntimesLabel.setBackground(avgColor);
+		movieRuntimesLabel.setForeground(contrastColor);
 		ratingLabel = new JLabel("Rating (1-10)");
+		ratingLabel.setBackground(avgColor);
+		ratingLabel.setForeground(contrastColor);
 		reviewLabel = new JLabel("Review");
+		reviewLabel.setBackground(avgColor);
+		reviewLabel.setForeground(contrastColor);
 
 
 		addToFavoritesButton = new JButton("Favorite");
+		addToFavoritesButton.setForeground(avgColor.darker());
+		addToFavoritesButton.setBackground(avgColor);
 		if (u.getFavoriteMovies().contains(movie)){
 			addToFavoritesButton.setText("Unfavorite");
 		}
@@ -106,24 +141,29 @@ public class MoviePage extends JPanel {
 			Application.getAccountPage().populateFavoriteList(u.getFavoriteMovies());
 			Application.getAccountPage().revalidate();
 
-
-
-
 		});
 
 		//im unsure how to make this less wide.
-		ratingTextField = new JTextField(4);
 		Integer value = 1;
 		Integer min = 1;
 		Integer max = 5;
 		Integer step = 1;
 		SpinnerNumberModel numberspinmodel = new SpinnerNumberModel(value,min,max,step);
 		JSpinner ratingspinner = new JSpinner(numberspinmodel);
+		ratingspinner.setBackground(avgColor.brighter());
+		ratingspinner.setForeground(contrastColor);
 		reviewTextArea = new JTextArea(10,15);
+		reviewTextArea.setBackground(avgColor.brighter());
+		reviewTextArea.setForeground(contrastColor);
+
 		reviewPane = new JScrollPane(reviewTextArea);
+		reviewPane.setBackground(avgColor);
+
 		reviewTextArea.setLineWrap(true);
 
 		saveReviewButton = new JButton("Save");
+		saveReviewButton.setBackground(avgColor);
+		saveReviewButton.setForeground(avgColor.darker());
 		saveReviewButton.addActionListener(e -> {
 			try {
 				Integer rating = (Integer) ratingspinner.getValue();
@@ -177,5 +217,31 @@ public class MoviePage extends JPanel {
 		}
 		contentPanel.setPreferredSize(new Dimension(600,800));
 		add(contentPanel,Component.CENTER_ALIGNMENT);
+	}
+
+	public static Color averageColor(BufferedImage bi) {
+		int step = 5;
+
+		int sampled = 0;
+		long sumr = 0, sumg = 0, sumb = 0;
+		for (int x = 0; x < bi.getWidth(); x++) {
+			for (int y = 0; y < bi.getHeight(); y++) {
+				if (x % step == 0 && y % step == 0) {
+					Color pixel = new Color(bi.getRGB(x, y));
+					sumr += pixel.getRed();
+					sumg += pixel.getGreen();
+					sumb += pixel.getBlue();
+					sampled++;
+				}
+			}
+		}
+		int dim = bi.getWidth()*bi.getHeight();
+		// Log.info("step=" + step + " sampled " + sampled + " out of " + dim + " pixels (" + String.format("%.1f", (float)(100*sampled/dim)) + " %)");
+		return new Color(Math.round(sumr / sampled), Math.round(sumg / sampled), Math.round(sumb / sampled));
+	}
+
+	public static Color getContrastColor(Color color) {
+		double y = (299 * color.getRed() + 587 * color.getGreen() + 114 * color.getBlue()) / 1000;
+		return y >= 128 ? Color.black : Color.white;
 	}
 }

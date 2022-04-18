@@ -178,12 +178,8 @@ public class PreferencePage extends JPanel {
 		}
 
 
-		//This for some reason doesn't work. It basically breaks the user object or something. IDK
 		JButton resetPreferenceButton = new JButton("Reset your preferences");
 		resetPreferenceButton.addActionListener(e->{
-//			u.setFavoriteActors();
-//			u.setFavoriteDirectors(Collections.emptyList());
-//			u.setFavoriteGenres(Collections.emptyList());
 			u.getFavoriteActors().clear();
 			u.getFavoriteDirectors().clear();
 			u.getFavoriteGenres().clear();

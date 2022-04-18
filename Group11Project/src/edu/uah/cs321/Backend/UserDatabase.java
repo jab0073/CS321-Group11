@@ -51,7 +51,7 @@ public final class UserDatabase {
 	}
 
 	public static boolean checkUserExists(User u) {
-		return users.stream().anyMatch(user -> user.getThis() == u);
+		return users.stream().anyMatch(user -> user.getThis().equals(u));
 	}
 
 	/**

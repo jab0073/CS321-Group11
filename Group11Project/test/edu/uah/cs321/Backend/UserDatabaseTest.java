@@ -36,18 +36,6 @@ public class UserDatabaseTest {
 	}
 
 	@Test
-	public void testRemoveUser() {
-		// Setup
-		final User u = new User("firstName", "lastName", "aboutMe", "userName");
-
-		// Run the test
-		UserDatabase.removeUser(u);
-
-		// Verify the results
-		assertFalse(UserDatabase.checkUserExists(u));
-	}
-
-	@Test
 	public void testGetUserAccount() {
 		// Setup
 		final User expectedResult = new User("firstName", "lastName", "aboutMe", "userName");
@@ -60,18 +48,23 @@ public class UserDatabaseTest {
 	}
 
 	@Test
+	public void testRemoveUser() {
+		// Setup
+		final User u = new User("firstName", "lastName", "aboutMe", "userName");
+
+		// Run the test
+		UserDatabase.removeUser(u);
+
+		// Verify the results
+		assertFalse(UserDatabase.checkUserExists(u));
+	}
+
+	@Test
 	public void testClose() throws Exception {
 		// Setup
 		// Run the test
 		UserDatabase.close();
 
 		// Verify the results
-	}
-
-	@Test
-	public void testClose_ThrowsIOException() {
-		// Setup
-		// Run the test
-		assertThrows(IOException.class, () -> UserDatabase.close());
 	}
 }

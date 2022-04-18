@@ -91,11 +91,22 @@ public class MoviePage extends JPanel {
 
 
 		addToFavoritesButton = new JButton("Favorite");
+		if (u.getFavoriteMovies().contains(movie)){
+			addToFavoritesButton.setText("Unfavorite");
+		}
 		addToFavoritesButton.addActionListener(a -> {
-			User u = AccountPage.getUser();
+			if (u.getFavoriteMovies().contains(movie)){
+				addToFavoritesButton.setText("Favorite");
+			} else {
+				addToFavoritesButton.setText("Unfavorite");
+			}
 			u.toggleFavoriteMovie(movie);
-			AccountPage ac = new AccountPage(u);
-			Application.setAccountPage(ac);
+			Application.getAccountPage().populateFavoriteList(u.getFavoriteMovies());
+			Application.getAccountPage().revalidate();
+
+
+
+
 		});
 
 		//im unsure how to make this less wide.

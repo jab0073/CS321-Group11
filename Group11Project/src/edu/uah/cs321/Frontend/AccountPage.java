@@ -211,6 +211,12 @@ public class AccountPage extends JPanel {
 		movieListPanel.add(Box.createRigidArea(new Dimension(25,10)));
 
 
+		if (!u.getEntitlementType()){
+			contentPanel.remove(createMovieList);
+			contentPanel.remove(movieListPanel);
+			contentPanel.remove(editPreferencesButton);
+			contentPanel.revalidate();
+		}
 		//adds content panel to scroller
 		this.add(contentPanel);
 		aboutPanel.setVisible(true);

@@ -184,6 +184,10 @@ public class PreferencePage extends JPanel {
 //			u.setFavoriteActors();
 //			u.setFavoriteDirectors(Collections.emptyList());
 //			u.setFavoriteGenres(Collections.emptyList());
+			u.getFavoriteActors().clear();
+			u.getFavoriteDirectors().clear();
+			u.getFavoriteGenres().clear();
+			refreshPreference();
 			Application.showPage("preferencePage0");
 		});
 

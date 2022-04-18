@@ -100,6 +100,11 @@ public class AccountPage extends JPanel {
 		editPreferencesButton = new JButton("Edit user preferences");
 		editPreferencesButton.setMaximumSize(new Dimension(175,50));
 		editPreferencesButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+		editPreferencesButton.addActionListener(e->{
+			PreferencePage ac = new PreferencePage(u, 0);
+			Application.getContentPanel().add(ac, "preferencePage0");
+			Application.showPage("preferencePage0");
+		});
 		contentPanel.add(editPreferencesButton);
 
 
@@ -188,23 +193,7 @@ public class AccountPage extends JPanel {
 		favoriteMovieList.setAlignmentX(LEFT_ALIGNMENT);
 
 		if(usersCustomFavoriteMovies != null) {
-			usersCustomFavoriteMovies.forEach(m -> {
-				JButton movieButton = new JButton(m.getTitle());
-				movieButton.setMaximumSize(new Dimension(400, 40));
-				movieButton.setMinimumSize(new Dimension(400, 40));
-				movieButton.setAlignmentX(LEFT_ALIGNMENT);
-				movieButton.setHorizontalAlignment(SwingConstants.LEFT);
-				movieButton.addActionListener(a -> {
-					JDialog movieInfo = new JDialog();
-					movieInfo.setMaximumSize(new Dimension(750,750));
-					movieInfo.setMinimumSize(new Dimension(750,750));
-					MoviePage moviePage = new MoviePage(m);
-					movieInfo.add(moviePage);
-					movieInfo.setVisible(true);
-					movieInfo.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-				});
-				favoriteMovieList.add(movieButton);
-			});
+			populateFavoriteList(usersCustomFavoriteMovies);
 		}
 
 		favoriteScroller = new JScrollPane(favoriteMovieList);
@@ -296,6 +285,28 @@ public class AccountPage extends JPanel {
 			usersMovieLists.add(movieListButton);
 		});
 	}
+
+	public void populateFavoriteList(java.util.List<Movie> usersCustomFavoriteMovies){
+		favoriteMovieList.removeAll();
+		usersCustomFavoriteMovies.forEach(m -> {
+			JButton movieButton = new JButton(m.getTitle());
+			movieButton.setMaximumSize(new Dimension(400, 40));
+			movieButton.setMinimumSize(new Dimension(400, 40));
+			movieButton.setAlignmentX(LEFT_ALIGNMENT);
+			movieButton.setHorizontalAlignment(SwingConstants.LEFT);
+			movieButton.addActionListener(a -> {
+				JDialog movieInfo = new JDialog();
+				movieInfo.setMaximumSize(new Dimension(750,1000));
+				movieInfo.setMinimumSize(new Dimension(750,1000));
+				MoviePage moviePage = new MoviePage(m);
+				movieInfo.add(moviePage);
+				movieInfo.setVisible(true);
+				movieInfo.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+			});
+			favoriteMovieList.add(movieButton);
+		});
+	}
+
 }
 
 

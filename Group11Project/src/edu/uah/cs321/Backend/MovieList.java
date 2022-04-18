@@ -13,7 +13,7 @@ import static java.util.stream.Collectors.toList;
 /***
  * File Name: MovieList
  * Description: MovieList is a class that holds a list of movies and provides methods to filter the list of movies by actor, director, genre, rating, year, and title
- * @author justinbushue
+ * @author justinbushue shawnburnham
  * @version 1.0
  */
 @SuppressWarnings("unused")
@@ -87,6 +87,15 @@ public class MovieList implements Serializable {
 	 */
 	public void addMovie(Movie movie) {
 		movieList.add(movie);
+	}
+
+	/**
+	 * Remove a movie from the movie list
+	 *
+	 * @param movie The movie to be removed from the list.
+	 */
+	public void removeMovie(Movie movie) {
+		movieList.remove(movie);
 	}
 
 	/**

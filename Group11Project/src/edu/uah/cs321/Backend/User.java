@@ -257,8 +257,9 @@ public class User implements Serializable {
 		this.favoriteMovies = favoriteMovies;
 	}
 
-	public void addMovieToFavoriteMovies(Movie movie) {
+	public void toggleFavoriteMovie(Movie movie) {
 		if(favoriteMovies.contains(movie)){
+			favoriteMovies.remove(movie);
 			return;
 		}
 		else {

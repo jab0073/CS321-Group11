@@ -93,7 +93,7 @@ public class MoviePage extends JPanel {
 		addToFavoritesButton = new JButton("Favorite");
 		addToFavoritesButton.addActionListener(a -> {
 			User u = AccountPage.getUser();
-			u.addMovieToFavoriteMovies(movie);
+			u.toggleFavoriteMovie(movie);
 			AccountPage ac = new AccountPage(u);
 			Application.setAccountPage(ac);
 		});

@@ -124,11 +124,11 @@ public class MoviePage extends JPanel {
 		movieRuntimesLabel.setBackground(avgColor);
 		movieRuntimesLabel.setForeground(contrastColor);
 		ratingLabel = new JLabel("Rating (1-5)");
-		ratingLabel.setBackground(avgColor);
-		ratingLabel.setForeground(contrastColor);
+		//ratingLabel.setBackground(avgColor);
+		//ratingLabel.setForeground(contrastColor);
 		reviewLabel = new JLabel("Review");
-		reviewLabel.setBackground(avgColor);
-		reviewLabel.setForeground(contrastColor);
+		//reviewLabel.setBackground(avgColor);
+		//reviewLabel.setForeground(contrastColor);
 
 
 		addToFavoritesButton = new JButton("Favorite");
@@ -213,46 +213,83 @@ public class MoviePage extends JPanel {
 
 
 
-		//im unsure how to make this less wide.
-		Integer value = 1;
-		Integer min = 1;
-		Integer max = 5;
-		Integer step = 1;
-		SpinnerNumberModel numberspinmodel = new SpinnerNumberModel(value,min,max,step);
-		JSpinner ratingspinner = new JSpinner(numberspinmodel);
-		ratingspinner.setMaximumSize(new Dimension(150,20));
-		//ratingspinner.setBackground(avgColor);
-		//ratingspinner.setForeground(contrastColor);
-		reviewTextArea = new JTextArea(10,15);
-		reviewTextArea.setBackground(avgColor.brighter());
-		reviewTextArea.setForeground(contrastColor);
 
-		reviewPane = new JScrollPane(reviewTextArea);
-		reviewPane.setBackground(avgColor);
 
-		reviewTextArea.setLineWrap(true);
+		JButton addAReviewButton = new JButton("Leave a review");
+		addAReviewButton.addActionListener(e->{
+			JDialog jd = new JDialog();
+			jd.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+			JPanel cp = new JPanel();
+			cp.setLayout(new BoxLayout(cp,BoxLayout.Y_AXIS));
 
-		saveReviewButton = new JButton("Save");
-		//saveReviewButton.setBackground(avgColor);
-		//saveReviewButton.setForeground(avgColor.darker());
-		saveReviewButton.addActionListener(e -> {
-			try {
-				Integer rating = (Integer) ratingspinner.getValue();
-				String review = reviewTextArea.getText();
-				Review userReview = new Review(AccountPage.getUser(), MoviePage.movie,rating,review);
-				AccountPage.getUser().addReview(userReview);
-				MoviePage.movie.addReview(userReview);
-				SimpleDialog sd = new SimpleDialog("Review Added", "Review Added\nRating: " + rating + "\nReview: " + review);
-				sd.setMaximumSize(new Dimension(400,100)); sd.setMinimumSize(new Dimension(400,100));
-				sd.revalidate();
-			}catch(NullPointerException f){
-				SimpleDialog sd = new SimpleDialog("Error...", "Error");
-				System.out.println(f.getMessage());
-				sd.setMaximumSize(new Dimension(400,100)); sd.setMinimumSize(new Dimension(400,100));
-				sd.revalidate();
-				return;
-			}
+			//im unsure how to make this less wide.
+			Integer value = 1;
+			Integer min = 1;
+			Integer max = 5;
+			Integer step = 1;
+			SpinnerNumberModel numberspinmodel = new SpinnerNumberModel(value,min,max,step);
+			JSpinner ratingspinner = new JSpinner(numberspinmodel);
+			ratingspinner.setMaximumSize(new Dimension(50,20));
+			//ratingspinner.setBackground(avgColor);
+			//ratingspinner.setForeground(contrastColor);
+			reviewTextArea = new JTextArea(10,15);
+			//reviewTextArea.setBackground(avgColor.brighter());
+			//reviewTextArea.setForeground(contrastColor);
+
+			reviewPane = new JScrollPane(reviewTextArea);
+			reviewPane.setBackground(avgColor);
+
+			reviewTextArea.setLineWrap(true);
+
+			saveReviewButton = new JButton("Save");
+			//saveReviewButton.setBackground(avgColor);
+			//saveReviewButton.setForeground(avgColor.darker());
+			saveReviewButton.addActionListener(a -> {
+				try {
+					Integer rating = (Integer) ratingspinner.getValue();
+					String review = reviewTextArea.getText();
+					Review userReview = new Review(AccountPage.getUser(), MoviePage.movie,rating,review);
+					AccountPage.getUser().addReview(userReview);
+					MoviePage.movie.addReview(userReview);
+					String message = "<html>Review Added<br/>Rating: " + rating + "<br/>Review: " + review + "</html>";
+					//"Review Added", "Review Added\nRating: " + rating + "\nReview: " + review
+					SimpleDialog sd = new SimpleDialog("Review Added", message);
+					sd.setMaximumSize(new Dimension(400,100)); sd.setMinimumSize(new Dimension(400,100));
+					jd.dispose();
+					sd.revalidate();
+				}catch(NullPointerException f){
+					SimpleDialog sd = new SimpleDialog("Error...", "Error");
+					System.out.println(f.getMessage());
+					sd.setMaximumSize(new Dimension(400,100)); sd.setMinimumSize(new Dimension(400,100));
+					jd.dispose();
+					sd.revalidate();
+					return;
+				}
+			});
+
+			ratingLabel.setAlignmentY(TOP_ALIGNMENT); ratingLabel.setAlignmentX(LEFT_ALIGNMENT);
+			cp.add(ratingLabel);
+			ratingspinner.setAlignmentY(TOP_ALIGNMENT); ratingspinner.setAlignmentX(LEFT_ALIGNMENT);
+			cp.add(ratingspinner);
+			cp.add(new Box.Filler(new Dimension(0,10),new Dimension(0,10),new Dimension(0,10)));
+			reviewPane.setAlignmentY(TOP_ALIGNMENT); reviewPane.setAlignmentX(LEFT_ALIGNMENT);
+			cp.add(reviewLabel);
+			reviewPane.setAlignmentY(TOP_ALIGNMENT); reviewPane.setAlignmentX(LEFT_ALIGNMENT);
+			cp.add(reviewPane);
+			saveReviewButton.setAlignmentY(TOP_ALIGNMENT); saveReviewButton.setAlignmentX(LEFT_ALIGNMENT);
+			cp.add(saveReviewButton);
+
+
+			cp.setMinimumSize(new Dimension(400,400));
+			cp.setMaximumSize(new Dimension(400,400));
+			jd.setMinimumSize(new Dimension(425,425));
+			jd.add(cp);
+			jd.setVisible(true);
 		});
+
+		JPanel reviewsList = new JPanel();
+		JScrollPane reviewsListPane = new JScrollPane(reviewsList);
+
 
 		movieInfoPanel.add(movieTitleLabel, Component.CENTER_ALIGNMENT);
 		movieInfoPanel.add(new Box.Filler(new Dimension(0,5),new Dimension(0,5),new Dimension(0,5)));
@@ -268,27 +305,24 @@ public class MoviePage extends JPanel {
 		movieInfoPanel.add(new Box.Filler(new Dimension(0,5),new Dimension(0,5),new Dimension(0,5)));
 		movieInfoPanel.add(movieRuntimesLabel,Component.CENTER_ALIGNMENT);
 		movieInfoPanel.add(new Box.Filler(new Dimension(0,5),new Dimension(0,5),new Dimension(0,5)));
-		//Plot Label shifts everything to the right and I can't figure out how to fix it
 		movieInfoPanel.add(moviePlotLabel,Component.CENTER_ALIGNMENT);
-		userReviewPanel.add(new Box.Filler(new Dimension(0,5),new Dimension(0,5),new Dimension(0,5)));
 
 		userReviewPanel.add(addToFavoritesButton, Component.CENTER_ALIGNMENT);
 		userReviewPanel.add(new Box.Filler(new Dimension(0,5),new Dimension(0,5),new Dimension(0,5)));
 		userReviewPanel.add(addToCustomListButton);
+		userReviewPanel.add(new Box.Filler(new Dimension(0,5),new Dimension(0,5),new Dimension(0,5)));
+		userReviewPanel.add(addAReviewButton);
 		userReviewPanel.add(new Box.Filler(new Dimension(0,20),new Dimension(0,20),new Dimension(0,20)));
-		userReviewPanel.add(ratingLabel,Component.CENTER_ALIGNMENT);
-		userReviewPanel.add(ratingspinner, Component.CENTER_ALIGNMENT);
-		userReviewPanel.add(new Box.Filler(new Dimension(0,10),new Dimension(0,	10),new Dimension(0,10)));
-		userReviewPanel.add(reviewLabel,Component.CENTER_ALIGNMENT);
-		userReviewPanel.add(reviewPane, Component.CENTER_ALIGNMENT);
-		userReviewPanel.add(saveReviewButton, Component.CENTER_ALIGNMENT);
 
 		contentPanel.add(new Box.Filler(new Dimension(0,10),new Dimension(0,10),new Dimension(0,10)));
 		contentPanel.add(movieInfoPanel, Component.CENTER_ALIGNMENT);
 		if (u.getEntitlementType()){
 			contentPanel.add(userReviewPanel, Component.CENTER_ALIGNMENT);
+			contentPanel.add(new Box.Filler(new Dimension(0,10),new Dimension(0,10),new Dimension(0,10)));
+
 		}
 		contentPanel.setPreferredSize(new Dimension(600,800));
+
 		add(contentPanel,Component.CENTER_ALIGNMENT);
 	}
 

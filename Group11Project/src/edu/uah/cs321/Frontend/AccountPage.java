@@ -212,9 +212,6 @@ public class AccountPage extends JPanel {
 
 
 		if (!u.getEntitlementType()){
-//			createMovieList.setVisible(false);
-//			movieListPanel.setVisible(false);
-//			editPreferencesButton.setVisible(false);
 			contentPanel.remove(createMovieList);
 			contentPanel.remove(movieListPanel);
 			contentPanel.remove(editPreferencesButton);

@@ -11,7 +11,8 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="gson-2.8.9" level="project" />
     <orderEntry type="library" name="junit-4.13.2" level="project" />
-    <orderEntry type="library" name="hamcrest-core-2.2" level="project" />
     <orderEntry type="library" name="hamcrest-2.2" level="project" />
+    <orderEntry type="library" name="mockito-all-1.10.19" level="project" />
+    <orderEntry type="library" name="mockito-core-4.4.0" level="project" />
   </component>
 </module>

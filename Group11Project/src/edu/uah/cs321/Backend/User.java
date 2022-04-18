@@ -326,6 +326,14 @@ public class User implements Serializable {
 		this.favoriteOther = favoriteOther;
 	}
 
+	public List<Review> getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;

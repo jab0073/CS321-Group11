@@ -291,6 +291,10 @@ public class MovieList implements Serializable {
 		filteredMovies.clear();
 	}
 
+	public List<Movie> getFilteredMovies() {
+		return filteredMovies;
+	}
+
 	/**
 	 * This function searches for a movie in the movieList by title and returns a list of movies that match the title
 	 *

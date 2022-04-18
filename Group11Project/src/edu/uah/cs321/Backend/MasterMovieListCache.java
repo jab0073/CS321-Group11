@@ -1,5 +1,7 @@
 package edu.uah.cs321.Backend;
 
+import com.google.gson.JsonObject;
+
 import java.io.*;
 import java.util.Objects;
 
@@ -13,9 +15,8 @@ import java.util.Objects;
 public class MasterMovieListCache {
 
 	private static MovieList masterMovieLst;
-	private final static MasterMovieListCache mlc = new MasterMovieListCache();
 
-	private MasterMovieListCache() {
+	public static void init() throws IOException {
 		try {
 			FileInputStream fileIn = new FileInputStream(Objects.requireNonNull(ResourceUtils.getMasterMovieListCache()));
 			ObjectInputStream in = new ObjectInputStream(fileIn);
@@ -26,11 +27,13 @@ public class MasterMovieListCache {
 			}
 			catch(ClassNotFoundException e) {
 				System.out.println("Unable to read Master MovieList cache. Creating a new one.");
+				JsonReader json = new JsonReader();
 				masterMovieLst = ResourceUtils.getMasterMovieList();
 			}
 		}
 		catch(IOException ioe) {
 			System.out.println("Master MovieList cache not found. Creating a new one.");
+			JsonReader json = new JsonReader();
 			masterMovieLst = ResourceUtils.getMasterMovieList();
 		}
 	}

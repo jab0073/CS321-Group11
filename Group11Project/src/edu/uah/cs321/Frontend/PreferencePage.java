@@ -1,6 +1,7 @@
 package edu.uah.cs321.Frontend;
 
 import javax.swing.*;
+import javax.xml.crypto.dsig.spec.DigestMethodParameterSpec;
 import java.awt.*;
 import java.util.*;
 import java.util.List;
@@ -11,12 +12,15 @@ import edu.uah.cs321.Backend.User;
 
 /***
  * File Name: PreferencePage
- * Description: 
+ * Description:
  * @author justinbushue
  * @version 1.0
  */
 public class PreferencePage extends JPanel {
 	private static JPanel contentPanel;
+	private static JPanel preferenceInfoPanel;
+	private static JPanel preferenceButtonPanel;
+
 	private static JPanel headerPanel;
 	private static JPanel buttonPanel;
 
@@ -26,6 +30,12 @@ public class PreferencePage extends JPanel {
 	private static BoxLayout contentPanelLayout;
 	private static BoxLayout headerPanelLayout;
 	private static BoxLayout buttonPanelLayout;
+	private static BoxLayout preferenceButtonPanelLayout;
+	private static BoxLayout preferenceInfoPanelLayout;
+
+	private static JLabel favoriteGenresLabel;
+	private static JLabel favoriteActorsLabel;
+	private static JLabel favoriteDirectorsLabel;
 
 	private static JButton doneButton;
 
@@ -40,14 +50,20 @@ public class PreferencePage extends JPanel {
 		this.setLayout(new BorderLayout());
 
 		contentPanel = new JPanel();
+		preferenceInfoPanel = new JPanel();
+		preferenceButtonPanel = new JPanel();
 		headerPanel = new JPanel();
 		buttonPanel = new JPanel();
 
-		contentPanelLayout = new BoxLayout(contentPanel, BoxLayout.Y_AXIS);
+		contentPanelLayout = new BoxLayout(contentPanel, BoxLayout.X_AXIS);
+		preferenceInfoPanelLayout = new BoxLayout(preferenceInfoPanel, BoxLayout.Y_AXIS);
+		preferenceButtonPanelLayout = new BoxLayout(preferenceButtonPanel, BoxLayout.Y_AXIS);
 		headerPanelLayout = new BoxLayout(headerPanel, BoxLayout.Y_AXIS);
 		buttonPanelLayout = new BoxLayout(buttonPanel, BoxLayout.Y_AXIS);
 
 		contentPanel.setLayout(contentPanelLayout);
+		preferenceButtonPanel.setLayout(preferenceButtonPanelLayout);
+		preferenceInfoPanel.setLayout(preferenceInfoPanelLayout);
 		headerPanel.setLayout(headerPanelLayout);
 		buttonPanel.setLayout(buttonPanelLayout);
 
@@ -84,6 +100,7 @@ public class PreferencePage extends JPanel {
 						if(!u.getFavoriteGenres().contains(topGenres))
 							u.getFavoriteGenres().add(topGenres);
 						this.setBackground(new Color(250,182,0));
+						refreshPreference();
 					});
 					buttonPanel.add(buttons.get(i));
 					genres.removeAll(Collections.singleton(topGenres));
@@ -113,6 +130,7 @@ public class PreferencePage extends JPanel {
 						if(!u.getFavoriteActors().contains(topActor))
 							u.getFavoriteActors().add(topActor);
 						this.setBackground(new Color(250,182,0));
+						refreshPreference();
 					});
 					buttonPanel.add(buttons.get(i));
 					actors.removeAll(Collections.singleton(topActor));
@@ -142,6 +160,7 @@ public class PreferencePage extends JPanel {
 						if(!u.getFavoriteDirectors().contains(topDirector))
 							u.getFavoriteDirectors().add(topDirector);
 						this.setBackground(new Color(250,182,0));
+						refreshPreference();
 					});
 					buttonPanel.add(buttons.get(i));
 					directors.removeAll(Collections.singleton(topDirector));
@@ -158,15 +177,68 @@ public class PreferencePage extends JPanel {
 			default -> throw new IllegalStateException("Unexpected value: " + this.type);
 		}
 
-		headerPanel.add(header, Component.CENTER_ALIGNMENT);
-		contentPanel.add(headerPanel, Component.CENTER_ALIGNMENT);
-		contentPanel.add(buttonPanel, Component.CENTER_ALIGNMENT);
 
+		//This for some reason doesn't work. It basically breaks the user object or something. IDK
+		JButton resetPreferenceButton = new JButton("Reset your preferences");
+		resetPreferenceButton.addActionListener(e->{
+//			u.setFavoriteActors();
+//			u.setFavoriteDirectors(Collections.emptyList());
+//			u.setFavoriteGenres(Collections.emptyList());
+			Application.showPage("preferencePage0");
+		});
+
+		preferenceInfoPanel.add(resetPreferenceButton);
+		favoriteGenresLabel = new JLabel("Genres: ");
+		favoriteActorsLabel = new JLabel("Actors: ");
+		favoriteDirectorsLabel = new JLabel("Directors: ");
+		preferenceInfoPanel.add(favoriteGenresLabel, Component.LEFT_ALIGNMENT);
+		preferenceInfoPanel.add(favoriteActorsLabel, Component.LEFT_ALIGNMENT);
+		preferenceInfoPanel.add(favoriteDirectorsLabel, Component.LEFT_ALIGNMENT);
+		refreshPreference();
+
+
+
+		headerPanel.add(header, Component.CENTER_ALIGNMENT);
+		preferenceButtonPanel.add(headerPanel, Component.CENTER_ALIGNMENT);
+		preferenceButtonPanel.add(buttonPanel, Component.CENTER_ALIGNMENT);
+		contentPanel.add(preferenceButtonPanel);
+		contentPanel.add(Box.createRigidArea(new Dimension(75,10)));
+		contentPanel.add(preferenceInfoPanel);
+
+		contentPanel.setAlignmentX(LEFT_ALIGNMENT);
+		contentPanel.setAlignmentY(TOP_ALIGNMENT);
+		preferenceButtonPanel.setAlignmentY(TOP_ALIGNMENT);
+		preferenceInfoPanel.setAlignmentY(TOP_ALIGNMENT);
 		this.add(contentPanel);
 
 		headerPanel.setVisible(true);
 		buttonPanel.setVisible(true);
 		contentPanel.setVisible(true);
 		this.setVisible(true);
+	}
+
+	public void refreshPreference(){
+		String ActorLabel = "Actors: ";
+		String GenreLabel = "Genre: ";
+		String DirectorLabel = "Directors: ";
+		for (String actor : u.getFavoriteActors()){
+			ActorLabel += actor + ", ";
+		}
+		ActorLabel.substring(0,ActorLabel.length()-1);
+
+		for (String Genre : u.getFavoriteGenres()){
+			GenreLabel += Genre + ", ";
+		}
+		GenreLabel.substring(0,GenreLabel.length()-1);
+
+		for (String director : u.getFavoriteDirectors()){
+			DirectorLabel += director + ", ";
+		}
+		DirectorLabel.substring(0,DirectorLabel.length()-1);
+		favoriteActorsLabel.setText(ActorLabel);
+		favoriteDirectorsLabel.setText(DirectorLabel);
+		favoriteGenresLabel.setText(GenreLabel);
+
+		preferenceInfoPanel.revalidate();
 	}
 }

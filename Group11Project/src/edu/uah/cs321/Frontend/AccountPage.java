@@ -100,6 +100,11 @@ public class AccountPage extends JPanel {
 		editPreferencesButton = new JButton("Edit user preferences");
 		editPreferencesButton.setMaximumSize(new Dimension(175,50));
 		editPreferencesButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+		editPreferencesButton.addActionListener(e->{
+			PreferencePage ac = new PreferencePage(u, 0);
+			Application.getContentPanel().add(ac, "preferencePage0");
+			Application.showPage("preferencePage0");
+		});
 		contentPanel.add(editPreferencesButton);
 
 

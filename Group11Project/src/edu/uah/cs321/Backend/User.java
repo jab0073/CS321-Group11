@@ -29,7 +29,7 @@ public class User implements Serializable {
 		entitlement = false;
 		firstName = "Guest";
 		lastName = "Account";
-		aboutMe = "I'm A Guest :)\nI can't do anything but search for a movie :(\nI should make an account!";
+		aboutMe = "I'm A Guest :)\nI can't do anything but search for a movie :(\nI should make an account!\nThat will let me make custom lists and have favorite movies/preferences!";
 		userName = null;
 		movieLists = new ArrayList<>();
 		favoriteMovies = new ArrayList<>();
@@ -78,7 +78,7 @@ public class User implements Serializable {
 
 	/**
 	 * Returns the entitlement type of the User
-	 *
+	 * Returns false if the user is a guest and true if its an account
 	 * @return The boolean value of the entitlement variable.
 	 */
 	public boolean getEntitlementType() {

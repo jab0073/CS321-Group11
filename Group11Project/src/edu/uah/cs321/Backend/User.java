@@ -227,6 +227,10 @@ public class User implements Serializable {
 		movieLists.remove(ml);
 	}
 
+	public void removeMovieListFromMovieLists(String listName) {
+		movieLists.stream().filter(m -> m.getListName().equals(listName)).map(ml -> movieLists.remove(ml));
+	}
+
 	/**
 	 * Returns a list of favorite actors
 	 *

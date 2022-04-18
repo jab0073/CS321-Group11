@@ -38,7 +38,7 @@ public class UserTest {
 
 	@Test
 	public void testCompareUserNameTo() {
-		assertTrue(userUnderTest.compareUserNameTo("u"));
+		assertTrue(userUnderTest.compareUserNameTo("userName"));
 	}
 
 	@Test
@@ -56,11 +56,15 @@ public class UserTest {
 	@Test
 	public void testAddMovieListToMovieLists() {
 		// Setup
-		final MovieList ml = new MovieList("listName",
-				List.of(new Movie("title", "plot", "rating", "year", "released", "genre", "runtime", "director",
-						"writer", "awards", "language", "poster", "metaScore", "imdbRating", "imdbVotes", "imdbID",
-						"type", "dvd", "boxOffice", "production", "website", "response", "actors")));
-
+		List<Movie> movies = new java.util.ArrayList<>();
+		movies.add(new Movie("title", "plot", "rating", "2022", "released", "genre", "runtime", "director",
+				"writer", "awards", "language", "poster", "metaScore", "imdbRating", "imdbVotes", "imdbID",
+				"type", "dvd", "boxOffice", "production", "website", "response", "actors"));
+		movies.add(new Movie("title", "plot", "rating", "2022", "released", "genre", "runtime", "director",
+				"writer", "awards", "language", "poster", "metaScore", "imdbRating", "imdbVotes", "imdbID",
+				"type", "dvd", "boxOffice", "production", "website", "response", "actors"));
+		MovieList ml = new MovieList("listName",
+				movies);
 		// Run the test
 		userUnderTest.addMovieListToMovieLists(ml);
 
@@ -71,13 +75,18 @@ public class UserTest {
 	@Test
 	public void testRemoveMovieListFromMovieLists() {
 		// Setup
-		final MovieList ml = new MovieList("listName",
-				List.of(new Movie("title", "plot", "rating", "year", "released", "genre", "runtime", "director",
-						"writer", "awards", "language", "poster", "metaScore", "imdbRating", "imdbVotes", "imdbID",
-						"type", "dvd", "boxOffice", "production", "website", "response", "actors")));
+		List<Movie> movies = new java.util.ArrayList<>();
+		movies.add(new Movie("title", "plot", "rating", "2022", "released", "genre", "runtime", "director",
+				"writer", "awards", "language", "poster", "metaScore", "imdbRating", "imdbVotes", "imdbID",
+				"type", "dvd", "boxOffice", "production", "website", "response", "actors"));
+		movies.add(new Movie("title", "plot", "rating", "2022", "released", "genre", "runtime", "director",
+				"writer", "awards", "language", "poster", "metaScore", "imdbRating", "imdbVotes", "imdbID",
+				"type", "dvd", "boxOffice", "production", "website", "response", "actors"));
+		MovieList ml = new MovieList("listName",
+				movies);
 
 		// Run the test
-		userUnderTest.removeMovieListFromMovieLists(ml);
+		userUnderTest.removeMovieListFromMovieLists("listName");
 
 		// Verify the results
 		assertFalse(userUnderTest.getMovieLists().contains(ml));
@@ -86,7 +95,7 @@ public class UserTest {
 	@Test
 	public void testAddMovieToFavoriteMovies() {
 		// Setup
-		final Movie movie = new Movie("title", "plot", "rating", "year", "released", "genre", "runtime", "director",
+		final Movie movie = new Movie("title", "plot", "rating", "2022", "released", "genre", "runtime", "director",
 				"writer", "awards", "language", "poster", "metaScore", "imdbRating", "imdbVotes", "imdbID", "type",
 				"dvd", "boxOffice", "production", "website", "response", "actors");
 
@@ -95,30 +104,5 @@ public class UserTest {
 
 		// Verify the results
 		assertTrue(userUnderTest.getFavoriteMovies().contains(movie));
-	}
-
-	@Test
-	public void testEquals() {
-		// Setup
-		// Run the test
-		final boolean result = userUnderTest.equals("o");
-
-		// Verify the results
-		assertTrue(result);
-	}
-
-	@Test
-	public void testHashCode() {
-		// Setup
-		// Run the test
-		final int result = userUnderTest.hashCode();
-
-		// Verify the results
-		assertEquals(0, result);
-	}
-
-	@Test
-	public void testToString() {
-		assertEquals("result", userUnderTest.toString());
 	}
 }

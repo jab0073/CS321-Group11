@@ -61,7 +61,7 @@ public class MovieList implements Serializable {
 			}
 			m.generateDistinctWords();
 		});
-		this.movieList.sort(Comparator.comparing(m -> m.getTitle()));
+		this.movieList.sort(Comparator.comparing(Movie::getTitle));
 		filteredMovies = new ArrayList<>();
 	}
 
@@ -131,13 +131,11 @@ public class MovieList implements Serializable {
 		if(filteredMovies.isEmpty()) {
 			filteredMovies = movieList.stream()
 					.filter(a -> a.getActors().contains(actor))
-					.map(Movie::getThis)
 					.collect(toList());
 		}
 		else {
 			filteredMovies = filteredMovies.stream()
 					.filter(a -> a.getActors().contains(actor))
-					.map(Movie::getThis)
 					.collect(toList());
 		}
 		return filteredMovies;
@@ -174,13 +172,12 @@ public class MovieList implements Serializable {
 	public List<Movie> filterByGenre(String genre) {
 		if(filteredMovies.isEmpty()) {
 			filteredMovies = movieList.stream()
-					.filter(a -> a.getGenre().equals(genre))
-					.map(Movie::getThis)
+					.filter(a -> a.getGenre().contains(genre))
 					.collect(toList());
 		}
 		else {
 			filteredMovies = filteredMovies.stream()
-					.filter(a -> a.getGenre().equals(genre))
+					.filter(a -> a.getGenre().contains(genre))
 					.map(Movie::getThis)
 					.collect(toList());
 		}

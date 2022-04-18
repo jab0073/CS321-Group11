@@ -10,6 +10,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.awt.image.BufferedImageOp;
+import java.awt.image.Kernel;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -49,6 +51,7 @@ public class MoviePage extends JPanel {
 
 	private static Color avgColor;
 	private static Color contrastColor;
+	private static Image backgroundImage;
 
 
 	public MoviePage(Movie movie){
@@ -150,7 +153,7 @@ public class MoviePage extends JPanel {
 		Integer step = 1;
 		SpinnerNumberModel numberspinmodel = new SpinnerNumberModel(value,min,max,step);
 		JSpinner ratingspinner = new JSpinner(numberspinmodel);
-		ratingspinner.setBackground(avgColor.brighter());
+		ratingspinner.setBackground(avgColor);
 		ratingspinner.setForeground(contrastColor);
 		reviewTextArea = new JTextArea(10,15);
 		reviewTextArea.setBackground(avgColor.brighter());
@@ -235,8 +238,7 @@ public class MoviePage extends JPanel {
 				}
 			}
 		}
-		int dim = bi.getWidth()*bi.getHeight();
-		// Log.info("step=" + step + " sampled " + sampled + " out of " + dim + " pixels (" + String.format("%.1f", (float)(100*sampled/dim)) + " %)");
+		//int dim = bi.getWidth()*bi.getHeight();
 		return new Color(Math.round(sumr / sampled), Math.round(sumg / sampled), Math.round(sumb / sampled));
 	}
 

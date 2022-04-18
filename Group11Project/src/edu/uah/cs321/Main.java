@@ -20,7 +20,6 @@ public class Main {
 		ResourceUtils.init();
 		//JsonReader js = new JsonReader();
 		MasterMovieListCache.init();
-
 		Application app = new Application("GoodWatches");
 		app.setVisible(true);
 

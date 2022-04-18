@@ -37,6 +37,7 @@ public class User implements Serializable {
 		favoriteDirectors = new ArrayList<>();
 		favoriteGenres = new ArrayList<>();
 		favoriteOther = new ArrayList<>();
+		reviews = new ArrayList<>();
 	}
 
 	// This is a constructor for the User class. It sets the default values for the first name, last name, about me,
@@ -54,6 +55,7 @@ public class User implements Serializable {
 		favoriteDirectors = new ArrayList<>();
 		favoriteGenres = new ArrayList<>();
 		favoriteOther = new ArrayList<>();
+		reviews = new ArrayList<>();
 	}
 
 	// This is a constructor for the User class. It sets the default values for the first name, last name, about me,
@@ -71,6 +73,7 @@ public class User implements Serializable {
 		favoriteDirectors = new ArrayList<>();
 		favoriteGenres = new ArrayList<>();
 		favoriteOther = new ArrayList<>();
+		reviews = new ArrayList<>();
 	}
 
 	/**
@@ -92,6 +95,9 @@ public class User implements Serializable {
 	}
 
 	public void addReview(Review r) {
+		if(reviews == null) {
+			reviews = new ArrayList<>();
+		}
 		reviews.add(r);
 	}
 	/**

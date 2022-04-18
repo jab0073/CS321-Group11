@@ -12,17 +12,17 @@ import java.io.Serializable;
 public class Review implements Serializable {
 	User author;
 	Movie movie;
-	Double rating;
+	Integer rating;
 	String body;
 
 	public Review() {
 		author = null;
 		movie = null;
-		rating = 0.0;
+		rating = 0;
 		body = "";
 	}
 
-	public Review(User author, Movie movie, Double rating, String body) {
+	public Review(User author, Movie movie, Integer rating, String body) {
 		this.author = author;
 		this.movie = movie;
 		this.rating = rating;
@@ -45,11 +45,11 @@ public class Review implements Serializable {
 		this.movie = movie;
 	}
 
-	public Double getRating() {
+	public Integer getRating() {
 		return rating;
 	}
 
-	public void setRating(Double rating) {
+	public void setRating(Integer rating) {
 		this.rating = rating;
 	}
 

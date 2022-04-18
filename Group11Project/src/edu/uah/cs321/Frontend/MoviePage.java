@@ -113,6 +113,12 @@ public class MoviePage extends JPanel {
 
 		//im unsure how to make this less wide.
 		ratingTextField = new JTextField(4);
+		Integer value = 1;
+		Integer min = 1;
+		Integer max = 5;
+		Integer step = 1;
+		SpinnerNumberModel numberspinmodel = new SpinnerNumberModel(value,min,max,step);
+		JSpinner ratingspinner = new JSpinner(numberspinmodel);
 		reviewTextArea = new JTextArea(10,15);
 		reviewPane = new JScrollPane(reviewTextArea);
 		reviewTextArea.setLineWrap(true);
@@ -120,13 +126,17 @@ public class MoviePage extends JPanel {
 		saveReviewButton = new JButton("Save");
 		saveReviewButton.addActionListener(e -> {
 			try {
-				double rating = Double.parseDouble(ratingTextField.getText());
-				String review = reviewLabel.getText();
+				Integer rating = (Integer) ratingspinner.getValue();
+				String review = reviewTextArea.getText();
 				Review userReview = new Review(AccountPage.getUser(), MoviePage.movie,rating,review);
 				AccountPage.getUser().addReview(userReview);
 				MoviePage.movie.addReview(userReview);
-			}catch(NumberFormatException | NullPointerException ignored){
-				SimpleDialog sd = new SimpleDialog("Error...", "Please enter a valid numerical rating.\n(5.0, 4.8, 9.8, etc.)");
+//				SimpleDialog sd = new SimpleDialog("Review Added", "Review Added\nRating: " + rating + "\nReview: " + review);
+//				sd.setMaximumSize(new Dimension(400,100)); sd.setMinimumSize(new Dimension(400,100));
+//				sd.revalidate();
+			}catch(NullPointerException f){
+				SimpleDialog sd = new SimpleDialog("Error...", "Error");
+				System.out.println(f.getMessage());
 				sd.setMaximumSize(new Dimension(400,100)); sd.setMinimumSize(new Dimension(400,100));
 				sd.revalidate();
 				return;
@@ -154,7 +164,7 @@ public class MoviePage extends JPanel {
 		userReviewPanel.add(addToFavoritesButton, Component.CENTER_ALIGNMENT);
 		userReviewPanel.add(new Box.Filler(new Dimension(0,20),new Dimension(0,20),new Dimension(0,20)));
 		userReviewPanel.add(ratingLabel,Component.CENTER_ALIGNMENT);
-		userReviewPanel.add(ratingTextField, Component.CENTER_ALIGNMENT);
+		userReviewPanel.add(ratingspinner, Component.CENTER_ALIGNMENT);
 		userReviewPanel.add(new Box.Filler(new Dimension(0,10),new Dimension(0,	10),new Dimension(0,10)));
 		userReviewPanel.add(reviewLabel,Component.CENTER_ALIGNMENT);
 		userReviewPanel.add(reviewPane, Component.CENTER_ALIGNMENT);

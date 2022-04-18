@@ -42,7 +42,7 @@ public class Movie implements Serializable {
 	private String Actors;
 	private List<String> distinctWords;
 
-	private List<Review> userReviews = null;
+	private List<Review> userReviews;
 
 	// This is a constructor for the Movie class. It initializes the userReviews list to an empty list.
 	public Movie(){
@@ -302,6 +302,9 @@ public class Movie implements Serializable {
 	}
 
 	public void addReview(Review review) {
+		if(userReviews == null) {
+			userReviews = new ArrayList<>();
+		}
 		this.userReviews.add(review);
 	}
 
@@ -333,9 +336,6 @@ public class Movie implements Serializable {
 		words.addAll(getActors());
 		words = words.stream().map(String::toLowerCase).collect(Collectors.toList());
 		distinctWords = words.stream().distinct().collect(Collectors.toList());
-
-		System.out.println(getTitle());
-		distinctWords.forEach(w -> System.out.println("\t" + w));
 	}
 
 	public List<String> getDistinctWords() {

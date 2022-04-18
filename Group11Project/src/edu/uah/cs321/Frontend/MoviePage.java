@@ -78,9 +78,10 @@ public class MoviePage extends JPanel {
 		movieTitleLabel = new JLabel("Title:  " + this.movie.getTitle());
 		movieDirectorLabel = new JLabel("Director:  " + this.movie.getDirector());
 		movieWritersLabel = new JLabel("Writers:  " + this.movie.getWriter());
-		moviePlotLabel = new JTextArea("Plot:  " + this.movie.getPlot());
-		moviePlotLabel.setMaximumSize(new Dimension(400,200));
+		moviePlotLabel = new JTextArea("Plot:  " + this.movie.getPlot(),5,25);
+		moviePlotLabel.setMaximumSize(new Dimension(400,100));
 		moviePlotLabel.setLineWrap(true); moviePlotLabel.setWrapStyleWord(true); moviePlotLabel.setEditable(false);
+		moviePlotLabel.setAlignmentX(LEFT_ALIGNMENT);
 		movieGenresLabel = new JLabel("Genre:  " + this.movie.getGenre());
 		movieReleaseLabel = new JLabel("Release Date:  " + this.movie.getReleased());
 		movieActorsLabel = new JLabel("Actors:  " + String.join(", ", this.movie.getActors()));
@@ -113,6 +114,8 @@ public class MoviePage extends JPanel {
 				MoviePage.movie.addReview(userReview);
 			}catch(NumberFormatException | NullPointerException ignored){
 				SimpleDialog sd = new SimpleDialog("Error...", "Please enter a valid numerical rating.\n(5.0, 4.8, 9.8, etc.)");
+				sd.setMaximumSize(new Dimension(400,100)); sd.setMinimumSize(new Dimension(400,100));
+				sd.revalidate();
 				return;
 			}
 		});
@@ -132,7 +135,7 @@ public class MoviePage extends JPanel {
 		movieInfoPanel.add(movieRuntimesLabel,Component.CENTER_ALIGNMENT);
 		movieInfoPanel.add(new Box.Filler(new Dimension(0,5),new Dimension(0,5),new Dimension(0,5)));
 		//Plot Label shifts everything to the right and I can't figure out how to fix it
-		//movieInfoPanel.add(moviePlotLabel,Component.CENTER_ALIGNMENT);
+		movieInfoPanel.add(moviePlotLabel,Component.CENTER_ALIGNMENT);
 		userReviewPanel.add(new Box.Filler(new Dimension(0,5),new Dimension(0,5),new Dimension(0,5)));
 
 		userReviewPanel.add(addToFavoritesButton, Component.CENTER_ALIGNMENT);
@@ -149,6 +152,7 @@ public class MoviePage extends JPanel {
 		if (u.getEntitlementType()){
 			contentPanel.add(userReviewPanel, Component.CENTER_ALIGNMENT);
 		}
+		contentPanel.setPreferredSize(new Dimension(600,800));
 		add(contentPanel,Component.CENTER_ALIGNMENT);
 	}
 }

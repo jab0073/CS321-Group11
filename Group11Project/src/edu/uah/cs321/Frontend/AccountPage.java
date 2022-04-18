@@ -196,8 +196,8 @@ public class AccountPage extends JPanel {
 				movieButton.setHorizontalAlignment(SwingConstants.LEFT);
 				movieButton.addActionListener(a -> {
 					JDialog movieInfo = new JDialog();
-					movieInfo.setMaximumSize(new Dimension(750,750));
-					movieInfo.setMinimumSize(new Dimension(750,750));
+					movieInfo.setMaximumSize(new Dimension(750,1000));
+					movieInfo.setMinimumSize(new Dimension(750,1000));
 					MoviePage moviePage = new MoviePage(m);
 					movieInfo.add(moviePage);
 					movieInfo.setVisible(true);

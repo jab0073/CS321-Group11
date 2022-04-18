@@ -172,8 +172,8 @@ public class SearchPage extends JPanel {
 			movieButton.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent event){
 					JDialog movieInfo = new JDialog();
-					movieInfo.setMaximumSize(new Dimension(750,750));
-					movieInfo.setMinimumSize(new Dimension(750,750));
+					movieInfo.setMaximumSize(new Dimension(750,1000));
+					movieInfo.setMinimumSize(new Dimension(750,1000));
 					MoviePage moviePage = new MoviePage(m);
 					movieInfo.add(moviePage);
 					movieInfo.setVisible(true);

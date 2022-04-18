@@ -167,7 +167,7 @@ public class SearchPage extends JPanel {
 	public void populateSearchList(List<Movie> ml){
 		ml.forEach(m -> {
 			JButton movieButton = new JButton(m.getTitle());
-			movieButton.setMaximumSize(new Dimension(400,100));
+			movieButton.setMaximumSize(new Dimension(400,50));
 			movieButton.setHorizontalAlignment(SwingConstants.LEFT);
 			movieButton.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent event){
@@ -181,6 +181,7 @@ public class SearchPage extends JPanel {
 				}
 			});
 			displayedMovies.add(movieButton);
+			displayedMovies.revalidate();
 		});
 		if (ml.isEmpty()) {
 			JLabel noResults = new JLabel("No Results");

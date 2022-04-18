@@ -232,7 +232,7 @@ public class AccountPage extends JPanel {
 	 * @param movieList
 	 */
 	public void openMovieList(MovieList movieList){
-		System.out.println("Opened movie list: " + movieList);
+		System.out.println("Opened movie list: " + movieList.getListName());
 		JDialog jd = new JDialog();
 		JLabel confirmation = new JLabel("Now viewing movie list: " + movieList.getListName());
 		jd.setMaximumSize(new Dimension(700,800));
@@ -253,18 +253,24 @@ public class AccountPage extends JPanel {
 				populateCustomList(u.getMovieLists());
 				usersMovieLists.revalidate();
 				usersMovieLists.repaint();
-
 			}
 		});
 
 		//This listViewer is just for testing purposes to see if a list will load.
-		SearchPage listViewer = new SearchPage(ResourceUtils.getMasterMovieList());
-		//SearchPage listViewer = new SearchPage(movieList);
+		//SearchPage listViewer = new SearchPage(ResourceUtils.getMasterMovieList());
+		//This is the actual listViewer
+		SearchPage listViewer = new SearchPage(movieList);
 		listViewer.removeHeader();
+
+//		JButton refreshListViewer = new JButton("refresh");
+//		refreshListViewer.addActionListener(e->{
+//
+//		});
 
 		JPanel contentPanel = new JPanel();
 		contentPanel.add(confirmation);
 		contentPanel.add(deleteMovieListButton);
+//		contentPanel.add(refreshListViewer);
 		contentPanel.add(listViewer);
 
 		jd.add(contentPanel);

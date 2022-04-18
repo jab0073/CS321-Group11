@@ -1,6 +1,7 @@
 package edu.uah.cs321.Frontend;
 
 import edu.uah.cs321.Backend.Movie;
+import edu.uah.cs321.Backend.MovieList;
 import edu.uah.cs321.Backend.Review;
 import edu.uah.cs321.Backend.User;
 
@@ -16,10 +17,13 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.ParseException;
+import java.util.ArrayList;
+
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 /***
  * File Name: MoviePage
- * Description: 
+ * Description:
  * @author justinbushue
  * @version 1.0
  */
@@ -47,6 +51,7 @@ public class MoviePage extends JPanel {
 	private static JTextArea reviewTextArea;
 
 	private static JButton addToFavoritesButton;
+	private static JButton addToCustomListButton;
 	private static JButton saveReviewButton;
 
 	private static Color avgColor;
@@ -118,7 +123,7 @@ public class MoviePage extends JPanel {
 		movieRuntimesLabel = new JLabel("Runtime:  " + MoviePage.movie.getRuntime());
 		movieRuntimesLabel.setBackground(avgColor);
 		movieRuntimesLabel.setForeground(contrastColor);
-		ratingLabel = new JLabel("Rating (1-10)");
+		ratingLabel = new JLabel("Rating (1-5)");
 		ratingLabel.setBackground(avgColor);
 		ratingLabel.setForeground(contrastColor);
 		reviewLabel = new JLabel("Review");
@@ -127,8 +132,8 @@ public class MoviePage extends JPanel {
 
 
 		addToFavoritesButton = new JButton("Favorite");
-		addToFavoritesButton.setForeground(avgColor.darker());
-		addToFavoritesButton.setBackground(avgColor);
+		//addToFavoritesButton.setForeground(avgColor.darker());
+		//addToFavoritesButton.setBackground(avgColor);
 		if (u.getFavoriteMovies().contains(movie)){
 			addToFavoritesButton.setText("Unfavorite");
 		}
@@ -146,6 +151,68 @@ public class MoviePage extends JPanel {
 
 		});
 
+
+		//Add to custom list goes here
+		addToCustomListButton = new JButton("Add movie to a custom list!");
+		addToCustomListButton.addActionListener(e->{
+			JDialog jd = new JDialog();
+			jd.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+			JPanel cP = new JPanel();
+
+			JComboBox customListSelector = new JComboBox();
+			java.util.List<String> ls = new ArrayList<String>();
+			java.util.List<MovieList> mL = new ArrayList<MovieList>();
+			u.getMovieLists().forEach(m->{
+				ls.add(m.getListName());
+				mL.add(m);
+			});
+			customListSelector.setModel(new DefaultComboBoxModel<String>(ls.toArray(new String[0])));
+
+
+			JPanel listPanel = new JPanel();
+			listPanel.setLayout(new BoxLayout(listPanel,BoxLayout.Y_AXIS));
+			listPanel.setMinimumSize(new Dimension(100,50));
+			listPanel.add(customListSelector);
+			cP.add(listPanel);
+
+			JButton addButton = new JButton("Add to selected list");
+			if (mL.get(customListSelector.getSelectedIndex()).getMovieList().contains(movie)){
+				addButton.setText("Remove from selected list");
+			} else {
+				addButton.setText("Add to selected list");
+			}
+
+			addButton.addActionListener(a->{
+				if (mL.get(customListSelector.getSelectedIndex()).getMovieList().contains(movie)){
+					mL.get(customListSelector.getSelectedIndex()).removeMovie(movie);
+					addButton.setText("Add to selected list");
+				} else {
+					mL.get(customListSelector.getSelectedIndex()).addMovie(movie);
+					addButton.setText("Remove from selected list");
+				}
+			});
+			cP.revalidate();
+
+			customListSelector.addActionListener(n->{
+				if (mL.get(customListSelector.getSelectedIndex()).getMovieList().contains(movie)){
+					addButton.setText("Remove from selected list");
+				} else {
+					addButton.setText("Add to selected list");
+				}
+
+				cP.revalidate();
+			});
+
+
+			cP.add(addButton);
+			jd.add(cP);
+			jd.setMinimumSize(new Dimension(300,300));
+			jd.setVisible(true);
+		});
+
+
+
+
 		//im unsure how to make this less wide.
 		Integer value = 1;
 		Integer min = 1;
@@ -153,8 +220,9 @@ public class MoviePage extends JPanel {
 		Integer step = 1;
 		SpinnerNumberModel numberspinmodel = new SpinnerNumberModel(value,min,max,step);
 		JSpinner ratingspinner = new JSpinner(numberspinmodel);
-		ratingspinner.setBackground(avgColor);
-		ratingspinner.setForeground(contrastColor);
+		ratingspinner.setMaximumSize(new Dimension(150,20));
+		//ratingspinner.setBackground(avgColor);
+		//ratingspinner.setForeground(contrastColor);
 		reviewTextArea = new JTextArea(10,15);
 		reviewTextArea.setBackground(avgColor.brighter());
 		reviewTextArea.setForeground(contrastColor);
@@ -165,8 +233,8 @@ public class MoviePage extends JPanel {
 		reviewTextArea.setLineWrap(true);
 
 		saveReviewButton = new JButton("Save");
-		saveReviewButton.setBackground(avgColor);
-		saveReviewButton.setForeground(avgColor.darker());
+		//saveReviewButton.setBackground(avgColor);
+		//saveReviewButton.setForeground(avgColor.darker());
 		saveReviewButton.addActionListener(e -> {
 			try {
 				Integer rating = (Integer) ratingspinner.getValue();
@@ -174,9 +242,9 @@ public class MoviePage extends JPanel {
 				Review userReview = new Review(AccountPage.getUser(), MoviePage.movie,rating,review);
 				AccountPage.getUser().addReview(userReview);
 				MoviePage.movie.addReview(userReview);
-//				SimpleDialog sd = new SimpleDialog("Review Added", "Review Added\nRating: " + rating + "\nReview: " + review);
-//				sd.setMaximumSize(new Dimension(400,100)); sd.setMinimumSize(new Dimension(400,100));
-//				sd.revalidate();
+				SimpleDialog sd = new SimpleDialog("Review Added", "Review Added\nRating: " + rating + "\nReview: " + review);
+				sd.setMaximumSize(new Dimension(400,100)); sd.setMinimumSize(new Dimension(400,100));
+				sd.revalidate();
 			}catch(NullPointerException f){
 				SimpleDialog sd = new SimpleDialog("Error...", "Error");
 				System.out.println(f.getMessage());
@@ -205,6 +273,8 @@ public class MoviePage extends JPanel {
 		userReviewPanel.add(new Box.Filler(new Dimension(0,5),new Dimension(0,5),new Dimension(0,5)));
 
 		userReviewPanel.add(addToFavoritesButton, Component.CENTER_ALIGNMENT);
+		userReviewPanel.add(new Box.Filler(new Dimension(0,5),new Dimension(0,5),new Dimension(0,5)));
+		userReviewPanel.add(addToCustomListButton);
 		userReviewPanel.add(new Box.Filler(new Dimension(0,20),new Dimension(0,20),new Dimension(0,20)));
 		userReviewPanel.add(ratingLabel,Component.CENTER_ALIGNMENT);
 		userReviewPanel.add(ratingspinner, Component.CENTER_ALIGNMENT);

@@ -71,10 +71,9 @@ public class AccountPage extends JPanel {
 		//This makes everything in the content panel stick to the left wall.
 		aboutPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-
 		//If the user is actually logged in then it retrieves their account info. Otherwise they are a guest.
 		if(u != null) {
-			usersNameLabel = new JLabel(u.getFirstName() + " " + u.getLastName());
+			usersNameLabel = new JLabel("Name: " + u.getFirstName() + " " + u.getLastName());
 			usersNameLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 			aboutMeTextArea = new JTextArea(u.getAboutMe());
 			aboutMeTextArea.setLineWrap(true);
@@ -94,10 +93,9 @@ public class AccountPage extends JPanel {
 		// (It's sloppy so if anyone wants to improve it go ahead)
 		headerPanel = new JPanel();
 		headerPanel.setLayout(new BoxLayout(headerPanel,BoxLayout.X_AXIS));
-		usersNameLabel.setMaximumSize(new Dimension(150,25));
-		headerPanel.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		//adds the username to the contentLabel
 		headerPanel.add(usersNameLabel);
+		headerPanel.add(Box.createHorizontalGlue());
 		//Adds a button to log out
 		logoutButton = new JButton("Log out");
 		//logoutButton.setAlignmentX(RIGHT_ALIGNMENT);

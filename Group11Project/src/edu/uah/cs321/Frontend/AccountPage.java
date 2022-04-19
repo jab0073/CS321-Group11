@@ -140,8 +140,6 @@ public class AccountPage extends JPanel {
 				JButton movieListButton = new JButton(customMovieList.getListName());
 				movieListButton.setMaximumSize(new Dimension(400, 40));
 				movieListButton.setMinimumSize(new Dimension(400, 40));
-				movieListButton.setAlignmentX(LEFT_ALIGNMENT);
-				movieListButton.setHorizontalAlignment(SwingConstants.LEFT);
 				movieListButton.addActionListener(e -> {
 					openMovieList(customMovieList);
 				});
@@ -156,17 +154,19 @@ public class AccountPage extends JPanel {
 
 		//Adds a button to log out
 		logoutButton = new JButton("Log out");
-		logoutButton.setHorizontalTextPosition(0);
-		logoutButton.setVerticalTextPosition(0);
 		logoutButton.addActionListener(e -> {
 				Application.showPage("mainPage");
 		});
 
 		//Adds a button that recommends a movie
 		recommendButton = new JButton("Movie Recommendation");
+		recommendButton.setMinimumSize(new Dimension(175,50));
+		recommendButton.setMaximumSize(new Dimension(175,50));
+		movieSearchButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		recommendButton.addActionListener(e -> {
 			//goToMoviePage();
 		});
+		contentPanel.add(recommendButton);
 
 		movieListPanel = new JPanel();
 		favoritesPanel = new JPanel();

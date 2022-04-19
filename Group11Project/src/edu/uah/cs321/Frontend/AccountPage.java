@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentListener;
 import java.awt.event.WindowEvent;
+import java.util.Objects;
 
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
@@ -173,7 +174,7 @@ public class AccountPage extends JPanel {
 		recommendButton.setMaximumSize(new Dimension(175,50));
 		recommendButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		recommendButton.addActionListener(e -> {
-			Movie.openMovie(u.recommendedMovie2());
+			Objects.requireNonNull(u).recommendedMovie2().openMovie();
 		});
 		contentPanel.add(recommendButton);
 
@@ -237,7 +238,7 @@ public class AccountPage extends JPanel {
 
 
 		//Checks if the user is a guest of not. If the user is a guest (true) then it removes the user only features and updates the contentPanel.
-		if (!u.getEntitlementType()){
+		if (!Objects.requireNonNull(u).getEntitlementType()){
 			contentPanel.remove(createMovieList);
 			contentPanel.remove(movieListPanel);
 			contentPanel.remove(editPreferencesButton);

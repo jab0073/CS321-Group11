@@ -370,7 +370,9 @@ public class User implements Serializable {
 		//if it goes through the masterMovieList and no movies were added to the newly generated list it just returns
 		//a random movie from the masterList.
 		if (rMLD.isEmpty()){
-			return mml.getMovieList().get((int)Math.floor(Math.random()*(rMLD.size())));
+			int random_int = (int)Math.floor(Math.random()*(mml.getMovieList().size()));
+			System.out.println(random_int);
+			return mml.getMovieList().get(random_int);
 		} else {
 			return rMLD.get((int) Math.floor(Math.random() * (rMLD.size())));
 		}

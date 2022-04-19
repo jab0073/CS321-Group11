@@ -150,13 +150,13 @@ public class MovieList implements Serializable {
 	public List<Movie> filterByDirector(String director) {
 		if(filteredMovies.isEmpty()) {
 			filteredMovies = movieList.stream()
-					.filter(a -> a.getDirector().equals(director))
+					.filter(a -> a.getDirector().equalsIgnoreCase(director))
 					.map(Movie::getThis)
 					.collect(toList());
 		}
 		else {
 			filteredMovies = filteredMovies.stream()
-					.filter(a -> a.getDirector().equals(director))
+					.filter(a -> a.getDirector().equalsIgnoreCase(director))
 					.map(Movie::getThis)
 					.collect(toList());
 		}

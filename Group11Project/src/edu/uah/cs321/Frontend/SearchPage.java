@@ -148,7 +148,7 @@ public class SearchPage extends JPanel {
 				break;
 			//Default case is search by title
 			default:
-				populateSearchList(ml.searchForMovie(input));
+				populateSearchList(ml.searchForAny(input));
 				break;
 		}
 	}

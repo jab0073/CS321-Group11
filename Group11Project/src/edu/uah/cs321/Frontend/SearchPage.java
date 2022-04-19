@@ -171,13 +171,7 @@ public class SearchPage extends JPanel {
 			movieButton.setHorizontalAlignment(SwingConstants.LEFT);
 			movieButton.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent event){
-					JDialog movieInfo = new JDialog();
-					movieInfo.setMaximumSize(new Dimension(750,1000));
-					movieInfo.setMinimumSize(new Dimension(750,1000));
-					MoviePage moviePage = new MoviePage(m);
-					movieInfo.add(moviePage);
-					movieInfo.setVisible(true);
-					movieInfo.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+					Movie.openMovie(m);
 				}
 			});
 			displayedMovies.add(movieButton);

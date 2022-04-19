@@ -1,10 +1,16 @@
 package edu.uah.cs321.Backend;
 
+import edu.uah.cs321.Frontend.MoviePage;
+
+import javax.swing.*;
+import java.awt.*;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
+
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 @SuppressWarnings("unused")
 /**
@@ -420,4 +426,15 @@ public class Movie implements Serializable {
 	@Override
 	public String toString() {
 		return String.join("; ",Title, Rating, Year, Genre, Director, Writer, Language, Actors);	}
+
+	public static void openMovie(Movie m){
+		JDialog movieInfo = new JDialog();
+		movieInfo.setMaximumSize(new Dimension(750,1000));
+		movieInfo.setMinimumSize(new Dimension(750,1000));
+		MoviePage moviePage = new MoviePage(m);
+		movieInfo.add(moviePage);
+		movieInfo.setVisible(true);
+		movieInfo.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+	}
 }

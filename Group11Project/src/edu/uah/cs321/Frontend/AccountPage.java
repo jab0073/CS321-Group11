@@ -23,6 +23,7 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 public class AccountPage extends JPanel {
 	private static JPanel contentPanel;
 	private static User u;
+	private static JPanel headerPanel;
 	private static JLabel usersNameLabel;
 	private static JPanel aboutPanel;
 	private static JTextArea aboutMeTextArea;
@@ -54,22 +55,24 @@ public class AccountPage extends JPanel {
 		AccountPage.u = u;
 		System.out.println(u);
 
-		//about Panel has information about the user. (username, description, preferences??)
+		//about Panel has information about the user. (username, description)
 		//aboutPanel will go into content panel first.
 		//content panel is what holds everything
 		contentPanel = new JPanel();
 		aboutPanel = new JPanel();
+		aboutPanel.setMinimumSize(new Dimension(100, 150));
+		aboutPanel.setMaximumSize(new Dimension(500,150));
 
 		contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
 		//this setLayout makes it so the content panels layout is stacked from top to bottom.
 
 		//This sets the layout of the aboutPanel to top to bottom
-		aboutPanel.setLayout(new BoxLayout(aboutPanel, BoxLayout.PAGE_AXIS));
+		aboutPanel.setLayout(new BoxLayout(aboutPanel, BoxLayout.Y_AXIS));
 		//This makes everything in the content panel stick to the left wall.
 		aboutPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
 
-		//This gets the aboutMeTextArea and usersNameLabel.
+		//If the user is actually logged in then it retrieves their account info. Otherwise they are a guest.
 		if(u != null) {
 			usersNameLabel = new JLabel(u.getFirstName() + " " + u.getLastName());
 			usersNameLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -87,16 +90,27 @@ public class AccountPage extends JPanel {
 			aboutMeScroller = new JScrollPane(aboutMeTextArea);
 		}
 
-
+		//This adds the header which is a logout button and the username.
+		// (It's sloppy so if anyone wants to improve it go ahead)
+		headerPanel = new JPanel();
+		headerPanel.setLayout(new BoxLayout(headerPanel,BoxLayout.X_AXIS));
+		usersNameLabel.setMaximumSize(new Dimension(150,25));
+		headerPanel.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		//adds the username to the contentLabel
-		contentPanel.add(usersNameLabel);
+		headerPanel.add(usersNameLabel);
+		//Adds a button to log out
+		logoutButton = new JButton("Log out");
+		//logoutButton.setAlignmentX(RIGHT_ALIGNMENT);
+		logoutButton.addActionListener(e -> {
+			Application.showPage("mainPage");
+		});
+		headerPanel.add(logoutButton);
+		aboutPanel.add(headerPanel, Component.LEFT_ALIGNMENT);
+
 
 		//adds the aboutPanel to the contentPanel
-		aboutPanel.setMinimumSize(new Dimension(100, 150));
-		aboutPanel.setMaximumSize(new Dimension(500,150));
 		aboutPanel.add(aboutMeScroller);
 		contentPanel.add(aboutPanel);
-
 
 		//Buttons allows the user to open up a DIALOGUE BOX that edits the users preferences.
 		editPreferencesButton = new JButton("Edit user preferences");
@@ -140,6 +154,8 @@ public class AccountPage extends JPanel {
 				JButton movieListButton = new JButton(customMovieList.getListName());
 				movieListButton.setMaximumSize(new Dimension(400, 40));
 				movieListButton.setMinimumSize(new Dimension(400, 40));
+				movieListButton.setAlignmentX(LEFT_ALIGNMENT);
+				movieListButton.setHorizontalAlignment(SwingConstants.LEFT);
 				movieListButton.addActionListener(e -> {
 					openMovieList(customMovieList);
 				});
@@ -152,27 +168,24 @@ public class AccountPage extends JPanel {
 		});
 		contentPanel.add(createMovieList);
 
-		//Adds a button to log out
-		logoutButton = new JButton("Log out");
-		logoutButton.addActionListener(e -> {
-				Application.showPage("mainPage");
-		});
 
 		//Adds a button that recommends a movie
-		recommendButton = new JButton("Movie Recommendation");
+		recommendButton = new JButton("Recommend a Movie!");
 		recommendButton.setMinimumSize(new Dimension(175,50));
 		recommendButton.setMaximumSize(new Dimension(175,50));
-		movieSearchButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+		recommendButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		recommendButton.addActionListener(e -> {
-			//goToMoviePage();
+			//get the recommended movie
+			//Movie.openMovie(recommendedMovie);
 		});
 		contentPanel.add(recommendButton);
 
+		//movieListPanel is where the customLists and favoriteMovies go.
 		movieListPanel = new JPanel();
 		favoritesPanel = new JPanel();
-		favoritesPanel.setLayout(new BoxLayout(favoritesPanel, BoxLayout.PAGE_AXIS));
+		favoritesPanel.setLayout(new BoxLayout(favoritesPanel, BoxLayout.Y_AXIS));
 		customListPanel = new JPanel();
-		customListPanel.setLayout(new BoxLayout(customListPanel, BoxLayout.PAGE_AXIS));
+		customListPanel.setLayout(new BoxLayout(customListPanel, BoxLayout.Y_AXIS));
 
 		movieListLabel = new JLabel("User's Movie Lists");
 		movieListLabel.setAlignmentX(LEFT_ALIGNMENT);
@@ -187,9 +200,9 @@ public class AccountPage extends JPanel {
 		favoritesPanel.setAlignmentY(TOP_ALIGNMENT);
 
 
-		//This entire thing is for creating the user's list of custom lists. The left side of the window
+		//This is for creating the list of Custom Lists Left side of window.
 		usersMovieLists = new JPanel();
-		usersMovieLists.setLayout(new BoxLayout(usersMovieLists, BoxLayout.PAGE_AXIS));
+		usersMovieLists.setLayout(new BoxLayout(usersMovieLists, BoxLayout.Y_AXIS));
 		usersMovieLists.setAlignmentX(LEFT_ALIGNMENT);
 		//adds buttons to the User's custom lists
 		if(usersCustomMovieLists != null) {
@@ -203,7 +216,7 @@ public class AccountPage extends JPanel {
 
 		//Right side of the window. Creates the user's list of favorite movies.
 		favoriteMovieList = new JPanel();
-		favoriteMovieList.setLayout(new BoxLayout(favoriteMovieList, BoxLayout.PAGE_AXIS));
+		favoriteMovieList.setLayout(new BoxLayout(favoriteMovieList, BoxLayout.Y_AXIS));
 		favoriteMovieList.setAlignmentX(LEFT_ALIGNMENT);
 
 		if(usersCustomFavoriteMovies != null) {
@@ -217,21 +230,23 @@ public class AccountPage extends JPanel {
 
 		movieListPanel.setLayout(new BoxLayout(movieListPanel, BoxLayout.X_AXIS));
 
+		//Adds the customLists and favoriteList to movieListPanel and adds movieListPanel to contenPanel.
 		movieListPanel.add(Box.createRigidArea(new Dimension(25,10)));
 		movieListPanel.add(customListPanel);
 		movieListPanel.add(Box.createHorizontalGlue());
 		movieListPanel.add(favoritesPanel);
-		contentPanel.add(movieListPanel);
 		movieListPanel.add(Box.createRigidArea(new Dimension(25,10)));
+		contentPanel.add(movieListPanel);
 
 
+		//Checks if the user is a guest of not. If the user is a guest (true) then it removes the user only features and updates the contentPanel.
 		if (!u.getEntitlementType()){
 			contentPanel.remove(createMovieList);
 			contentPanel.remove(movieListPanel);
 			contentPanel.remove(editPreferencesButton);
 			contentPanel.revalidate();
 		}
-		//adds content panel to scroller
+		//adds the contentPanel to accountPage
 		this.add(contentPanel);
 		aboutPanel.setVisible(true);
 		contentPanel.setVisible(true);
@@ -276,21 +291,12 @@ public class AccountPage extends JPanel {
 			}
 		});
 
-		//This listViewer is just for testing purposes to see if a list will load.
-		//SearchPage listViewer = new SearchPage(ResourceUtils.getMasterMovieList());
-		//This is the actual listViewer
 		SearchPage listViewer = new SearchPage(movieList);
 		listViewer.removeHeader();
-
-//		JButton refreshListViewer = new JButton("refresh");
-//		refreshListViewer.addActionListener(e->{
-//
-//		});
 
 		JPanel contentPanel = new JPanel();
 		contentPanel.add(confirmation);
 		contentPanel.add(deleteMovieListButton);
-//		contentPanel.add(refreshListViewer);
 		contentPanel.add(listViewer);
 
 		jd.add(contentPanel);
@@ -298,7 +304,12 @@ public class AccountPage extends JPanel {
 		jd.setVisible(true);
 	}
 
+	/**
+	 * This populates the panel userMovieLists with the users customLists. Also used to refresh the users CustomLists.
+	 * @param usersCustomLists
+	 */
 	public void populateCustomList(java.util.List<MovieList> usersCustomLists){
+		usersMovieLists.removeAll();
 		usersCustomLists.forEach(ml -> {
 			JButton movieListButton = new JButton(ml.getListName());
 			movieListButton.setMaximumSize(new Dimension(400, 40));
@@ -312,6 +323,10 @@ public class AccountPage extends JPanel {
 		});
 	}
 
+	/**
+	 * This populates favoriteMovieList with buttons of the user's favorite movies. Also refreshes favoriteMovieList.
+	 * @param usersCustomFavoriteMovies
+	 */
 	public void populateFavoriteList(java.util.List<Movie> usersCustomFavoriteMovies){
 		favoriteMovieList.removeAll();
 		usersCustomFavoriteMovies.forEach(m -> {
@@ -321,27 +336,12 @@ public class AccountPage extends JPanel {
 			movieButton.setAlignmentX(LEFT_ALIGNMENT);
 			movieButton.setHorizontalAlignment(SwingConstants.LEFT);
 			movieButton.addActionListener(a -> {
-				JDialog movieInfo = new JDialog();
-				movieInfo.setMaximumSize(new Dimension(750,1000));
-				movieInfo.setMinimumSize(new Dimension(750,1000));
-				MoviePage moviePage = new MoviePage(m);
-				movieInfo.add(moviePage);
-				movieInfo.setVisible(true);
-				movieInfo.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+				Movie.openMovie(m);
 			});
 			favoriteMovieList.add(movieButton);
 		});
 	}
 
-	public void goToMoviePage(Movie m){
-		JDialog movieInfo = new JDialog();
-		movieInfo.setMaximumSize(new Dimension(750,1000));
-		movieInfo.setMinimumSize(new Dimension(750,1000));
-		MoviePage moviePage = new MoviePage(m);
-		movieInfo.add(moviePage);
-		movieInfo.setVisible(true);
-		movieInfo.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-	}
 
 }
 

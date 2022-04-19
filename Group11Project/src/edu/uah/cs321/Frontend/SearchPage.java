@@ -166,7 +166,7 @@ public class SearchPage extends JPanel {
 
 	public void populateSearchList(List<Movie> ml){
 		ml.forEach(m -> {
-			JButton movieButton = new JButton(m.getTitle());
+			JButton movieButton = new JButton(m.getTitle() + " | " + m.getYear());
 			movieButton.setMaximumSize(new Dimension(400,50));
 			movieButton.setHorizontalAlignment(SwingConstants.LEFT);
 			movieButton.addActionListener(new ActionListener(){

@@ -301,7 +301,7 @@ public class AccountPage extends JPanel {
 	public void populateFavoriteList(java.util.List<Movie> usersCustomFavoriteMovies){
 		favoriteMovieList.removeAll();
 		usersCustomFavoriteMovies.forEach(m -> {
-			JButton movieButton = new JButton(m.getTitle());
+			JButton movieButton = new JButton(m.getTitle() + " | " + m.getYear());
 			movieButton.setMaximumSize(new Dimension(400, 40));
 			movieButton.setMinimumSize(new Dimension(400, 40));
 			movieButton.setAlignmentX(LEFT_ALIGNMENT);

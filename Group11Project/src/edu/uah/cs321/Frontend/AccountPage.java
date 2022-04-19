@@ -39,6 +39,7 @@ public class AccountPage extends JPanel {
 	private static JButton movieSearchButton;
 	private static JButton createMovieList;
 	private static JButton logoutButton;
+	private static JButton recommendButton;
 
 	private static JLabel movieListLabel;
 	private static JLabel favoriteListLabel;
@@ -161,6 +162,11 @@ public class AccountPage extends JPanel {
 				Application.showPage("mainPage");
 		});
 
+		//Adds a button that recommends a movie
+		recommendButton = new JButton("Movie Recommendation");
+		recommendButton.addActionListener(e -> {
+			//goToMoviePage();
+		});
 
 		movieListPanel = new JPanel();
 		favoritesPanel = new JPanel();
@@ -325,6 +331,16 @@ public class AccountPage extends JPanel {
 			});
 			favoriteMovieList.add(movieButton);
 		});
+	}
+
+	public void goToMoviePage(Movie m){
+		JDialog movieInfo = new JDialog();
+		movieInfo.setMaximumSize(new Dimension(750,1000));
+		movieInfo.setMinimumSize(new Dimension(750,1000));
+		MoviePage moviePage = new MoviePage(m);
+		movieInfo.add(moviePage);
+		movieInfo.setVisible(true);
+		movieInfo.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 	}
 
 }

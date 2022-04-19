@@ -172,7 +172,7 @@ public class SearchPage extends JPanel {
 			movieButton.setHorizontalAlignment(SwingConstants.LEFT);
 			movieButton.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent event){
-					Movie.openMovie(m);
+					m.openMovie();
 				}
 			});
 			displayedMovies.add(movieButton);

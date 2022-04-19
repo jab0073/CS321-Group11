@@ -303,10 +303,12 @@ public class MovieList implements Serializable {
 	 * @return A list of movies that match the search criteria.
 	 */
 	public List<Movie> searchForMovie(String title) {
-		title = title.toLowerCase();
-		String finalTitle = title;
+		if(title.equals("")) {
+			return movieList;
+		}
+		String finalTitle = title.toLowerCase();
 		return movieList.stream()
-				.filter(a -> a.getTitle().toLowerCase().equals(finalTitle))
+				.filter(a -> a.getTitle().toLowerCase().contains(finalTitle))
 				.collect(Collectors.toList());
 	}
 

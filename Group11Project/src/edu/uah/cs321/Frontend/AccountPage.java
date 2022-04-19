@@ -334,7 +334,7 @@ public class AccountPage extends JPanel {
 			movieButton.setAlignmentX(LEFT_ALIGNMENT);
 			movieButton.setHorizontalAlignment(SwingConstants.LEFT);
 			movieButton.addActionListener(a -> {
-				Movie.openMovie(m);
+				m.openMovie();
 			});
 			favoriteMovieList.add(movieButton);
 		});

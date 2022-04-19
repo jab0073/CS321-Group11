@@ -173,8 +173,7 @@ public class AccountPage extends JPanel {
 		recommendButton.setMaximumSize(new Dimension(175,50));
 		recommendButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		recommendButton.addActionListener(e -> {
-			//get the recommended movie
-			//Movie.openMovie(recommendedMovie);
+			Movie.openMovie(u.recommendedMovie2());
 		});
 		contentPanel.add(recommendButton);
 

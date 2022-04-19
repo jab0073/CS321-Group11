@@ -340,56 +340,34 @@ public class User implements Serializable {
 		this.reviews = reviews;
 	}
 
-	public Movie recommendedMovie() {
-		MovieList ml = ResourceUtils.getMasterMovieList();
-		List<Movie> genre = new ArrayList<>();
-		List<Movie> actor = new ArrayList<>();
-		List<Movie> director = new ArrayList<>();
-		if (favoriteGenres.size() > 0) {
-			favoriteGenres.forEach(g -> {
-				List<Movie> genremovies = ml.filterByGenre(g);
-				genremovies.forEach(m -> {
-					if (!genre.contains(m))
-						genre.add(m);
-				});
-			});
-			if (genre.size() > 0) {
-				if (favoriteActors.size() > 0) {
-					favoriteActors.forEach(a -> {
-						List<Movie> actormovies = ml.filterByActor(a);
-						actormovies.forEach(m -> {
-							if (!actor.contains(m))
-								actor.add(m);
-						});
-					});
-					if (actor.size() > 0) {
-						if (favoriteDirectors.size() > 0) {
-							favoriteDirectors.forEach(d -> {
-								List<Movie> directormovies = ml.filterByDirector(d);
-								directormovies.forEach(m -> {
-									if (!director.contains(m))
-										director.add(m);
-								});
-							});
-							if (director.size() > 0) {
-								System.out.println("Recommended by Genre, Actor, and Director.");
-								return director.get(0);
-							} else {
-								System.out.println("Recommended by Genre, and Actor");
-								return actor.get(0);
-							}
-						} else {
-							System.out.println("Recommended by Genre, and Actor");
-							return actor.get(0);
-						}
-					}
-				} else {
-					System.out.println("Recommended by Genre");
-					return genre.get(0);
-				}
+	/**
+	 * Returns a random movie that matches some of your preferences.
+	 * @return Movie
+	 */
+	public Movie recommendedMovie2(){
+		List<Movie> rMLD = new ArrayList<>();
+		List<Movie> rMLND = new ArrayList<>();
+		MovieList mml = ResourceUtils.getMasterMovieList();
+		mml.getMovieList().forEach(m->{
+			//Checks if users favorite directors are part of a movie
+			if (this.getFavoriteDirectors().contains(m.getDirector())){
+				rMLD.add(m);
 			}
-		}
-		return ml.getMovieList().get(8);
+			//Checks if the users favorite actors are part of a movie
+			favoriteActors.forEach(a->{
+				if (m.getActors().contains(a)){
+					rMLD.add(m);
+				}
+			});
+			favoriteGenres.forEach(g->{
+				if (m.getGenre().contains(g)){
+					rMLD.add(m);
+				}
+			});
+		});
+
+		int rndIndex = (int)Math.floor(Math.random()*(rMLD.size()));
+		return rMLD.get(rndIndex);
 	}
 
 	@Override

@@ -38,6 +38,7 @@ public class AccountPage extends JPanel {
 	private static JButton editPreferencesButton;
 	private static JButton movieSearchButton;
 	private static JButton createMovieList;
+	private static JButton logoutButton;
 
 	private static JLabel movieListLabel;
 	private static JLabel favoriteListLabel;
@@ -152,6 +153,13 @@ public class AccountPage extends JPanel {
 		});
 		contentPanel.add(createMovieList);
 
+		//Adds a button to log out
+		logoutButton = new JButton("Log out");
+		logoutButton.setHorizontalTextPosition(0);
+		logoutButton.setVerticalTextPosition(0);
+		logoutButton.addActionListener(e -> {
+				Application.showPage("mainPage");
+		});
 
 
 		movieListPanel = new JPanel();

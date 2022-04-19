@@ -345,8 +345,9 @@ public class User implements Serializable {
 	 * @return Movie
 	 */
 	public Movie recommendedMovie2(){
+		//Basically goes through the master movie list and for each movie checks if the director or genre or actors match
+		//the users preferences. If any of those fields match then it adds it to rMLD.
 		List<Movie> rMLD = new ArrayList<>();
-		List<Movie> rMLND = new ArrayList<>();
 		MovieList mml = ResourceUtils.getMasterMovieList();
 		mml.getMovieList().forEach(m->{
 			//Checks if users favorite directors are part of a movie
@@ -366,8 +367,13 @@ public class User implements Serializable {
 			});
 		});
 
-		int rndIndex = (int)Math.floor(Math.random()*(rMLD.size()));
-		return rMLD.get(rndIndex);
+		//if it goes through the masterMovieList and no movies were added to the newly generated list it just returns
+		//a random movie from the masterList.
+		if (rMLD.isEmpty()){
+			return mml.getMovieList().get((int)Math.floor(Math.random()*(rMLD.size())));
+		} else {
+			return rMLD.get((int) Math.floor(Math.random() * (rMLD.size())));
+		}
 	}
 
 	@Override

@@ -36,14 +36,14 @@ public class MovieList implements Serializable {
 	public MovieList(List<Movie> movieList) {
 		listName = "Default Name";
 		this.movieList = movieList;
-		this.movieList.forEach(m -> {
-			String title = m.getTitle();
-			int year = Integer.parseInt(m.getYear());;
-			if(!title.contains(" (" + year + ")")) {
-				m.setTitle(title + " (" + year + ")");
-			}
-			m.generateDistinctWords();
-		});
+//		this.movieList.forEach(m -> {
+//			String title = m.getTitle();
+//			int year = Integer.parseInt(m.getYear());;
+//			if(!title.contains(" (" + year + ")")) {
+//				m.setTitle(title + " (" + year + ")");
+//			}
+//			m.generateDistinctWords();
+//		});
 		this.movieList.sort(Comparator.comparing(m -> m.getTitle()));
 		filteredMovies = new ArrayList<>();
 	}
@@ -53,14 +53,14 @@ public class MovieList implements Serializable {
 	public MovieList(String listName, List<Movie> movieList) {
 		this.listName = listName;
 		this.movieList = movieList;
-		this.movieList.forEach(m -> {
-			String title = m.getTitle();
-			int year = Integer.parseInt(m.getYear());
-			if(!title.contains(" (" + year + ")")) {
-				m.setTitle(title + " (" + year + ")");
-			}
-			m.generateDistinctWords();
-		});
+//		this.movieList.forEach(m -> {
+//			String title = m.getTitle();
+//			int year = Integer.parseInt(m.getYear());
+//			if(!title.contains(" (" + year + ")")) {
+//				m.setTitle(title + " (" + year + ")");
+//			}
+//			m.generateDistinctWords();
+//		});
 		this.movieList.sort(Comparator.comparing(Movie::getTitle));
 		filteredMovies = new ArrayList<>();
 	}
@@ -150,13 +150,13 @@ public class MovieList implements Serializable {
 	public List<Movie> filterByDirector(String director) {
 		if(filteredMovies.isEmpty()) {
 			filteredMovies = movieList.stream()
-					.filter(a -> a.getDirector().equals(director))
+					.filter(a -> a.getDirector().equalsIgnoreCase(director))
 					.map(Movie::getThis)
 					.collect(toList());
 		}
 		else {
 			filteredMovies = filteredMovies.stream()
-					.filter(a -> a.getDirector().equals(director))
+					.filter(a -> a.getDirector().equalsIgnoreCase(director))
 					.map(Movie::getThis)
 					.collect(toList());
 		}

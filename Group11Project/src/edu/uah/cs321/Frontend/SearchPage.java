@@ -148,7 +148,7 @@ public class SearchPage extends JPanel {
 				break;
 			//Default case is search by title
 			default:
-				populateSearchList(ml.searchForMovie(input));
+				populateSearchList(ml.searchForAny(input));
 				break;
 		}
 	}
@@ -166,18 +166,12 @@ public class SearchPage extends JPanel {
 
 	public void populateSearchList(List<Movie> ml){
 		ml.forEach(m -> {
-			JButton movieButton = new JButton(m.getTitle());
+			JButton movieButton = new JButton(m.getTitle() + " | " + m.getYear());
 			movieButton.setMaximumSize(new Dimension(400,50));
 			movieButton.setHorizontalAlignment(SwingConstants.LEFT);
 			movieButton.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent event){
-					JDialog movieInfo = new JDialog();
-					movieInfo.setMaximumSize(new Dimension(750,1000));
-					movieInfo.setMinimumSize(new Dimension(750,1000));
-					MoviePage moviePage = new MoviePage(m);
-					movieInfo.add(moviePage);
-					movieInfo.setVisible(true);
-					movieInfo.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+					Movie.openMovie(m);
 				}
 			});
 			displayedMovies.add(movieButton);

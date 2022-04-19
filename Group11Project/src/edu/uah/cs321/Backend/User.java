@@ -3,6 +3,7 @@ package edu.uah.cs321.Backend;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /***
  * File Name: User
@@ -79,6 +80,7 @@ public class User implements Serializable {
 	/**
 	 * Returns the entitlement type of the User
 	 * Returns false if the user is a guest and true if its an account
+	 *
 	 * @return The boolean value of the entitlement variable.
 	 */
 	public boolean getEntitlementType() {
@@ -95,11 +97,12 @@ public class User implements Serializable {
 	}
 
 	public void addReview(Review r) {
-		if(reviews == null) {
+		if (reviews == null) {
 			reviews = new ArrayList<>();
 		}
 		reviews.add(r);
 	}
+
 	/**
 	 * Returns the username of the user object
 	 *
@@ -268,10 +271,9 @@ public class User implements Serializable {
 	}
 
 	public void addMovieToFavoriteMovies(Movie movie) {
-		if(favoriteMovies.contains(movie)){
+		if (favoriteMovies.contains(movie)) {
 			return;
-		}
-		else {
+		} else {
 			favoriteMovies.add(movie);
 		}
 	}
@@ -338,6 +340,58 @@ public class User implements Serializable {
 		this.reviews = reviews;
 	}
 
+	public Movie recommendedMovie() {
+		MovieList ml = ResourceUtils.getMasterMovieList();
+		List<Movie> genre = new ArrayList<>();
+		List<Movie> actor = new ArrayList<>();
+		List<Movie> director = new ArrayList<>();
+		if (favoriteGenres.size() > 0) {
+			favoriteGenres.forEach(g -> {
+				List<Movie> genremovies = ml.filterByGenre(g);
+				genremovies.forEach(m -> {
+					if (!genre.contains(m))
+						genre.add(m);
+				});
+			});
+			if (genre.size() > 0) {
+				if (favoriteActors.size() > 0) {
+					favoriteActors.forEach(a -> {
+						List<Movie> actormovies = ml.filterByActor(a);
+						actormovies.forEach(m -> {
+							if (!actor.contains(m))
+								actor.add(m);
+						});
+					});
+					if (actor.size() > 0) {
+						if (favoriteDirectors.size() > 0) {
+							favoriteDirectors.forEach(d -> {
+								List<Movie> directormovies = ml.filterByDirector(d);
+								directormovies.forEach(m -> {
+									if (!director.contains(m))
+										director.add(m);
+								});
+							});
+							if (director.size() > 0) {
+								System.out.println("Recommended by Genre, Actor, and Director.");
+								return director.get(0);
+							} else {
+								System.out.println("Recommended by Genre, and Actor");
+								return actor.get(0);
+							}
+						} else {
+							System.out.println("Recommended by Genre, and Actor");
+							return actor.get(0);
+						}
+					}
+				} else {
+					System.out.println("Recommended by Genre");
+					return genre.get(0);
+				}
+			}
+		}
+		return ml.getMovieList().get(8);
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -390,6 +444,6 @@ public class User implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return String.join("; ", entitlement ? "Registered User" : "Guest User",firstName, lastName, aboutMe);
+		return String.join("; ", entitlement ? "Registered User" : "Guest User", firstName, lastName, aboutMe);
 	}
 }

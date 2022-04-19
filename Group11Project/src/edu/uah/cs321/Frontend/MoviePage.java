@@ -314,7 +314,9 @@ public class MoviePage extends JPanel {
 
 		userReviewPanel.add(addToFavoritesButton, Component.CENTER_ALIGNMENT);
 		userReviewPanel.add(new Box.Filler(new Dimension(0,5),new Dimension(0,5),new Dimension(0,5)));
-		userReviewPanel.add(addToCustomListButton);
+		if(AccountPage.getUser().getMovieLists().size() > 0) {
+			userReviewPanel.add(addToCustomListButton);
+		}
 		userReviewPanel.add(new Box.Filler(new Dimension(0,5),new Dimension(0,5),new Dimension(0,5)));
 		userReviewPanel.add(addAReviewButton);
 		userReviewPanel.add(new Box.Filler(new Dimension(0,20),new Dimension(0,20),new Dimension(0,20)));

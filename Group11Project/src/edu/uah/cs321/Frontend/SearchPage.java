@@ -82,7 +82,8 @@ public class SearchPage extends JPanel {
 		c.gridx=0; c.gridy=0;
 		searchBar.add(searchBarLabel,c);
 
-		searchArea = new JTextField("Enter Text to Search");
+		searchArea = new JTextField();
+		searchArea.setToolTipText("Enter text to search");
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx=0; c.gridy=1; c.gridwidth=10; c.ipadx = 0; c.ipady=5; c.anchor = GridBagConstraints.LINE_START;
 		searchBar.add(searchArea,c);

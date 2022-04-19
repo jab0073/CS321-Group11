@@ -55,16 +55,16 @@ public class MovieTest {
 
 	@Test
 	public void getRating() {
-		assertEquals("PG-13", movieUnderTest.getRating());
+		assertEquals("PG-13", movieUnderTest.getRated());
 	}
 
 	@Test
 	public void setRating() {
 		String expected = "R";
 
-		movieUnderTest.setRating(expected);
+		movieUnderTest.setRated(expected);
 
-		assertEquals(expected, movieUnderTest.getRating());
+		assertEquals(expected, movieUnderTest.getRated());
 	}
 
 	@Test
@@ -404,7 +404,7 @@ public class MovieTest {
 
 	@Test
 	public void getAttributes() {
-		String atts = String.join("; ", movieUnderTest.getTitle(), movieUnderTest.getRating(), movieUnderTest.getYear(), String.join(", ", movieUnderTest.getGenre()), movieUnderTest.getDirector(), movieUnderTest.getWriter(), movieUnderTest.getLanguage(), String.join(", ", movieUnderTest.getActors()));
+		String atts = String.join("; ", movieUnderTest.getTitle(), movieUnderTest.getRated(), movieUnderTest.getYear(), String.join(", ", movieUnderTest.getGenre()), movieUnderTest.getDirector(), movieUnderTest.getWriter(), movieUnderTest.getLanguage(), String.join(", ", movieUnderTest.getActors()));
 		assertEquals(atts, movieUnderTest.getAttributes());
 	}
 

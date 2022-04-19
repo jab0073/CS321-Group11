@@ -1,15 +1,11 @@
 package edu.uah.cs321.Backend;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
-import static java.util.stream.Collectors.toSet;
 
 /***
  * File Name: MovieList
@@ -128,14 +124,17 @@ public class MovieList implements Serializable {
 	 * @return A list of movies that match the actor.
 	 */
 	public List<Movie> filterByActor(String actor) {
+		actor = actor.toLowerCase();
 		if(filteredMovies.isEmpty()) {
+			String finalActor = actor;
 			filteredMovies = movieList.stream()
-					.filter(a -> a.getActors().contains(actor))
+					.filter(a -> a.getActorsLower().contains(finalActor))
 					.collect(toList());
 		}
 		else {
+			String finalActor1 = actor;
 			filteredMovies = filteredMovies.stream()
-					.filter(a -> a.getActors().contains(actor))
+					.filter(a -> a.getActorsLower().contains(finalActor1))
 					.collect(toList());
 		}
 		return filteredMovies;
@@ -170,14 +169,17 @@ public class MovieList implements Serializable {
 	 * @return A list of movies that match the genre.
 	 */
 	public List<Movie> filterByGenre(String genre) {
+		genre = genre.toLowerCase();
 		if(filteredMovies.isEmpty()) {
+			String finalGenre = genre;
 			filteredMovies = movieList.stream()
-					.filter(a -> a.getGenre().contains(genre))
+					.filter(a -> a.getGenreLower().contains(finalGenre))
 					.collect(toList());
 		}
 		else {
+			String finalGenre1 = genre;
 			filteredMovies = filteredMovies.stream()
-					.filter(a -> a.getGenre().contains(genre))
+					.filter(a -> a.getGenreLower().contains(finalGenre1))
 					.map(Movie::getThis)
 					.collect(toList());
 		}
@@ -191,15 +193,18 @@ public class MovieList implements Serializable {
 	 * @return A list of movies that match the rating.
 	 */
 	public List<Movie> filterByRating(String rating) {
+		rating = rating.toLowerCase();
 		if(filteredMovies.isEmpty()) {
+			String finalRating = rating;
 			filteredMovies = movieList.stream()
-					.filter(a -> a.getRating().equals(rating))
+					.filter(a -> a.getRated().equalsIgnoreCase(finalRating))
 					.map(Movie::getThis)
 					.collect(toList());
 		}
 		else {
+			String finalRating1 = rating;
 			filteredMovies = filteredMovies.stream()
-					.filter(a -> a.getRating().equals(rating))
+					.filter(a -> a.getRated().equalsIgnoreCase(finalRating1))
 					.map(Movie::getThis)
 					.collect(toList());
 		}
@@ -271,7 +276,6 @@ public class MovieList implements Serializable {
 		query_split.forEach(q -> {
 			movieList.forEach(m -> {
 				if(m.getDistinctWords().contains(q)) {
-					System.out.println(m.getTitle());
 					if(!searchResults.contains(m))
 						searchResults.add(m);
 				}
@@ -299,9 +303,10 @@ public class MovieList implements Serializable {
 	 * @return A list of movies that match the search criteria.
 	 */
 	public List<Movie> searchForMovie(String title) {
+		title = title.toLowerCase();
+		String finalTitle = title;
 		return movieList.stream()
-				.filter(a -> a.getTitle().contains(title))
-				.map(Movie::getThis)
+				.filter(a -> a.getTitle().toLowerCase().equals(finalTitle))
 				.collect(Collectors.toList());
 	}
 

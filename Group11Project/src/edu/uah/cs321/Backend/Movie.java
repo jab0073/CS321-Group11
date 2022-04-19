@@ -23,7 +23,7 @@ public class Movie implements Serializable {
 	private final List<String> mpcrRatings = new ArrayList<>(Arrays.asList("G","PG","PG-13","R","NR"));
 	private String Title;
 	private String Plot;
-	private String Rating;
+	private String Rated;
 	private String Year;
 	private String Released;
 	private String Genre;
@@ -62,9 +62,9 @@ public class Movie implements Serializable {
 		this.Title = title;
 		this.Plot = plot;
 		if (mpcrRatings.contains(rating.toUpperCase())) {
-			this.Rating = rating;
+			this.Rated = rating;
 		} else {
-			this.Rating = "N/A";
+			this.Rated = "N/A";
 		}
 		this.Year = year;
 		this.Released = released;
@@ -95,7 +95,7 @@ public class Movie implements Serializable {
 		Ratings = new ArrayList<>();
 		this.Title = title;
 		this.Plot = plot;
-		this.Rating = rating;
+		this.Rated = rating;
 		this.Year = year;
 	}
 
@@ -115,12 +115,12 @@ public class Movie implements Serializable {
 		Plot = plot;
 	}
 
-	public String getRating() {
-		return Rating;
+	public String getRated() {
+		return Rated;
 	}
 
-	public void setRating(String rating) {
-		Rating = rating;
+	public void setRated(String rated) {
+		Rated = rated;
 	}
 
 	public String getYear() {
@@ -358,7 +358,7 @@ public class Movie implements Serializable {
 		if (mpcrRatings != null ? !mpcrRatings.equals(movie.mpcrRatings) : movie.mpcrRatings != null) return false;
 		if (!getTitle().equals(movie.getTitle())) return false;
 		if (!getPlot().equals(movie.getPlot())) return false;
-		if (getRating() != null ? !getRating().equals(movie.getRating()) : movie.getRating() != null) return false;
+		if (getRated() != null ? !getRated().equals(movie.getRated()) : movie.getRated() != null) return false;
 		if (!getYear().equals(movie.getYear())) return false;
 		if (!getReleased().equals(movie.getReleased())) return false;
 		if (!getGenre().equals(movie.getGenre())) return false;
@@ -396,7 +396,7 @@ public class Movie implements Serializable {
 		int result = mpcrRatings != null ? mpcrRatings.hashCode() : 0;
 		result = 31 * result + getTitle().hashCode();
 		result = 31 * result + getPlot().hashCode();
-		result = 31 * result + (getRating() != null ? getRating().hashCode() : 0);
+		result = 31 * result + (getRated() != null ? getRated().hashCode() : 0);
 		result = 31 * result + getYear().hashCode();
 		result = 31 * result + getReleased().hashCode();
 		result = 31 * result + getGenre().hashCode();
@@ -425,7 +425,7 @@ public class Movie implements Serializable {
 
 	@Override
 	public String toString() {
-		return String.join("; ",Title, Rating, Year, Genre, Director, Writer, Language, Actors);	}
+		return String.join("; ",Title, Rated, Year, Genre, Director, Writer, Language, Actors);	}
 
 	public static void openMovie(Movie m){
 		JDialog movieInfo = new JDialog();

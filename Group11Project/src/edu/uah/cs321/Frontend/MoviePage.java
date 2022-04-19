@@ -45,6 +45,8 @@ public class MoviePage extends JPanel {
 	private static JPanel contentPanel;
 	private static JPanel movieInfoPanel;
 	private static JPanel userReviewPanel;
+	private static JPanel reviewsList;
+	private static JScrollPane reviewsListPane;
 
 	private static JScrollPane reviewPane;
 
@@ -124,11 +126,7 @@ public class MoviePage extends JPanel {
 		movieRuntimesLabel.setBackground(avgColor);
 		movieRuntimesLabel.setForeground(contrastColor);
 		ratingLabel = new JLabel("Rating (1-5)");
-		//ratingLabel.setBackground(avgColor);
-		//ratingLabel.setForeground(contrastColor);
 		reviewLabel = new JLabel("Review");
-		//reviewLabel.setBackground(avgColor);
-		//reviewLabel.setForeground(contrastColor);
 
 
 		addToFavoritesButton = new JButton("Favorite");
@@ -230,11 +228,7 @@ public class MoviePage extends JPanel {
 			SpinnerNumberModel numberspinmodel = new SpinnerNumberModel(value,min,max,step);
 			JSpinner ratingspinner = new JSpinner(numberspinmodel);
 			ratingspinner.setMaximumSize(new Dimension(50,20));
-			//ratingspinner.setBackground(avgColor);
-			//ratingspinner.setForeground(contrastColor);
 			reviewTextArea = new JTextArea(10,15);
-			//reviewTextArea.setBackground(avgColor.brighter());
-			//reviewTextArea.setForeground(contrastColor);
 
 			reviewPane = new JScrollPane(reviewTextArea);
 			reviewPane.setBackground(avgColor);
@@ -242,8 +236,6 @@ public class MoviePage extends JPanel {
 			reviewTextArea.setLineWrap(true);
 
 			saveReviewButton = new JButton("Save");
-			//saveReviewButton.setBackground(avgColor);
-			//saveReviewButton.setForeground(avgColor.darker());
 			saveReviewButton.addActionListener(a -> {
 				try {
 					Integer rating = (Integer) ratingspinner.getValue();
@@ -251,12 +243,13 @@ public class MoviePage extends JPanel {
 					Review userReview = new Review(AccountPage.getUser(), MoviePage.movie,rating,review);
 					AccountPage.getUser().addReview(userReview);
 					MoviePage.movie.addReview(userReview);
-					String message = "<html>Review Added<br/>Rating: " + rating + "<br/>Review: " + review + "</html>";
-					//"Review Added", "Review Added\nRating: " + rating + "\nReview: " + review
-					SimpleDialog sd = new SimpleDialog("Review Added", message);
+					SimpleDialog sd = new SimpleDialog("Review Added", "Review Added!");
 					sd.setMaximumSize(new Dimension(400,100)); sd.setMinimumSize(new Dimension(400,100));
 					jd.dispose();
 					sd.revalidate();
+					reviewsList.removeAll();
+					contentPanel.revalidate();
+					populateReviews(movie);
 				}catch(NullPointerException f){
 					SimpleDialog sd = new SimpleDialog("Error...", "Error");
 					System.out.println(f.getMessage());
@@ -265,6 +258,7 @@ public class MoviePage extends JPanel {
 					sd.revalidate();
 					return;
 				}
+
 			});
 
 			ratingLabel.setAlignmentY(TOP_ALIGNMENT); ratingLabel.setAlignmentX(LEFT_ALIGNMENT);
@@ -287,8 +281,19 @@ public class MoviePage extends JPanel {
 			jd.setVisible(true);
 		});
 
-		JPanel reviewsList = new JPanel();
-		JScrollPane reviewsListPane = new JScrollPane(reviewsList);
+
+		//This entire bit adds the user reviews
+		JLabel userReviewsLabel = new JLabel("Reviews:");
+		userReviewsLabel.setBackground(avgColor);
+		userReviewsLabel.setForeground(contrastColor);
+		//ReviewsList is what contains all the review entries
+		reviewsList = new JPanel();
+		reviewsList.setBackground(avgColor);
+		reviewsList.setLayout(new BoxLayout(reviewsList,BoxLayout.Y_AXIS));
+		//ReviewListPane is added to the contentPanel and scrolls through reviewsList
+		reviewsListPane = new JScrollPane(reviewsList);
+		populateReviews(movie);
+
 
 
 		movieInfoPanel.add(movieTitleLabel, Component.CENTER_ALIGNMENT);
@@ -321,7 +326,9 @@ public class MoviePage extends JPanel {
 			contentPanel.add(new Box.Filler(new Dimension(0,10),new Dimension(0,10),new Dimension(0,10)));
 
 		}
-		contentPanel.setPreferredSize(new Dimension(600,800));
+		contentPanel.add(reviewsListPane);
+		contentPanel.setPreferredSize(new Dimension(700,950));
+		contentPanel.setMaximumSize(new Dimension(700,950));
 
 		add(contentPanel,Component.CENTER_ALIGNMENT);
 	}
@@ -349,5 +356,67 @@ public class MoviePage extends JPanel {
 	public static Color getContrastColor(Color color) {
 		double y = (299 * color.getRed() + 587 * color.getGreen() + 114 * color.getBlue()) / 1000;
 		return y >= 128 ? Color.black : Color.white;
+	}
+
+	/**
+	 * populates and refreshes the list of reviews for a specific movie
+	 * @param m
+	 */
+	public static void populateReviews(Movie m){
+		//removes all of reviewsList. This helps when refreshing it.
+		reviewsList.removeAll();
+		//Iterates through every the movie has.
+		movie.getUserReviews().forEach(r->{
+			System.out.println(r.getBody());
+			JPanel reviewEntry = new JPanel(); reviewEntry.setLayout(new BoxLayout(reviewEntry,BoxLayout.Y_AXIS));
+			reviewEntry.setBackground(avgColor);
+			reviewEntry.setAlignmentX(CENTER_ALIGNMENT); reviewEntry.setAlignmentY(TOP_ALIGNMENT);
+			reviewEntry.setBorder(BorderFactory.createLineBorder(avgColor.brighter().brighter(),3));
+			reviewEntry.setMaximumSize(new Dimension(700,300));
+			//Header contains a label of the author and a button to delete.
+			JPanel reviewHeader = new JPanel(); reviewHeader.setLayout(new BoxLayout(reviewHeader,BoxLayout.X_AXIS));
+			reviewHeader.setBackground(avgColor);
+			reviewHeader.setAlignmentX(CENTER_ALIGNMENT);
+			//Header
+			{
+				JLabel reviewAuthor = new JLabel("Author: " + r.getAuthor().getUserName() + " gave this movie a rating of " + r.getRating().toString());
+				reviewAuthor.setForeground(contrastColor);
+				reviewHeader.add(reviewAuthor, Component.LEFT_ALIGNMENT);
+				//ensures the label and delete button are seperated
+				reviewHeader.add(Box.createHorizontalGlue());
+
+				//if user made that review a delete button is there if they want to remove it.
+				if (u.getUserName().equals(r.getAuthor().getUserName())){
+					JButton deleteReviewButton = new JButton("Delete Review");
+					deleteReviewButton.addActionListener(e -> {
+						//removes everything from this specific entry and just replaces it with a label indicating the review was deleted.
+						reviewEntry.removeAll();
+						JLabel deletedReview = new JLabel("Review Deleted");
+						deletedReview.setBackground(avgColor);
+						deletedReview.setForeground(contrastColor);
+						reviewEntry.add(deletedReview);
+						//removes the review from UserReviews
+						movie.getUserReviews().remove(r);
+						contentPanel.revalidate();
+					});
+					reviewHeader.add(deleteReviewButton, Component.RIGHT_ALIGNMENT);
+				}
+			}
+			//adds the header
+			reviewEntry.add(reviewHeader);
+
+			JTextArea reviewText = new JTextArea(r.getBody(),5,25);
+			reviewText.setWrapStyleWord(true); reviewText.setLineWrap(true); reviewText.setEditable(false);
+			reviewText.setMaximumSize(new Dimension(500,300));
+			reviewText.setMinimumSize(new Dimension(500,300));
+			reviewText.setBackground(avgColor);
+			reviewText.setForeground(contrastColor);
+
+			JScrollPane reviewTextScroller = new JScrollPane(reviewText);
+			reviewEntry.add(reviewTextScroller, Component.LEFT_ALIGNMENT);
+
+
+			reviewsList.add(reviewEntry,Component.CENTER_ALIGNMENT);
+		});
 	}
 }

@@ -102,28 +102,49 @@ public class AccountPage extends JPanel {
 		headerPanel.add(usersNameLabel);
 		headerPanel.add(Box.createHorizontalGlue());
 
-		//add a button to save everything
-		saveButton = new JButton("Save Changes");
-		saveButton.addActionListener(e->{
-			AccountPage.clone = AccountPage.u;
-			try {
-				UserDatabase.close();
-			} catch (IOException ex) {
-				ex.printStackTrace();
-			}
-			try {
-				MasterMovieListCache.close();
-			} catch (IOException ex) {
-				ex.printStackTrace();
-			}
-		});
-		headerPanel.add(saveButton);
+
+		/*
+		 * Save Button / functionality is broken. With more time it would have been implemented.
+		 * It can currently save the changes correctly. However it runs into a problem with a specific test case.
+		 * If a User A makes changes to their account, but chooses to not save, and then logs out without saving.
+		 * User B can then come along, login, and make changes to their account. If User B chooses to save it will also
+		 * save the changes User A made. Due to how our code was set up we opted to just remove the feature and have it
+		 * always save the changes on logout or program close.
+		 */
+//		//add a button to save everything
+//		saveButton = new JButton("Save Changes");
+//		saveButton.addActionListener(e->{
+//			AccountPage.clone = AccountPage.u;
+//			try {
+//				UserDatabase.close();
+//			} catch (IOException ex) {
+//				ex.printStackTrace();
+//			}
+//			try {
+//				MasterMovieListCache.close();
+//			} catch (IOException ex) {
+//				ex.printStackTrace();
+//			}
+//		});
+//		headerPanel.add(saveButton);
 
 		//Adds a button to log out
 		logoutButton = new JButton("Log out");
 		//logoutButton.setAlignmentX(RIGHT_ALIGNMENT);
 		logoutButton.addActionListener(e -> {
 			AccountPage.u = AccountPage.clone;
+			//Saves UserDatabase on logout
+			try {
+				UserDatabase.close();
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
+			//Saves MovieListCache on logout
+			try {
+				MasterMovieListCache.close();
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
 			Application.closeDialogs();
 			Application.showPage("mainPage");
 		});

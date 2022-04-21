@@ -479,8 +479,7 @@ public class User implements Serializable {
 
 	public User clone() {
 		try {
-			User clone = (User) super.clone();
-			return clone;
+			return (User) super.clone();
 		} catch (CloneNotSupportedException e) {
 			return null;
 		}

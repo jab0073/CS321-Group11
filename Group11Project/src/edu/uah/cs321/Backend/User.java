@@ -476,4 +476,13 @@ public class User implements Serializable {
 	public String toString() {
 		return String.join("; ", entitlement ? "Registered User" : "Guest User", firstName, lastName, aboutMe);
 	}
+
+	public User clone() {
+		try {
+			User clone = (User) super.clone();
+			return clone;
+		} catch (CloneNotSupportedException e) {
+			return null;
+		}
+	}
 }

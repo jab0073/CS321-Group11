@@ -1,9 +1,6 @@
 package edu.uah.cs321.Frontend;
 
-import edu.uah.cs321.Backend.Movie;
-import edu.uah.cs321.Backend.MovieList;
-import edu.uah.cs321.Backend.ResourceUtils;
-import edu.uah.cs321.Backend.User;
+import edu.uah.cs321.Backend.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentListener;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
 import java.util.Objects;
 
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
@@ -40,6 +38,7 @@ public class AccountPage extends JPanel {
 	private static JButton editPreferencesButton;
 	private static JButton movieSearchButton;
 	private static JButton createMovieList;
+	private static JButton saveButton;
 	private static JButton logoutButton;
 	private static JButton recommendButton;
 
@@ -100,6 +99,23 @@ public class AccountPage extends JPanel {
 		//adds the username to the contentLabel
 		headerPanel.add(usersNameLabel);
 		headerPanel.add(Box.createHorizontalGlue());
+
+		//add a button to save everything
+		saveButton = new JButton("Save Changes");
+		saveButton.addActionListener(e->{
+			try {
+				UserDatabase.close();
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
+			try {
+				MasterMovieListCache.close();
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
+		});
+		headerPanel.add(saveButton);
+
 		//Adds a button to log out
 		logoutButton = new JButton("Log out");
 		//logoutButton.setAlignmentX(RIGHT_ALIGNMENT);

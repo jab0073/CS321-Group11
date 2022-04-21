@@ -34,8 +34,8 @@ public class Application extends JFrame {
 			{
 				try {
 					AuthSystem.close();
-					UserDatabase.close();
-					MasterMovieListCache.close();
+					//UserDatabase.close();
+					//MasterMovieListCache.close();
 					System.out.println("AuthSystem and UserDatabase have been closed...");
 				} catch (IOException ex) {
 					ex.printStackTrace();

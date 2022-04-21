@@ -96,6 +96,10 @@ public class User implements Serializable {
 		this.entitlement = entitlement;
 	}
 
+	/**
+	 * Adds inputted review to reviews.
+	 * @param r
+	 */
 	public void addReview(Review r) {
 		if (reviews == null) {
 			reviews = new ArrayList<>();
@@ -230,6 +234,10 @@ public class User implements Serializable {
 		movieLists.remove(ml);
 	}
 
+	/**
+	 * removes MovieList with the name matching the inputted String from movieLists.
+	 * @param listName
+	 */
 	public void removeMovieListFromMovieLists(String listName) {
 		movieLists.stream().filter(m -> m.getListName().equals(listName)).map(ml -> movieLists.remove(ml));
 	}
@@ -270,6 +278,10 @@ public class User implements Serializable {
 		this.favoriteMovies = favoriteMovies;
 	}
 
+	/**
+	 * Adds the inputed Movie to favoriteMovies
+	 * @param movie
+	 */
 	public void addMovieToFavoriteMovies(Movie movie) {
 		if (favoriteMovies.contains(movie)) {
 			return;

@@ -41,6 +41,9 @@ public class CreateAccountPage extends JPanel {
 	private static BoxLayout fieldPanelLayout;
 
 
+	/**
+	 * CreateAccountPage is a JPanel where the user can create an account in the form of a User object.
+	 */
 	public CreateAccountPage() {
 		super();
 

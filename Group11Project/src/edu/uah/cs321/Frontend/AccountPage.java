@@ -49,7 +49,10 @@ public class AccountPage extends JPanel {
 	private static java.util.List<MovieList> usersCustomMovieLists;
 	private static java.util.List<Movie> usersCustomFavoriteMovies;
 
-
+	/**
+	 * AccountPage is a JPanel that serves as the hub for user Input.
+	 * @param u
+	 */
 	public AccountPage(User u) {
 		super();
 		this.setLayout(new BorderLayout());
@@ -129,10 +132,8 @@ public class AccountPage extends JPanel {
 		movieSearchButton.setMaximumSize(new Dimension(175,50));
 		movieSearchButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		contentPanel.add(movieSearchButton);
-		movieSearchButton.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent event){
-				Application.showPage("searchPage");
-			}
+		movieSearchButton.addActionListener(e->{
+			Application.showPage("searchPage");
 		});
 
 		//Adds a button to create a custom movie list

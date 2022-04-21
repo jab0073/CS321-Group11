@@ -61,6 +61,10 @@ public class MoviePage extends JPanel {
 	private static Image backgroundImage;
 
 
+	/**
+	 * MoviePage is a JPanel that contains information on the inputted Movie movie.
+	 * @param movie
+	 */
 	public MoviePage(Movie movie){
 		super();
 		MoviePage.movie = movie;
@@ -75,6 +79,7 @@ public class MoviePage extends JPanel {
 		userReviewPanel = new JPanel();
 		userReviewPanel.setLayout(new BoxLayout(userReviewPanel,BoxLayout.Y_AXIS));
 
+		//This adds the poster of the movie to the MoviePage.
 		String posterURL = MoviePage.movie.getPoster();
 		if(posterURL != null && posterURL.length() > 0) {
 			JLabel posterLabel = new JLabel();
@@ -128,7 +133,6 @@ public class MoviePage extends JPanel {
 		ratingLabel = new JLabel("Rating (1-5)");
 		reviewLabel = new JLabel("Review");
 
-
 		addToFavoritesButton = new JButton("Favorite");
 		//addToFavoritesButton.setForeground(avgColor.darker());
 		//addToFavoritesButton.setBackground(avgColor);
@@ -149,7 +153,6 @@ public class MoviePage extends JPanel {
 
 		});
 
-
 		//Add to custom list goes here
 		addToCustomListButton = new JButton("Add movie to a custom list!");
 		addToCustomListButton.addActionListener(e->{
@@ -165,7 +168,6 @@ public class MoviePage extends JPanel {
 				mL.add(m);
 			});
 			customListSelector.setModel(new DefaultComboBoxModel<String>(ls.toArray(new String[0])));
-
 
 			JPanel listPanel = new JPanel();
 			listPanel.setLayout(new BoxLayout(listPanel,BoxLayout.Y_AXIS));
@@ -201,17 +203,11 @@ public class MoviePage extends JPanel {
 				cP.revalidate();
 			});
 
-
 			cP.add(addButton);
 			jd.add(cP);
 			jd.setMinimumSize(new Dimension(300,300));
 			jd.setVisible(true);
 		});
-
-
-
-
-
 
 		JButton addAReviewButton = new JButton("Leave a review");
 		addAReviewButton.addActionListener(e->{
@@ -335,6 +331,11 @@ public class MoviePage extends JPanel {
 		add(contentPanel,Component.CENTER_ALIGNMENT);
 	}
 
+	/**
+	 * averageColor returns the avgColor of inputted BufferedImage bi.
+	 * @param bi
+	 * @return
+	 */
 	public static Color averageColor(BufferedImage bi) {
 		int step = 5;
 

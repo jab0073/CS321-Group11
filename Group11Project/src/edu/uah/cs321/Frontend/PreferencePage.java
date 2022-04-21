@@ -43,12 +43,18 @@ public class PreferencePage extends JPanel {
 
 	private final int type;
 
+	/**
+	 * Preference page is a JPanel that lets the user add or reset their preferences
+	 * @param u
+	 * @param type
+	 */
 	public PreferencePage(User u, int type) {
 		super();
 		this.u = u;
 		this.type = type;
 		this.setLayout(new BorderLayout());
 
+		//Everything gets put into contentPanel.
 		contentPanel = new JPanel();
 		preferenceInfoPanel = new JPanel();
 		preferenceButtonPanel = new JPanel();
@@ -82,7 +88,7 @@ public class PreferencePage extends JPanel {
 
 		buttons = new ArrayList<>(Arrays.asList(button1, button2, button3, button4, button5, button6, button7, button8, button9, button10));
 
-
+		//switches what preference the user is editing.
 		switch (this.type) {
 			case 0 -> {
 				header = new JLabel("Select Your Favorite Genres");
@@ -177,7 +183,7 @@ public class PreferencePage extends JPanel {
 			default -> throw new IllegalStateException("Unexpected value: " + this.type);
 		}
 
-
+		//This button clears the user preferences and brings the user back to the first section to restart the process.
 		JButton resetPreferenceButton = new JButton("Reset your preferences");
 		resetPreferenceButton.addActionListener(e->{
 			u.getFavoriteActors().clear();
@@ -217,6 +223,9 @@ public class PreferencePage extends JPanel {
 		this.setVisible(true);
 	}
 
+	/**
+	 * This function refreshes the displayed preferences on PreferencePage.
+	 */
 	public void refreshPreference(){
 		String ActorLabel = "Actors: ";
 		String GenreLabel = "Genre: ";

@@ -27,6 +27,10 @@ public class MainPage extends JPanel {
 	private static JPanel       buttonPanel;
 	private static BoxLayout    layout;
 
+	/**
+	 * MainPage is a JPanel that contains buttons on how to procede in the program.
+	 * @throws IOException
+	 */
 	public MainPage() throws IOException {
 		contentPanel = new JPanel();
 		layout = new BoxLayout(contentPanel,BoxLayout.Y_AXIS);
@@ -64,10 +68,16 @@ public class MainPage extends JPanel {
 		setVisible(true);
 	}
 
+	/**
+	 * Brings the user to the LoginPage to login.
+	 */
 	public void goToLoginPage() {
 		Application.showPage("loginPage");
 	}
 
+	/**
+	 * brings the user to the CreateAccountPage to create an account.
+	 */
 	public void goToCreateAccountPage() {
 		Application.showPage("createAccountPage");
 	}

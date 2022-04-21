@@ -29,18 +29,18 @@ public class SearchPage extends JPanel {
 	private static JScrollPane displayedMoviesScroller;
 	private static String parameterState;
 
-
+	/**
+	 * SearchPage is a JPanel that contains a search bar and a list of buttons corresponding
+	 * to each movie in the inputted MovieList.
+	 * @param movieList
+	 */
 	public SearchPage(MovieList movieList) {
 		masterMovieList = movieList;
 		confirmation = new JLabel("You are on the search page");
 		confirmation.setAlignmentX(CENTER_ALIGNMENT);
 		backButton = new JButton("Go back to account page");
 		backButton.setAlignmentX(CENTER_ALIGNMENT);
-		backButton.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent event){
-				Application.showPage("accountPage");
-			}
-		});
+		backButton.addActionListener(e->{Application.showPage("accountPage");});
 
 		//adds the header
 		contentPanel = new JPanel();
@@ -48,10 +48,11 @@ public class SearchPage extends JPanel {
 		contentPanel.add(confirmation);
 		contentPanel.add(backButton);
 
-		//This will add the search bar to the content panel. Doesn't work rn.
+		//This adds the searchBar to the contentPanel. No real reason its a function just wrote it this way.
 		addSearchBar(contentPanel);
 
 
+		//displayedMovies is the JPanel that contains the list of movies from movieList.
 		displayedMovies = new JPanel();
 		displayedMovies.setLayout(new BoxLayout(displayedMovies, BoxLayout.PAGE_AXIS));
 		displayedMoviesScroller = new JScrollPane(displayedMovies);
@@ -71,6 +72,11 @@ public class SearchPage extends JPanel {
 
 	}
 
+	/**
+	 * addSearchBar is a function that adds the search bar to the inputed JPanel. The searchBar will allow the user
+	 * to filter the movieList in the SearchPage.
+	 * @param p
+	 */
 	public void addSearchBar(JPanel p){
 		searchBar = new JPanel(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
@@ -88,10 +94,11 @@ public class SearchPage extends JPanel {
 		c.gridx=0; c.gridy=1; c.gridwidth=10; c.ipadx = 0; c.ipady=5; c.anchor = GridBagConstraints.LINE_START;
 		searchBar.add(searchArea,c);
 
-		//n will be the search state
-		//n=0 -> default title search.
+		//parameterState is what determines what type of search the user is doing.
+		//By default it is set to "". See updateSearchResults function for info on different states.
 		parameterState="";
 
+		//This button updates the displayedMovies panel with the movies that match the search results.
 		JButton searchEnter = new JButton("Search");
 		c.gridx=11; c.gridy=1; c.gridwidth=1; c.ipadx=0; c.ipady=0;
 		searchEnter.addActionListener(a->{
@@ -107,6 +114,8 @@ public class SearchPage extends JPanel {
 		searchBar.add(searchParameters,c);
 
 
+		//This creates a button for each entry in the string array parameterList.
+		//The buttons are how the user switches between parameterStates.
 		String[] parameterList = new String[]{"Title","Actor","Director"};
 		for (int i=0; i<parameterList.length; i++){
 			JToggleButton parameterButton = new JToggleButton(parameterList[i], false);
@@ -131,9 +140,15 @@ public class SearchPage extends JPanel {
 	}
 
 
+	/**
+	 * updates displayedMovies in SearchPage with correct search results.
+	 * State is the parameterState, movieList is the MovieList that will be searched and shown.
+	 * user inputted string to search by.
+	 * @param State
+	 * @param ml
+	 * @param input
+	 */
 	public void updateSearchResults(String State, MovieList ml, String input){
-		displayedMovies.removeAll();
-		//Okay so
 		switch (State) {
 			//Search by Title
 			case "Title":
@@ -155,26 +170,31 @@ public class SearchPage extends JPanel {
 	}
 
 	/**
-	 * Changes the header of the search page. Used when viewing a MovieList.
+	 * Changes the header of the search page. Used when viewing a MovieList from AccountPage.
 	 *
 	 */
 	public void removeHeader(){
+		//This removes the backButton from the SearchPage because normally it would bring the user back to the AccountPage.
+		//But since the buttons to view a MovieList from AccountPage opens up a JDialog containing a SearchPage this wouldn't work.
+		//This just removes the problem. :)
 		contentPanel.remove(confirmation);
 		contentPanel.remove(backButton);
 
 	}
 
 
+	/**
+	 * populateSearchList fills displayedMovies with the list of buttons when given a List of Movies.
+	 * This function also works to update displayedMovies if any changes where made to it.
+	 * @param ml
+	 */
 	public void populateSearchList(List<Movie> ml){
+		displayedMovies.removeAll();
 		ml.forEach(m -> {
 			JButton movieButton = new JButton(m.getTitle() + " | " + m.getYear());
 			movieButton.setMaximumSize(new Dimension(400,50));
 			movieButton.setHorizontalAlignment(SwingConstants.LEFT);
-			movieButton.addActionListener(new ActionListener(){
-				public void actionPerformed(ActionEvent event){
-					m.openMovie();
-				}
-			});
+			movieButton.addActionListener(e->{m.openMovie();});
 			displayedMovies.add(movieButton);
 			displayedMovies.revalidate();
 		});

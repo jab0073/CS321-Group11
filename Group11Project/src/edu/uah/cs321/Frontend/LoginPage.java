@@ -31,6 +31,9 @@ public class LoginPage extends JPanel {
 	private static BoxLayout buttonPanelLayout;
 	private static BoxLayout fieldPanelLayout;
 
+	/**
+	 * LoginPage is a JPanel where the user inputs login information and determines what user information to access/modify.
+	 */
 	public LoginPage() {
 		super();
 
@@ -67,34 +70,28 @@ public class LoginPage extends JPanel {
 		buttonPanel.add(loginButton);
 		buttonPanel.add(backButton);
 
-		loginButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				String username = usernameField.getText();
-				String password = String.valueOf(passwordField.getPassword());
+		loginButton.addActionListener(e->{
+			String username = usernameField.getText();
+			String password = String.valueOf(passwordField.getPassword());
 
-				User u = AuthSystem.login(username, password);
-				if(u != null) {
-					usernameField.setText("");
-					passwordField.setText("");
-					AccountPage ac = new AccountPage(u);
-					Application.setAccountPage(ac);
-					Application.showPage("accountPage");
-				}
-				else {
-					SimpleDialog jd = new SimpleDialog("Login Failed...","Login Failed...");
-				}
+			User u = AuthSystem.login(username, password);
+			if(u != null) {
+				usernameField.setText("");
+				passwordField.setText("");
+				AccountPage ac = new AccountPage(u);
+				Application.setAccountPage(ac);
+				Application.showPage("accountPage");
+			}
+			else {
+				SimpleDialog jd = new SimpleDialog("Login Failed...","Login Failed...");
 			}
 		});
 
-		backButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				usernameField.setText("");
-				passwordField.setText("");
+		backButton.addActionListener(e->{
+			usernameField.setText("");
+			passwordField.setText("");
 
-				Application.showPage("mainPage");
-			}
+			Application.showPage("mainPage");
 		});
 		add(contentPanel);
 	}

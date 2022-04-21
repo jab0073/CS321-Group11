@@ -78,6 +78,10 @@ public class ResourceUtils {
 		return null;
 	}
 
+	/**
+	 * returns the file directory path to where the masterMovieList cache is
+	 * @return
+	 */
 	public static String getMasterMovieListCache() {
 		if(System.getProperty("os.name").toLowerCase().startsWith("win")) {
 			return Constants.WindowsBeginningDefaultDir + System.getProperty("user.name") + Constants.WindowsEndingDefaultDir + Constants.MasterMovieListCache;
@@ -88,6 +92,10 @@ public class ResourceUtils {
 		return null;
 	}
 
+	/**
+	 * returns the file directory path to where necessary program files are stored.
+	 * @return
+	 */
 	public static String getGoodWatchesDirectory() {
 		if(System.getProperty("os.name").toLowerCase().startsWith("win")) {
 			return Constants.WindowsBeginningDefaultDir + System.getProperty("user.name") + Constants.WindowsEndingDefaultDir;
@@ -128,14 +136,24 @@ public class ResourceUtils {
 		ResourceUtils.ensurePath(dir);
 	}
 
-	public static void setMasterMovieList(List<Movie> ml) {
-		ResourceUtils.masterMovieLst = new MovieList(ml);
-	}
+	/**
+	 * initialises masterMovieList with the inputted List of Movies
+	 * @param ml
+	 */
+	public static void setMasterMovieList(List<Movie> ml) {ResourceUtils.masterMovieLst = new MovieList(ml); }
 
+	/**
+	 * Sets the masterMovieList to the inputted MovieList
+	 * @param ml
+	 */
 	public static void setMasterMovieList(MovieList ml) {
 		ResourceUtils.masterMovieLst = ml;
 	}
 
+	/**
+	 * returns the masterMovieList
+	 * @return MovieList
+	 */
 	public static MovieList getMasterMovieList() {
 		return ResourceUtils.masterMovieLst;
 	}

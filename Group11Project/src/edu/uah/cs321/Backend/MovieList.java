@@ -32,14 +32,6 @@ public class MovieList implements Serializable {
 	public MovieList(List<Movie> movieList) {
 		listName = "Default Name";
 		this.movieList = movieList;
-//		this.movieList.forEach(m -> {
-//			String title = m.getTitle();
-//			int year = Integer.parseInt(m.getYear());;
-//			if(!title.contains(" (" + year + ")")) {
-//				m.setTitle(title + " (" + year + ")");
-//			}
-//			m.generateDistinctWords();
-//		});
 		this.movieList.sort(Comparator.comparing(m -> m.getTitle()));
 		filteredMovies = new ArrayList<>();
 	}
@@ -49,14 +41,6 @@ public class MovieList implements Serializable {
 	public MovieList(String listName, List<Movie> movieList) {
 		this.listName = listName;
 		this.movieList = movieList;
-//		this.movieList.forEach(m -> {
-//			String title = m.getTitle();
-//			int year = Integer.parseInt(m.getYear());
-//			if(!title.contains(" (" + year + ")")) {
-//				m.setTitle(title + " (" + year + ")");
-//			}
-//			m.generateDistinctWords();
-//		});
 		this.movieList.sort(Comparator.comparing(Movie::getTitle));
 		filteredMovies = new ArrayList<>();
 	}
@@ -265,6 +249,11 @@ public class MovieList implements Serializable {
 		return null;
 	}
 
+	/**
+	 * searches the MovieList for movies that have the query in any of their fields.
+	 * @param query
+	 * @return
+	 */
 	public List<Movie> searchForAny(String query) {
 		if(query.equals("")) {
 			return movieList;

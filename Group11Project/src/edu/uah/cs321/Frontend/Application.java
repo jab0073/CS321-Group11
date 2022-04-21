@@ -68,19 +68,35 @@ public class Application extends JFrame {
 
 	}
 
+	/**
+	 * shows the inputed page.
+	 * @param cardName
+	 */
 	public static void showPage(String cardName) {
 		cl.show(contentPanel, cardName);
 	}
 
+	/**
+	 * returns the contentPanel for the Application.
+	 * @return
+	 */
 	public static JPanel getContentPanel() {
 		return contentPanel;
 	}
 
+	/**
+	 * sets the AccountPage that the program uses.
+	 * @param ap
+	 */
 	public static void setAccountPage(AccountPage ap) {
 		Application.accountPage = ap;
 		Application.contentPanel.add(ap, "accountPage");
 	}
 
+	/**
+	 * gets the AccountPage the application is currently using.
+	 * @return
+	 */
 	public static AccountPage getAccountPage() {
 		return Application.accountPage;
 	}

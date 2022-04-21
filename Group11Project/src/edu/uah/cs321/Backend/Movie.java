@@ -345,6 +345,11 @@ public class Movie implements Serializable {
 		return Arrays.asList(Actors.split(", "));
 	}
 
+	/**
+	 * Return a list of strings, where each string is an actor's name, and the list is populated by splitting the Actors
+	 * property on commas. Litteraly the same as getActors() just the strings are lower case.
+	 * @return
+	 */
 	public List<String> getActorsLower() {
 		return Arrays.asList(Actors.toLowerCase().split(", "));
 	}

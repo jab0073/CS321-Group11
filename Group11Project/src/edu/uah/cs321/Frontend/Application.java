@@ -100,4 +100,10 @@ public class Application extends JFrame {
 	public static AccountPage getAccountPage() {
 		return Application.accountPage;
 	}
+
+	public static void setSearchPage(SearchPage sp){
+		Application.contentPanel.remove(searchPage);
+		Application.searchPage = sp;
+		Application.contentPanel.add(searchPage, "searchPage");
+	}
 }

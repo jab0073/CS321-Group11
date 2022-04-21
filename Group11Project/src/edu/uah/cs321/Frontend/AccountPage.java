@@ -133,6 +133,7 @@ public class AccountPage extends JPanel {
 		movieSearchButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		contentPanel.add(movieSearchButton);
 		movieSearchButton.addActionListener(e->{
+			Application.setSearchPage(new SearchPage(ResourceUtils.getMasterMovieList()));
 			Application.showPage("searchPage");
 		});
 

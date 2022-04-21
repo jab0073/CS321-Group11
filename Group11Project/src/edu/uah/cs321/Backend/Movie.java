@@ -14,40 +14,67 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 @SuppressWarnings("unused")
 /**
- * File Name: AuthSystem
+ * File Name: Movie
  * Description: A Movie object contains all the information about a movie
  * @author justinbushue
  * @version 1.0
  */
 public class Movie implements Serializable {
+	// Creating a list of strings called mpcrRatings and adding the values G, PG, PG-13, R, and NR to it.
 	private final List<String> mpcrRatings = new ArrayList<>(Arrays.asList("G","PG","PG-13","R","NR"));
+	// Used to hold the movies title.
 	private String Title;
+	// Used to hold the movies plot.
 	private String Plot;
+	// Used to hold the movies MPCR Rating.
 	private String Rated;
+	// Used to hold the movies year of release.
 	private String Year;
+	// Used to hold the movies release date.
 	private String Released;
+	// Used to hold the movies genres.
 	private String Genre;
+	// Used to hold the movies runtime length.
 	private String Runtime;
+	// Used to hold the movies director.
 	private String Director;
+	// Used to hold the movies writer(s).
 	private String Writer;
+	// Used to hold the movies awards.
 	private String Awards;
+	// Used to hold the movies language.
 	private String Language;
+	// Used to hold the movies release country.
 	private String Country;
+	// Used to hold the movies poster url.
 	private String Poster;
+	// Used to hold the movies rating by various outlets.
 	private List<Rating> Ratings;
+	// Used to hold the movies metascore.
 	private String Metascore;
+	// Used to hold the movies IMDB rating.
 	private String imdbRating;
+	// Used to hold the movies IMDB votes.
 	private String imdbVotes;
+	// Used to hold the movies IMDB ID.
 	private String imdbID;
+	// Used to hold the movies type.
 	private String Type;
+	// Used to hold the movies dvd release info.
 	private String DVD;
+	// Used to hold the movies box office info.
 	private String BoxOffice;
+	// Used to hold the movies production info.
 	private String Production;
+	// Used to hold the movies website url.
 	private String Website;
+	// Used to hold the movies critical response.
 	private String Response;
+	// Used to hold the movies actor(s).
 	private String Actors;
+	// Used to hold the movies distinct words in the title, plot, actor(s), director, writer(s).
 	private List<String> distinctWords;
-
+	// Used to hold the movies user created reviews.
 	private List<Review> userReviews;
 
 	// This is a constructor for the Movie class. It initializes the userReviews list to an empty list.
@@ -99,166 +126,372 @@ public class Movie implements Serializable {
 		this.Year = year;
 	}
 
+	/**
+	 * This function returns the title of the movie
+	 *
+	 * @return The title of the book.
+	 */
 	public String getTitle() {
 		return Title;
 	}
 
+	/**
+	 * This function sets the title of the movie
+	 *
+	 * @param title The title of the notification.
+	 */
 	public void setTitle(String title) {
 		Title = title;
 	}
 
+	/**
+	 * This function returns the plot of the movie
+	 *
+	 * @return The plot of the movie.
+	 */
 	public String getPlot() {
 		return Plot;
 	}
 
+	/**
+	 * This function sets the plot of the movie
+	 *
+	 * @param plot The plot of the movie.
+	 */
 	public void setPlot(String plot) {
 		Plot = plot;
 	}
 
+	/**
+	 * This function returns the rated value of the movie
+	 *
+	 * @return The value of the variable Rated.
+	 */
 	public String getRated() {
 		return Rated;
 	}
 
+	/**
+	 * This function sets the value of the variable "Rated" to the value of the variable "rated"
+	 *
+	 * @param rated The rating of the movie.
+	 */
 	public void setRated(String rated) {
 		Rated = rated;
 	}
 
+	/**
+	 * This function returns the year of the movie
+	 *
+	 * @return The year of the car.
+	 */
 	public String getYear() {
 		return Year;
 	}
 
+	/**
+	 * This function sets the year of the car
+	 *
+	 * @param year The year of the movie.
+	 */
 	public void setYear(String year) {
 		Year = year;
 	}
 
+	/**
+	 * This function returns the release date of the movie
+	 *
+	 * @return The value of the variable Released.
+	 */
 	public String getReleased() {
 		return Released;
 	}
 
+	/**
+	 * It sets the value of the variable Released to the value of the parameter released.
+	 *
+	 * @param released The date the movie was released.
+	 */
 	public void setReleased(String released) {
 		Released = released;
 	}
 
+	/**
+	 * > The function takes a string of genres separated by commas and returns a list of strings of genres
+	 *
+	 * @return A list of strings
+	 */
 	public List<String> getGenre() {
 		return List.of(Genre.split(", "));
 	}
 
+	/**
+	 * > This function takes a string of genres, splits it into a list of genres, and returns the list of genres in lowercase
+	 *
+	 * @return A list of strings, each string is a genre in lowercase.
+	 */
 	public List<String> getGenreLower() {
 		return List.of(Genre.toLowerCase().split(", "));
 	}
 
+	/**
+	 * The function takes a list of strings, joins them together with a comma and a space, and then sets the Genre variable to
+	 * that string
+	 *
+	 * @param genre A list of genres that the movie belongs to.
+	 */
 	public void setGenre(List<String> genre) {
 		Genre = String.join(", ", genre);
 	}
 
+	/**
+	 * This function returns the runtime of the movie
+	 *
+	 * @return The runtime of the movie.
+	 */
 	public String getRuntime() {
 		return Runtime;
 	}
 
+	/**
+	 * This function sets the runtime of the movie
+	 *
+	 * @param runtime The runtime of the movie in minutes.
+	 */
 	public void setRuntime(String runtime) {
 		Runtime = runtime;
 	}
 
+	/**
+	 * This function returns the director of the movie
+	 *
+	 * @return The Director of the movie.
+	 */
 	public String getDirector() {
 		return Director;
 	}
 
+	/**
+	 * This function sets the director of the movie
+	 *
+	 * @param director The director of the movie.
+	 */
 	public void setDirector(String director) {
 		Director = director;
 	}
 
+	/**
+	 * It returns the writer of the book.
+	 *
+	 * @return The writer of the book.
+	 */
 	public String getWriter() {
 		return Writer;
 	}
 
+	/**
+	 * This function sets the writer of the book
+	 *
+	 * @param writer The name of the writer.
+	 */
 	public void setWriter(String writer) {
 		Writer = writer;
 	}
 
+	/**
+	 * This function returns the awards of the movie
+	 *
+	 * @return The awards that the movie has won.
+	 */
 	public String getAwards() {
 		return Awards;
 	}
 
+	/**
+	 * This function sets the value of the Awards variable to the value of the awards parameter
+	 *
+	 * @param awards The awards the movie has won.
+	 */
 	public void setAwards(String awards) {
 		Awards = awards;
 	}
 
+	/**
+	 * This function returns the language of the book
+	 *
+	 * @return The language of the movie.
+	 */
 	public String getLanguage() {
 		return Language;
 	}
 
+	/**
+	 * This function sets the language of the user
+	 *
+	 * @param language The language of the text to be translated.
+	 */
 	public void setLanguage(String language) {
 		Language = language;
 	}
 
+	/**
+	 * This function returns the country of the user
+	 *
+	 * @return The country of the person.
+	 */
 	public String getCountry() {
 		return Country;
 	}
 
+	/**
+	 * This function sets the country of the user
+	 *
+	 * @param country The country you want to search for.
+	 */
 	public void setCountry(String country) {
 		Country = country;
 	}
 
+	/**
+	 * This function returns the poster of the movie
+	 *
+	 * @return The poster of the movie.
+	 */
 	public String getPoster() {
 		return Poster;
 	}
 
+	/**
+	 * This function sets the poster of the movie
+	 *
+	 * @param poster The URL of the poster image.
+	 */
 	public void setPoster(String poster) {
 		Poster = poster;
 	}
 
+	/**
+	 * This function returns a list of ratings
+	 *
+	 * @return A list of ratings.
+	 */
 	public List<Rating> getRatings() {
 		return Ratings;
 	}
 
+	/**
+	 * This function sets the ratings of the movie
+	 *
+	 * @param ratings A list of ratings.
+	 */
 	public void setRatings(List<Rating> ratings) {
 		Ratings = ratings;
 	}
 
+	/**
+	 * This function returns the Metascore of the movie
+	 *
+	 * @return The Metascore of the movie.
+	 */
 	public String getMetascore() {
 		return Metascore;
 	}
 
+	/**
+	 * This function sets the value of the Metascore variable to the value of the metascore parameter
+	 *
+	 * @param metascore The metascore of the movie.
+	 */
 	public void setMetascore(String metascore) {
 		Metascore = metascore;
 	}
 
+	/**
+	 * This function returns the imdbRating of the movie
+	 *
+	 * @return The imdbRating is being returned.
+	 */
 	public String getImdbRating() {
 		return imdbRating;
 	}
 
+	/**
+	 * This function sets the imdbRating variable to the value of the imdbRating parameter
+	 *
+	 * @param imdbRating The IMDB rating of the movie.
+	 */
 	public void setImdbRating(String imdbRating) {
 		this.imdbRating = imdbRating;
 	}
 
+	/**
+	 * This function returns the imdbVotes variable
+	 *
+	 * @return The imdbVotes variable is being returned.
+	 */
 	public String getImdbVotes() {
 		return imdbVotes;
 	}
 
+	/**
+	 * This function sets the imdbVotes variable to the value of the imdbVotes parameter
+	 *
+	 * @param imdbVotes The number of votes the movie has received on IMDB.
+	 */
 	public void setImdbVotes(String imdbVotes) {
 		this.imdbVotes = imdbVotes;
 	}
 
+	/**
+	 * This function returns the imdbID of the movie
+	 *
+	 * @return The imdbID is being returned.
+	 */
 	public String getImdbID() {
 		return imdbID;
 	}
 
+	/**
+	 * This function sets the imdbID of the movie to the imdbID passed in as a parameter
+	 *
+	 * @param imdbID The IMDB ID of the movie.
+	 */
 	public void setImdbID(String imdbID) {
 		this.imdbID = imdbID;
 	}
 
+	/**
+	 * This function returns the type of the object
+	 *
+	 * @return The type of the object.
+	 */
 	public String getType() {
 		return Type;
 	}
 
+	/**
+	 * This function sets the type of the object
+	 *
+	 * @param type The type of the message.
+	 */
 	public void setType(String type) {
 		Type = type;
 	}
 
+	/**
+	 * This function returns the DVD of the movie
+	 *
+	 * @return The DVD variable is being returned.
+	 */
 	public String getDVD() {
 		return DVD;
 	}
 
+	/**
+	 * This function sets the DVD variable to the DVD parameter
+	 *
+	 * @param DVD The DVD's name
+	 */
 	public void setDVD(String DVD) {
 		this.DVD = DVD;
 	}
@@ -346,9 +579,16 @@ public class Movie implements Serializable {
 	}
 
 	/**
+<<<<<<< Updated upstream
 	 * Return a list of strings, where each string is an actor's name, and the list is populated by splitting the Actors
 	 * property on commas. Litteraly the same as getActors() just the strings are lower case.
 	 * @return
+=======
+	 * It takes the Actors string, converts it to lowercase, splits it into an array of strings, and returns that array as a
+	 * list
+	 *
+	 * @return A list of the actors in the movie, in lowercase.
+>>>>>>> Stashed changes
 	 */
 	public List<String> getActorsLower() {
 		return Arrays.asList(Actors.toLowerCase().split(", "));

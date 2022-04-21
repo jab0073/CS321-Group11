@@ -13,14 +13,23 @@ import java.util.stream.Collectors;
  */
 @SuppressWarnings("unused")
 public class User implements Serializable {
+	// Declaring the variables firstName, lastName, aboutMe, and userName.
 	protected String firstName, lastName, aboutMe, userName;
+	// Declaring a variable named reviews that is a list of Review objects.
 	protected List<Review> reviews;
+	// Declaring a variable called movieLists that is a list of MovieList objects.
 	protected List<MovieList> movieLists;
+	// Declaring a field that is a list of strings.
 	protected List<String> favoriteActors;
+	// Declaring a variable named favoriteMovies that is a list of Movie objects.
 	protected List<Movie> favoriteMovies;
+	// Declaring a variable called favoriteGenres that is a list of strings.
 	protected List<String> favoriteGenres;
+	// Declaring a field that is a list of strings.
 	protected List<String> favoriteDirectors;
+	// Declaring a list of strings called favoriteOther.
 	protected List<String> favoriteOther;
+	// Declaring a protected boolean variable called entitlement.
 	protected boolean entitlement;
 
 	// This is the default constructor for the User class. It sets the default values for the first name, last name, about me,
@@ -390,6 +399,14 @@ public class User implements Serializable {
 		}
 	}
 
+	/**
+	 * If the object is not an instance of User, or if the first name, last name, about me, user name, entitlement, reviews,
+	 * movie lists, favorite actors, favorite movies, favorite genres, favorite directors, or favorite other are not equal,
+	 * then return false
+	 *
+	 * @param o The object to compare to.
+	 * @return The hashcode of the object.
+	 */
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -416,6 +433,11 @@ public class User implements Serializable {
 		return getFavoriteOther() != null ? getFavoriteOther().equals(user.getFavoriteOther()) : user.getFavoriteOther() == null;
 	}
 
+	/**
+	 * The hashCode() function returns a unique integer for each object based on the values of the object's fields
+	 *
+	 * @return The hash code of the object.
+	 */
 	@Override
 	public int hashCode() {
 		int result = getFirstName().hashCode();

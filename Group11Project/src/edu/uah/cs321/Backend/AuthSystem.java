@@ -14,7 +14,9 @@ import java.util.Objects;
  * @version 1.0
  */
 public final class AuthSystem {
+	// Creating a new HashMap object called userPass.
 	private static HashMap<String,String> userPass = new HashMap<>();
+	// Creating a new instance of the AuthSystem class.
 	private final static AuthSystem instance = new AuthSystem();
 
 	// The constructor is private, so it cannot be called outside the class.

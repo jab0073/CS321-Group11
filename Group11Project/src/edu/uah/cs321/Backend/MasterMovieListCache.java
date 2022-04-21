@@ -14,8 +14,12 @@ import java.util.Objects;
  */
 public class MasterMovieListCache {
 
+	// Creating a private static variable called masterMovieLst that is of type MovieList.
 	private static MovieList masterMovieLst;
 
+	/**
+	 * If the cache exists, read it in and set the masterMovieLst to it. If it doesn't exist, create a new one
+	 */
 	public static void init() throws IOException {
 		try {
 			FileInputStream fileIn = new FileInputStream(Objects.requireNonNull(ResourceUtils.getMasterMovieListCache()));
@@ -38,6 +42,9 @@ public class MasterMovieListCache {
 		}
 	}
 
+	/**
+	 * > This function writes the master movie list to a file
+	 */
 	public static void close() throws IOException {
 		ResourceUtils.ensurePath(ResourceUtils.getGoodWatchesDirectory());
 		FileOutputStream fileOut = new FileOutputStream(Objects.requireNonNull(ResourceUtils.getMasterMovieListCache()));

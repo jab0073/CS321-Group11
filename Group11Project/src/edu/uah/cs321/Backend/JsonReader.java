@@ -17,7 +17,9 @@ import java.util.List;
 @SuppressWarnings("unused")
 public final class JsonReader {
 
+	// Creating a static instance of Gson.
 	private static Gson gson;
+	// Creating a list of movies.
 	private static List<Movie> movieList;
 
 	// Used to read the json file of the master movie list

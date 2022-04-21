@@ -14,7 +14,9 @@ import java.util.Optional;
  */
 @SuppressWarnings("unused")
 public final class UserDatabase {
+	// This is a list of users that is used to store the users.
 	private static List<User> users = new ArrayList<>();
+	// This is a singleton pattern. It is used to ensure that there is only one instance of the UserDatabase class.
 	private final static UserDatabase instance = new UserDatabase();
 
 	// This is the constructor for the UserDatabase class. It is used to initialize the users list.
@@ -50,6 +52,12 @@ public final class UserDatabase {
 		users.add(u);
 	}
 
+	/**
+	 * Check if the user exists in the list of users.
+	 *
+	 * @param u The user to check for
+	 * @return A boolean value.
+	 */
 	public static boolean checkUserExists(User u) {
 		return users.stream().anyMatch(user -> user.getThis().equals(u));
 	}

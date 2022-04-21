@@ -15,8 +15,11 @@ import static java.util.stream.Collectors.toList;
  */
 @SuppressWarnings("unused")
 public class MovieList implements Serializable {
+	//Used to hold the movie lists name.
 	private String listName;
+	// Used to hold the list of movies in the movie list.
 	private List<Movie> movieList;
+	// Used to hold the movie lists filtered results.
 	private List<Movie> filteredMovies;
 
 	// This is the constructor for the MovieList class. It initializes the movieList and filteredMovies variables to an empty
@@ -36,8 +39,7 @@ public class MovieList implements Serializable {
 		filteredMovies = new ArrayList<>();
 	}
 
-	// This is the constructor for the MovieList class. It initializes the movieList and filteredMovies variables to an empty
-	// list.
+
 	public MovieList(String listName, List<Movie> movieList) {
 		this.listName = listName;
 		this.movieList = movieList;
@@ -250,9 +252,16 @@ public class MovieList implements Serializable {
 	}
 
 	/**
+<<<<<<< Updated upstream
 	 * searches the MovieList for movies that have the query in any of their fields.
 	 * @param query
 	 * @return
+=======
+	 * For each word in the query, check if the movie contains that word, if it does, add it to the search results
+	 *
+	 * @param query The query string that the user entered.
+	 * @return A list of movies that contain any of the words in the query.
+>>>>>>> Stashed changes
 	 */
 	public List<Movie> searchForAny(String query) {
 		if(query.equals("")) {
@@ -281,6 +290,11 @@ public class MovieList implements Serializable {
 		filteredMovies.clear();
 	}
 
+	/**
+	 * This function returns the filteredMovies list.
+	 *
+	 * @return The filteredMovies list is being returned.
+	 */
 	public List<Movie> getFilteredMovies() {
 		return filteredMovies;
 	}
@@ -375,6 +389,13 @@ public class MovieList implements Serializable {
 				.collect(toList());
 	}
 
+	/**
+	 * We create a new AtomicReference object, which is a mutable object that can be used in a multi-threaded environment. We
+	 * then use the forEach method to iterate through the movieList and append the title of each movie to the AtomicReference
+	 * object
+	 *
+	 * @return A string of all the movie titles in the movieList.
+	 */
 	@Override
 	public String toString() {
 		AtomicReference<String> str = new AtomicReference<>("");
@@ -386,6 +407,9 @@ public class MovieList implements Serializable {
 		return str.get();
 	}
 
+	/**
+	 * Print() prints the object.
+	 */
 	public void print() {
 		System.out.println(this);
 	}

@@ -22,6 +22,7 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 public class AccountPage extends JPanel {
 	private static JPanel contentPanel;
 	private static User u;
+	private static User clone;
 	private static JPanel headerPanel;
 	private static JLabel usersNameLabel;
 	private static JPanel aboutPanel;
@@ -56,6 +57,7 @@ public class AccountPage extends JPanel {
 		super();
 		this.setLayout(new BorderLayout());
 		AccountPage.u = u;
+		AccountPage.clone = AccountPage.u.clone();
 		System.out.println(u);
 
 		//about Panel has information about the user. (username, description)
@@ -103,6 +105,7 @@ public class AccountPage extends JPanel {
 		//add a button to save everything
 		saveButton = new JButton("Save Changes");
 		saveButton.addActionListener(e->{
+			AccountPage.clone = AccountPage.u;
 			try {
 				UserDatabase.close();
 			} catch (IOException ex) {
@@ -120,6 +123,7 @@ public class AccountPage extends JPanel {
 		logoutButton = new JButton("Log out");
 		//logoutButton.setAlignmentX(RIGHT_ALIGNMENT);
 		logoutButton.addActionListener(e -> {
+			AccountPage.u = AccountPage.clone;
 			Application.closeDialogs();
 			Application.showPage("mainPage");
 		});

@@ -24,6 +24,7 @@ public final class JsonReader {
 
 	// Used to read the json file of the master movie list
 	public JsonReader() throws IOException {
+		// Creating a new instance of the Gson class.
 		gson = new Gson();
 		Reader json = new InputStreamReader(ResourceUtils.getFile(Constants.jsonFileName));
 

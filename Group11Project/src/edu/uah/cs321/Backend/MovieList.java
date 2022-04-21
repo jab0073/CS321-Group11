@@ -252,16 +252,10 @@ public class MovieList implements Serializable {
 	}
 
 	/**
-<<<<<<< Updated upstream
-	 * searches the MovieList for movies that have the query in any of their fields.
-	 * @param query
-	 * @return
-=======
 	 * For each word in the query, check if the movie contains that word, if it does, add it to the search results
 	 *
 	 * @param query The query string that the user entered.
 	 * @return A list of movies that contain any of the words in the query.
->>>>>>> Stashed changes
 	 */
 	public List<Movie> searchForAny(String query) {
 		if(query.equals("")) {

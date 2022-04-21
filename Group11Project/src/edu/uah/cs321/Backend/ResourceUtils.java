@@ -80,14 +80,9 @@ public class ResourceUtils {
 	}
 
 	/**
-<<<<<<< Updated upstream
-	 * returns the file directory path to where the masterMovieList cache is
-	 * @return
-=======
 	 * If the OS is Windows, return the Windows directory, else if the OS is Mac, return the Mac directory
 	 *
 	 * @return The path to the master movie list cache file.
->>>>>>> Stashed changes
 	 */
 	public static String getMasterMovieListCache() {
 		if(System.getProperty("os.name").toLowerCase().startsWith("win")) {
@@ -100,15 +95,10 @@ public class ResourceUtils {
 	}
 
 	/**
-<<<<<<< Updated upstream
-	 * returns the file directory path to where necessary program files are stored.
-	 * @return
-=======
 	 * If the OS is Windows, return the Windows default directory, else if the OS is Mac, return the Mac default directory,
 	 * else return null
 	 *
 	 * @return The directory where the GoodWatches.txt file is located.
->>>>>>> Stashed changes
 	 */
 	public static String getGoodWatchesDirectory() {
 		if(System.getProperty("os.name").toLowerCase().startsWith("win")) {
@@ -151,17 +141,7 @@ public class ResourceUtils {
 	}
 
 	/**
-<<<<<<< Updated upstream
-	 * initialises masterMovieList with the inputted List of Movies
-	 * @param ml
-	 */
-	public static void setMasterMovieList(List<Movie> ml) {ResourceUtils.masterMovieLst = new MovieList(ml); }
-
-	/**
-	 * Sets the masterMovieList to the inputted MovieList
-	 * @param ml
-=======
-	 * > This function takes a list of movies and sets the master movie list to be a new movie list with the given list of
+	 * This function takes a list of movies and sets the master movie list to be a new movie list with the given list of
 	 * movies
 	 *
 	 * @param ml The list of movies to be set as the master list.
@@ -171,24 +151,18 @@ public class ResourceUtils {
 	}
 
 	/**
-	 * > This function sets the master movie list to the movie list passed in as a parameter
+	 * This function sets the master movie list to the movie list passed in as a parameter
 	 *
 	 * @param ml The MovieList object that contains the list of movies to be displayed.
->>>>>>> Stashed changes
 	 */
 	public static void setMasterMovieList(MovieList ml) {
 		ResourceUtils.masterMovieLst = ml;
 	}
 
 	/**
-<<<<<<< Updated upstream
-	 * returns the masterMovieList
-	 * @return MovieList
-=======
-	 * > This function returns the master movie list
+	 * This function returns the master movie list
 	 *
 	 * @return The masterMovieLst object is being returned.
->>>>>>> Stashed changes
 	 */
 	public static MovieList getMasterMovieList() {
 		return ResourceUtils.masterMovieLst;

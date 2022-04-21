@@ -353,10 +353,20 @@ public class User implements Serializable {
 		this.favoriteOther = favoriteOther;
 	}
 
+	/**
+	 * > This function returns a list of reviews
+	 *
+	 * @return A list of reviews.
+	 */
 	public List<Review> getReviews() {
 		return reviews;
 	}
 
+	/**
+	 * > The function `setReviews` takes a list of reviews and sets the reviews of the current object to the list of reviews
+	 *
+	 * @param reviews A list of reviews for the product.
+	 */
 	public void setReviews(List<Review> reviews) {
 		this.reviews = reviews;
 	}

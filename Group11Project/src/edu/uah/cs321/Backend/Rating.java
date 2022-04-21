@@ -36,7 +36,7 @@ public class Rating implements Serializable {
 	}
 
 	/**
-	 * > This function sets the source of the current object to the source passed in as a parameter
+	 * This function sets the source of the current object to the source passed in as a parameter
 	 *
 	 * @param source The source of the tweet.
 	 */
@@ -80,7 +80,7 @@ public class Rating implements Serializable {
 	}
 
 	/**
-	 * > The hashCode() function returns a unique integer for each unique object
+	 * The hashCode() function returns a unique integer for each unique object
 	 *
 	 * @return The hash code of the object.
 	 */

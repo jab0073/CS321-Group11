@@ -203,4 +203,21 @@ public class SearchPage extends JPanel {
 			displayedMovies.add(noResults);
 		}
 	}
+
+	public static void closeSearchPages(){
+		Window[] children = Application.getWindows();
+		for (Window win : children){
+			if (win instanceof JDialog){
+				Component[] comp = ((JDialog) win).getContentPane().getComponents();
+				for (Component c : comp){
+					if (c instanceof SearchPage){
+						win.dispose();
+					}
+				}
+
+
+
+			}
+		}
+	}
 }

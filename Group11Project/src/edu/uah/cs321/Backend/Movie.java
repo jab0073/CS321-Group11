@@ -1,5 +1,6 @@
 package edu.uah.cs321.Backend;
 
+import edu.uah.cs321.Frontend.Application;
 import edu.uah.cs321.Frontend.MoviePage;
 
 import javax.swing.*;
@@ -776,6 +777,7 @@ public class Movie implements Serializable {
 	 * JDialog, and makes the JDialog visible
 	 */
 	public void openMovie(){
+		MoviePage.closeMoviePages();
 		JDialog movieInfo = new JDialog();
 		movieInfo.setMaximumSize(new Dimension(750,1000));
 		movieInfo.setMinimumSize(new Dimension(750,1000));

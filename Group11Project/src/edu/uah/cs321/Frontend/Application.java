@@ -41,6 +41,7 @@ public class Application extends JFrame {
 					ex.printStackTrace();
 				}
 
+				Application.closeDialogs();
 				e.getWindow().dispose();
 			}
 		});
@@ -106,4 +107,17 @@ public class Application extends JFrame {
 		Application.searchPage = sp;
 		Application.contentPanel.add(searchPage, "searchPage");
 	}
+
+	/**
+	 * Closes all dialogs besides the main application.
+	 */
+	public static void closeDialogs(){
+		Window[] children = Application.getWindows();
+		for (Window win : children){
+			if (win instanceof JDialog){
+				win.dispose();
+			}
+		}
+	}
+
 }

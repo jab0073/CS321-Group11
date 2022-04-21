@@ -104,6 +104,7 @@ public class AccountPage extends JPanel {
 		logoutButton = new JButton("Log out");
 		//logoutButton.setAlignmentX(RIGHT_ALIGNMENT);
 		logoutButton.addActionListener(e -> {
+			Application.closeDialogs();
 			Application.showPage("mainPage");
 		});
 		headerPanel.add(logoutButton);
@@ -267,6 +268,7 @@ public class AccountPage extends JPanel {
 	 * @param movieList
 	 */
 	public void openMovieList(MovieList movieList){
+		SearchPage.closeSearchPages();
 		System.out.println("Opened movie list: " + movieList.getListName());
 		JDialog jd = new JDialog();
 		JLabel confirmation = new JLabel("Now viewing movie list: " + movieList.getListName());
@@ -294,12 +296,12 @@ public class AccountPage extends JPanel {
 		SearchPage listViewer = new SearchPage(movieList);
 		listViewer.removeHeader();
 
-		JPanel contentPanel = new JPanel();
-		contentPanel.add(confirmation);
-		contentPanel.add(deleteMovieListButton);
-		contentPanel.add(listViewer);
+		listViewer.add(confirmation);
+		listViewer.add(deleteMovieListButton);
+		listViewer.setComponentZOrder(confirmation,0);
+		listViewer.setComponentZOrder(deleteMovieListButton,1);
 
-		jd.add(contentPanel);
+		jd.add(listViewer);
 
 		jd.setVisible(true);
 	}

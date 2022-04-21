@@ -422,4 +422,18 @@ public class MoviePage extends JPanel {
 			reviewsList.add(reviewEntry,Component.CENTER_ALIGNMENT);
 		});
 	}
+
+	public static void closeMoviePages(){
+		Window[] children = Application.getWindows();
+		for (Window win : children){
+			if (win instanceof JDialog){
+				Component[] comp = ((JDialog) win).getContentPane().getComponents();
+				for (Component c : comp){
+					if (c instanceof MoviePage){
+						win.dispose();
+					}
+				}
+			}
+		}
+	}
 }

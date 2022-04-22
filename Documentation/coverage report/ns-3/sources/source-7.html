@@ -1,0 +1,358 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > PreferencePage</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">edu.uah.cs321.Frontend</a>
+</div>
+
+<h1>Coverage Summary for Class: PreferencePage (edu.uah.cs321.Frontend)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PreferencePage</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (9/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    99.4%
+  </span>
+  <span class="absValue">
+    (153/154)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package edu.uah.cs321.Frontend;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import javax.swing.*;
+<i class="no-highlight">4</i>&nbsp;import javax.xml.crypto.dsig.spec.DigestMethodParameterSpec;
+<i class="no-highlight">5</i>&nbsp;import java.awt.*;
+<i class="no-highlight">6</i>&nbsp;import java.util.*;
+<i class="no-highlight">7</i>&nbsp;import java.util.List;
+<i class="no-highlight">8</i>&nbsp;import java.util.stream.Collectors;
+<i class="no-highlight">9</i>&nbsp;
+<i class="no-highlight">10</i>&nbsp;import edu.uah.cs321.Backend.ResourceUtils;
+<i class="no-highlight">11</i>&nbsp;import edu.uah.cs321.Backend.User;
+<i class="no-highlight">12</i>&nbsp;
+<i class="no-highlight">13</i>&nbsp;/***
+<i class="no-highlight">14</i>&nbsp; * File Name: PreferencePage
+<i class="no-highlight">15</i>&nbsp; * Description:
+<i class="no-highlight">16</i>&nbsp; * @author justinbushue
+<i class="no-highlight">17</i>&nbsp; * @version 1.0
+<i class="no-highlight">18</i>&nbsp; */
+<i class="no-highlight">19</i>&nbsp;public class PreferencePage extends JPanel {
+<i class="no-highlight">20</i>&nbsp;	private static JPanel contentPanel;
+<i class="no-highlight">21</i>&nbsp;	private static JPanel preferenceInfoPanel;
+<i class="no-highlight">22</i>&nbsp;	private static JPanel preferenceButtonPanel;
+<i class="no-highlight">23</i>&nbsp;
+<i class="no-highlight">24</i>&nbsp;	private static JPanel headerPanel;
+<i class="no-highlight">25</i>&nbsp;	private static JPanel buttonPanel;
+<i class="no-highlight">26</i>&nbsp;
+<i class="no-highlight">27</i>&nbsp;	private static List&lt;JButton&gt; buttons;
+<i class="no-highlight">28</i>&nbsp;	private static JLabel header;
+<i class="no-highlight">29</i>&nbsp;
+<i class="no-highlight">30</i>&nbsp;	private static BoxLayout contentPanelLayout;
+<i class="no-highlight">31</i>&nbsp;	private static BoxLayout headerPanelLayout;
+<i class="no-highlight">32</i>&nbsp;	private static BoxLayout buttonPanelLayout;
+<i class="no-highlight">33</i>&nbsp;	private static BoxLayout preferenceButtonPanelLayout;
+<i class="no-highlight">34</i>&nbsp;	private static BoxLayout preferenceInfoPanelLayout;
+<i class="no-highlight">35</i>&nbsp;
+<i class="no-highlight">36</i>&nbsp;	private static JLabel favoriteGenresLabel;
+<i class="no-highlight">37</i>&nbsp;	private static JLabel favoriteActorsLabel;
+<i class="no-highlight">38</i>&nbsp;	private static JLabel favoriteDirectorsLabel;
+<i class="no-highlight">39</i>&nbsp;
+<i class="no-highlight">40</i>&nbsp;	private static JButton doneButton;
+<i class="no-highlight">41</i>&nbsp;
+<i class="no-highlight">42</i>&nbsp;	private final User u;
+<i class="no-highlight">43</i>&nbsp;
+<i class="no-highlight">44</i>&nbsp;	private final int type;
+<i class="no-highlight">45</i>&nbsp;
+<i class="no-highlight">46</i>&nbsp;	/**
+<i class="no-highlight">47</i>&nbsp;	 * Preference page is a JPanel that lets the user add or reset their preferences
+<i class="no-highlight">48</i>&nbsp;	 * @param u
+<i class="no-highlight">49</i>&nbsp;	 * @param type
+<i class="no-highlight">50</i>&nbsp;	 */
+<i class="no-highlight">51</i>&nbsp;	public PreferencePage(User u, int type) {
+<b class="fc"><i class="no-highlight">52</i>&nbsp;		super();</b>
+<b class="fc"><i class="no-highlight">53</i>&nbsp;		this.u = u;</b>
+<b class="fc"><i class="no-highlight">54</i>&nbsp;		this.type = type;</b>
+<b class="fc"><i class="no-highlight">55</i>&nbsp;		this.setLayout(new BorderLayout());</b>
+<i class="no-highlight">56</i>&nbsp;
+<i class="no-highlight">57</i>&nbsp;		//Everything gets put into contentPanel.
+<b class="fc"><i class="no-highlight">58</i>&nbsp;		contentPanel = new JPanel();</b>
+<b class="fc"><i class="no-highlight">59</i>&nbsp;		preferenceInfoPanel = new JPanel();</b>
+<b class="fc"><i class="no-highlight">60</i>&nbsp;		preferenceButtonPanel = new JPanel();</b>
+<b class="fc"><i class="no-highlight">61</i>&nbsp;		headerPanel = new JPanel();</b>
+<b class="fc"><i class="no-highlight">62</i>&nbsp;		buttonPanel = new JPanel();</b>
+<i class="no-highlight">63</i>&nbsp;
+<b class="fc"><i class="no-highlight">64</i>&nbsp;		contentPanelLayout = new BoxLayout(contentPanel, BoxLayout.X_AXIS);</b>
+<b class="fc"><i class="no-highlight">65</i>&nbsp;		preferenceInfoPanelLayout = new BoxLayout(preferenceInfoPanel, BoxLayout.Y_AXIS);</b>
+<b class="fc"><i class="no-highlight">66</i>&nbsp;		preferenceButtonPanelLayout = new BoxLayout(preferenceButtonPanel, BoxLayout.Y_AXIS);</b>
+<b class="fc"><i class="no-highlight">67</i>&nbsp;		headerPanelLayout = new BoxLayout(headerPanel, BoxLayout.Y_AXIS);</b>
+<b class="fc"><i class="no-highlight">68</i>&nbsp;		buttonPanelLayout = new BoxLayout(buttonPanel, BoxLayout.Y_AXIS);</b>
+<i class="no-highlight">69</i>&nbsp;
+<b class="fc"><i class="no-highlight">70</i>&nbsp;		contentPanel.setLayout(contentPanelLayout);</b>
+<b class="fc"><i class="no-highlight">71</i>&nbsp;		preferenceButtonPanel.setLayout(preferenceButtonPanelLayout);</b>
+<b class="fc"><i class="no-highlight">72</i>&nbsp;		preferenceInfoPanel.setLayout(preferenceInfoPanelLayout);</b>
+<b class="fc"><i class="no-highlight">73</i>&nbsp;		headerPanel.setLayout(headerPanelLayout);</b>
+<b class="fc"><i class="no-highlight">74</i>&nbsp;		buttonPanel.setLayout(buttonPanelLayout);</b>
+<i class="no-highlight">75</i>&nbsp;
+<b class="fc"><i class="no-highlight">76</i>&nbsp;		doneButton = new JButton(&quot;Done&quot;);</b>
+<i class="no-highlight">77</i>&nbsp;
+<b class="fc"><i class="no-highlight">78</i>&nbsp;		JButton button1 = new JButton();</b>
+<b class="fc"><i class="no-highlight">79</i>&nbsp;		JButton button2 = new JButton();</b>
+<b class="fc"><i class="no-highlight">80</i>&nbsp;		JButton button3 = new JButton();</b>
+<b class="fc"><i class="no-highlight">81</i>&nbsp;		JButton button4 = new JButton();</b>
+<b class="fc"><i class="no-highlight">82</i>&nbsp;		JButton button5 = new JButton();</b>
+<b class="fc"><i class="no-highlight">83</i>&nbsp;		JButton button6 = new JButton();</b>
+<b class="fc"><i class="no-highlight">84</i>&nbsp;		JButton button7 = new JButton();</b>
+<b class="fc"><i class="no-highlight">85</i>&nbsp;		JButton button8 = new JButton();</b>
+<b class="fc"><i class="no-highlight">86</i>&nbsp;		JButton button9 = new JButton();</b>
+<b class="fc"><i class="no-highlight">87</i>&nbsp;		JButton button10 = new JButton();</b>
+<i class="no-highlight">88</i>&nbsp;
+<b class="fc"><i class="no-highlight">89</i>&nbsp;		buttons = new ArrayList&lt;&gt;(Arrays.asList(button1, button2, button3, button4, button5, button6, button7, button8, button9, button10));</b>
+<i class="no-highlight">90</i>&nbsp;
+<i class="no-highlight">91</i>&nbsp;		//switches what preference the user is editing.
+<b class="fc"><i class="no-highlight">92</i>&nbsp;		switch (this.type) {</b>
+<i class="no-highlight">93</i>&nbsp;			case 0 -&gt; {
+<b class="fc"><i class="no-highlight">94</i>&nbsp;				header = new JLabel(&quot;Select Your Favorite Genres&quot;);</b>
+<b class="fc"><i class="no-highlight">95</i>&nbsp;				List&lt;String&gt; genres = ResourceUtils.getMasterMovieList().getAllGenres();</b>
+<b class="fc"><i class="no-highlight">96</i>&nbsp;				for(int i = 0 ; i &lt; 10 ; i++) {</b>
+<b class="fc"><i class="no-highlight">97</i>&nbsp;					String topGenres = genres.stream()</b>
+<b class="fc"><i class="no-highlight">98</i>&nbsp;							.collect(Collectors.groupingBy(w -&gt; w, Collectors.counting()))</b>
+<b class="fc"><i class="no-highlight">99</i>&nbsp;							.entrySet()</b>
+<b class="fc"><i class="no-highlight">100</i>&nbsp;							.stream()</b>
+<b class="fc"><i class="no-highlight">101</i>&nbsp;							.max(Comparator.comparing(Map.Entry::getValue))</b>
+<b class="fc"><i class="no-highlight">102</i>&nbsp;							.get()</b>
+<b class="fc"><i class="no-highlight">103</i>&nbsp;							.getKey();</b>
+<b class="fc"><i class="no-highlight">104</i>&nbsp;					buttons.get(i).setText(topGenres);</b>
+<b class="fc"><i class="no-highlight">105</i>&nbsp;					buttons.get(i).addActionListener(e -&gt; {</b>
+<b class="fc"><i class="no-highlight">106</i>&nbsp;						if(!u.getFavoriteGenres().contains(topGenres))</b>
+<b class="fc"><i class="no-highlight">107</i>&nbsp;							u.getFavoriteGenres().add(topGenres);</b>
+<b class="fc"><i class="no-highlight">108</i>&nbsp;						this.setBackground(new Color(250,182,0));</b>
+<b class="fc"><i class="no-highlight">109</i>&nbsp;						refreshPreference();</b>
+<i class="no-highlight">110</i>&nbsp;					});
+<b class="fc"><i class="no-highlight">111</i>&nbsp;					buttonPanel.add(buttons.get(i));</b>
+<b class="fc"><i class="no-highlight">112</i>&nbsp;					genres.removeAll(Collections.singleton(topGenres));</b>
+<i class="no-highlight">113</i>&nbsp;					//System.out.println(&quot;Button added with text: &quot; + topGenres);
+<i class="no-highlight">114</i>&nbsp;				}
+<b class="fc"><i class="no-highlight">115</i>&nbsp;				doneButton.addActionListener(e -&gt; {</b>
+<b class="fc"><i class="no-highlight">116</i>&nbsp;					PreferencePage pp1 = new PreferencePage(this.u,1);</b>
+<b class="fc"><i class="no-highlight">117</i>&nbsp;					Application.getContentPanel().add(pp1,&quot;preferencePage1&quot;);</b>
+<b class="fc"><i class="no-highlight">118</i>&nbsp;					Application.showPage(&quot;preferencePage1&quot;);</b>
+<i class="no-highlight">119</i>&nbsp;				});
+<b class="fc"><i class="no-highlight">120</i>&nbsp;				buttonPanel.add(doneButton);</b>
+<b class="fc"><i class="no-highlight">121</i>&nbsp;			}</b>
+<i class="no-highlight">122</i>&nbsp;
+<i class="no-highlight">123</i>&nbsp;			case 1 -&gt; {
+<b class="fc"><i class="no-highlight">124</i>&nbsp;				header = new JLabel(&quot;Select Your Favorite Actors&quot;);</b>
+<b class="fc"><i class="no-highlight">125</i>&nbsp;				List&lt;String&gt; actors = ResourceUtils.getMasterMovieList().getAllActors();</b>
+<b class="fc"><i class="no-highlight">126</i>&nbsp;				for(int i = 0 ; i &lt; 10 ; i++) {</b>
+<b class="fc"><i class="no-highlight">127</i>&nbsp;					String topActor = actors.stream()</b>
+<b class="fc"><i class="no-highlight">128</i>&nbsp;							.collect(Collectors.groupingBy(w -&gt; w, Collectors.counting()))</b>
+<b class="fc"><i class="no-highlight">129</i>&nbsp;							.entrySet()</b>
+<b class="fc"><i class="no-highlight">130</i>&nbsp;							.stream()</b>
+<b class="fc"><i class="no-highlight">131</i>&nbsp;							.max(Comparator.comparing(Map.Entry::getValue))</b>
+<b class="fc"><i class="no-highlight">132</i>&nbsp;							.get()</b>
+<b class="fc"><i class="no-highlight">133</i>&nbsp;							.getKey();</b>
+<b class="fc"><i class="no-highlight">134</i>&nbsp;					buttons.get(i).setText(topActor);</b>
+<b class="fc"><i class="no-highlight">135</i>&nbsp;					buttons.get(i).addActionListener(e -&gt; {</b>
+<b class="fc"><i class="no-highlight">136</i>&nbsp;						if(!u.getFavoriteActors().contains(topActor))</b>
+<b class="fc"><i class="no-highlight">137</i>&nbsp;							u.getFavoriteActors().add(topActor);</b>
+<b class="fc"><i class="no-highlight">138</i>&nbsp;						this.setBackground(new Color(250,182,0));</b>
+<b class="fc"><i class="no-highlight">139</i>&nbsp;						refreshPreference();</b>
+<i class="no-highlight">140</i>&nbsp;					});
+<b class="fc"><i class="no-highlight">141</i>&nbsp;					buttonPanel.add(buttons.get(i));</b>
+<b class="fc"><i class="no-highlight">142</i>&nbsp;					actors.removeAll(Collections.singleton(topActor));</b>
+<i class="no-highlight">143</i>&nbsp;					//System.out.println(&quot;Button added with text: &quot; + topActor);
+<i class="no-highlight">144</i>&nbsp;				}
+<b class="fc"><i class="no-highlight">145</i>&nbsp;				doneButton.addActionListener(e -&gt; {</b>
+<b class="fc"><i class="no-highlight">146</i>&nbsp;					PreferencePage pp2 = new PreferencePage(this.u,2);</b>
+<b class="fc"><i class="no-highlight">147</i>&nbsp;					Application.getContentPanel().add(pp2,&quot;preferencePage2&quot;);</b>
+<b class="fc"><i class="no-highlight">148</i>&nbsp;					Application.showPage(&quot;preferencePage2&quot;);</b>
+<i class="no-highlight">149</i>&nbsp;				});
+<b class="fc"><i class="no-highlight">150</i>&nbsp;				buttonPanel.add(doneButton);</b>
+<b class="fc"><i class="no-highlight">151</i>&nbsp;			}</b>
+<i class="no-highlight">152</i>&nbsp;
+<i class="no-highlight">153</i>&nbsp;			case 2 -&gt; {
+<b class="fc"><i class="no-highlight">154</i>&nbsp;				header = new JLabel(&quot;Select Your Favorite Directors&quot;);</b>
+<b class="fc"><i class="no-highlight">155</i>&nbsp;				List&lt;String&gt; directors = ResourceUtils.getMasterMovieList().getAllDirectors();</b>
+<b class="fc"><i class="no-highlight">156</i>&nbsp;				for(int i = 0 ; i &lt; 10 ; i++) {</b>
+<b class="fc"><i class="no-highlight">157</i>&nbsp;					String topDirector = directors.stream()</b>
+<b class="fc"><i class="no-highlight">158</i>&nbsp;							.collect(Collectors.groupingBy(w -&gt; w, Collectors.counting()))</b>
+<b class="fc"><i class="no-highlight">159</i>&nbsp;							.entrySet()</b>
+<b class="fc"><i class="no-highlight">160</i>&nbsp;							.stream()</b>
+<b class="fc"><i class="no-highlight">161</i>&nbsp;							.max(Comparator.comparing(Map.Entry::getValue))</b>
+<b class="fc"><i class="no-highlight">162</i>&nbsp;							.get()</b>
+<b class="fc"><i class="no-highlight">163</i>&nbsp;							.getKey();</b>
+<b class="fc"><i class="no-highlight">164</i>&nbsp;					buttons.get(i).setText(topDirector);</b>
+<b class="fc"><i class="no-highlight">165</i>&nbsp;					buttons.get(i).addActionListener(e -&gt; {</b>
+<b class="fc"><i class="no-highlight">166</i>&nbsp;						if(!u.getFavoriteDirectors().contains(topDirector))</b>
+<b class="fc"><i class="no-highlight">167</i>&nbsp;							u.getFavoriteDirectors().add(topDirector);</b>
+<b class="fc"><i class="no-highlight">168</i>&nbsp;						this.setBackground(new Color(250,182,0));</b>
+<b class="fc"><i class="no-highlight">169</i>&nbsp;						refreshPreference();</b>
+<i class="no-highlight">170</i>&nbsp;					});
+<b class="fc"><i class="no-highlight">171</i>&nbsp;					buttonPanel.add(buttons.get(i));</b>
+<b class="fc"><i class="no-highlight">172</i>&nbsp;					directors.removeAll(Collections.singleton(topDirector));</b>
+<i class="no-highlight">173</i>&nbsp;					//System.out.println(&quot;Button added with text: &quot; + topDirector);
+<i class="no-highlight">174</i>&nbsp;				}
+<b class="fc"><i class="no-highlight">175</i>&nbsp;				doneButton.addActionListener(e -&gt; {</b>
+<b class="fc"><i class="no-highlight">176</i>&nbsp;					AccountPage ac = new AccountPage(u);</b>
+<b class="fc"><i class="no-highlight">177</i>&nbsp;					Application.setAccountPage(ac);</b>
+<b class="fc"><i class="no-highlight">178</i>&nbsp;					Application.showPage(&quot;accountPage&quot;);</b>
+<i class="no-highlight">179</i>&nbsp;				});
+<b class="fc"><i class="no-highlight">180</i>&nbsp;				buttonPanel.add(doneButton);</b>
+<b class="fc"><i class="no-highlight">181</i>&nbsp;			}</b>
+<i class="no-highlight">182</i>&nbsp;
+<b class="nc"><i class="no-highlight">183</i>&nbsp;			default -&gt; throw new IllegalStateException(&quot;Unexpected value: &quot; + this.type);</b>
+<i class="no-highlight">184</i>&nbsp;		}
+<i class="no-highlight">185</i>&nbsp;
+<i class="no-highlight">186</i>&nbsp;		//This button clears the user preferences and brings the user back to the first section to restart the process.
+<b class="fc"><i class="no-highlight">187</i>&nbsp;		JButton resetPreferenceButton = new JButton(&quot;Reset your preferences&quot;);</b>
+<b class="fc"><i class="no-highlight">188</i>&nbsp;		resetPreferenceButton.addActionListener(e-&gt;{</b>
+<b class="fc"><i class="no-highlight">189</i>&nbsp;			u.getFavoriteActors().clear();</b>
+<b class="fc"><i class="no-highlight">190</i>&nbsp;			u.getFavoriteDirectors().clear();</b>
+<b class="fc"><i class="no-highlight">191</i>&nbsp;			u.getFavoriteGenres().clear();</b>
+<b class="fc"><i class="no-highlight">192</i>&nbsp;			refreshPreference();</b>
+<b class="fc"><i class="no-highlight">193</i>&nbsp;			Application.showPage(&quot;preferencePage0&quot;);</b>
+<i class="no-highlight">194</i>&nbsp;		});
+<i class="no-highlight">195</i>&nbsp;
+<b class="fc"><i class="no-highlight">196</i>&nbsp;		preferenceInfoPanel.add(resetPreferenceButton);</b>
+<b class="fc"><i class="no-highlight">197</i>&nbsp;		favoriteGenresLabel = new JLabel(&quot;Genres: &quot;);</b>
+<b class="fc"><i class="no-highlight">198</i>&nbsp;		favoriteActorsLabel = new JLabel(&quot;Actors: &quot;);</b>
+<b class="fc"><i class="no-highlight">199</i>&nbsp;		favoriteDirectorsLabel = new JLabel(&quot;Directors: &quot;);</b>
+<b class="fc"><i class="no-highlight">200</i>&nbsp;		preferenceInfoPanel.add(favoriteGenresLabel, Component.LEFT_ALIGNMENT);</b>
+<b class="fc"><i class="no-highlight">201</i>&nbsp;		preferenceInfoPanel.add(favoriteActorsLabel, Component.LEFT_ALIGNMENT);</b>
+<b class="fc"><i class="no-highlight">202</i>&nbsp;		preferenceInfoPanel.add(favoriteDirectorsLabel, Component.LEFT_ALIGNMENT);</b>
+<b class="fc"><i class="no-highlight">203</i>&nbsp;		refreshPreference();</b>
+<i class="no-highlight">204</i>&nbsp;
+<i class="no-highlight">205</i>&nbsp;
+<i class="no-highlight">206</i>&nbsp;
+<b class="fc"><i class="no-highlight">207</i>&nbsp;		headerPanel.add(header, Component.CENTER_ALIGNMENT);</b>
+<b class="fc"><i class="no-highlight">208</i>&nbsp;		preferenceButtonPanel.add(headerPanel, Component.CENTER_ALIGNMENT);</b>
+<b class="fc"><i class="no-highlight">209</i>&nbsp;		preferenceButtonPanel.add(buttonPanel, Component.CENTER_ALIGNMENT);</b>
+<b class="fc"><i class="no-highlight">210</i>&nbsp;		contentPanel.add(preferenceButtonPanel);</b>
+<b class="fc"><i class="no-highlight">211</i>&nbsp;		contentPanel.add(Box.createRigidArea(new Dimension(75,10)));</b>
+<b class="fc"><i class="no-highlight">212</i>&nbsp;		contentPanel.add(preferenceInfoPanel);</b>
+<i class="no-highlight">213</i>&nbsp;
+<b class="fc"><i class="no-highlight">214</i>&nbsp;		contentPanel.setAlignmentX(LEFT_ALIGNMENT);</b>
+<b class="fc"><i class="no-highlight">215</i>&nbsp;		contentPanel.setAlignmentY(TOP_ALIGNMENT);</b>
+<b class="fc"><i class="no-highlight">216</i>&nbsp;		preferenceButtonPanel.setAlignmentY(TOP_ALIGNMENT);</b>
+<b class="fc"><i class="no-highlight">217</i>&nbsp;		preferenceInfoPanel.setAlignmentY(TOP_ALIGNMENT);</b>
+<b class="fc"><i class="no-highlight">218</i>&nbsp;		this.add(contentPanel);</b>
+<i class="no-highlight">219</i>&nbsp;
+<b class="fc"><i class="no-highlight">220</i>&nbsp;		headerPanel.setVisible(true);</b>
+<b class="fc"><i class="no-highlight">221</i>&nbsp;		buttonPanel.setVisible(true);</b>
+<b class="fc"><i class="no-highlight">222</i>&nbsp;		contentPanel.setVisible(true);</b>
+<b class="fc"><i class="no-highlight">223</i>&nbsp;		this.setVisible(true);</b>
+<i class="no-highlight">224</i>&nbsp;	}
+<i class="no-highlight">225</i>&nbsp;
+<i class="no-highlight">226</i>&nbsp;	/**
+<i class="no-highlight">227</i>&nbsp;	 * This function refreshes the displayed preferences on PreferencePage.
+<i class="no-highlight">228</i>&nbsp;	 */
+<i class="no-highlight">229</i>&nbsp;	public void refreshPreference(){
+<b class="fc"><i class="no-highlight">230</i>&nbsp;		String ActorLabel = &quot;Actors: &quot;;</b>
+<b class="fc"><i class="no-highlight">231</i>&nbsp;		String GenreLabel = &quot;Genre: &quot;;</b>
+<b class="fc"><i class="no-highlight">232</i>&nbsp;		String DirectorLabel = &quot;Directors: &quot;;</b>
+<b class="fc"><i class="no-highlight">233</i>&nbsp;		for (String actor : u.getFavoriteActors()){</b>
+<b class="fc"><i class="no-highlight">234</i>&nbsp;			ActorLabel += actor + &quot;, &quot;;</b>
+<b class="fc"><i class="no-highlight">235</i>&nbsp;		}</b>
+<b class="fc"><i class="no-highlight">236</i>&nbsp;		ActorLabel.substring(0,ActorLabel.length()-1);</b>
+<i class="no-highlight">237</i>&nbsp;
+<b class="fc"><i class="no-highlight">238</i>&nbsp;		for (String Genre : u.getFavoriteGenres()){</b>
+<b class="fc"><i class="no-highlight">239</i>&nbsp;			GenreLabel += Genre + &quot;, &quot;;</b>
+<b class="fc"><i class="no-highlight">240</i>&nbsp;		}</b>
+<b class="fc"><i class="no-highlight">241</i>&nbsp;		GenreLabel.substring(0,GenreLabel.length()-1);</b>
+<i class="no-highlight">242</i>&nbsp;
+<b class="fc"><i class="no-highlight">243</i>&nbsp;		for (String director : u.getFavoriteDirectors()){</b>
+<b class="fc"><i class="no-highlight">244</i>&nbsp;			DirectorLabel += director + &quot;, &quot;;</b>
+<b class="fc"><i class="no-highlight">245</i>&nbsp;		}</b>
+<b class="fc"><i class="no-highlight">246</i>&nbsp;		DirectorLabel.substring(0,DirectorLabel.length()-1);</b>
+<b class="fc"><i class="no-highlight">247</i>&nbsp;		favoriteActorsLabel.setText(ActorLabel);</b>
+<b class="fc"><i class="no-highlight">248</i>&nbsp;		favoriteDirectorsLabel.setText(DirectorLabel);</b>
+<b class="fc"><i class="no-highlight">249</i>&nbsp;		favoriteGenresLabel.setText(GenreLabel);</b>
+<i class="no-highlight">250</i>&nbsp;
+<b class="fc"><i class="no-highlight">251</i>&nbsp;		preferenceInfoPanel.revalidate();</b>
+<i class="no-highlight">252</i>&nbsp;	}
+<i class="no-highlight">253</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-04-21 23:48</div>
+</div>
+</body>
+</html>

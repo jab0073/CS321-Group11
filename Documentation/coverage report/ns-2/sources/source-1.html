@@ -1,0 +1,259 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > AuthSystem</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">edu.uah.cs321.Backend</a>
+</div>
+
+<h1>Coverage Summary for Class: AuthSystem (edu.uah.cs321.Backend)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">AuthSystem</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    60%
+  </span>
+  <span class="absValue">
+    (6/10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    46.7%
+  </span>
+  <span class="absValue">
+    (21/45)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package edu.uah.cs321.Backend;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import java.io.*;
+<i class="no-highlight">4</i>&nbsp;import java.util.HashMap;
+<i class="no-highlight">5</i>&nbsp;import java.util.Objects;
+<i class="no-highlight">6</i>&nbsp;
+<i class="no-highlight">7</i>&nbsp;@SuppressWarnings(&quot;unused&quot;)
+<i class="no-highlight">8</i>&nbsp;/**
+<i class="no-highlight">9</i>&nbsp; * File Name: AuthSystem
+<i class="no-highlight">10</i>&nbsp; * Description: The AuthSystem class is a class that contains a HashMap of usernames and passwords. It also contains a method to add a
+<i class="no-highlight">11</i>&nbsp; * user to the HashMap, a method to remove a user from the HashMap, a method to check if a username is in the HashMap, a
+<i class="no-highlight">12</i>&nbsp; * method to check if a password is correct for a given username, and a method to log in a user
+<i class="no-highlight">13</i>&nbsp; * @author justinbushue
+<i class="no-highlight">14</i>&nbsp; * @version 1.0
+<i class="no-highlight">15</i>&nbsp; */
+<i class="no-highlight">16</i>&nbsp;public final class AuthSystem {
+<i class="no-highlight">17</i>&nbsp;	// Creating a new HashMap object called userPass.
+<b class="fc"><i class="no-highlight">18</i>&nbsp;	private static HashMap&lt;String,String&gt; userPass = new HashMap&lt;&gt;();</b>
+<i class="no-highlight">19</i>&nbsp;	// Creating a new instance of the AuthSystem class.
+<b class="fc"><i class="no-highlight">20</i>&nbsp;	private final static AuthSystem instance = new AuthSystem();</b>
+<i class="no-highlight">21</i>&nbsp;
+<i class="no-highlight">22</i>&nbsp;	// The constructor is private, so it cannot be called outside the class.
+<i class="no-highlight">23</i>&nbsp;	// Tries to open the userpass.gw that contains the username password map
+<b class="fc"><i class="no-highlight">24</i>&nbsp;	private AuthSystem() {</b>
+<i class="no-highlight">25</i>&nbsp;		try {
+<b class="fc"><i class="no-highlight">26</i>&nbsp;			FileInputStream fileIn = new FileInputStream(ResourceUtils.getAuthMap());</b>
+<b class="nc"><i class="no-highlight">27</i>&nbsp;			ObjectInputStream in = new ObjectInputStream(fileIn);</b>
+<i class="no-highlight">28</i>&nbsp;			try {
+<b class="nc"><i class="no-highlight">29</i>&nbsp;				userPass = (HashMap&lt;String, String&gt;) in.readObject();</b>
+<i class="no-highlight">30</i>&nbsp;			}
+<b class="nc"><i class="no-highlight">31</i>&nbsp;			catch(ClassNotFoundException e) {</b>
+<b class="nc"><i class="no-highlight">32</i>&nbsp;				System.out.println(&quot;Unable to read Username and Password File. Creating a new data set.&quot;);</b>
+<b class="nc"><i class="no-highlight">33</i>&nbsp;				userPass = new HashMap&lt;&gt;();</b>
+<b class="nc"><i class="no-highlight">34</i>&nbsp;			}</b>
+<i class="no-highlight">35</i>&nbsp;		}
+<b class="fc"><i class="no-highlight">36</i>&nbsp;		catch(IOException ioe) {</b>
+<b class="fc"><i class="no-highlight">37</i>&nbsp;			System.out.println(&quot;Username and Password File not found. Creating a new data set.&quot;);</b>
+<b class="fc"><i class="no-highlight">38</i>&nbsp;			userPass = new HashMap&lt;&gt;();</b>
+<b class="nc"><i class="no-highlight">39</i>&nbsp;		}</b>
+<i class="no-highlight">40</i>&nbsp;	}
+<i class="no-highlight">41</i>&nbsp;
+<i class="no-highlight">42</i>&nbsp;	/**
+<i class="no-highlight">43</i>&nbsp;	 * This function writes the userPass object to a file called userpass.gw
+<i class="no-highlight">44</i>&nbsp;	 */
+<i class="no-highlight">45</i>&nbsp;	public static void close() throws IOException {
+<b class="fc"><i class="no-highlight">46</i>&nbsp;		ResourceUtils.ensurePath(ResourceUtils.getGoodWatchesDirectory());</b>
+<b class="fc"><i class="no-highlight">47</i>&nbsp;		FileOutputStream fileOut = new FileOutputStream(Objects.requireNonNull(ResourceUtils.getAuthMap()));</b>
+<b class="fc"><i class="no-highlight">48</i>&nbsp;		ObjectOutputStream out = new ObjectOutputStream(fileOut);</b>
+<b class="fc"><i class="no-highlight">49</i>&nbsp;		out.writeObject(userPass);</b>
+<i class="no-highlight">50</i>&nbsp;	}
+<i class="no-highlight">51</i>&nbsp;
+<i class="no-highlight">52</i>&nbsp;
+<i class="no-highlight">53</i>&nbsp;	/**
+<i class="no-highlight">54</i>&nbsp;	 * Check if the username is in the userPass dictionary
+<i class="no-highlight">55</i>&nbsp;	 *
+<i class="no-highlight">56</i>&nbsp;	 * @param userName The username to check.
+<i class="no-highlight">57</i>&nbsp;	 * @return The method returns a boolean value.
+<i class="no-highlight">58</i>&nbsp;	 */
+<i class="no-highlight">59</i>&nbsp;	public static boolean checkUserName(String userName) {
+<b class="fc"><i class="no-highlight">60</i>&nbsp;		return userPass.containsKey(userName);</b>
+<i class="no-highlight">61</i>&nbsp;	}
+<i class="no-highlight">62</i>&nbsp;
+<i class="no-highlight">63</i>&nbsp;	/**
+<i class="no-highlight">64</i>&nbsp;	 * Check if the password is at least 8 characters long and contains at least 8 letters and contains only letters and digits
+<i class="no-highlight">65</i>&nbsp;	 *
+<i class="no-highlight">66</i>&nbsp;	 * @param password The password to check.
+<i class="no-highlight">67</i>&nbsp;	 * @return A boolean value.
+<i class="no-highlight">68</i>&nbsp;	 */
+<i class="no-highlight">69</i>&nbsp;	private static boolean checkPasswordComplexity(String password) {
+<b class="fc"><i class="no-highlight">70</i>&nbsp;		if(password.length() &gt;= 8) {</b>
+<b class="fc"><i class="no-highlight">71</i>&nbsp;			for(int i = 0 ; i &lt; password.length() ; i++) {</b>
+<b class="fc"><i class="no-highlight">72</i>&nbsp;				if (!Character.isLetterOrDigit(password.charAt(i)) || Character.isWhitespace(password.charAt(i))) {</b>
+<b class="nc"><i class="no-highlight">73</i>&nbsp;					System.out.println(&quot;Password too weak&quot;);</b>
+<b class="nc"><i class="no-highlight">74</i>&nbsp;					return false;</b>
+<i class="no-highlight">75</i>&nbsp;				}
+<i class="no-highlight">76</i>&nbsp;			}
+<b class="fc"><i class="no-highlight">77</i>&nbsp;			return true;</b>
+<i class="no-highlight">78</i>&nbsp;		}
+<b class="nc"><i class="no-highlight">79</i>&nbsp;		return false;</b>
+<i class="no-highlight">80</i>&nbsp;	}
+<i class="no-highlight">81</i>&nbsp;
+<i class="no-highlight">82</i>&nbsp;	/**
+<i class="no-highlight">83</i>&nbsp;	 * Given a username and a password, return true if the password is correct for the username
+<i class="no-highlight">84</i>&nbsp;	 *
+<i class="no-highlight">85</i>&nbsp;	 * @param userName The username of the user attempting to log in.
+<i class="no-highlight">86</i>&nbsp;	 * @param password The password to check.
+<i class="no-highlight">87</i>&nbsp;	 * @return The return value is boolean.
+<i class="no-highlight">88</i>&nbsp;	 */
+<i class="no-highlight">89</i>&nbsp;	private static boolean checkPassword(String userName, String password) {
+<b class="nc"><i class="no-highlight">90</i>&nbsp;		return password.equals(userPass.get(userName));</b>
+<i class="no-highlight">91</i>&nbsp;	}
+<i class="no-highlight">92</i>&nbsp;
+<i class="no-highlight">93</i>&nbsp;	/**
+<i class="no-highlight">94</i>&nbsp;	 * Add a user to the userPass map
+<i class="no-highlight">95</i>&nbsp;	 *
+<i class="no-highlight">96</i>&nbsp;	 * @param userName The name of the user to be added.
+<i class="no-highlight">97</i>&nbsp;	 * @param password The password to be added to the userPass map.
+<i class="no-highlight">98</i>&nbsp;	 * @return Nothing.
+<i class="no-highlight">99</i>&nbsp;	 */
+<i class="no-highlight">100</i>&nbsp;	public static User addUser(String firstName, String lastName, String userName, String password) {
+<b class="fc"><i class="no-highlight">101</i>&nbsp;		if(!checkUserName(userName) &amp;&amp; checkPasswordComplexity(password)) {</b>
+<b class="fc"><i class="no-highlight">102</i>&nbsp;			userPass.put(userName, password);</b>
+<b class="fc"><i class="no-highlight">103</i>&nbsp;			System.out.println(&quot;User was created with username: &quot; + userName);</b>
+<b class="fc"><i class="no-highlight">104</i>&nbsp;			UserDatabase.addUser(new User(firstName,lastName,userName));</b>
+<b class="fc"><i class="no-highlight">105</i>&nbsp;			return UserDatabase.getUserAccount(userName);</b>
+<i class="no-highlight">106</i>&nbsp;		}
+<b class="nc"><i class="no-highlight">107</i>&nbsp;		else if(checkUserName(userName) &amp;&amp; checkPassword(userName, password)) {</b>
+<b class="nc"><i class="no-highlight">108</i>&nbsp;			return UserDatabase.getUserAccount(userName);</b>
+<i class="no-highlight">109</i>&nbsp;		}
+<i class="no-highlight">110</i>&nbsp;		else {
+<b class="nc"><i class="no-highlight">111</i>&nbsp;			return null;</b>
+<i class="no-highlight">112</i>&nbsp;		}
+<i class="no-highlight">113</i>&nbsp;	}
+<i class="no-highlight">114</i>&nbsp;
+<i class="no-highlight">115</i>&nbsp;	/**
+<i class="no-highlight">116</i>&nbsp;	 * Remove a user from the userPass map
+<i class="no-highlight">117</i>&nbsp;	 *
+<i class="no-highlight">118</i>&nbsp;	 * @param userName The name of the user to be removed.
+<i class="no-highlight">119</i>&nbsp;	 * @param password The password to check.
+<i class="no-highlight">120</i>&nbsp;	 * @return A boolean value.
+<i class="no-highlight">121</i>&nbsp;	 */
+<i class="no-highlight">122</i>&nbsp;	public static boolean removeUser(String userName, String password) {
+<b class="nc"><i class="no-highlight">123</i>&nbsp;		if(checkPassword(userName, password)){</b>
+<b class="nc"><i class="no-highlight">124</i>&nbsp;			userPass.remove(userName);</b>
+<b class="nc"><i class="no-highlight">125</i>&nbsp;			User u = UserDatabase.getUserAccount(userName);</b>
+<b class="nc"><i class="no-highlight">126</i>&nbsp;			UserDatabase.removeUser(u);</b>
+<b class="nc"><i class="no-highlight">127</i>&nbsp;			return true;</b>
+<i class="no-highlight">128</i>&nbsp;		}
+<b class="nc"><i class="no-highlight">129</i>&nbsp;		return false;</b>
+<i class="no-highlight">130</i>&nbsp;	}
+<i class="no-highlight">131</i>&nbsp;
+<i class="no-highlight">132</i>&nbsp;	/**
+<i class="no-highlight">133</i>&nbsp;	 * Check the password for the given username
+<i class="no-highlight">134</i>&nbsp;	 *
+<i class="no-highlight">135</i>&nbsp;	 * @param userName The username of the user attempting to log in.
+<i class="no-highlight">136</i>&nbsp;	 * @param password The password to check.
+<i class="no-highlight">137</i>&nbsp;	 * @return A boolean value.
+<i class="no-highlight">138</i>&nbsp;	 */
+<i class="no-highlight">139</i>&nbsp;	public static User login(String userName, String password) {
+<b class="nc"><i class="no-highlight">140</i>&nbsp;		if(checkPassword(userName, password)) {</b>
+<b class="nc"><i class="no-highlight">141</i>&nbsp;			return UserDatabase.getUserAccount(userName);</b>
+<i class="no-highlight">142</i>&nbsp;		}
+<b class="nc"><i class="no-highlight">143</i>&nbsp;		return null;</b>
+<i class="no-highlight">144</i>&nbsp;	}
+<i class="no-highlight">145</i>&nbsp;
+<i class="no-highlight">146</i>&nbsp;	/**
+<i class="no-highlight">147</i>&nbsp;	 * Get the instance of the AuthSystem class
+<i class="no-highlight">148</i>&nbsp;	 *
+<i class="no-highlight">149</i>&nbsp;	 * @return The instance of the AuthSystem class.
+<i class="no-highlight">150</i>&nbsp;	 */
+<i class="no-highlight">151</i>&nbsp;	public static AuthSystem getInstance() {
+<b class="nc"><i class="no-highlight">152</i>&nbsp;		return instance;</b>
+<i class="no-highlight">153</i>&nbsp;	}
+<i class="no-highlight">154</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-04-21 23:48</div>
+</div>
+</body>
+</html>

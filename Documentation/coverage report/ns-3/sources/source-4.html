@@ -1,0 +1,203 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > LoginPage</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">edu.uah.cs321.Frontend</a>
+</div>
+
+<h1>Coverage Summary for Class: LoginPage (edu.uah.cs321.Frontend)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">LoginPage</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    66.7%
+  </span>
+  <span class="absValue">
+    (2/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    73.2%
+  </span>
+  <span class="absValue">
+    (30/41)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package edu.uah.cs321.Frontend;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;
+<i class="no-highlight">4</i>&nbsp;import edu.uah.cs321.Backend.AuthSystem;
+<i class="no-highlight">5</i>&nbsp;import edu.uah.cs321.Backend.User;
+<i class="no-highlight">6</i>&nbsp;
+<i class="no-highlight">7</i>&nbsp;import javax.swing.*;
+<i class="no-highlight">8</i>&nbsp;import java.awt.*;
+<i class="no-highlight">9</i>&nbsp;import java.awt.event.ActionEvent;
+<i class="no-highlight">10</i>&nbsp;import java.awt.event.ActionListener;
+<i class="no-highlight">11</i>&nbsp;
+<i class="no-highlight">12</i>&nbsp;import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+<i class="no-highlight">13</i>&nbsp;
+<i class="no-highlight">14</i>&nbsp;/***
+<i class="no-highlight">15</i>&nbsp; * File Name: LoginPage
+<i class="no-highlight">16</i>&nbsp; * Description: 
+<i class="no-highlight">17</i>&nbsp; * @auth justinbushue
+<i class="no-highlight">18</i>&nbsp; * @version 1.0
+<i class="no-highlight">19</i>&nbsp; */
+<i class="no-highlight">20</i>&nbsp;public class LoginPage extends JPanel {
+<i class="no-highlight">21</i>&nbsp;	private static JPanel contentPanel;
+<i class="no-highlight">22</i>&nbsp;	private static JLabel usernameLabel;
+<i class="no-highlight">23</i>&nbsp;	private static JTextField usernameField;
+<i class="no-highlight">24</i>&nbsp;	private static JLabel passwordLabel;
+<i class="no-highlight">25</i>&nbsp;	private static JPasswordField passwordField;
+<i class="no-highlight">26</i>&nbsp;	private static JButton loginButton;
+<i class="no-highlight">27</i>&nbsp;	private static JButton backButton;
+<i class="no-highlight">28</i>&nbsp;	private static JPanel buttonPanel;
+<i class="no-highlight">29</i>&nbsp;	private static JPanel fieldPanel;
+<i class="no-highlight">30</i>&nbsp;	private static BoxLayout contentPanelLayout;
+<i class="no-highlight">31</i>&nbsp;	private static BoxLayout buttonPanelLayout;
+<i class="no-highlight">32</i>&nbsp;	private static BoxLayout fieldPanelLayout;
+<i class="no-highlight">33</i>&nbsp;
+<i class="no-highlight">34</i>&nbsp;	/**
+<i class="no-highlight">35</i>&nbsp;	 * LoginPage is a JPanel where the user inputs login information and determines what user information to access/modify.
+<i class="no-highlight">36</i>&nbsp;	 */
+<i class="no-highlight">37</i>&nbsp;	public LoginPage() {
+<b class="fc"><i class="no-highlight">38</i>&nbsp;		super();</b>
+<i class="no-highlight">39</i>&nbsp;
+<b class="fc"><i class="no-highlight">40</i>&nbsp;		contentPanel = new JPanel();</b>
+<b class="fc"><i class="no-highlight">41</i>&nbsp;		fieldPanel = new JPanel();</b>
+<b class="fc"><i class="no-highlight">42</i>&nbsp;		buttonPanel = new JPanel();</b>
+<i class="no-highlight">43</i>&nbsp;
+<b class="fc"><i class="no-highlight">44</i>&nbsp;		contentPanelLayout = new BoxLayout(contentPanel, BoxLayout.Y_AXIS);</b>
+<b class="fc"><i class="no-highlight">45</i>&nbsp;		fieldPanelLayout = new BoxLayout(fieldPanel, BoxLayout.Y_AXIS);;</b>
+<b class="fc"><i class="no-highlight">46</i>&nbsp;		buttonPanelLayout = new BoxLayout(buttonPanel, BoxLayout.Y_AXIS);</b>
+<i class="no-highlight">47</i>&nbsp;
+<b class="fc"><i class="no-highlight">48</i>&nbsp;		contentPanel.setLayout(contentPanelLayout);</b>
+<b class="fc"><i class="no-highlight">49</i>&nbsp;		fieldPanel.setLayout(fieldPanelLayout);</b>
+<b class="fc"><i class="no-highlight">50</i>&nbsp;		buttonPanel.setLayout(buttonPanelLayout);</b>
+<i class="no-highlight">51</i>&nbsp;
+<b class="fc"><i class="no-highlight">52</i>&nbsp;		usernameLabel = new JLabel(&quot;Username&quot;);</b>
+<b class="fc"><i class="no-highlight">53</i>&nbsp;		usernameField = new JTextField();</b>
+<i class="no-highlight">54</i>&nbsp;
+<b class="fc"><i class="no-highlight">55</i>&nbsp;		passwordLabel = new JLabel(&quot;Password&quot;);</b>
+<b class="fc"><i class="no-highlight">56</i>&nbsp;		passwordField = new JPasswordField();</b>
+<i class="no-highlight">57</i>&nbsp;
+<b class="fc"><i class="no-highlight">58</i>&nbsp;		loginButton = new JButton(&quot;Login&quot;);</b>
+<b class="fc"><i class="no-highlight">59</i>&nbsp;		backButton = new JButton(&quot;Back&quot;);</b>
+<i class="no-highlight">60</i>&nbsp;
+<b class="fc"><i class="no-highlight">61</i>&nbsp;		contentPanel.add(fieldPanel);</b>
+<b class="fc"><i class="no-highlight">62</i>&nbsp;		contentPanel.add(buttonPanel);</b>
+<i class="no-highlight">63</i>&nbsp;
+<b class="fc"><i class="no-highlight">64</i>&nbsp;		fieldPanel.add(usernameLabel);</b>
+<b class="fc"><i class="no-highlight">65</i>&nbsp;		fieldPanel.add(usernameField);</b>
+<i class="no-highlight">66</i>&nbsp;
+<b class="fc"><i class="no-highlight">67</i>&nbsp;		fieldPanel.add(passwordLabel);</b>
+<b class="fc"><i class="no-highlight">68</i>&nbsp;		fieldPanel.add(passwordField);</b>
+<i class="no-highlight">69</i>&nbsp;
+<b class="fc"><i class="no-highlight">70</i>&nbsp;		buttonPanel.add(loginButton);</b>
+<b class="fc"><i class="no-highlight">71</i>&nbsp;		buttonPanel.add(backButton);</b>
+<i class="no-highlight">72</i>&nbsp;
+<b class="fc"><i class="no-highlight">73</i>&nbsp;		loginButton.addActionListener(e-&gt;{</b>
+<b class="nc"><i class="no-highlight">74</i>&nbsp;			String username = usernameField.getText();</b>
+<b class="nc"><i class="no-highlight">75</i>&nbsp;			String password = String.valueOf(passwordField.getPassword());</b>
+<i class="no-highlight">76</i>&nbsp;
+<b class="nc"><i class="no-highlight">77</i>&nbsp;			User u = AuthSystem.login(username, password);</b>
+<b class="nc"><i class="no-highlight">78</i>&nbsp;			if(u != null) {</b>
+<b class="nc"><i class="no-highlight">79</i>&nbsp;				usernameField.setText(&quot;&quot;);</b>
+<b class="nc"><i class="no-highlight">80</i>&nbsp;				passwordField.setText(&quot;&quot;);</b>
+<b class="nc"><i class="no-highlight">81</i>&nbsp;				AccountPage ac = new AccountPage(u);</b>
+<b class="nc"><i class="no-highlight">82</i>&nbsp;				Application.setAccountPage(ac);</b>
+<b class="nc"><i class="no-highlight">83</i>&nbsp;				Application.showPage(&quot;accountPage&quot;);</b>
+<b class="nc"><i class="no-highlight">84</i>&nbsp;			}</b>
+<i class="no-highlight">85</i>&nbsp;			else {
+<b class="nc"><i class="no-highlight">86</i>&nbsp;				SimpleDialog jd = new SimpleDialog(&quot;Login Failed...&quot;,&quot;Login Failed...&quot;);</b>
+<i class="no-highlight">87</i>&nbsp;			}
+<i class="no-highlight">88</i>&nbsp;		});
+<i class="no-highlight">89</i>&nbsp;
+<b class="fc"><i class="no-highlight">90</i>&nbsp;		backButton.addActionListener(e-&gt;{</b>
+<b class="fc"><i class="no-highlight">91</i>&nbsp;			usernameField.setText(&quot;&quot;);</b>
+<b class="fc"><i class="no-highlight">92</i>&nbsp;			passwordField.setText(&quot;&quot;);</b>
+<i class="no-highlight">93</i>&nbsp;
+<b class="fc"><i class="no-highlight">94</i>&nbsp;			Application.showPage(&quot;mainPage&quot;);</b>
+<i class="no-highlight">95</i>&nbsp;		});
+<b class="fc"><i class="no-highlight">96</i>&nbsp;		add(contentPanel);</b>
+<i class="no-highlight">97</i>&nbsp;	}
+<i class="no-highlight">98</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-04-21 23:48</div>
+</div>
+</body>
+</html>

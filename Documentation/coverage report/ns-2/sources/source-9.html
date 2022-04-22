@@ -1,0 +1,248 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Review</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">edu.uah.cs321.Backend</a>
+</div>
+
+<h1>Coverage Summary for Class: Review (edu.uah.cs321.Backend)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Review</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    41.7%
+  </span>
+  <span class="absValue">
+    (5/12)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    30%
+  </span>
+  <span class="absValue">
+    (9/30)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package edu.uah.cs321.Backend;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import java.io.Serializable;
+<i class="no-highlight">4</i>&nbsp;
+<i class="no-highlight">5</i>&nbsp;/***
+<i class="no-highlight">6</i>&nbsp; * File Name: Review
+<i class="no-highlight">7</i>&nbsp; * Description: A Review is a movie review written by a user
+<i class="no-highlight">8</i>&nbsp; * @auth justinbushue
+<i class="no-highlight">9</i>&nbsp; * @version 1.0
+<i class="no-highlight">10</i>&nbsp; */
+<i class="no-highlight">11</i>&nbsp;@SuppressWarnings(&quot;unused&quot;)
+<i class="no-highlight">12</i>&nbsp;public class Review implements Serializable {
+<i class="no-highlight">13</i>&nbsp;	// Used to hold the reviews author.
+<i class="no-highlight">14</i>&nbsp;	User author;
+<i class="no-highlight">15</i>&nbsp;	// Used to hold the movie the review is for.
+<i class="no-highlight">16</i>&nbsp;	Movie movie;
+<i class="no-highlight">17</i>&nbsp;	// Used to hold the reviews rating.
+<i class="no-highlight">18</i>&nbsp;	Integer rating;
+<i class="no-highlight">19</i>&nbsp;	// Used to hold the body of the review.
+<i class="no-highlight">20</i>&nbsp;	String body;
+<i class="no-highlight">21</i>&nbsp;
+<i class="no-highlight">22</i>&nbsp;	// This is a constructor that sets the default values for the Review class.
+<b class="nc"><i class="no-highlight">23</i>&nbsp;	public Review() {</b>
+<b class="nc"><i class="no-highlight">24</i>&nbsp;		author = null;</b>
+<b class="nc"><i class="no-highlight">25</i>&nbsp;		movie = null;</b>
+<b class="nc"><i class="no-highlight">26</i>&nbsp;		rating = 0;</b>
+<b class="nc"><i class="no-highlight">27</i>&nbsp;		body = &quot;&quot;;</b>
+<i class="no-highlight">28</i>&nbsp;	}
+<i class="no-highlight">29</i>&nbsp;
+<i class="no-highlight">30</i>&nbsp;	// This is a constructor that sets the default values for the Review class.
+<b class="fc"><i class="no-highlight">31</i>&nbsp;	public Review(User author, Movie movie, Integer rating, String body) {</b>
+<b class="fc"><i class="no-highlight">32</i>&nbsp;		this.author = author;</b>
+<b class="fc"><i class="no-highlight">33</i>&nbsp;		this.movie = movie;</b>
+<b class="fc"><i class="no-highlight">34</i>&nbsp;		this.rating = rating;</b>
+<b class="fc"><i class="no-highlight">35</i>&nbsp;		this.body = body;</b>
+<i class="no-highlight">36</i>&nbsp;	}
+<i class="no-highlight">37</i>&nbsp;
+<i class="no-highlight">38</i>&nbsp;	/**
+<i class="no-highlight">39</i>&nbsp;	 * This function returns the author of the post.
+<i class="no-highlight">40</i>&nbsp;	 *
+<i class="no-highlight">41</i>&nbsp;	 * @return The author of the post.
+<i class="no-highlight">42</i>&nbsp;	 */
+<i class="no-highlight">43</i>&nbsp;	public User getAuthor() {
+<b class="fc"><i class="no-highlight">44</i>&nbsp;		return author;</b>
+<i class="no-highlight">45</i>&nbsp;	}
+<i class="no-highlight">46</i>&nbsp;
+<i class="no-highlight">47</i>&nbsp;	/**
+<i class="no-highlight">48</i>&nbsp;	 * This function sets the author of the post to the user passed in as a parameter.
+<i class="no-highlight">49</i>&nbsp;	 *
+<i class="no-highlight">50</i>&nbsp;	 * @param author The author of the post.
+<i class="no-highlight">51</i>&nbsp;	 */
+<i class="no-highlight">52</i>&nbsp;	public void setAuthor(User author) {
+<b class="nc"><i class="no-highlight">53</i>&nbsp;		this.author = author;</b>
+<i class="no-highlight">54</i>&nbsp;	}
+<i class="no-highlight">55</i>&nbsp;
+<i class="no-highlight">56</i>&nbsp;	/**
+<i class="no-highlight">57</i>&nbsp;	 * This function returns the movie.
+<i class="no-highlight">58</i>&nbsp;	 *
+<i class="no-highlight">59</i>&nbsp;	 * @return The movie object.
+<i class="no-highlight">60</i>&nbsp;	 */
+<i class="no-highlight">61</i>&nbsp;	public Movie getMovie() {
+<b class="nc"><i class="no-highlight">62</i>&nbsp;		return movie;</b>
+<i class="no-highlight">63</i>&nbsp;	}
+<i class="no-highlight">64</i>&nbsp;
+<i class="no-highlight">65</i>&nbsp;	/**
+<i class="no-highlight">66</i>&nbsp;	 * This function sets the movie of the current object to the movie passed in as a parameter.
+<i class="no-highlight">67</i>&nbsp;	 *
+<i class="no-highlight">68</i>&nbsp;	 * @param movie The movie object that will be used to populate the form.
+<i class="no-highlight">69</i>&nbsp;	 */
+<i class="no-highlight">70</i>&nbsp;	public void setMovie(Movie movie) {
+<b class="nc"><i class="no-highlight">71</i>&nbsp;		this.movie = movie;</b>
+<i class="no-highlight">72</i>&nbsp;	}
+<i class="no-highlight">73</i>&nbsp;
+<i class="no-highlight">74</i>&nbsp;	/**
+<i class="no-highlight">75</i>&nbsp;	 * &gt; This function returns the rating of the movie
+<i class="no-highlight">76</i>&nbsp;	 *
+<i class="no-highlight">77</i>&nbsp;	 * @return The rating of the movie.
+<i class="no-highlight">78</i>&nbsp;	 */
+<i class="no-highlight">79</i>&nbsp;	public Integer getRating() {
+<b class="fc"><i class="no-highlight">80</i>&nbsp;		return rating;</b>
+<i class="no-highlight">81</i>&nbsp;	}
+<i class="no-highlight">82</i>&nbsp;
+<i class="no-highlight">83</i>&nbsp;	/**
+<i class="no-highlight">84</i>&nbsp;	 * &gt; This function sets the rating of the movie
+<i class="no-highlight">85</i>&nbsp;	 *
+<i class="no-highlight">86</i>&nbsp;	 * @param rating The rating of the movie.
+<i class="no-highlight">87</i>&nbsp;	 */
+<i class="no-highlight">88</i>&nbsp;	public void setRating(Integer rating) {
+<b class="nc"><i class="no-highlight">89</i>&nbsp;		this.rating = rating;</b>
+<i class="no-highlight">90</i>&nbsp;	}
+<i class="no-highlight">91</i>&nbsp;
+<i class="no-highlight">92</i>&nbsp;	/**
+<i class="no-highlight">93</i>&nbsp;	 * &gt; This function returns the body of the email
+<i class="no-highlight">94</i>&nbsp;	 *
+<i class="no-highlight">95</i>&nbsp;	 * @return The body of the email.
+<i class="no-highlight">96</i>&nbsp;	 */
+<i class="no-highlight">97</i>&nbsp;	public String getBody() {
+<b class="fc"><i class="no-highlight">98</i>&nbsp;		return body;</b>
+<i class="no-highlight">99</i>&nbsp;	}
+<i class="no-highlight">100</i>&nbsp;
+<i class="no-highlight">101</i>&nbsp;	/**
+<i class="no-highlight">102</i>&nbsp;	 * &gt; This function sets the body of the email
+<i class="no-highlight">103</i>&nbsp;	 *
+<i class="no-highlight">104</i>&nbsp;	 * @param body The body of the message.
+<i class="no-highlight">105</i>&nbsp;	 */
+<i class="no-highlight">106</i>&nbsp;	public void setBody(String body) {
+<b class="nc"><i class="no-highlight">107</i>&nbsp;		this.body = body;</b>
+<i class="no-highlight">108</i>&nbsp;	}
+<i class="no-highlight">109</i>&nbsp;
+<i class="no-highlight">110</i>&nbsp;	/**
+<i class="no-highlight">111</i>&nbsp;	 * If the author, movie, rating, and body of the current review are equal to the author, movie, rating, and body of the
+<i class="no-highlight">112</i>&nbsp;	 * review passed in, then the reviews are equal
+<i class="no-highlight">113</i>&nbsp;	 *
+<i class="no-highlight">114</i>&nbsp;	 * @param o The object to compare to.
+<i class="no-highlight">115</i>&nbsp;	 * @return The hashcode of the object.
+<i class="no-highlight">116</i>&nbsp;	 */
+<i class="no-highlight">117</i>&nbsp;	@Override
+<i class="no-highlight">118</i>&nbsp;	public boolean equals(Object o) {
+<b class="fc"><i class="no-highlight">119</i>&nbsp;		if (this == o) return true;</b>
+<b class="nc"><i class="no-highlight">120</i>&nbsp;		if (!(o instanceof Review)) return false;</b>
+<i class="no-highlight">121</i>&nbsp;
+<b class="nc"><i class="no-highlight">122</i>&nbsp;		Review review = (Review) o;</b>
+<i class="no-highlight">123</i>&nbsp;
+<b class="nc"><i class="no-highlight">124</i>&nbsp;		if (!getAuthor().equals(review.getAuthor())) return false;</b>
+<b class="nc"><i class="no-highlight">125</i>&nbsp;		if (!getMovie().equals(review.getMovie())) return false;</b>
+<b class="nc"><i class="no-highlight">126</i>&nbsp;		if (!getRating().equals(review.getRating())) return false;</b>
+<b class="nc"><i class="no-highlight">127</i>&nbsp;		return getBody().equals(review.getBody());</b>
+<i class="no-highlight">128</i>&nbsp;	}
+<i class="no-highlight">129</i>&nbsp;
+<i class="no-highlight">130</i>&nbsp;	/**
+<i class="no-highlight">131</i>&nbsp;	 * &gt; The hashCode() function returns a unique integer for each unique Review object
+<i class="no-highlight">132</i>&nbsp;	 *
+<i class="no-highlight">133</i>&nbsp;	 * @return The hash code of the object.
+<i class="no-highlight">134</i>&nbsp;	 */
+<i class="no-highlight">135</i>&nbsp;	@Override
+<i class="no-highlight">136</i>&nbsp;	public int hashCode() {
+<b class="nc"><i class="no-highlight">137</i>&nbsp;		int result = getAuthor().hashCode();</b>
+<b class="nc"><i class="no-highlight">138</i>&nbsp;		result = 31 * result + getMovie().hashCode();</b>
+<b class="nc"><i class="no-highlight">139</i>&nbsp;		result = 31 * result + getRating().hashCode();</b>
+<b class="nc"><i class="no-highlight">140</i>&nbsp;		result = 31 * result + getBody().hashCode();</b>
+<b class="nc"><i class="no-highlight">141</i>&nbsp;		return result;</b>
+<i class="no-highlight">142</i>&nbsp;	}
+<i class="no-highlight">143</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-04-21 23:48</div>
+</div>
+</body>
+</html>

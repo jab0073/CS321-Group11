@@ -1,0 +1,515 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > MovieList</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">edu.uah.cs321.Backend</a>
+</div>
+
+<h1>Coverage Summary for Class: MovieList (edu.uah.cs321.Backend)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">MovieList</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    44.8%
+  </span>
+  <span class="absValue">
+    (13/29)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    29.7%
+  </span>
+  <span class="absValue">
+    (46/155)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package edu.uah.cs321.Backend;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import java.io.Serializable;
+<i class="no-highlight">4</i>&nbsp;import java.util.*;
+<i class="no-highlight">5</i>&nbsp;import java.util.concurrent.atomic.AtomicReference;
+<i class="no-highlight">6</i>&nbsp;import java.util.stream.Collectors;
+<i class="no-highlight">7</i>&nbsp;
+<i class="no-highlight">8</i>&nbsp;import static java.util.stream.Collectors.toList;
+<i class="no-highlight">9</i>&nbsp;
+<i class="no-highlight">10</i>&nbsp;/***
+<i class="no-highlight">11</i>&nbsp; * File Name: MovieList
+<i class="no-highlight">12</i>&nbsp; * Description: MovieList is a class that holds a list of movies and provides methods to filter the list of movies by actor, director, genre, rating, year, and title
+<i class="no-highlight">13</i>&nbsp; * @author justinbushue shawnburnham
+<i class="no-highlight">14</i>&nbsp; * @version 1.0
+<i class="no-highlight">15</i>&nbsp; */
+<i class="no-highlight">16</i>&nbsp;@SuppressWarnings(&quot;unused&quot;)
+<i class="no-highlight">17</i>&nbsp;public class MovieList implements Serializable {
+<i class="no-highlight">18</i>&nbsp;	//Used to hold the movie lists name.
+<i class="no-highlight">19</i>&nbsp;	private String listName;
+<i class="no-highlight">20</i>&nbsp;	// Used to hold the list of movies in the movie list.
+<i class="no-highlight">21</i>&nbsp;	private List&lt;Movie&gt; movieList;
+<i class="no-highlight">22</i>&nbsp;	// Used to hold the movie lists filtered results.
+<i class="no-highlight">23</i>&nbsp;	private List&lt;Movie&gt; filteredMovies;
+<i class="no-highlight">24</i>&nbsp;
+<i class="no-highlight">25</i>&nbsp;	// This is the constructor for the MovieList class. It initializes the movieList and filteredMovies variables to an empty
+<i class="no-highlight">26</i>&nbsp;	// list.
+<b class="fc"><i class="no-highlight">27</i>&nbsp;	public MovieList() {</b>
+<b class="fc"><i class="no-highlight">28</i>&nbsp;		listName = &quot;Default Name&quot;;</b>
+<b class="fc"><i class="no-highlight">29</i>&nbsp;		movieList = new ArrayList&lt;&gt;();</b>
+<b class="fc"><i class="no-highlight">30</i>&nbsp;		filteredMovies = new ArrayList&lt;&gt;();</b>
+<i class="no-highlight">31</i>&nbsp;	}
+<i class="no-highlight">32</i>&nbsp;
+<i class="no-highlight">33</i>&nbsp;	// This is the constructor for the MovieList class. It initializes the movieList and filteredMovies variables to an empty
+<i class="no-highlight">34</i>&nbsp;	// list.
+<b class="fc"><i class="no-highlight">35</i>&nbsp;	public MovieList(List&lt;Movie&gt; movieList) {</b>
+<b class="fc"><i class="no-highlight">36</i>&nbsp;		listName = &quot;Default Name&quot;;</b>
+<b class="fc"><i class="no-highlight">37</i>&nbsp;		this.movieList = movieList;</b>
+<b class="fc"><i class="no-highlight">38</i>&nbsp;		this.movieList.sort(Comparator.comparing(m -&gt; m.getTitle()));</b>
+<b class="fc"><i class="no-highlight">39</i>&nbsp;		filteredMovies = new ArrayList&lt;&gt;();</b>
+<i class="no-highlight">40</i>&nbsp;	}
+<i class="no-highlight">41</i>&nbsp;
+<i class="no-highlight">42</i>&nbsp;
+<b class="nc"><i class="no-highlight">43</i>&nbsp;	public MovieList(String listName, List&lt;Movie&gt; movieList) {</b>
+<b class="nc"><i class="no-highlight">44</i>&nbsp;		this.listName = listName;</b>
+<b class="nc"><i class="no-highlight">45</i>&nbsp;		this.movieList = movieList;</b>
+<b class="nc"><i class="no-highlight">46</i>&nbsp;		this.movieList.sort(Comparator.comparing(Movie::getTitle));</b>
+<b class="nc"><i class="no-highlight">47</i>&nbsp;		filteredMovies = new ArrayList&lt;&gt;();</b>
+<i class="no-highlight">48</i>&nbsp;	}
+<i class="no-highlight">49</i>&nbsp;
+<i class="no-highlight">50</i>&nbsp;	/**
+<i class="no-highlight">51</i>&nbsp;	 * Returns the name of the list
+<i class="no-highlight">52</i>&nbsp;	 *
+<i class="no-highlight">53</i>&nbsp;	 * @return The listName variable is being returned.
+<i class="no-highlight">54</i>&nbsp;	 */
+<i class="no-highlight">55</i>&nbsp;	public String getListName() {
+<b class="fc"><i class="no-highlight">56</i>&nbsp;		return listName;</b>
+<i class="no-highlight">57</i>&nbsp;	}
+<i class="no-highlight">58</i>&nbsp;
+<i class="no-highlight">59</i>&nbsp;	/**
+<i class="no-highlight">60</i>&nbsp;	 * It sets the listName variable to the value of the parameter listName.
+<i class="no-highlight">61</i>&nbsp;	 *
+<i class="no-highlight">62</i>&nbsp;	 * @param listName The name of the list to be created.
+<i class="no-highlight">63</i>&nbsp;	 */
+<i class="no-highlight">64</i>&nbsp;	public void setListName(String listName) {
+<b class="fc"><i class="no-highlight">65</i>&nbsp;		this.listName = listName;</b>
+<i class="no-highlight">66</i>&nbsp;	}
+<i class="no-highlight">67</i>&nbsp;
+<i class="no-highlight">68</i>&nbsp;	/**
+<i class="no-highlight">69</i>&nbsp;	 * Add a movie to the movie list
+<i class="no-highlight">70</i>&nbsp;	 *
+<i class="no-highlight">71</i>&nbsp;	 * @param movie The movie to be added to the list.
+<i class="no-highlight">72</i>&nbsp;	 */
+<i class="no-highlight">73</i>&nbsp;	public void addMovie(Movie movie) {
+<b class="fc"><i class="no-highlight">74</i>&nbsp;		if(!movieList.contains(movie)) {</b>
+<b class="fc"><i class="no-highlight">75</i>&nbsp;			movieList.add(movie);</b>
+<i class="no-highlight">76</i>&nbsp;		}
+<i class="no-highlight">77</i>&nbsp;	}
+<i class="no-highlight">78</i>&nbsp;
+<i class="no-highlight">79</i>&nbsp;	/**
+<i class="no-highlight">80</i>&nbsp;	 * Remove a movie from the movie list
+<i class="no-highlight">81</i>&nbsp;	 *
+<i class="no-highlight">82</i>&nbsp;	 * @param movie The movie to be removed from the list.
+<i class="no-highlight">83</i>&nbsp;	 */
+<i class="no-highlight">84</i>&nbsp;	public void removeMovie(Movie movie) {
+<b class="nc"><i class="no-highlight">85</i>&nbsp;		movieList.remove(movie);</b>
+<i class="no-highlight">86</i>&nbsp;	}
+<i class="no-highlight">87</i>&nbsp;
+<i class="no-highlight">88</i>&nbsp;	/**
+<i class="no-highlight">89</i>&nbsp;	 * This function returns a list of movies
+<i class="no-highlight">90</i>&nbsp;	 *
+<i class="no-highlight">91</i>&nbsp;	 * @return A list of Movie objects.
+<i class="no-highlight">92</i>&nbsp;	 */
+<i class="no-highlight">93</i>&nbsp;	public List&lt;Movie&gt; getMovieList() {
+<b class="fc"><i class="no-highlight">94</i>&nbsp;		return movieList;</b>
+<i class="no-highlight">95</i>&nbsp;	}
+<i class="no-highlight">96</i>&nbsp;
+<i class="no-highlight">97</i>&nbsp;	/**
+<i class="no-highlight">98</i>&nbsp;	 * It sets the movieList to the movieList passed in.
+<i class="no-highlight">99</i>&nbsp;	 *
+<i class="no-highlight">100</i>&nbsp;	 * @param movieList The list of movies to be displayed.
+<i class="no-highlight">101</i>&nbsp;	 */
+<i class="no-highlight">102</i>&nbsp;	public void setMovieList(List&lt;Movie&gt; movieList) {
+<b class="nc"><i class="no-highlight">103</i>&nbsp;		this.movieList = movieList;</b>
+<i class="no-highlight">104</i>&nbsp;	}
+<i class="no-highlight">105</i>&nbsp;
+<i class="no-highlight">106</i>&nbsp;	/**
+<i class="no-highlight">107</i>&nbsp;	 * Given a string, return a list of movies that have that string in their actors list
+<i class="no-highlight">108</i>&nbsp;	 *
+<i class="no-highlight">109</i>&nbsp;	 * @param actor The actor to filter by.
+<i class="no-highlight">110</i>&nbsp;	 * @return A list of movies that match the actor.
+<i class="no-highlight">111</i>&nbsp;	 */
+<i class="no-highlight">112</i>&nbsp;	public List&lt;Movie&gt; filterByActor(String actor) {
+<b class="nc"><i class="no-highlight">113</i>&nbsp;		actor = actor.toLowerCase();</b>
+<b class="nc"><i class="no-highlight">114</i>&nbsp;		if(filteredMovies.isEmpty()) {</b>
+<b class="nc"><i class="no-highlight">115</i>&nbsp;			String finalActor = actor;</b>
+<b class="nc"><i class="no-highlight">116</i>&nbsp;			filteredMovies = movieList.stream()</b>
+<b class="nc"><i class="no-highlight">117</i>&nbsp;					.filter(a -&gt; a.getActorsLower().contains(finalActor))</b>
+<b class="nc"><i class="no-highlight">118</i>&nbsp;					.collect(toList());</b>
+<b class="nc"><i class="no-highlight">119</i>&nbsp;		}</b>
+<i class="no-highlight">120</i>&nbsp;		else {
+<b class="nc"><i class="no-highlight">121</i>&nbsp;			String finalActor1 = actor;</b>
+<b class="nc"><i class="no-highlight">122</i>&nbsp;			filteredMovies = filteredMovies.stream()</b>
+<b class="nc"><i class="no-highlight">123</i>&nbsp;					.filter(a -&gt; a.getActorsLower().contains(finalActor1))</b>
+<b class="nc"><i class="no-highlight">124</i>&nbsp;					.collect(toList());</b>
+<i class="no-highlight">125</i>&nbsp;		}
+<b class="nc"><i class="no-highlight">126</i>&nbsp;		return filteredMovies;</b>
+<i class="no-highlight">127</i>&nbsp;	}
+<i class="no-highlight">128</i>&nbsp;
+<i class="no-highlight">129</i>&nbsp;	/**
+<i class="no-highlight">130</i>&nbsp;	 * This function filters the movie list by director
+<i class="no-highlight">131</i>&nbsp;	 *
+<i class="no-highlight">132</i>&nbsp;	 * @param director The director to filter by.
+<i class="no-highlight">133</i>&nbsp;	 * @return A list of movies that match the director.
+<i class="no-highlight">134</i>&nbsp;	 */
+<i class="no-highlight">135</i>&nbsp;	public List&lt;Movie&gt; filterByDirector(String director) {
+<b class="nc"><i class="no-highlight">136</i>&nbsp;		if(filteredMovies.isEmpty()) {</b>
+<b class="nc"><i class="no-highlight">137</i>&nbsp;			filteredMovies = movieList.stream()</b>
+<b class="nc"><i class="no-highlight">138</i>&nbsp;					.filter(a -&gt; a.getDirector().equalsIgnoreCase(director))</b>
+<b class="nc"><i class="no-highlight">139</i>&nbsp;					.map(Movie::getThis)</b>
+<b class="nc"><i class="no-highlight">140</i>&nbsp;					.collect(toList());</b>
+<i class="no-highlight">141</i>&nbsp;		}
+<i class="no-highlight">142</i>&nbsp;		else {
+<b class="nc"><i class="no-highlight">143</i>&nbsp;			filteredMovies = filteredMovies.stream()</b>
+<b class="nc"><i class="no-highlight">144</i>&nbsp;					.filter(a -&gt; a.getDirector().equalsIgnoreCase(director))</b>
+<b class="nc"><i class="no-highlight">145</i>&nbsp;					.map(Movie::getThis)</b>
+<b class="nc"><i class="no-highlight">146</i>&nbsp;					.collect(toList());</b>
+<i class="no-highlight">147</i>&nbsp;		}
+<b class="nc"><i class="no-highlight">148</i>&nbsp;		return filteredMovies;</b>
+<i class="no-highlight">149</i>&nbsp;	}
+<i class="no-highlight">150</i>&nbsp;
+<i class="no-highlight">151</i>&nbsp;	/**
+<i class="no-highlight">152</i>&nbsp;	 * This function filters the movie list by genre
+<i class="no-highlight">153</i>&nbsp;	 *
+<i class="no-highlight">154</i>&nbsp;	 * @param genre The genre to filter by.
+<i class="no-highlight">155</i>&nbsp;	 * @return A list of movies that match the genre.
+<i class="no-highlight">156</i>&nbsp;	 */
+<i class="no-highlight">157</i>&nbsp;	public List&lt;Movie&gt; filterByGenre(String genre) {
+<b class="nc"><i class="no-highlight">158</i>&nbsp;		genre = genre.toLowerCase();</b>
+<b class="nc"><i class="no-highlight">159</i>&nbsp;		if(filteredMovies.isEmpty()) {</b>
+<b class="nc"><i class="no-highlight">160</i>&nbsp;			String finalGenre = genre;</b>
+<b class="nc"><i class="no-highlight">161</i>&nbsp;			filteredMovies = movieList.stream()</b>
+<b class="nc"><i class="no-highlight">162</i>&nbsp;					.filter(a -&gt; a.getGenreLower().contains(finalGenre))</b>
+<b class="nc"><i class="no-highlight">163</i>&nbsp;					.collect(toList());</b>
+<b class="nc"><i class="no-highlight">164</i>&nbsp;		}</b>
+<i class="no-highlight">165</i>&nbsp;		else {
+<b class="nc"><i class="no-highlight">166</i>&nbsp;			String finalGenre1 = genre;</b>
+<b class="nc"><i class="no-highlight">167</i>&nbsp;			filteredMovies = filteredMovies.stream()</b>
+<b class="nc"><i class="no-highlight">168</i>&nbsp;					.filter(a -&gt; a.getGenreLower().contains(finalGenre1))</b>
+<b class="nc"><i class="no-highlight">169</i>&nbsp;					.map(Movie::getThis)</b>
+<b class="nc"><i class="no-highlight">170</i>&nbsp;					.collect(toList());</b>
+<i class="no-highlight">171</i>&nbsp;		}
+<b class="nc"><i class="no-highlight">172</i>&nbsp;		return filteredMovies;</b>
+<i class="no-highlight">173</i>&nbsp;	}
+<i class="no-highlight">174</i>&nbsp;
+<i class="no-highlight">175</i>&nbsp;	/**
+<i class="no-highlight">176</i>&nbsp;	 * This function filters the movie list by rating
+<i class="no-highlight">177</i>&nbsp;	 *
+<i class="no-highlight">178</i>&nbsp;	 * @param rating The rating to filter by.
+<i class="no-highlight">179</i>&nbsp;	 * @return A list of movies that match the rating.
+<i class="no-highlight">180</i>&nbsp;	 */
+<i class="no-highlight">181</i>&nbsp;	public List&lt;Movie&gt; filterByRating(String rating) {
+<b class="nc"><i class="no-highlight">182</i>&nbsp;		rating = rating.toLowerCase();</b>
+<b class="nc"><i class="no-highlight">183</i>&nbsp;		if(filteredMovies.isEmpty()) {</b>
+<b class="nc"><i class="no-highlight">184</i>&nbsp;			String finalRating = rating;</b>
+<b class="nc"><i class="no-highlight">185</i>&nbsp;			filteredMovies = movieList.stream()</b>
+<b class="nc"><i class="no-highlight">186</i>&nbsp;					.filter(a -&gt; a.getRated().equalsIgnoreCase(finalRating))</b>
+<b class="nc"><i class="no-highlight">187</i>&nbsp;					.map(Movie::getThis)</b>
+<b class="nc"><i class="no-highlight">188</i>&nbsp;					.collect(toList());</b>
+<b class="nc"><i class="no-highlight">189</i>&nbsp;		}</b>
+<i class="no-highlight">190</i>&nbsp;		else {
+<b class="nc"><i class="no-highlight">191</i>&nbsp;			String finalRating1 = rating;</b>
+<b class="nc"><i class="no-highlight">192</i>&nbsp;			filteredMovies = filteredMovies.stream()</b>
+<b class="nc"><i class="no-highlight">193</i>&nbsp;					.filter(a -&gt; a.getRated().equalsIgnoreCase(finalRating1))</b>
+<b class="nc"><i class="no-highlight">194</i>&nbsp;					.map(Movie::getThis)</b>
+<b class="nc"><i class="no-highlight">195</i>&nbsp;					.collect(toList());</b>
+<i class="no-highlight">196</i>&nbsp;		}
+<b class="nc"><i class="no-highlight">197</i>&nbsp;		return filteredMovies;</b>
+<i class="no-highlight">198</i>&nbsp;	}
+<i class="no-highlight">199</i>&nbsp;
+<i class="no-highlight">200</i>&nbsp;	/**
+<i class="no-highlight">201</i>&nbsp;	 * This function filters the movie list by year
+<i class="no-highlight">202</i>&nbsp;	 *
+<i class="no-highlight">203</i>&nbsp;	 * @param year the year to filter by
+<i class="no-highlight">204</i>&nbsp;	 * @return A list of movies that match the year.
+<i class="no-highlight">205</i>&nbsp;	 */
+<i class="no-highlight">206</i>&nbsp;	public List&lt;Movie&gt; filterByYear(int year , char greaterThanLessThanEqual) {
+<b class="nc"><i class="no-highlight">207</i>&nbsp;		switch (greaterThanLessThanEqual) {</b>
+<i class="no-highlight">208</i>&nbsp;			case &#39;&lt;&#39; -&gt; {
+<b class="nc"><i class="no-highlight">209</i>&nbsp;				if (filteredMovies.isEmpty()) {</b>
+<b class="nc"><i class="no-highlight">210</i>&nbsp;					filteredMovies = movieList.stream()</b>
+<b class="nc"><i class="no-highlight">211</i>&nbsp;							.filter(a -&gt; Integer.parseInt(a.getYear()) &lt; year)</b>
+<b class="nc"><i class="no-highlight">212</i>&nbsp;							.map(Movie::getThis)</b>
+<b class="nc"><i class="no-highlight">213</i>&nbsp;							.collect(toList());</b>
+<i class="no-highlight">214</i>&nbsp;				} else {
+<b class="nc"><i class="no-highlight">215</i>&nbsp;					filteredMovies = filteredMovies.stream()</b>
+<b class="nc"><i class="no-highlight">216</i>&nbsp;							.filter(a -&gt; Integer.parseInt(a.getYear()) &lt; year)</b>
+<b class="nc"><i class="no-highlight">217</i>&nbsp;							.map(Movie::getThis)</b>
+<b class="nc"><i class="no-highlight">218</i>&nbsp;							.collect(toList());</b>
+<i class="no-highlight">219</i>&nbsp;				}
+<b class="nc"><i class="no-highlight">220</i>&nbsp;				return filteredMovies;</b>
+<i class="no-highlight">221</i>&nbsp;			}
+<i class="no-highlight">222</i>&nbsp;			case &#39;&gt;&#39; -&gt; {
+<b class="nc"><i class="no-highlight">223</i>&nbsp;				if (filteredMovies.isEmpty()) {</b>
+<b class="nc"><i class="no-highlight">224</i>&nbsp;					filteredMovies = movieList.stream()</b>
+<b class="nc"><i class="no-highlight">225</i>&nbsp;							.filter(a -&gt; Integer.parseInt(a.getYear()) &gt; year)</b>
+<b class="nc"><i class="no-highlight">226</i>&nbsp;							.map(Movie::getThis)</b>
+<b class="nc"><i class="no-highlight">227</i>&nbsp;							.collect(toList());</b>
+<i class="no-highlight">228</i>&nbsp;				} else {
+<b class="nc"><i class="no-highlight">229</i>&nbsp;					filteredMovies = filteredMovies.stream()</b>
+<b class="nc"><i class="no-highlight">230</i>&nbsp;							.filter(a -&gt; Integer.parseInt(a.getYear()) &gt; year)</b>
+<b class="nc"><i class="no-highlight">231</i>&nbsp;							.map(Movie::getThis)</b>
+<b class="nc"><i class="no-highlight">232</i>&nbsp;							.collect(toList());</b>
+<i class="no-highlight">233</i>&nbsp;				}
+<b class="nc"><i class="no-highlight">234</i>&nbsp;				return filteredMovies;</b>
+<i class="no-highlight">235</i>&nbsp;			}
+<i class="no-highlight">236</i>&nbsp;			case &#39;=&#39; -&gt; {
+<b class="nc"><i class="no-highlight">237</i>&nbsp;				if (filteredMovies.isEmpty()) {</b>
+<b class="nc"><i class="no-highlight">238</i>&nbsp;					filteredMovies = movieList.stream()</b>
+<b class="nc"><i class="no-highlight">239</i>&nbsp;							.filter(a -&gt; Integer.parseInt(a.getYear()) == year)</b>
+<b class="nc"><i class="no-highlight">240</i>&nbsp;							.map(Movie::getThis)</b>
+<b class="nc"><i class="no-highlight">241</i>&nbsp;							.collect(toList());</b>
+<i class="no-highlight">242</i>&nbsp;				} else {
+<b class="nc"><i class="no-highlight">243</i>&nbsp;					filteredMovies = filteredMovies.stream()</b>
+<b class="nc"><i class="no-highlight">244</i>&nbsp;							.filter(a -&gt; Integer.parseInt(a.getYear()) == year)</b>
+<b class="nc"><i class="no-highlight">245</i>&nbsp;							.map(Movie::getThis)</b>
+<b class="nc"><i class="no-highlight">246</i>&nbsp;							.collect(toList());</b>
+<i class="no-highlight">247</i>&nbsp;				}
+<b class="nc"><i class="no-highlight">248</i>&nbsp;				return filteredMovies;</b>
+<i class="no-highlight">249</i>&nbsp;			}
+<i class="no-highlight">250</i>&nbsp;		}
+<b class="nc"><i class="no-highlight">251</i>&nbsp;		return null;</b>
+<i class="no-highlight">252</i>&nbsp;	}
+<i class="no-highlight">253</i>&nbsp;
+<i class="no-highlight">254</i>&nbsp;	/**
+<i class="no-highlight">255</i>&nbsp;	 * For each word in the query, check if the movie contains that word, if it does, add it to the search results
+<i class="no-highlight">256</i>&nbsp;	 *
+<i class="no-highlight">257</i>&nbsp;	 * @param query The query string that the user entered.
+<i class="no-highlight">258</i>&nbsp;	 * @return A list of movies that contain any of the words in the query.
+<i class="no-highlight">259</i>&nbsp;	 */
+<i class="no-highlight">260</i>&nbsp;	public List&lt;Movie&gt; searchForAny(String query) {
+<b class="fc"><i class="no-highlight">261</i>&nbsp;		if(query.equals(&quot;&quot;)) {</b>
+<b class="fc"><i class="no-highlight">262</i>&nbsp;			return movieList;</b>
+<i class="no-highlight">263</i>&nbsp;		}
+<b class="fc"><i class="no-highlight">264</i>&nbsp;		List&lt;String&gt; query_split = List.of(query.replaceAll(&quot;[^A-Za-z0-9 ]&quot;, &quot;&quot;).split(&quot; &quot;));</b>
+<b class="fc"><i class="no-highlight">265</i>&nbsp;		query_split = query_split.stream().map(String::toLowerCase).collect(Collectors.toList());</b>
+<b class="fc"><i class="no-highlight">266</i>&nbsp;		List&lt;Movie&gt; searchResults = new ArrayList&lt;&gt;();</b>
+<i class="no-highlight">267</i>&nbsp;
+<b class="fc"><i class="no-highlight">268</i>&nbsp;		query_split.forEach(q -&gt; {</b>
+<b class="fc"><i class="no-highlight">269</i>&nbsp;			movieList.forEach(m -&gt; {</b>
+<b class="fc"><i class="no-highlight">270</i>&nbsp;				if(m.getDistinctWords().contains(q)) {</b>
+<b class="fc"><i class="no-highlight">271</i>&nbsp;					if(!searchResults.contains(m))</b>
+<b class="fc"><i class="no-highlight">272</i>&nbsp;						searchResults.add(m);</b>
+<i class="no-highlight">273</i>&nbsp;				}
+<i class="no-highlight">274</i>&nbsp;			});
+<i class="no-highlight">275</i>&nbsp;		});
+<b class="fc"><i class="no-highlight">276</i>&nbsp;		System.out.println(&quot;Result Size: &quot; + searchResults.size());</b>
+<b class="fc"><i class="no-highlight">277</i>&nbsp;		return searchResults;</b>
+<i class="no-highlight">278</i>&nbsp;	}
+<i class="no-highlight">279</i>&nbsp;
+<i class="no-highlight">280</i>&nbsp;	/**
+<i class="no-highlight">281</i>&nbsp;	 * Clear the filteredMovies list
+<i class="no-highlight">282</i>&nbsp;	 */
+<i class="no-highlight">283</i>&nbsp;	public void clearFilteredList() {
+<b class="nc"><i class="no-highlight">284</i>&nbsp;		filteredMovies.clear();</b>
+<i class="no-highlight">285</i>&nbsp;	}
+<i class="no-highlight">286</i>&nbsp;
+<i class="no-highlight">287</i>&nbsp;	/**
+<i class="no-highlight">288</i>&nbsp;	 * This function returns the filteredMovies list.
+<i class="no-highlight">289</i>&nbsp;	 *
+<i class="no-highlight">290</i>&nbsp;	 * @return The filteredMovies list is being returned.
+<i class="no-highlight">291</i>&nbsp;	 */
+<i class="no-highlight">292</i>&nbsp;	public List&lt;Movie&gt; getFilteredMovies() {
+<b class="nc"><i class="no-highlight">293</i>&nbsp;		return filteredMovies;</b>
+<i class="no-highlight">294</i>&nbsp;	}
+<i class="no-highlight">295</i>&nbsp;
+<i class="no-highlight">296</i>&nbsp;	/**
+<i class="no-highlight">297</i>&nbsp;	 * This function searches for a movie in the movieList by title and returns a list of movies that match the title
+<i class="no-highlight">298</i>&nbsp;	 *
+<i class="no-highlight">299</i>&nbsp;	 * @param title The title of the movie to search for.
+<i class="no-highlight">300</i>&nbsp;	 * @return A list of movies that match the search criteria.
+<i class="no-highlight">301</i>&nbsp;	 */
+<i class="no-highlight">302</i>&nbsp;	public List&lt;Movie&gt; searchForMovie(String title) {
+<b class="fc"><i class="no-highlight">303</i>&nbsp;		if(title.equals(&quot;&quot;)) {</b>
+<b class="fc"><i class="no-highlight">304</i>&nbsp;			return movieList;</b>
+<i class="no-highlight">305</i>&nbsp;		}
+<b class="fc"><i class="no-highlight">306</i>&nbsp;		String finalTitle = title.toLowerCase();</b>
+<b class="fc"><i class="no-highlight">307</i>&nbsp;		return movieList.stream()</b>
+<b class="fc"><i class="no-highlight">308</i>&nbsp;				.filter(a -&gt; a.getTitle().toLowerCase().contains(finalTitle))</b>
+<b class="fc"><i class="no-highlight">309</i>&nbsp;				.collect(Collectors.toList());</b>
+<i class="no-highlight">310</i>&nbsp;	}
+<i class="no-highlight">311</i>&nbsp;
+<i class="no-highlight">312</i>&nbsp;	/**
+<i class="no-highlight">313</i>&nbsp;	 * Get all actors from all movies in the movie list
+<i class="no-highlight">314</i>&nbsp;	 *
+<i class="no-highlight">315</i>&nbsp;	 * @return A list of all the actors in the movie list.
+<i class="no-highlight">316</i>&nbsp;	 */
+<i class="no-highlight">317</i>&nbsp;	public List&lt;String&gt; getAllActors() {
+<b class="fc"><i class="no-highlight">318</i>&nbsp;		return movieList.stream()</b>
+<b class="fc"><i class="no-highlight">319</i>&nbsp;				.map(Movie::getActors)</b>
+<b class="fc"><i class="no-highlight">320</i>&nbsp;				.flatMap(Collection::stream)</b>
+<b class="fc"><i class="no-highlight">321</i>&nbsp;				.sorted(Comparator.naturalOrder())</b>
+<b class="fc"><i class="no-highlight">322</i>&nbsp;				.collect(toList());</b>
+<i class="no-highlight">323</i>&nbsp;	}
+<i class="no-highlight">324</i>&nbsp;
+<i class="no-highlight">325</i>&nbsp;	/**
+<i class="no-highlight">326</i>&nbsp;	 * Get all the genres of the movies in the movie list
+<i class="no-highlight">327</i>&nbsp;	 *
+<i class="no-highlight">328</i>&nbsp;	 * @return A list of all the genres in the movie list.
+<i class="no-highlight">329</i>&nbsp;	 */
+<i class="no-highlight">330</i>&nbsp;	public List&lt;String&gt; getAllGenres() {
+<b class="fc"><i class="no-highlight">331</i>&nbsp;		return movieList.stream()</b>
+<b class="fc"><i class="no-highlight">332</i>&nbsp;				.map(Movie::getGenre)</b>
+<b class="fc"><i class="no-highlight">333</i>&nbsp;				.flatMap(Collection::stream)</b>
+<b class="fc"><i class="no-highlight">334</i>&nbsp;				.sorted(Comparator.naturalOrder())</b>
+<b class="fc"><i class="no-highlight">335</i>&nbsp;				.collect(toList());</b>
+<i class="no-highlight">336</i>&nbsp;	}
+<i class="no-highlight">337</i>&nbsp;
+<i class="no-highlight">338</i>&nbsp;	/**
+<i class="no-highlight">339</i>&nbsp;	 * Get all the titles of the movies in the movie list
+<i class="no-highlight">340</i>&nbsp;	 *
+<i class="no-highlight">341</i>&nbsp;	 * @return A list of all the titles in the movie list.
+<i class="no-highlight">342</i>&nbsp;	 */
+<i class="no-highlight">343</i>&nbsp;	public List&lt;String&gt; getAllTitles() {
+<b class="nc"><i class="no-highlight">344</i>&nbsp;		return movieList.stream()</b>
+<b class="nc"><i class="no-highlight">345</i>&nbsp;				.map(Movie::getTitle)</b>
+<b class="nc"><i class="no-highlight">346</i>&nbsp;				.sorted(Comparator.naturalOrder())</b>
+<b class="nc"><i class="no-highlight">347</i>&nbsp;				.collect(toList());</b>
+<i class="no-highlight">348</i>&nbsp;	}
+<i class="no-highlight">349</i>&nbsp;
+<i class="no-highlight">350</i>&nbsp;	/**
+<i class="no-highlight">351</i>&nbsp;	 * Get all the directors of the movies in the movie list
+<i class="no-highlight">352</i>&nbsp;	 *
+<i class="no-highlight">353</i>&nbsp;	 * @return A list of all the directors in the movie list.
+<i class="no-highlight">354</i>&nbsp;	 */
+<i class="no-highlight">355</i>&nbsp;	public List&lt;String&gt; getAllDirectors() {
+<b class="fc"><i class="no-highlight">356</i>&nbsp;		return movieList.stream()</b>
+<b class="fc"><i class="no-highlight">357</i>&nbsp;				.map(Movie::getDirector)</b>
+<b class="fc"><i class="no-highlight">358</i>&nbsp;				.sorted(Comparator.naturalOrder())</b>
+<b class="fc"><i class="no-highlight">359</i>&nbsp;				.collect(toList());</b>
+<i class="no-highlight">360</i>&nbsp;	}
+<i class="no-highlight">361</i>&nbsp;
+<i class="no-highlight">362</i>&nbsp;	/**
+<i class="no-highlight">363</i>&nbsp;	 * Get all the writers of all the movies in the movie list
+<i class="no-highlight">364</i>&nbsp;	 *
+<i class="no-highlight">365</i>&nbsp;	 * @return A list of all the writers in the movie list.
+<i class="no-highlight">366</i>&nbsp;	 */
+<i class="no-highlight">367</i>&nbsp;	public List&lt;String&gt; getAllWriters() {
+<b class="nc"><i class="no-highlight">368</i>&nbsp;		return movieList.stream()</b>
+<b class="nc"><i class="no-highlight">369</i>&nbsp;				.map(Movie::getWriter)</b>
+<b class="nc"><i class="no-highlight">370</i>&nbsp;				.sorted(Comparator.naturalOrder())</b>
+<b class="nc"><i class="no-highlight">371</i>&nbsp;				.collect(toList());</b>
+<i class="no-highlight">372</i>&nbsp;	}
+<i class="no-highlight">373</i>&nbsp;
+<i class="no-highlight">374</i>&nbsp;	/**
+<i class="no-highlight">375</i>&nbsp;	 * Get all the languages of the movies in the list
+<i class="no-highlight">376</i>&nbsp;	 *
+<i class="no-highlight">377</i>&nbsp;	 * @return A list of all the languages in the movie list.
+<i class="no-highlight">378</i>&nbsp;	 */
+<i class="no-highlight">379</i>&nbsp;	public List&lt;String&gt; getAllLanguages() {
+<b class="nc"><i class="no-highlight">380</i>&nbsp;		return movieList.stream()</b>
+<b class="nc"><i class="no-highlight">381</i>&nbsp;				.map(Movie::getLanguage)</b>
+<b class="nc"><i class="no-highlight">382</i>&nbsp;				.sorted(Comparator.naturalOrder())</b>
+<b class="nc"><i class="no-highlight">383</i>&nbsp;				.collect(toList());</b>
+<i class="no-highlight">384</i>&nbsp;	}
+<i class="no-highlight">385</i>&nbsp;
+<i class="no-highlight">386</i>&nbsp;	/**
+<i class="no-highlight">387</i>&nbsp;	 * We create a new AtomicReference object, which is a mutable object that can be used in a multi-threaded environment. We
+<i class="no-highlight">388</i>&nbsp;	 * then use the forEach method to iterate through the movieList and append the title of each movie to the AtomicReference
+<i class="no-highlight">389</i>&nbsp;	 * object
+<i class="no-highlight">390</i>&nbsp;	 *
+<i class="no-highlight">391</i>&nbsp;	 * @return A string of all the movie titles in the movieList.
+<i class="no-highlight">392</i>&nbsp;	 */
+<i class="no-highlight">393</i>&nbsp;	@Override
+<i class="no-highlight">394</i>&nbsp;	public String toString() {
+<b class="nc"><i class="no-highlight">395</i>&nbsp;		AtomicReference&lt;String&gt; str = new AtomicReference&lt;&gt;(&quot;&quot;);</b>
+<b class="nc"><i class="no-highlight">396</i>&nbsp;		movieList.forEach(m -&gt; {</b>
+<b class="nc"><i class="no-highlight">397</i>&nbsp;			String curr = str.get();</b>
+<b class="nc"><i class="no-highlight">398</i>&nbsp;			curr += m.getTitle() + &quot;\n&quot;;</b>
+<b class="nc"><i class="no-highlight">399</i>&nbsp;			str.set(curr);</b>
+<i class="no-highlight">400</i>&nbsp;		});
+<b class="nc"><i class="no-highlight">401</i>&nbsp;		return str.get();</b>
+<i class="no-highlight">402</i>&nbsp;	}
+<i class="no-highlight">403</i>&nbsp;
+<i class="no-highlight">404</i>&nbsp;	/**
+<i class="no-highlight">405</i>&nbsp;	 * Print() prints the object.
+<i class="no-highlight">406</i>&nbsp;	 */
+<i class="no-highlight">407</i>&nbsp;	public void print() {
+<b class="nc"><i class="no-highlight">408</i>&nbsp;		System.out.println(this);</b>
+<i class="no-highlight">409</i>&nbsp;	}
+<i class="no-highlight">410</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-04-21 23:48</div>
+</div>
+</body>
+</html>

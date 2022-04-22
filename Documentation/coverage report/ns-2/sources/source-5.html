@@ -1,0 +1,894 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Movie</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">edu.uah.cs321.Backend</a>
+</div>
+
+<h1>Coverage Summary for Class: Movie (edu.uah.cs321.Backend)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Movie</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    25.8%
+  </span>
+  <span class="absValue">
+    (17/66)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    22.8%
+  </span>
+  <span class="absValue">
+    (42/184)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package edu.uah.cs321.Backend;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import edu.uah.cs321.Frontend.Application;
+<i class="no-highlight">4</i>&nbsp;import edu.uah.cs321.Frontend.MoviePage;
+<i class="no-highlight">5</i>&nbsp;
+<i class="no-highlight">6</i>&nbsp;import javax.swing.*;
+<i class="no-highlight">7</i>&nbsp;import java.awt.*;
+<i class="no-highlight">8</i>&nbsp;import java.io.Serializable;
+<i class="no-highlight">9</i>&nbsp;import java.util.Arrays;
+<i class="no-highlight">10</i>&nbsp;import java.util.List;
+<i class="no-highlight">11</i>&nbsp;import java.util.ArrayList;
+<i class="no-highlight">12</i>&nbsp;import java.util.stream.Collectors;
+<i class="no-highlight">13</i>&nbsp;
+<i class="no-highlight">14</i>&nbsp;import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+<i class="no-highlight">15</i>&nbsp;
+<i class="no-highlight">16</i>&nbsp;@SuppressWarnings(&quot;unused&quot;)
+<i class="no-highlight">17</i>&nbsp;/**
+<i class="no-highlight">18</i>&nbsp; * File Name: Movie
+<i class="no-highlight">19</i>&nbsp; * Description: A Movie object contains all the information about a movie
+<i class="no-highlight">20</i>&nbsp; * @author justinbushue
+<i class="no-highlight">21</i>&nbsp; * @version 1.0
+<i class="no-highlight">22</i>&nbsp; */
+<i class="no-highlight">23</i>&nbsp;public class Movie implements Serializable {
+<i class="no-highlight">24</i>&nbsp;	// Creating a list of strings called mpcrRatings and adding the values G, PG, PG-13, R, and NR to it.
+<b class="fc"><i class="no-highlight">25</i>&nbsp;	private final List&lt;String&gt; mpcrRatings = new ArrayList&lt;&gt;(Arrays.asList(&quot;G&quot;,&quot;PG&quot;,&quot;PG-13&quot;,&quot;R&quot;,&quot;NR&quot;));</b>
+<i class="no-highlight">26</i>&nbsp;	// Used to hold the movies title.
+<i class="no-highlight">27</i>&nbsp;	private String Title;
+<i class="no-highlight">28</i>&nbsp;	// Used to hold the movies plot.
+<i class="no-highlight">29</i>&nbsp;	private String Plot;
+<i class="no-highlight">30</i>&nbsp;	// Used to hold the movies MPCR Rating.
+<i class="no-highlight">31</i>&nbsp;	private String Rated;
+<i class="no-highlight">32</i>&nbsp;	// Used to hold the movies year of release.
+<i class="no-highlight">33</i>&nbsp;	private String Year;
+<i class="no-highlight">34</i>&nbsp;	// Used to hold the movies release date.
+<i class="no-highlight">35</i>&nbsp;	private String Released;
+<i class="no-highlight">36</i>&nbsp;	// Used to hold the movies genres.
+<i class="no-highlight">37</i>&nbsp;	private String Genre;
+<i class="no-highlight">38</i>&nbsp;	// Used to hold the movies runtime length.
+<i class="no-highlight">39</i>&nbsp;	private String Runtime;
+<i class="no-highlight">40</i>&nbsp;	// Used to hold the movies director.
+<i class="no-highlight">41</i>&nbsp;	private String Director;
+<i class="no-highlight">42</i>&nbsp;	// Used to hold the movies writer(s).
+<i class="no-highlight">43</i>&nbsp;	private String Writer;
+<i class="no-highlight">44</i>&nbsp;	// Used to hold the movies awards.
+<i class="no-highlight">45</i>&nbsp;	private String Awards;
+<i class="no-highlight">46</i>&nbsp;	// Used to hold the movies language.
+<i class="no-highlight">47</i>&nbsp;	private String Language;
+<i class="no-highlight">48</i>&nbsp;	// Used to hold the movies release country.
+<i class="no-highlight">49</i>&nbsp;	private String Country;
+<i class="no-highlight">50</i>&nbsp;	// Used to hold the movies poster url.
+<i class="no-highlight">51</i>&nbsp;	private String Poster;
+<i class="no-highlight">52</i>&nbsp;	// Used to hold the movies rating by various outlets.
+<i class="no-highlight">53</i>&nbsp;	private List&lt;Rating&gt; Ratings;
+<i class="no-highlight">54</i>&nbsp;	// Used to hold the movies metascore.
+<i class="no-highlight">55</i>&nbsp;	private String Metascore;
+<i class="no-highlight">56</i>&nbsp;	// Used to hold the movies IMDB rating.
+<i class="no-highlight">57</i>&nbsp;	private String imdbRating;
+<i class="no-highlight">58</i>&nbsp;	// Used to hold the movies IMDB votes.
+<i class="no-highlight">59</i>&nbsp;	private String imdbVotes;
+<i class="no-highlight">60</i>&nbsp;	// Used to hold the movies IMDB ID.
+<i class="no-highlight">61</i>&nbsp;	private String imdbID;
+<i class="no-highlight">62</i>&nbsp;	// Used to hold the movies type.
+<i class="no-highlight">63</i>&nbsp;	private String Type;
+<i class="no-highlight">64</i>&nbsp;	// Used to hold the movies dvd release info.
+<i class="no-highlight">65</i>&nbsp;	private String DVD;
+<i class="no-highlight">66</i>&nbsp;	// Used to hold the movies box office info.
+<i class="no-highlight">67</i>&nbsp;	private String BoxOffice;
+<i class="no-highlight">68</i>&nbsp;	// Used to hold the movies production info.
+<i class="no-highlight">69</i>&nbsp;	private String Production;
+<i class="no-highlight">70</i>&nbsp;	// Used to hold the movies website url.
+<i class="no-highlight">71</i>&nbsp;	private String Website;
+<i class="no-highlight">72</i>&nbsp;	// Used to hold the movies critical response.
+<i class="no-highlight">73</i>&nbsp;	private String Response;
+<i class="no-highlight">74</i>&nbsp;	// Used to hold the movies actor(s).
+<i class="no-highlight">75</i>&nbsp;	private String Actors;
+<i class="no-highlight">76</i>&nbsp;	// Used to hold the movies distinct words in the title, plot, actor(s), director, writer(s).
+<i class="no-highlight">77</i>&nbsp;	private List&lt;String&gt; distinctWords;
+<i class="no-highlight">78</i>&nbsp;	// Used to hold the movies user created reviews.
+<i class="no-highlight">79</i>&nbsp;	private List&lt;Review&gt; userReviews;
+<i class="no-highlight">80</i>&nbsp;
+<i class="no-highlight">81</i>&nbsp;	// This is a constructor for the Movie class. It initializes the userReviews list to an empty list.
+<b class="fc"><i class="no-highlight">82</i>&nbsp;	public Movie(){</b>
+<b class="fc"><i class="no-highlight">83</i>&nbsp;		userReviews = new ArrayList&lt;&gt;();</b>
+<b class="fc"><i class="no-highlight">84</i>&nbsp;		Ratings = new ArrayList&lt;&gt;();</b>
+<i class="no-highlight">85</i>&nbsp;	}
+<i class="no-highlight">86</i>&nbsp;	// This is a constructor for the Movie class. It initializes all the fields to their corresponding parameter.
+<b class="nc"><i class="no-highlight">87</i>&nbsp;	public Movie(String title, String plot, String rating, String year, String released, String genre, String runtime, String director, String writer, String awards, String language, String poster, String metaScore, String imdbRating, String imdbVotes, String imdbID, String type, String dvd, String boxOffice, String production, String website, String response, String actors) {</b>
+<b class="nc"><i class="no-highlight">88</i>&nbsp;		userReviews = new ArrayList&lt;&gt;();</b>
+<b class="nc"><i class="no-highlight">89</i>&nbsp;		Ratings = new ArrayList&lt;&gt;();</b>
+<b class="nc"><i class="no-highlight">90</i>&nbsp;		this.Title = title;</b>
+<b class="nc"><i class="no-highlight">91</i>&nbsp;		this.Plot = plot;</b>
+<b class="nc"><i class="no-highlight">92</i>&nbsp;		if (mpcrRatings.contains(rating.toUpperCase())) {</b>
+<b class="nc"><i class="no-highlight">93</i>&nbsp;			this.Rated = rating;</b>
+<i class="no-highlight">94</i>&nbsp;		} else {
+<b class="nc"><i class="no-highlight">95</i>&nbsp;			this.Rated = &quot;N/A&quot;;</b>
+<i class="no-highlight">96</i>&nbsp;		}
+<b class="nc"><i class="no-highlight">97</i>&nbsp;		this.Year = year;</b>
+<b class="nc"><i class="no-highlight">98</i>&nbsp;		this.Released = released;</b>
+<b class="nc"><i class="no-highlight">99</i>&nbsp;		this.Genre = genre;</b>
+<b class="nc"><i class="no-highlight">100</i>&nbsp;		this.Runtime = runtime;</b>
+<b class="nc"><i class="no-highlight">101</i>&nbsp;		this.Director = director;</b>
+<b class="nc"><i class="no-highlight">102</i>&nbsp;		this.Writer = writer;</b>
+<b class="nc"><i class="no-highlight">103</i>&nbsp;		this.Awards = awards;</b>
+<b class="nc"><i class="no-highlight">104</i>&nbsp;		this.Language = language;</b>
+<b class="nc"><i class="no-highlight">105</i>&nbsp;		this.Poster = poster;</b>
+<b class="nc"><i class="no-highlight">106</i>&nbsp;		this.Metascore = metaScore;</b>
+<b class="nc"><i class="no-highlight">107</i>&nbsp;		this.imdbRating = imdbRating;</b>
+<b class="nc"><i class="no-highlight">108</i>&nbsp;		this.imdbVotes = imdbVotes;</b>
+<b class="nc"><i class="no-highlight">109</i>&nbsp;		this.imdbID = imdbID;</b>
+<b class="nc"><i class="no-highlight">110</i>&nbsp;		this.Type = type;</b>
+<b class="nc"><i class="no-highlight">111</i>&nbsp;		this.DVD = dvd;</b>
+<b class="nc"><i class="no-highlight">112</i>&nbsp;		this.BoxOffice = boxOffice;</b>
+<b class="nc"><i class="no-highlight">113</i>&nbsp;		this.Production = production;</b>
+<b class="nc"><i class="no-highlight">114</i>&nbsp;		this.Website = website;</b>
+<b class="nc"><i class="no-highlight">115</i>&nbsp;		this.Response = response;</b>
+<b class="nc"><i class="no-highlight">116</i>&nbsp;		this.Actors = actors;</b>
+<i class="no-highlight">117</i>&nbsp;
+<i class="no-highlight">118</i>&nbsp;	}
+<i class="no-highlight">119</i>&nbsp;
+<i class="no-highlight">120</i>&nbsp;	// This is a constructor for the Movie class. It initializes all the fields to their corresponding parameter.
+<b class="nc"><i class="no-highlight">121</i>&nbsp;	public Movie(String title, String plot, String rating, String year) {</b>
+<b class="nc"><i class="no-highlight">122</i>&nbsp;		userReviews = new ArrayList&lt;&gt;();</b>
+<b class="nc"><i class="no-highlight">123</i>&nbsp;		Ratings = new ArrayList&lt;&gt;();</b>
+<b class="nc"><i class="no-highlight">124</i>&nbsp;		this.Title = title;</b>
+<b class="nc"><i class="no-highlight">125</i>&nbsp;		this.Plot = plot;</b>
+<b class="nc"><i class="no-highlight">126</i>&nbsp;		this.Rated = rating;</b>
+<b class="nc"><i class="no-highlight">127</i>&nbsp;		this.Year = year;</b>
+<i class="no-highlight">128</i>&nbsp;	}
+<i class="no-highlight">129</i>&nbsp;
+<i class="no-highlight">130</i>&nbsp;	/**
+<i class="no-highlight">131</i>&nbsp;	 * This function returns the title of the movie
+<i class="no-highlight">132</i>&nbsp;	 *
+<i class="no-highlight">133</i>&nbsp;	 * @return The title of the book.
+<i class="no-highlight">134</i>&nbsp;	 */
+<i class="no-highlight">135</i>&nbsp;	public String getTitle() {
+<b class="fc"><i class="no-highlight">136</i>&nbsp;		return Title;</b>
+<i class="no-highlight">137</i>&nbsp;	}
+<i class="no-highlight">138</i>&nbsp;
+<i class="no-highlight">139</i>&nbsp;	/**
+<i class="no-highlight">140</i>&nbsp;	 * This function sets the title of the movie
+<i class="no-highlight">141</i>&nbsp;	 *
+<i class="no-highlight">142</i>&nbsp;	 * @param title The title of the notification.
+<i class="no-highlight">143</i>&nbsp;	 */
+<i class="no-highlight">144</i>&nbsp;	public void setTitle(String title) {
+<b class="nc"><i class="no-highlight">145</i>&nbsp;		Title = title;</b>
+<i class="no-highlight">146</i>&nbsp;	}
+<i class="no-highlight">147</i>&nbsp;
+<i class="no-highlight">148</i>&nbsp;	/**
+<i class="no-highlight">149</i>&nbsp;	 * This function returns the plot of the movie
+<i class="no-highlight">150</i>&nbsp;	 *
+<i class="no-highlight">151</i>&nbsp;	 * @return The plot of the movie.
+<i class="no-highlight">152</i>&nbsp;	 */
+<i class="no-highlight">153</i>&nbsp;	public String getPlot() {
+<b class="fc"><i class="no-highlight">154</i>&nbsp;		return Plot;</b>
+<i class="no-highlight">155</i>&nbsp;	}
+<i class="no-highlight">156</i>&nbsp;
+<i class="no-highlight">157</i>&nbsp;	/**
+<i class="no-highlight">158</i>&nbsp;	 * This function sets the plot of the movie
+<i class="no-highlight">159</i>&nbsp;	 *
+<i class="no-highlight">160</i>&nbsp;	 * @param plot The plot of the movie.
+<i class="no-highlight">161</i>&nbsp;	 */
+<i class="no-highlight">162</i>&nbsp;	public void setPlot(String plot) {
+<b class="nc"><i class="no-highlight">163</i>&nbsp;		Plot = plot;</b>
+<i class="no-highlight">164</i>&nbsp;	}
+<i class="no-highlight">165</i>&nbsp;
+<i class="no-highlight">166</i>&nbsp;	/**
+<i class="no-highlight">167</i>&nbsp;	 * This function returns the rated value of the movie
+<i class="no-highlight">168</i>&nbsp;	 *
+<i class="no-highlight">169</i>&nbsp;	 * @return The value of the variable Rated.
+<i class="no-highlight">170</i>&nbsp;	 */
+<i class="no-highlight">171</i>&nbsp;	public String getRated() {
+<b class="nc"><i class="no-highlight">172</i>&nbsp;		return Rated;</b>
+<i class="no-highlight">173</i>&nbsp;	}
+<i class="no-highlight">174</i>&nbsp;
+<i class="no-highlight">175</i>&nbsp;	/**
+<i class="no-highlight">176</i>&nbsp;	 * This function sets the value of the variable &quot;Rated&quot; to the value of the variable &quot;rated&quot;
+<i class="no-highlight">177</i>&nbsp;	 *
+<i class="no-highlight">178</i>&nbsp;	 * @param rated The rating of the movie.
+<i class="no-highlight">179</i>&nbsp;	 */
+<i class="no-highlight">180</i>&nbsp;	public void setRated(String rated) {
+<b class="nc"><i class="no-highlight">181</i>&nbsp;		Rated = rated;</b>
+<i class="no-highlight">182</i>&nbsp;	}
+<i class="no-highlight">183</i>&nbsp;
+<i class="no-highlight">184</i>&nbsp;	/**
+<i class="no-highlight">185</i>&nbsp;	 * This function returns the year of the movie
+<i class="no-highlight">186</i>&nbsp;	 *
+<i class="no-highlight">187</i>&nbsp;	 * @return The year of the car.
+<i class="no-highlight">188</i>&nbsp;	 */
+<i class="no-highlight">189</i>&nbsp;	public String getYear() {
+<b class="fc"><i class="no-highlight">190</i>&nbsp;		return Year;</b>
+<i class="no-highlight">191</i>&nbsp;	}
+<i class="no-highlight">192</i>&nbsp;
+<i class="no-highlight">193</i>&nbsp;	/**
+<i class="no-highlight">194</i>&nbsp;	 * This function sets the year of the car
+<i class="no-highlight">195</i>&nbsp;	 *
+<i class="no-highlight">196</i>&nbsp;	 * @param year The year of the movie.
+<i class="no-highlight">197</i>&nbsp;	 */
+<i class="no-highlight">198</i>&nbsp;	public void setYear(String year) {
+<b class="nc"><i class="no-highlight">199</i>&nbsp;		Year = year;</b>
+<i class="no-highlight">200</i>&nbsp;	}
+<i class="no-highlight">201</i>&nbsp;
+<i class="no-highlight">202</i>&nbsp;	/**
+<i class="no-highlight">203</i>&nbsp;	 * This function returns the release date of the movie
+<i class="no-highlight">204</i>&nbsp;	 *
+<i class="no-highlight">205</i>&nbsp;	 * @return The value of the variable Released.
+<i class="no-highlight">206</i>&nbsp;	 */
+<i class="no-highlight">207</i>&nbsp;	public String getReleased() {
+<b class="fc"><i class="no-highlight">208</i>&nbsp;		return Released;</b>
+<i class="no-highlight">209</i>&nbsp;	}
+<i class="no-highlight">210</i>&nbsp;
+<i class="no-highlight">211</i>&nbsp;	/**
+<i class="no-highlight">212</i>&nbsp;	 * It sets the value of the variable Released to the value of the parameter released.
+<i class="no-highlight">213</i>&nbsp;	 *
+<i class="no-highlight">214</i>&nbsp;	 * @param released The date the movie was released.
+<i class="no-highlight">215</i>&nbsp;	 */
+<i class="no-highlight">216</i>&nbsp;	public void setReleased(String released) {
+<b class="nc"><i class="no-highlight">217</i>&nbsp;		Released = released;</b>
+<i class="no-highlight">218</i>&nbsp;	}
+<i class="no-highlight">219</i>&nbsp;
+<i class="no-highlight">220</i>&nbsp;	/**
+<i class="no-highlight">221</i>&nbsp;	 * &gt; The function takes a string of genres separated by commas and returns a list of strings of genres
+<i class="no-highlight">222</i>&nbsp;	 *
+<i class="no-highlight">223</i>&nbsp;	 * @return A list of strings
+<i class="no-highlight">224</i>&nbsp;	 */
+<i class="no-highlight">225</i>&nbsp;	public List&lt;String&gt; getGenre() {
+<b class="fc"><i class="no-highlight">226</i>&nbsp;		return List.of(Genre.split(&quot;, &quot;));</b>
+<i class="no-highlight">227</i>&nbsp;	}
+<i class="no-highlight">228</i>&nbsp;
+<i class="no-highlight">229</i>&nbsp;	/**
+<i class="no-highlight">230</i>&nbsp;	 * &gt; This function takes a string of genres, splits it into a list of genres, and returns the list of genres in lowercase
+<i class="no-highlight">231</i>&nbsp;	 *
+<i class="no-highlight">232</i>&nbsp;	 * @return A list of strings, each string is a genre in lowercase.
+<i class="no-highlight">233</i>&nbsp;	 */
+<i class="no-highlight">234</i>&nbsp;	public List&lt;String&gt; getGenreLower() {
+<b class="nc"><i class="no-highlight">235</i>&nbsp;		return List.of(Genre.toLowerCase().split(&quot;, &quot;));</b>
+<i class="no-highlight">236</i>&nbsp;	}
+<i class="no-highlight">237</i>&nbsp;
+<i class="no-highlight">238</i>&nbsp;	/**
+<i class="no-highlight">239</i>&nbsp;	 * The function takes a list of strings, joins them together with a comma and a space, and then sets the Genre variable to
+<i class="no-highlight">240</i>&nbsp;	 * that string
+<i class="no-highlight">241</i>&nbsp;	 *
+<i class="no-highlight">242</i>&nbsp;	 * @param genre A list of genres that the movie belongs to.
+<i class="no-highlight">243</i>&nbsp;	 */
+<i class="no-highlight">244</i>&nbsp;	public void setGenre(List&lt;String&gt; genre) {
+<b class="nc"><i class="no-highlight">245</i>&nbsp;		Genre = String.join(&quot;, &quot;, genre);</b>
+<i class="no-highlight">246</i>&nbsp;	}
+<i class="no-highlight">247</i>&nbsp;
+<i class="no-highlight">248</i>&nbsp;	/**
+<i class="no-highlight">249</i>&nbsp;	 * This function returns the runtime of the movie
+<i class="no-highlight">250</i>&nbsp;	 *
+<i class="no-highlight">251</i>&nbsp;	 * @return The runtime of the movie.
+<i class="no-highlight">252</i>&nbsp;	 */
+<i class="no-highlight">253</i>&nbsp;	public String getRuntime() {
+<b class="fc"><i class="no-highlight">254</i>&nbsp;		return Runtime;</b>
+<i class="no-highlight">255</i>&nbsp;	}
+<i class="no-highlight">256</i>&nbsp;
+<i class="no-highlight">257</i>&nbsp;	/**
+<i class="no-highlight">258</i>&nbsp;	 * This function sets the runtime of the movie
+<i class="no-highlight">259</i>&nbsp;	 *
+<i class="no-highlight">260</i>&nbsp;	 * @param runtime The runtime of the movie in minutes.
+<i class="no-highlight">261</i>&nbsp;	 */
+<i class="no-highlight">262</i>&nbsp;	public void setRuntime(String runtime) {
+<b class="nc"><i class="no-highlight">263</i>&nbsp;		Runtime = runtime;</b>
+<i class="no-highlight">264</i>&nbsp;	}
+<i class="no-highlight">265</i>&nbsp;
+<i class="no-highlight">266</i>&nbsp;	/**
+<i class="no-highlight">267</i>&nbsp;	 * This function returns the director of the movie
+<i class="no-highlight">268</i>&nbsp;	 *
+<i class="no-highlight">269</i>&nbsp;	 * @return The Director of the movie.
+<i class="no-highlight">270</i>&nbsp;	 */
+<i class="no-highlight">271</i>&nbsp;	public String getDirector() {
+<b class="fc"><i class="no-highlight">272</i>&nbsp;		return Director;</b>
+<i class="no-highlight">273</i>&nbsp;	}
+<i class="no-highlight">274</i>&nbsp;
+<i class="no-highlight">275</i>&nbsp;	/**
+<i class="no-highlight">276</i>&nbsp;	 * This function sets the director of the movie
+<i class="no-highlight">277</i>&nbsp;	 *
+<i class="no-highlight">278</i>&nbsp;	 * @param director The director of the movie.
+<i class="no-highlight">279</i>&nbsp;	 */
+<i class="no-highlight">280</i>&nbsp;	public void setDirector(String director) {
+<b class="nc"><i class="no-highlight">281</i>&nbsp;		Director = director;</b>
+<i class="no-highlight">282</i>&nbsp;	}
+<i class="no-highlight">283</i>&nbsp;
+<i class="no-highlight">284</i>&nbsp;	/**
+<i class="no-highlight">285</i>&nbsp;	 * It returns the writer of the book.
+<i class="no-highlight">286</i>&nbsp;	 *
+<i class="no-highlight">287</i>&nbsp;	 * @return The writer of the book.
+<i class="no-highlight">288</i>&nbsp;	 */
+<i class="no-highlight">289</i>&nbsp;	public String getWriter() {
+<b class="fc"><i class="no-highlight">290</i>&nbsp;		return Writer;</b>
+<i class="no-highlight">291</i>&nbsp;	}
+<i class="no-highlight">292</i>&nbsp;
+<i class="no-highlight">293</i>&nbsp;	/**
+<i class="no-highlight">294</i>&nbsp;	 * This function sets the writer of the book
+<i class="no-highlight">295</i>&nbsp;	 *
+<i class="no-highlight">296</i>&nbsp;	 * @param writer The name of the writer.
+<i class="no-highlight">297</i>&nbsp;	 */
+<i class="no-highlight">298</i>&nbsp;	public void setWriter(String writer) {
+<b class="nc"><i class="no-highlight">299</i>&nbsp;		Writer = writer;</b>
+<i class="no-highlight">300</i>&nbsp;	}
+<i class="no-highlight">301</i>&nbsp;
+<i class="no-highlight">302</i>&nbsp;	/**
+<i class="no-highlight">303</i>&nbsp;	 * This function returns the awards of the movie
+<i class="no-highlight">304</i>&nbsp;	 *
+<i class="no-highlight">305</i>&nbsp;	 * @return The awards that the movie has won.
+<i class="no-highlight">306</i>&nbsp;	 */
+<i class="no-highlight">307</i>&nbsp;	public String getAwards() {
+<b class="nc"><i class="no-highlight">308</i>&nbsp;		return Awards;</b>
+<i class="no-highlight">309</i>&nbsp;	}
+<i class="no-highlight">310</i>&nbsp;
+<i class="no-highlight">311</i>&nbsp;	/**
+<i class="no-highlight">312</i>&nbsp;	 * This function sets the value of the Awards variable to the value of the awards parameter
+<i class="no-highlight">313</i>&nbsp;	 *
+<i class="no-highlight">314</i>&nbsp;	 * @param awards The awards the movie has won.
+<i class="no-highlight">315</i>&nbsp;	 */
+<i class="no-highlight">316</i>&nbsp;	public void setAwards(String awards) {
+<b class="nc"><i class="no-highlight">317</i>&nbsp;		Awards = awards;</b>
+<i class="no-highlight">318</i>&nbsp;	}
+<i class="no-highlight">319</i>&nbsp;
+<i class="no-highlight">320</i>&nbsp;	/**
+<i class="no-highlight">321</i>&nbsp;	 * This function returns the language of the book
+<i class="no-highlight">322</i>&nbsp;	 *
+<i class="no-highlight">323</i>&nbsp;	 * @return The language of the movie.
+<i class="no-highlight">324</i>&nbsp;	 */
+<i class="no-highlight">325</i>&nbsp;	public String getLanguage() {
+<b class="nc"><i class="no-highlight">326</i>&nbsp;		return Language;</b>
+<i class="no-highlight">327</i>&nbsp;	}
+<i class="no-highlight">328</i>&nbsp;
+<i class="no-highlight">329</i>&nbsp;	/**
+<i class="no-highlight">330</i>&nbsp;	 * This function sets the language of the user
+<i class="no-highlight">331</i>&nbsp;	 *
+<i class="no-highlight">332</i>&nbsp;	 * @param language The language of the text to be translated.
+<i class="no-highlight">333</i>&nbsp;	 */
+<i class="no-highlight">334</i>&nbsp;	public void setLanguage(String language) {
+<b class="nc"><i class="no-highlight">335</i>&nbsp;		Language = language;</b>
+<i class="no-highlight">336</i>&nbsp;	}
+<i class="no-highlight">337</i>&nbsp;
+<i class="no-highlight">338</i>&nbsp;	/**
+<i class="no-highlight">339</i>&nbsp;	 * This function returns the country of the user
+<i class="no-highlight">340</i>&nbsp;	 *
+<i class="no-highlight">341</i>&nbsp;	 * @return The country of the person.
+<i class="no-highlight">342</i>&nbsp;	 */
+<i class="no-highlight">343</i>&nbsp;	public String getCountry() {
+<b class="nc"><i class="no-highlight">344</i>&nbsp;		return Country;</b>
+<i class="no-highlight">345</i>&nbsp;	}
+<i class="no-highlight">346</i>&nbsp;
+<i class="no-highlight">347</i>&nbsp;	/**
+<i class="no-highlight">348</i>&nbsp;	 * This function sets the country of the user
+<i class="no-highlight">349</i>&nbsp;	 *
+<i class="no-highlight">350</i>&nbsp;	 * @param country The country you want to search for.
+<i class="no-highlight">351</i>&nbsp;	 */
+<i class="no-highlight">352</i>&nbsp;	public void setCountry(String country) {
+<b class="nc"><i class="no-highlight">353</i>&nbsp;		Country = country;</b>
+<i class="no-highlight">354</i>&nbsp;	}
+<i class="no-highlight">355</i>&nbsp;
+<i class="no-highlight">356</i>&nbsp;	/**
+<i class="no-highlight">357</i>&nbsp;	 * This function returns the poster of the movie
+<i class="no-highlight">358</i>&nbsp;	 *
+<i class="no-highlight">359</i>&nbsp;	 * @return The poster of the movie.
+<i class="no-highlight">360</i>&nbsp;	 */
+<i class="no-highlight">361</i>&nbsp;	public String getPoster() {
+<b class="fc"><i class="no-highlight">362</i>&nbsp;		return Poster;</b>
+<i class="no-highlight">363</i>&nbsp;	}
+<i class="no-highlight">364</i>&nbsp;
+<i class="no-highlight">365</i>&nbsp;	/**
+<i class="no-highlight">366</i>&nbsp;	 * This function sets the poster of the movie
+<i class="no-highlight">367</i>&nbsp;	 *
+<i class="no-highlight">368</i>&nbsp;	 * @param poster The URL of the poster image.
+<i class="no-highlight">369</i>&nbsp;	 */
+<i class="no-highlight">370</i>&nbsp;	public void setPoster(String poster) {
+<b class="nc"><i class="no-highlight">371</i>&nbsp;		Poster = poster;</b>
+<i class="no-highlight">372</i>&nbsp;	}
+<i class="no-highlight">373</i>&nbsp;
+<i class="no-highlight">374</i>&nbsp;	/**
+<i class="no-highlight">375</i>&nbsp;	 * This function returns a list of ratings
+<i class="no-highlight">376</i>&nbsp;	 *
+<i class="no-highlight">377</i>&nbsp;	 * @return A list of ratings.
+<i class="no-highlight">378</i>&nbsp;	 */
+<i class="no-highlight">379</i>&nbsp;	public List&lt;Rating&gt; getRatings() {
+<b class="nc"><i class="no-highlight">380</i>&nbsp;		return Ratings;</b>
+<i class="no-highlight">381</i>&nbsp;	}
+<i class="no-highlight">382</i>&nbsp;
+<i class="no-highlight">383</i>&nbsp;	/**
+<i class="no-highlight">384</i>&nbsp;	 * This function sets the ratings of the movie
+<i class="no-highlight">385</i>&nbsp;	 *
+<i class="no-highlight">386</i>&nbsp;	 * @param ratings A list of ratings.
+<i class="no-highlight">387</i>&nbsp;	 */
+<i class="no-highlight">388</i>&nbsp;	public void setRatings(List&lt;Rating&gt; ratings) {
+<b class="nc"><i class="no-highlight">389</i>&nbsp;		Ratings = ratings;</b>
+<i class="no-highlight">390</i>&nbsp;	}
+<i class="no-highlight">391</i>&nbsp;
+<i class="no-highlight">392</i>&nbsp;	/**
+<i class="no-highlight">393</i>&nbsp;	 * This function returns the Metascore of the movie
+<i class="no-highlight">394</i>&nbsp;	 *
+<i class="no-highlight">395</i>&nbsp;	 * @return The Metascore of the movie.
+<i class="no-highlight">396</i>&nbsp;	 */
+<i class="no-highlight">397</i>&nbsp;	public String getMetascore() {
+<b class="nc"><i class="no-highlight">398</i>&nbsp;		return Metascore;</b>
+<i class="no-highlight">399</i>&nbsp;	}
+<i class="no-highlight">400</i>&nbsp;
+<i class="no-highlight">401</i>&nbsp;	/**
+<i class="no-highlight">402</i>&nbsp;	 * This function sets the value of the Metascore variable to the value of the metascore parameter
+<i class="no-highlight">403</i>&nbsp;	 *
+<i class="no-highlight">404</i>&nbsp;	 * @param metascore The metascore of the movie.
+<i class="no-highlight">405</i>&nbsp;	 */
+<i class="no-highlight">406</i>&nbsp;	public void setMetascore(String metascore) {
+<b class="nc"><i class="no-highlight">407</i>&nbsp;		Metascore = metascore;</b>
+<i class="no-highlight">408</i>&nbsp;	}
+<i class="no-highlight">409</i>&nbsp;
+<i class="no-highlight">410</i>&nbsp;	/**
+<i class="no-highlight">411</i>&nbsp;	 * This function returns the imdbRating of the movie
+<i class="no-highlight">412</i>&nbsp;	 *
+<i class="no-highlight">413</i>&nbsp;	 * @return The imdbRating is being returned.
+<i class="no-highlight">414</i>&nbsp;	 */
+<i class="no-highlight">415</i>&nbsp;	public String getImdbRating() {
+<b class="nc"><i class="no-highlight">416</i>&nbsp;		return imdbRating;</b>
+<i class="no-highlight">417</i>&nbsp;	}
+<i class="no-highlight">418</i>&nbsp;
+<i class="no-highlight">419</i>&nbsp;	/**
+<i class="no-highlight">420</i>&nbsp;	 * This function sets the imdbRating variable to the value of the imdbRating parameter
+<i class="no-highlight">421</i>&nbsp;	 *
+<i class="no-highlight">422</i>&nbsp;	 * @param imdbRating The IMDB rating of the movie.
+<i class="no-highlight">423</i>&nbsp;	 */
+<i class="no-highlight">424</i>&nbsp;	public void setImdbRating(String imdbRating) {
+<b class="nc"><i class="no-highlight">425</i>&nbsp;		this.imdbRating = imdbRating;</b>
+<i class="no-highlight">426</i>&nbsp;	}
+<i class="no-highlight">427</i>&nbsp;
+<i class="no-highlight">428</i>&nbsp;	/**
+<i class="no-highlight">429</i>&nbsp;	 * This function returns the imdbVotes variable
+<i class="no-highlight">430</i>&nbsp;	 *
+<i class="no-highlight">431</i>&nbsp;	 * @return The imdbVotes variable is being returned.
+<i class="no-highlight">432</i>&nbsp;	 */
+<i class="no-highlight">433</i>&nbsp;	public String getImdbVotes() {
+<b class="nc"><i class="no-highlight">434</i>&nbsp;		return imdbVotes;</b>
+<i class="no-highlight">435</i>&nbsp;	}
+<i class="no-highlight">436</i>&nbsp;
+<i class="no-highlight">437</i>&nbsp;	/**
+<i class="no-highlight">438</i>&nbsp;	 * This function sets the imdbVotes variable to the value of the imdbVotes parameter
+<i class="no-highlight">439</i>&nbsp;	 *
+<i class="no-highlight">440</i>&nbsp;	 * @param imdbVotes The number of votes the movie has received on IMDB.
+<i class="no-highlight">441</i>&nbsp;	 */
+<i class="no-highlight">442</i>&nbsp;	public void setImdbVotes(String imdbVotes) {
+<b class="nc"><i class="no-highlight">443</i>&nbsp;		this.imdbVotes = imdbVotes;</b>
+<i class="no-highlight">444</i>&nbsp;	}
+<i class="no-highlight">445</i>&nbsp;
+<i class="no-highlight">446</i>&nbsp;	/**
+<i class="no-highlight">447</i>&nbsp;	 * This function returns the imdbID of the movie
+<i class="no-highlight">448</i>&nbsp;	 *
+<i class="no-highlight">449</i>&nbsp;	 * @return The imdbID is being returned.
+<i class="no-highlight">450</i>&nbsp;	 */
+<i class="no-highlight">451</i>&nbsp;	public String getImdbID() {
+<b class="nc"><i class="no-highlight">452</i>&nbsp;		return imdbID;</b>
+<i class="no-highlight">453</i>&nbsp;	}
+<i class="no-highlight">454</i>&nbsp;
+<i class="no-highlight">455</i>&nbsp;	/**
+<i class="no-highlight">456</i>&nbsp;	 * This function sets the imdbID of the movie to the imdbID passed in as a parameter
+<i class="no-highlight">457</i>&nbsp;	 *
+<i class="no-highlight">458</i>&nbsp;	 * @param imdbID The IMDB ID of the movie.
+<i class="no-highlight">459</i>&nbsp;	 */
+<i class="no-highlight">460</i>&nbsp;	public void setImdbID(String imdbID) {
+<b class="nc"><i class="no-highlight">461</i>&nbsp;		this.imdbID = imdbID;</b>
+<i class="no-highlight">462</i>&nbsp;	}
+<i class="no-highlight">463</i>&nbsp;
+<i class="no-highlight">464</i>&nbsp;	/**
+<i class="no-highlight">465</i>&nbsp;	 * This function returns the type of the object
+<i class="no-highlight">466</i>&nbsp;	 *
+<i class="no-highlight">467</i>&nbsp;	 * @return The type of the object.
+<i class="no-highlight">468</i>&nbsp;	 */
+<i class="no-highlight">469</i>&nbsp;	public String getType() {
+<b class="nc"><i class="no-highlight">470</i>&nbsp;		return Type;</b>
+<i class="no-highlight">471</i>&nbsp;	}
+<i class="no-highlight">472</i>&nbsp;
+<i class="no-highlight">473</i>&nbsp;	/**
+<i class="no-highlight">474</i>&nbsp;	 * This function sets the type of the object
+<i class="no-highlight">475</i>&nbsp;	 *
+<i class="no-highlight">476</i>&nbsp;	 * @param type The type of the message.
+<i class="no-highlight">477</i>&nbsp;	 */
+<i class="no-highlight">478</i>&nbsp;	public void setType(String type) {
+<b class="nc"><i class="no-highlight">479</i>&nbsp;		Type = type;</b>
+<i class="no-highlight">480</i>&nbsp;	}
+<i class="no-highlight">481</i>&nbsp;
+<i class="no-highlight">482</i>&nbsp;	/**
+<i class="no-highlight">483</i>&nbsp;	 * This function returns the DVD of the movie
+<i class="no-highlight">484</i>&nbsp;	 *
+<i class="no-highlight">485</i>&nbsp;	 * @return The DVD variable is being returned.
+<i class="no-highlight">486</i>&nbsp;	 */
+<i class="no-highlight">487</i>&nbsp;	public String getDVD() {
+<b class="nc"><i class="no-highlight">488</i>&nbsp;		return DVD;</b>
+<i class="no-highlight">489</i>&nbsp;	}
+<i class="no-highlight">490</i>&nbsp;
+<i class="no-highlight">491</i>&nbsp;	/**
+<i class="no-highlight">492</i>&nbsp;	 * This function sets the DVD variable to the DVD parameter
+<i class="no-highlight">493</i>&nbsp;	 *
+<i class="no-highlight">494</i>&nbsp;	 * @param DVD The DVD&#39;s name
+<i class="no-highlight">495</i>&nbsp;	 */
+<i class="no-highlight">496</i>&nbsp;	public void setDVD(String DVD) {
+<b class="nc"><i class="no-highlight">497</i>&nbsp;		this.DVD = DVD;</b>
+<i class="no-highlight">498</i>&nbsp;	}
+<i class="no-highlight">499</i>&nbsp;
+<i class="no-highlight">500</i>&nbsp;	/**
+<i class="no-highlight">501</i>&nbsp;	 * This function returns the box office of the movie
+<i class="no-highlight">502</i>&nbsp;	 *
+<i class="no-highlight">503</i>&nbsp;	 * @return The BoxOffice variable is being returned.
+<i class="no-highlight">504</i>&nbsp;	 */
+<i class="no-highlight">505</i>&nbsp;	public String getBoxOffice() {
+<b class="nc"><i class="no-highlight">506</i>&nbsp;		return BoxOffice;</b>
+<i class="no-highlight">507</i>&nbsp;	}
+<i class="no-highlight">508</i>&nbsp;
+<i class="no-highlight">509</i>&nbsp;	/**
+<i class="no-highlight">510</i>&nbsp;	 * This function sets the box office of the movie
+<i class="no-highlight">511</i>&nbsp;	 *
+<i class="no-highlight">512</i>&nbsp;	 * @param boxOffice The box office revenue of the movie.
+<i class="no-highlight">513</i>&nbsp;	 */
+<i class="no-highlight">514</i>&nbsp;	public void setBoxOffice(String boxOffice) {
+<b class="nc"><i class="no-highlight">515</i>&nbsp;		BoxOffice = boxOffice;</b>
+<i class="no-highlight">516</i>&nbsp;	}
+<i class="no-highlight">517</i>&nbsp;
+<i class="no-highlight">518</i>&nbsp;	/**
+<i class="no-highlight">519</i>&nbsp;	 * This function returns the production of the movie
+<i class="no-highlight">520</i>&nbsp;	 *
+<i class="no-highlight">521</i>&nbsp;	 * @return The Production variable is being returned.
+<i class="no-highlight">522</i>&nbsp;	 */
+<i class="no-highlight">523</i>&nbsp;	public String getProduction() {
+<b class="nc"><i class="no-highlight">524</i>&nbsp;		return Production;</b>
+<i class="no-highlight">525</i>&nbsp;	}
+<i class="no-highlight">526</i>&nbsp;
+<i class="no-highlight">527</i>&nbsp;	/**
+<i class="no-highlight">528</i>&nbsp;	 * This function sets the production of the movie
+<i class="no-highlight">529</i>&nbsp;	 *
+<i class="no-highlight">530</i>&nbsp;	 * @param production The name of the production you want to use.
+<i class="no-highlight">531</i>&nbsp;	 */
+<i class="no-highlight">532</i>&nbsp;	public void setProduction(String production) {
+<b class="nc"><i class="no-highlight">533</i>&nbsp;		Production = production;</b>
+<i class="no-highlight">534</i>&nbsp;	}
+<i class="no-highlight">535</i>&nbsp;
+<i class="no-highlight">536</i>&nbsp;	/**
+<i class="no-highlight">537</i>&nbsp;	 * This function returns the website of the Movie
+<i class="no-highlight">538</i>&nbsp;	 *
+<i class="no-highlight">539</i>&nbsp;	 * @return The website of the company.
+<i class="no-highlight">540</i>&nbsp;	 */
+<i class="no-highlight">541</i>&nbsp;	public String getWebsite() {
+<b class="nc"><i class="no-highlight">542</i>&nbsp;		return Website;</b>
+<i class="no-highlight">543</i>&nbsp;	}
+<i class="no-highlight">544</i>&nbsp;
+<i class="no-highlight">545</i>&nbsp;	/**
+<i class="no-highlight">546</i>&nbsp;	 * This function sets the website of the Movie
+<i class="no-highlight">547</i>&nbsp;	 *
+<i class="no-highlight">548</i>&nbsp;	 * @param website The website you want to get the data from.
+<i class="no-highlight">549</i>&nbsp;	 */
+<i class="no-highlight">550</i>&nbsp;	public void setWebsite(String website) {
+<b class="nc"><i class="no-highlight">551</i>&nbsp;		Website = website;</b>
+<i class="no-highlight">552</i>&nbsp;	}
+<i class="no-highlight">553</i>&nbsp;
+<i class="no-highlight">554</i>&nbsp;	/**
+<i class="no-highlight">555</i>&nbsp;	 * This function returns the response of the Movie
+<i class="no-highlight">556</i>&nbsp;	 *
+<i class="no-highlight">557</i>&nbsp;	 * @return The response is being returned.
+<i class="no-highlight">558</i>&nbsp;	 */
+<i class="no-highlight">559</i>&nbsp;	public String getResponse() {
+<b class="nc"><i class="no-highlight">560</i>&nbsp;		return Response;</b>
+<i class="no-highlight">561</i>&nbsp;	}
+<i class="no-highlight">562</i>&nbsp;
+<i class="no-highlight">563</i>&nbsp;	/**
+<i class="no-highlight">564</i>&nbsp;	 * This function sets the response of the Movie
+<i class="no-highlight">565</i>&nbsp;	 *
+<i class="no-highlight">566</i>&nbsp;	 * @param response The response of the Movie.
+<i class="no-highlight">567</i>&nbsp;	 */
+<i class="no-highlight">568</i>&nbsp;	public void setResponse(String response) {
+<b class="nc"><i class="no-highlight">569</i>&nbsp;		Response = response;</b>
+<i class="no-highlight">570</i>&nbsp;	}
+<i class="no-highlight">571</i>&nbsp;
+<i class="no-highlight">572</i>&nbsp;	/**
+<i class="no-highlight">573</i>&nbsp;	 * Return a list of strings, where each string is an actor&#39;s name, and the list is populated by splitting the Actors
+<i class="no-highlight">574</i>&nbsp;	 * property on commas.
+<i class="no-highlight">575</i>&nbsp;	 *
+<i class="no-highlight">576</i>&nbsp;	 * @return A list of strings.
+<i class="no-highlight">577</i>&nbsp;	 */
+<i class="no-highlight">578</i>&nbsp;	public List&lt;String&gt; getActors() {
+<b class="fc"><i class="no-highlight">579</i>&nbsp;		return Arrays.asList(Actors.split(&quot;, &quot;));</b>
+<i class="no-highlight">580</i>&nbsp;	}
+<i class="no-highlight">581</i>&nbsp;
+<i class="no-highlight">582</i>&nbsp;	/**
+<i class="no-highlight">583</i>&nbsp;	 * It takes the Actors string, converts it to lowercase, splits it into an array of strings, and returns that array as a
+<i class="no-highlight">584</i>&nbsp;	 * list
+<i class="no-highlight">585</i>&nbsp;	 *
+<i class="no-highlight">586</i>&nbsp;	 * @return A list of the actors in the movie, in lowercase.
+<i class="no-highlight">587</i>&nbsp;	 */
+<i class="no-highlight">588</i>&nbsp;	public List&lt;String&gt; getActorsLower() {
+<b class="nc"><i class="no-highlight">589</i>&nbsp;		return Arrays.asList(Actors.toLowerCase().split(&quot;, &quot;));</b>
+<i class="no-highlight">590</i>&nbsp;	}
+<i class="no-highlight">591</i>&nbsp;
+<i class="no-highlight">592</i>&nbsp;	/**
+<i class="no-highlight">593</i>&nbsp;	 * &gt; The function takes a list of strings and joins them together with a comma and a space in between each string
+<i class="no-highlight">594</i>&nbsp;	 *
+<i class="no-highlight">595</i>&nbsp;	 * @param actors A list of actors in the movie.
+<i class="no-highlight">596</i>&nbsp;	 */
+<i class="no-highlight">597</i>&nbsp;	public void setActors(List&lt;String&gt; actors) {
+<b class="nc"><i class="no-highlight">598</i>&nbsp;		Actors = String.join(&quot;, &quot;, actors);</b>
+<i class="no-highlight">599</i>&nbsp;	}
+<i class="no-highlight">600</i>&nbsp;
+<i class="no-highlight">601</i>&nbsp;	/**
+<i class="no-highlight">602</i>&nbsp;	 * &gt; This function returns a list of reviews that the user has written
+<i class="no-highlight">603</i>&nbsp;	 *
+<i class="no-highlight">604</i>&nbsp;	 * @return A list of reviews.
+<i class="no-highlight">605</i>&nbsp;	 */
+<i class="no-highlight">606</i>&nbsp;	public List&lt;Review&gt; getUserReviews() {
+<b class="fc"><i class="no-highlight">607</i>&nbsp;		return userReviews;</b>
+<i class="no-highlight">608</i>&nbsp;	}
+<i class="no-highlight">609</i>&nbsp;
+<i class="no-highlight">610</i>&nbsp;	/**
+<i class="no-highlight">611</i>&nbsp;	 * This function sets the userReviews variable to the userReviews parameter
+<i class="no-highlight">612</i>&nbsp;	 *
+<i class="no-highlight">613</i>&nbsp;	 * @param userReviews A list of reviews that the user has written.
+<i class="no-highlight">614</i>&nbsp;	 */
+<i class="no-highlight">615</i>&nbsp;	public void setUserReviews(List&lt;Review&gt; userReviews) {
+<b class="nc"><i class="no-highlight">616</i>&nbsp;		this.userReviews = userReviews;</b>
+<i class="no-highlight">617</i>&nbsp;	}
+<i class="no-highlight">618</i>&nbsp;
+<i class="no-highlight">619</i>&nbsp;	/**
+<i class="no-highlight">620</i>&nbsp;	 * If the userReviews list is null, create a new list and add the review to it
+<i class="no-highlight">621</i>&nbsp;	 *
+<i class="no-highlight">622</i>&nbsp;	 * @param review The review object that is to be added to the list of reviews.
+<i class="no-highlight">623</i>&nbsp;	 */
+<i class="no-highlight">624</i>&nbsp;	public void addReview(Review review) {
+<b class="fc"><i class="no-highlight">625</i>&nbsp;		if(userReviews == null) {</b>
+<b class="nc"><i class="no-highlight">626</i>&nbsp;			userReviews = new ArrayList&lt;&gt;();</b>
+<i class="no-highlight">627</i>&nbsp;		}
+<b class="fc"><i class="no-highlight">628</i>&nbsp;		this.userReviews.add(review);</b>
+<i class="no-highlight">629</i>&nbsp;	}
+<i class="no-highlight">630</i>&nbsp;
+<i class="no-highlight">631</i>&nbsp;	/**
+<i class="no-highlight">632</i>&nbsp;	 * Returns a reference to the current Movie object
+<i class="no-highlight">633</i>&nbsp;	 *
+<i class="no-highlight">634</i>&nbsp;	 * @return The Movie object that is being returned is the object that is being called in the getThis() method.
+<i class="no-highlight">635</i>&nbsp;	 */
+<i class="no-highlight">636</i>&nbsp;	public Movie getThis() {
+<b class="nc"><i class="no-highlight">637</i>&nbsp;		return this;</b>
+<i class="no-highlight">638</i>&nbsp;	}
+<i class="no-highlight">639</i>&nbsp;
+<i class="no-highlight">640</i>&nbsp;	/**
+<i class="no-highlight">641</i>&nbsp;	 * This function returns a string of all the movie&#39;s attributes separated by semicolons
+<i class="no-highlight">642</i>&nbsp;	 *
+<i class="no-highlight">643</i>&nbsp;	 * @return The string &quot;title; rating; year; genre; director; writer; language; actors&quot;
+<i class="no-highlight">644</i>&nbsp;	 */
+<i class="no-highlight">645</i>&nbsp;	public String getAttributes() {
+<b class="nc"><i class="no-highlight">646</i>&nbsp;		return toString();</b>
+<i class="no-highlight">647</i>&nbsp;	}
+<i class="no-highlight">648</i>&nbsp;
+<i class="no-highlight">649</i>&nbsp;	/**
+<i class="no-highlight">650</i>&nbsp;	 * It takes the title, plot, genre, director, writer, and actors of the movie and adds them to a list of words. It then
+<i class="no-highlight">651</i>&nbsp;	 * converts all the words to lowercase and removes duplicates
+<i class="no-highlight">652</i>&nbsp;	 */
+<i class="no-highlight">653</i>&nbsp;	public void generateDistinctWords() {
+<b class="fc"><i class="no-highlight">654</i>&nbsp;		List&lt;String&gt; words = new ArrayList&lt;String&gt;();</b>
+<b class="fc"><i class="no-highlight">655</i>&nbsp;		words.addAll(List.of(getTitle().replaceAll(&quot;[^A-Za-z0-9 ]&quot;, &quot;&quot;).split(&quot; &quot;)));</b>
+<b class="fc"><i class="no-highlight">656</i>&nbsp;		words.addAll(List.of(getPlot().replaceAll(&quot;[^A-Za-z0-9 ]&quot;, &quot;&quot;).split(&quot; &quot;)));</b>
+<b class="fc"><i class="no-highlight">657</i>&nbsp;		words.addAll(getGenre());</b>
+<b class="fc"><i class="no-highlight">658</i>&nbsp;		words.addAll(List.of(getDirector().replaceAll(&quot;[^A-Za-z0-9 ]&quot;, &quot;&quot;).split(&quot; &quot;)));</b>
+<b class="fc"><i class="no-highlight">659</i>&nbsp;		words.addAll(List.of(getWriter().replaceAll(&quot;[^A-Za-z0-9 ]&quot;, &quot;&quot;).split(&quot; &quot;)));</b>
+<b class="fc"><i class="no-highlight">660</i>&nbsp;		words.addAll(getActors());</b>
+<b class="fc"><i class="no-highlight">661</i>&nbsp;		words = words.stream().map(String::toLowerCase).collect(Collectors.toList());</b>
+<b class="fc"><i class="no-highlight">662</i>&nbsp;		distinctWords = words.stream().distinct().collect(Collectors.toList());</b>
+<i class="no-highlight">663</i>&nbsp;	}
+<i class="no-highlight">664</i>&nbsp;
+<i class="no-highlight">665</i>&nbsp;	/**
+<i class="no-highlight">666</i>&nbsp;	 * This function returns a list of distinct words
+<i class="no-highlight">667</i>&nbsp;	 *
+<i class="no-highlight">668</i>&nbsp;	 * @return A list of distinct words.
+<i class="no-highlight">669</i>&nbsp;	 */
+<i class="no-highlight">670</i>&nbsp;	public List&lt;String&gt; getDistinctWords() {
+<b class="fc"><i class="no-highlight">671</i>&nbsp;		if(distinctWords == null) {</b>
+<b class="fc"><i class="no-highlight">672</i>&nbsp;			generateDistinctWords();</b>
+<i class="no-highlight">673</i>&nbsp;		}
+<b class="fc"><i class="no-highlight">674</i>&nbsp;		return distinctWords;</b>
+<i class="no-highlight">675</i>&nbsp;	}
+<i class="no-highlight">676</i>&nbsp;
+<i class="no-highlight">677</i>&nbsp;	/**
+<i class="no-highlight">678</i>&nbsp;	 * If the two movies have the same title, plot, rated, year, released, genre, runtime, director, writer, awards, language,
+<i class="no-highlight">679</i>&nbsp;	 * country, poster, ratings, metascore, imdbRating, imdbVotes, imdbID, type, DVD, boxOffice, production, website,
+<i class="no-highlight">680</i>&nbsp;	 * response, actors, and userReviews, then they are equal
+<i class="no-highlight">681</i>&nbsp;	 *
+<i class="no-highlight">682</i>&nbsp;	 * @param o The object to be compared.
+<i class="no-highlight">683</i>&nbsp;	 * @return The hashcode of the object.
+<i class="no-highlight">684</i>&nbsp;	 */
+<i class="no-highlight">685</i>&nbsp;	@Override
+<i class="no-highlight">686</i>&nbsp;	public boolean equals(Object o) {
+<b class="fc"><i class="no-highlight">687</i>&nbsp;		if (this == o) return true;</b>
+<b class="fc"><i class="no-highlight">688</i>&nbsp;		if (!(o instanceof Movie)) return false;</b>
+<i class="no-highlight">689</i>&nbsp;
+<b class="fc"><i class="no-highlight">690</i>&nbsp;		Movie movie = (Movie) o;</b>
+<i class="no-highlight">691</i>&nbsp;
+<b class="fc"><i class="no-highlight">692</i>&nbsp;		if (mpcrRatings != null ? !mpcrRatings.equals(movie.mpcrRatings) : movie.mpcrRatings != null) return false;</b>
+<b class="fc"><i class="no-highlight">693</i>&nbsp;		if (!getTitle().equals(movie.getTitle())) return false;</b>
+<b class="nc"><i class="no-highlight">694</i>&nbsp;		if (!getPlot().equals(movie.getPlot())) return false;</b>
+<b class="nc"><i class="no-highlight">695</i>&nbsp;		if (getRated() != null ? !getRated().equals(movie.getRated()) : movie.getRated() != null) return false;</b>
+<b class="nc"><i class="no-highlight">696</i>&nbsp;		if (!getYear().equals(movie.getYear())) return false;</b>
+<b class="nc"><i class="no-highlight">697</i>&nbsp;		if (!getReleased().equals(movie.getReleased())) return false;</b>
+<b class="nc"><i class="no-highlight">698</i>&nbsp;		if (!getGenre().equals(movie.getGenre())) return false;</b>
+<b class="nc"><i class="no-highlight">699</i>&nbsp;		if (getRuntime() != null ? !getRuntime().equals(movie.getRuntime()) : movie.getRuntime() != null) return false;</b>
+<b class="nc"><i class="no-highlight">700</i>&nbsp;		if (!getDirector().equals(movie.getDirector())) return false;</b>
+<b class="nc"><i class="no-highlight">701</i>&nbsp;		if (!getWriter().equals(movie.getWriter())) return false;</b>
+<b class="nc"><i class="no-highlight">702</i>&nbsp;		if (getAwards() != null ? !getAwards().equals(movie.getAwards()) : movie.getAwards() != null) return false;</b>
+<b class="nc"><i class="no-highlight">703</i>&nbsp;		if (getLanguage() != null ? !getLanguage().equals(movie.getLanguage()) : movie.getLanguage() != null)</b>
+<b class="nc"><i class="no-highlight">704</i>&nbsp;			return false;</b>
+<b class="nc"><i class="no-highlight">705</i>&nbsp;		if (getCountry() != null ? !getCountry().equals(movie.getCountry()) : movie.getCountry() != null) return false;</b>
+<b class="nc"><i class="no-highlight">706</i>&nbsp;		if (getPoster() != null ? !getPoster().equals(movie.getPoster()) : movie.getPoster() != null) return false;</b>
+<b class="nc"><i class="no-highlight">707</i>&nbsp;		if (getRatings() != null ? !getRatings().equals(movie.getRatings()) : movie.getRatings() != null) return false;</b>
+<b class="nc"><i class="no-highlight">708</i>&nbsp;		if (getMetascore() != null ? !getMetascore().equals(movie.getMetascore()) : movie.getMetascore() != null)</b>
+<b class="nc"><i class="no-highlight">709</i>&nbsp;			return false;</b>
+<b class="nc"><i class="no-highlight">710</i>&nbsp;		if (getImdbRating() != null ? !getImdbRating().equals(movie.getImdbRating()) : movie.getImdbRating() != null)</b>
+<b class="nc"><i class="no-highlight">711</i>&nbsp;			return false;</b>
+<b class="nc"><i class="no-highlight">712</i>&nbsp;		if (getImdbVotes() != null ? !getImdbVotes().equals(movie.getImdbVotes()) : movie.getImdbVotes() != null)</b>
+<b class="nc"><i class="no-highlight">713</i>&nbsp;			return false;</b>
+<b class="nc"><i class="no-highlight">714</i>&nbsp;		if (getImdbID() != null ? !getImdbID().equals(movie.getImdbID()) : movie.getImdbID() != null) return false;</b>
+<b class="nc"><i class="no-highlight">715</i>&nbsp;		if (getType() != null ? !getType().equals(movie.getType()) : movie.getType() != null) return false;</b>
+<b class="nc"><i class="no-highlight">716</i>&nbsp;		if (getDVD() != null ? !getDVD().equals(movie.getDVD()) : movie.getDVD() != null) return false;</b>
+<b class="nc"><i class="no-highlight">717</i>&nbsp;		if (getBoxOffice() != null ? !getBoxOffice().equals(movie.getBoxOffice()) : movie.getBoxOffice() != null)</b>
+<b class="nc"><i class="no-highlight">718</i>&nbsp;			return false;</b>
+<b class="nc"><i class="no-highlight">719</i>&nbsp;		if (getProduction() != null ? !getProduction().equals(movie.getProduction()) : movie.getProduction() != null)</b>
+<b class="nc"><i class="no-highlight">720</i>&nbsp;			return false;</b>
+<b class="nc"><i class="no-highlight">721</i>&nbsp;		if (getWebsite() != null ? !getWebsite().equals(movie.getWebsite()) : movie.getWebsite() != null) return false;</b>
+<b class="nc"><i class="no-highlight">722</i>&nbsp;		if (getResponse() != null ? !getResponse().equals(movie.getResponse()) : movie.getResponse() != null)</b>
+<b class="nc"><i class="no-highlight">723</i>&nbsp;			return false;</b>
+<b class="nc"><i class="no-highlight">724</i>&nbsp;		if (!getActors().equals(movie.getActors())) return false;</b>
+<b class="nc"><i class="no-highlight">725</i>&nbsp;		return getUserReviews() != null ? getUserReviews().equals(movie.getUserReviews()) : movie.getUserReviews() == null;</b>
+<i class="no-highlight">726</i>&nbsp;	}
+<i class="no-highlight">727</i>&nbsp;
+<i class="no-highlight">728</i>&nbsp;	/**
+<i class="no-highlight">729</i>&nbsp;	 * The hashCode() function returns a unique integer value for each unique movie object
+<i class="no-highlight">730</i>&nbsp;	 *
+<i class="no-highlight">731</i>&nbsp;	 * @return The hashcode of the object.
+<i class="no-highlight">732</i>&nbsp;	 */
+<i class="no-highlight">733</i>&nbsp;	@Override
+<i class="no-highlight">734</i>&nbsp;	public int hashCode() {
+<b class="nc"><i class="no-highlight">735</i>&nbsp;		int result = mpcrRatings != null ? mpcrRatings.hashCode() : 0;</b>
+<b class="nc"><i class="no-highlight">736</i>&nbsp;		result = 31 * result + getTitle().hashCode();</b>
+<b class="nc"><i class="no-highlight">737</i>&nbsp;		result = 31 * result + getPlot().hashCode();</b>
+<b class="nc"><i class="no-highlight">738</i>&nbsp;		result = 31 * result + (getRated() != null ? getRated().hashCode() : 0);</b>
+<b class="nc"><i class="no-highlight">739</i>&nbsp;		result = 31 * result + getYear().hashCode();</b>
+<b class="nc"><i class="no-highlight">740</i>&nbsp;		result = 31 * result + getReleased().hashCode();</b>
+<b class="nc"><i class="no-highlight">741</i>&nbsp;		result = 31 * result + getGenre().hashCode();</b>
+<b class="nc"><i class="no-highlight">742</i>&nbsp;		result = 31 * result + (getRuntime() != null ? getRuntime().hashCode() : 0);</b>
+<b class="nc"><i class="no-highlight">743</i>&nbsp;		result = 31 * result + getDirector().hashCode();</b>
+<b class="nc"><i class="no-highlight">744</i>&nbsp;		result = 31 * result + getWriter().hashCode();</b>
+<b class="nc"><i class="no-highlight">745</i>&nbsp;		result = 31 * result + (getAwards() != null ? getAwards().hashCode() : 0);</b>
+<b class="nc"><i class="no-highlight">746</i>&nbsp;		result = 31 * result + (getLanguage() != null ? getLanguage().hashCode() : 0);</b>
+<b class="nc"><i class="no-highlight">747</i>&nbsp;		result = 31 * result + (getCountry() != null ? getCountry().hashCode() : 0);</b>
+<b class="nc"><i class="no-highlight">748</i>&nbsp;		result = 31 * result + (getPoster() != null ? getPoster().hashCode() : 0);</b>
+<b class="nc"><i class="no-highlight">749</i>&nbsp;		result = 31 * result + (getRatings() != null ? getRatings().hashCode() : 0);</b>
+<b class="nc"><i class="no-highlight">750</i>&nbsp;		result = 31 * result + (getMetascore() != null ? getMetascore().hashCode() : 0);</b>
+<b class="nc"><i class="no-highlight">751</i>&nbsp;		result = 31 * result + (getImdbRating() != null ? getImdbRating().hashCode() : 0);</b>
+<b class="nc"><i class="no-highlight">752</i>&nbsp;		result = 31 * result + (getImdbVotes() != null ? getImdbVotes().hashCode() : 0);</b>
+<b class="nc"><i class="no-highlight">753</i>&nbsp;		result = 31 * result + (getImdbID() != null ? getImdbID().hashCode() : 0);</b>
+<b class="nc"><i class="no-highlight">754</i>&nbsp;		result = 31 * result + (getType() != null ? getType().hashCode() : 0);</b>
+<b class="nc"><i class="no-highlight">755</i>&nbsp;		result = 31 * result + (getDVD() != null ? getDVD().hashCode() : 0);</b>
+<b class="nc"><i class="no-highlight">756</i>&nbsp;		result = 31 * result + (getBoxOffice() != null ? getBoxOffice().hashCode() : 0);</b>
+<b class="nc"><i class="no-highlight">757</i>&nbsp;		result = 31 * result + (getProduction() != null ? getProduction().hashCode() : 0);</b>
+<b class="nc"><i class="no-highlight">758</i>&nbsp;		result = 31 * result + (getWebsite() != null ? getWebsite().hashCode() : 0);</b>
+<b class="nc"><i class="no-highlight">759</i>&nbsp;		result = 31 * result + (getResponse() != null ? getResponse().hashCode() : 0);</b>
+<b class="nc"><i class="no-highlight">760</i>&nbsp;		result = 31 * result + getActors().hashCode();</b>
+<b class="nc"><i class="no-highlight">761</i>&nbsp;		result = 31 * result + (getUserReviews() != null ? getUserReviews().hashCode() : 0);</b>
+<b class="nc"><i class="no-highlight">762</i>&nbsp;		return result;</b>
+<i class="no-highlight">763</i>&nbsp;	}
+<i class="no-highlight">764</i>&nbsp;
+<i class="no-highlight">765</i>&nbsp;	/**
+<i class="no-highlight">766</i>&nbsp;	 * The function `toString()` is a method of the class `Object` that returns a string representation of the object
+<i class="no-highlight">767</i>&nbsp;	 *
+<i class="no-highlight">768</i>&nbsp;	 * @return A string of the movie&#39;s title, rating, year, genre, director, writer, language, and actors.
+<i class="no-highlight">769</i>&nbsp;	 */
+<i class="no-highlight">770</i>&nbsp;	@Override
+<i class="no-highlight">771</i>&nbsp;	public String toString() {
+<b class="nc"><i class="no-highlight">772</i>&nbsp;		return String.join(&quot;; &quot;,Title, Rated, Year, Genre, Director, Writer, Language, Actors);</b>
+<i class="no-highlight">773</i>&nbsp;	}
+<i class="no-highlight">774</i>&nbsp;
+<i class="no-highlight">775</i>&nbsp;	/**
+<i class="no-highlight">776</i>&nbsp;	 * This function creates a new JDialog, sets its size, creates a new MoviePage object, adds the MoviePage object to the
+<i class="no-highlight">777</i>&nbsp;	 * JDialog, and makes the JDialog visible
+<i class="no-highlight">778</i>&nbsp;	 */
+<i class="no-highlight">779</i>&nbsp;	public void openMovie(){
+<b class="fc"><i class="no-highlight">780</i>&nbsp;		MoviePage.closeMoviePages();</b>
+<b class="fc"><i class="no-highlight">781</i>&nbsp;		JDialog movieInfo = new JDialog();</b>
+<b class="fc"><i class="no-highlight">782</i>&nbsp;		movieInfo.setMaximumSize(new Dimension(750,1000));</b>
+<b class="fc"><i class="no-highlight">783</i>&nbsp;		movieInfo.setMinimumSize(new Dimension(750,1000));</b>
+<b class="fc"><i class="no-highlight">784</i>&nbsp;		MoviePage moviePage = new MoviePage(this);</b>
+<b class="fc"><i class="no-highlight">785</i>&nbsp;		movieInfo.add(moviePage);</b>
+<b class="fc"><i class="no-highlight">786</i>&nbsp;		movieInfo.setVisible(true);</b>
+<b class="fc"><i class="no-highlight">787</i>&nbsp;		movieInfo.setDefaultCloseOperation(DISPOSE_ON_CLOSE);</b>
+<i class="no-highlight">788</i>&nbsp;	}
+<i class="no-highlight">789</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-04-21 23:48</div>
+</div>
+</body>
+</html>

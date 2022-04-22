@@ -1,0 +1,544 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > MoviePage</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">edu.uah.cs321.Frontend</a>
+</div>
+
+<h1>Coverage Summary for Class: MoviePage (edu.uah.cs321.Frontend)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">MoviePage</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    92.9%
+  </span>
+  <span class="absValue">
+    (13/14)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    94.9%
+  </span>
+  <span class="absValue">
+    (242/255)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package edu.uah.cs321.Frontend;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import edu.uah.cs321.Backend.Movie;
+<i class="no-highlight">4</i>&nbsp;import edu.uah.cs321.Backend.MovieList;
+<i class="no-highlight">5</i>&nbsp;import edu.uah.cs321.Backend.Review;
+<i class="no-highlight">6</i>&nbsp;import edu.uah.cs321.Backend.User;
+<i class="no-highlight">7</i>&nbsp;
+<i class="no-highlight">8</i>&nbsp;import javax.imageio.ImageIO;
+<i class="no-highlight">9</i>&nbsp;import javax.swing.*;
+<i class="no-highlight">10</i>&nbsp;import java.awt.*;
+<i class="no-highlight">11</i>&nbsp;import java.awt.event.ActionEvent;
+<i class="no-highlight">12</i>&nbsp;import java.awt.event.ActionListener;
+<i class="no-highlight">13</i>&nbsp;import java.awt.image.BufferedImage;
+<i class="no-highlight">14</i>&nbsp;import java.awt.image.BufferedImageOp;
+<i class="no-highlight">15</i>&nbsp;import java.awt.image.Kernel;
+<i class="no-highlight">16</i>&nbsp;import java.io.IOException;
+<i class="no-highlight">17</i>&nbsp;import java.net.MalformedURLException;
+<i class="no-highlight">18</i>&nbsp;import java.net.URL;
+<i class="no-highlight">19</i>&nbsp;import java.text.ParseException;
+<i class="no-highlight">20</i>&nbsp;import java.util.ArrayList;
+<i class="no-highlight">21</i>&nbsp;
+<i class="no-highlight">22</i>&nbsp;import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+<i class="no-highlight">23</i>&nbsp;
+<i class="no-highlight">24</i>&nbsp;/***
+<i class="no-highlight">25</i>&nbsp; * File Name: MoviePage
+<i class="no-highlight">26</i>&nbsp; * Description:
+<i class="no-highlight">27</i>&nbsp; * @author justinbushue
+<i class="no-highlight">28</i>&nbsp; * @version 1.0
+<i class="no-highlight">29</i>&nbsp; */
+<i class="no-highlight">30</i>&nbsp;public class MoviePage extends JPanel {
+<i class="no-highlight">31</i>&nbsp;	private static Movie movie;
+<i class="no-highlight">32</i>&nbsp;	private static User u;
+<i class="no-highlight">33</i>&nbsp;
+<i class="no-highlight">34</i>&nbsp;	private static JLabel movieTitleLabel;
+<i class="no-highlight">35</i>&nbsp;	private static JLabel movieDirectorLabel;
+<i class="no-highlight">36</i>&nbsp;	private static JLabel movieWritersLabel;
+<i class="no-highlight">37</i>&nbsp;	private static JTextArea moviePlotLabel;
+<i class="no-highlight">38</i>&nbsp;	private static JLabel movieGenresLabel;
+<i class="no-highlight">39</i>&nbsp;	private static JLabel movieReleaseLabel;
+<i class="no-highlight">40</i>&nbsp;	private static JLabel movieActorsLabel;
+<i class="no-highlight">41</i>&nbsp;	private static JLabel movieRuntimesLabel;
+<i class="no-highlight">42</i>&nbsp;	private static JLabel ratingLabel;
+<i class="no-highlight">43</i>&nbsp;	private static JLabel reviewLabel;
+<i class="no-highlight">44</i>&nbsp;
+<i class="no-highlight">45</i>&nbsp;	private static JPanel contentPanel;
+<i class="no-highlight">46</i>&nbsp;	private static JPanel movieInfoPanel;
+<i class="no-highlight">47</i>&nbsp;	private static JPanel userReviewPanel;
+<i class="no-highlight">48</i>&nbsp;	private static JPanel reviewsList;
+<i class="no-highlight">49</i>&nbsp;	private static JScrollPane reviewsListPane;
+<i class="no-highlight">50</i>&nbsp;
+<i class="no-highlight">51</i>&nbsp;	private static JScrollPane reviewPane;
+<i class="no-highlight">52</i>&nbsp;
+<i class="no-highlight">53</i>&nbsp;	private static JTextArea reviewTextArea;
+<i class="no-highlight">54</i>&nbsp;
+<i class="no-highlight">55</i>&nbsp;	private static JButton addToFavoritesButton;
+<i class="no-highlight">56</i>&nbsp;	private static JButton addToCustomListButton;
+<i class="no-highlight">57</i>&nbsp;	private static JButton saveReviewButton;
+<i class="no-highlight">58</i>&nbsp;
+<i class="no-highlight">59</i>&nbsp;	private static Color avgColor;
+<i class="no-highlight">60</i>&nbsp;	private static Color contrastColor;
+<i class="no-highlight">61</i>&nbsp;	private static Image backgroundImage;
+<i class="no-highlight">62</i>&nbsp;
+<i class="no-highlight">63</i>&nbsp;
+<i class="no-highlight">64</i>&nbsp;	/**
+<i class="no-highlight">65</i>&nbsp;	 * MoviePage is a JPanel that contains information on the inputted Movie movie.
+<i class="no-highlight">66</i>&nbsp;	 * @param movie
+<i class="no-highlight">67</i>&nbsp;	 */
+<i class="no-highlight">68</i>&nbsp;	public MoviePage(Movie movie){
+<b class="fc"><i class="no-highlight">69</i>&nbsp;		super();</b>
+<b class="fc"><i class="no-highlight">70</i>&nbsp;		MoviePage.movie = movie;</b>
+<b class="fc"><i class="no-highlight">71</i>&nbsp;		u=AccountPage.getUser();</b>
+<i class="no-highlight">72</i>&nbsp;
+<i class="no-highlight">73</i>&nbsp;
+<b class="fc"><i class="no-highlight">74</i>&nbsp;		contentPanel = new JPanel();</b>
+<i class="no-highlight">75</i>&nbsp;
+<b class="fc"><i class="no-highlight">76</i>&nbsp;		contentPanel.setLayout(new BoxLayout(contentPanel,BoxLayout.Y_AXIS));</b>
+<b class="fc"><i class="no-highlight">77</i>&nbsp;		movieInfoPanel = new JPanel();</b>
+<b class="fc"><i class="no-highlight">78</i>&nbsp;		movieInfoPanel.setLayout(new BoxLayout(movieInfoPanel,BoxLayout.Y_AXIS));</b>
+<b class="fc"><i class="no-highlight">79</i>&nbsp;		userReviewPanel = new JPanel();</b>
+<b class="fc"><i class="no-highlight">80</i>&nbsp;		userReviewPanel.setLayout(new BoxLayout(userReviewPanel,BoxLayout.Y_AXIS));</b>
+<i class="no-highlight">81</i>&nbsp;
+<i class="no-highlight">82</i>&nbsp;		//This adds the poster of the movie to the MoviePage.
+<b class="fc"><i class="no-highlight">83</i>&nbsp;		String posterURL = MoviePage.movie.getPoster();</b>
+<b class="fc"><i class="no-highlight">84</i>&nbsp;		if(posterURL != null &amp;&amp; posterURL.length() &gt; 0) {</b>
+<b class="fc"><i class="no-highlight">85</i>&nbsp;			JLabel posterLabel = new JLabel();</b>
+<i class="no-highlight">86</i>&nbsp;			try {
+<b class="fc"><i class="no-highlight">87</i>&nbsp;				URL url = new URL(posterURL);</b>
+<b class="fc"><i class="no-highlight">88</i>&nbsp;				BufferedImage image = ImageIO.read(url);</b>
+<b class="fc"><i class="no-highlight">89</i>&nbsp;				avgColor = averageColor(image);</b>
+<b class="fc"><i class="no-highlight">90</i>&nbsp;				contrastColor = getContrastColor(avgColor);</b>
+<b class="fc"><i class="no-highlight">91</i>&nbsp;				ImageIcon imgicon = new ImageIcon(image);</b>
+<b class="fc"><i class="no-highlight">92</i>&nbsp;				Image img = imgicon.getImage().getScaledInstance((int)(image.getWidth()*.8),(int)(image.getHeight()*.8),Image.SCALE_DEFAULT);</b>
+<b class="fc"><i class="no-highlight">93</i>&nbsp;				imgicon = new ImageIcon(img);</b>
+<b class="fc"><i class="no-highlight">94</i>&nbsp;				posterLabel.setIcon(imgicon);</b>
+<b class="fc"><i class="no-highlight">95</i>&nbsp;				movieInfoPanel.add(posterLabel);</b>
+<b class="fc"><i class="no-highlight">96</i>&nbsp;			} catch(IOException ignored) {}</b>
+<i class="no-highlight">97</i>&nbsp;		}
+<i class="no-highlight">98</i>&nbsp;
+<b class="fc"><i class="no-highlight">99</i>&nbsp;		contentPanel.setBackground(avgColor);</b>
+<b class="fc"><i class="no-highlight">100</i>&nbsp;		movieInfoPanel.setBackground(avgColor);</b>
+<b class="fc"><i class="no-highlight">101</i>&nbsp;		userReviewPanel.setBackground(avgColor);</b>
+<b class="fc"><i class="no-highlight">102</i>&nbsp;		this.setBackground(avgColor);</b>
+<i class="no-highlight">103</i>&nbsp;
+<b class="fc"><i class="no-highlight">104</i>&nbsp;		movieTitleLabel = new JLabel(&quot;Title:  &quot; + MoviePage.movie.getTitle());</b>
+<b class="fc"><i class="no-highlight">105</i>&nbsp;		movieTitleLabel.setBackground(avgColor);</b>
+<b class="fc"><i class="no-highlight">106</i>&nbsp;		movieTitleLabel.setForeground(contrastColor);</b>
+<b class="fc"><i class="no-highlight">107</i>&nbsp;		movieDirectorLabel = new JLabel(&quot;Director:  &quot; + MoviePage.movie.getDirector());</b>
+<b class="fc"><i class="no-highlight">108</i>&nbsp;		movieDirectorLabel.setBackground(avgColor);</b>
+<b class="fc"><i class="no-highlight">109</i>&nbsp;		movieDirectorLabel.setForeground(contrastColor);</b>
+<b class="fc"><i class="no-highlight">110</i>&nbsp;		movieWritersLabel = new JLabel(&quot;Writers:  &quot; + MoviePage.movie.getWriter());</b>
+<b class="fc"><i class="no-highlight">111</i>&nbsp;		movieWritersLabel.setBackground(avgColor);</b>
+<b class="fc"><i class="no-highlight">112</i>&nbsp;		movieWritersLabel.setForeground(contrastColor);</b>
+<b class="fc"><i class="no-highlight">113</i>&nbsp;		moviePlotLabel = new JTextArea(&quot;Plot:  &quot; + MoviePage.movie.getPlot(),5,25);</b>
+<b class="fc"><i class="no-highlight">114</i>&nbsp;		moviePlotLabel.setMaximumSize(new Dimension(400,100));</b>
+<b class="fc"><i class="no-highlight">115</i>&nbsp;		moviePlotLabel.setLineWrap(true);</b>
+<b class="fc"><i class="no-highlight">116</i>&nbsp;		moviePlotLabel.setBackground(avgColor);</b>
+<b class="fc"><i class="no-highlight">117</i>&nbsp;		moviePlotLabel.setForeground(contrastColor);</b>
+<b class="fc"><i class="no-highlight">118</i>&nbsp;		moviePlotLabel.setWrapStyleWord(true);</b>
+<b class="fc"><i class="no-highlight">119</i>&nbsp;		moviePlotLabel.setEditable(false);</b>
+<b class="fc"><i class="no-highlight">120</i>&nbsp;		moviePlotLabel.setAlignmentX(LEFT_ALIGNMENT);</b>
+<b class="fc"><i class="no-highlight">121</i>&nbsp;		movieGenresLabel = new JLabel(&quot;Genre:  &quot; + String.join(&quot;, &quot;, MoviePage.movie.getGenre()));</b>
+<b class="fc"><i class="no-highlight">122</i>&nbsp;		movieGenresLabel.setBackground(avgColor);</b>
+<b class="fc"><i class="no-highlight">123</i>&nbsp;		movieGenresLabel.setForeground(contrastColor);</b>
+<b class="fc"><i class="no-highlight">124</i>&nbsp;		movieReleaseLabel = new JLabel(&quot;Release Date:  &quot; + MoviePage.movie.getReleased());</b>
+<b class="fc"><i class="no-highlight">125</i>&nbsp;		movieReleaseLabel.setBackground(avgColor);</b>
+<b class="fc"><i class="no-highlight">126</i>&nbsp;		movieReleaseLabel.setForeground(contrastColor);</b>
+<b class="fc"><i class="no-highlight">127</i>&nbsp;		movieActorsLabel = new JLabel(&quot;Actors:  &quot; + String.join(&quot;, &quot;, MoviePage.movie.getActors()));</b>
+<b class="fc"><i class="no-highlight">128</i>&nbsp;		movieActorsLabel.setBackground(avgColor);</b>
+<b class="fc"><i class="no-highlight">129</i>&nbsp;		movieActorsLabel.setForeground(contrastColor);</b>
+<b class="fc"><i class="no-highlight">130</i>&nbsp;		movieRuntimesLabel = new JLabel(&quot;Runtime:  &quot; + MoviePage.movie.getRuntime());</b>
+<b class="fc"><i class="no-highlight">131</i>&nbsp;		movieRuntimesLabel.setBackground(avgColor);</b>
+<b class="fc"><i class="no-highlight">132</i>&nbsp;		movieRuntimesLabel.setForeground(contrastColor);</b>
+<b class="fc"><i class="no-highlight">133</i>&nbsp;		ratingLabel = new JLabel(&quot;Rating (1-5)&quot;);</b>
+<b class="fc"><i class="no-highlight">134</i>&nbsp;		reviewLabel = new JLabel(&quot;Review&quot;);</b>
+<i class="no-highlight">135</i>&nbsp;
+<b class="fc"><i class="no-highlight">136</i>&nbsp;		addToFavoritesButton = new JButton(&quot;Favorite&quot;);</b>
+<i class="no-highlight">137</i>&nbsp;		//addToFavoritesButton.setForeground(avgColor.darker());
+<i class="no-highlight">138</i>&nbsp;		//addToFavoritesButton.setBackground(avgColor);
+<b class="fc"><i class="no-highlight">139</i>&nbsp;		if (u.getFavoriteMovies().contains(movie)){</b>
+<b class="fc"><i class="no-highlight">140</i>&nbsp;			addToFavoritesButton.setText(&quot;Unfavorite&quot;);</b>
+<i class="no-highlight">141</i>&nbsp;		}
+<b class="fc"><i class="no-highlight">142</i>&nbsp;		addToFavoritesButton.addActionListener(a -&gt; {</b>
+<i class="no-highlight">143</i>&nbsp;			//if it contains the movie
+<b class="fc"><i class="no-highlight">144</i>&nbsp;			if (u.getFavoriteMovies().contains(movie)){</b>
+<b class="fc"><i class="no-highlight">145</i>&nbsp;				addToFavoritesButton.setText(&quot;Favorite&quot;);</b>
+<b class="fc"><i class="no-highlight">146</i>&nbsp;				u.getFavoriteMovies().remove(movie);</b>
+<i class="no-highlight">147</i>&nbsp;			} else { //if it does not contain the movie
+<b class="fc"><i class="no-highlight">148</i>&nbsp;				addToFavoritesButton.setText(&quot;Unfavorite&quot;);</b>
+<b class="fc"><i class="no-highlight">149</i>&nbsp;				u.getFavoriteMovies().add(movie);</b>
+<i class="no-highlight">150</i>&nbsp;			}
+<b class="fc"><i class="no-highlight">151</i>&nbsp;			Application.getAccountPage().populateFavoriteList(u.getFavoriteMovies());</b>
+<b class="fc"><i class="no-highlight">152</i>&nbsp;			Application.getAccountPage().revalidate();</b>
+<i class="no-highlight">153</i>&nbsp;
+<i class="no-highlight">154</i>&nbsp;		});
+<i class="no-highlight">155</i>&nbsp;
+<i class="no-highlight">156</i>&nbsp;		//Add to custom list goes here
+<b class="fc"><i class="no-highlight">157</i>&nbsp;		addToCustomListButton = new JButton(&quot;Add movie to a custom list!&quot;);</b>
+<b class="fc"><i class="no-highlight">158</i>&nbsp;		addToCustomListButton.addActionListener(e-&gt;{</b>
+<b class="fc"><i class="no-highlight">159</i>&nbsp;			JDialog jd = new JDialog();</b>
+<b class="fc"><i class="no-highlight">160</i>&nbsp;			jd.setDefaultCloseOperation(DISPOSE_ON_CLOSE);</b>
+<b class="fc"><i class="no-highlight">161</i>&nbsp;			JPanel cP = new JPanel();</b>
+<i class="no-highlight">162</i>&nbsp;
+<b class="fc"><i class="no-highlight">163</i>&nbsp;			JComboBox customListSelector = new JComboBox();</b>
+<b class="fc"><i class="no-highlight">164</i>&nbsp;			java.util.List&lt;String&gt; ls = new ArrayList&lt;String&gt;();</b>
+<b class="fc"><i class="no-highlight">165</i>&nbsp;			java.util.List&lt;MovieList&gt; mL = new ArrayList&lt;MovieList&gt;();</b>
+<b class="fc"><i class="no-highlight">166</i>&nbsp;			u.getMovieLists().forEach(m-&gt;{</b>
+<b class="fc"><i class="no-highlight">167</i>&nbsp;				ls.add(m.getListName());</b>
+<b class="fc"><i class="no-highlight">168</i>&nbsp;				mL.add(m);</b>
+<i class="no-highlight">169</i>&nbsp;			});
+<b class="fc"><i class="no-highlight">170</i>&nbsp;			customListSelector.setModel(new DefaultComboBoxModel&lt;String&gt;(ls.toArray(new String[0])));</b>
+<i class="no-highlight">171</i>&nbsp;
+<b class="fc"><i class="no-highlight">172</i>&nbsp;			JPanel listPanel = new JPanel();</b>
+<b class="fc"><i class="no-highlight">173</i>&nbsp;			listPanel.setLayout(new BoxLayout(listPanel,BoxLayout.Y_AXIS));</b>
+<b class="fc"><i class="no-highlight">174</i>&nbsp;			listPanel.setMinimumSize(new Dimension(100,50));</b>
+<b class="fc"><i class="no-highlight">175</i>&nbsp;			listPanel.add(customListSelector);</b>
+<b class="fc"><i class="no-highlight">176</i>&nbsp;			cP.add(listPanel);</b>
+<i class="no-highlight">177</i>&nbsp;
+<b class="fc"><i class="no-highlight">178</i>&nbsp;			JButton addButton = new JButton(&quot;Add to selected list&quot;);</b>
+<b class="fc"><i class="no-highlight">179</i>&nbsp;			if (mL.get(customListSelector.getSelectedIndex()).getMovieList().contains(movie)){</b>
+<b class="nc"><i class="no-highlight">180</i>&nbsp;				addButton.setText(&quot;Remove from selected list&quot;);</b>
+<i class="no-highlight">181</i>&nbsp;			} else {
+<b class="fc"><i class="no-highlight">182</i>&nbsp;				addButton.setText(&quot;Add to selected list&quot;);</b>
+<i class="no-highlight">183</i>&nbsp;			}
+<i class="no-highlight">184</i>&nbsp;
+<b class="fc"><i class="no-highlight">185</i>&nbsp;			addButton.addActionListener(a-&gt;{</b>
+<b class="fc"><i class="no-highlight">186</i>&nbsp;				if (mL.get(customListSelector.getSelectedIndex()).getMovieList().contains(movie)){</b>
+<b class="nc"><i class="no-highlight">187</i>&nbsp;					mL.get(customListSelector.getSelectedIndex()).removeMovie(movie);</b>
+<b class="nc"><i class="no-highlight">188</i>&nbsp;					addButton.setText(&quot;Add to selected list&quot;);</b>
+<i class="no-highlight">189</i>&nbsp;				} else {
+<b class="fc"><i class="no-highlight">190</i>&nbsp;					mL.get(customListSelector.getSelectedIndex()).addMovie(movie);</b>
+<b class="fc"><i class="no-highlight">191</i>&nbsp;					addButton.setText(&quot;Remove from selected list&quot;);</b>
+<i class="no-highlight">192</i>&nbsp;				}
+<i class="no-highlight">193</i>&nbsp;			});
+<b class="fc"><i class="no-highlight">194</i>&nbsp;			cP.revalidate();</b>
+<i class="no-highlight">195</i>&nbsp;
+<b class="fc"><i class="no-highlight">196</i>&nbsp;			customListSelector.addActionListener(n-&gt;{</b>
+<b class="nc"><i class="no-highlight">197</i>&nbsp;				if (mL.get(customListSelector.getSelectedIndex()).getMovieList().contains(movie)){</b>
+<b class="nc"><i class="no-highlight">198</i>&nbsp;					addButton.setText(&quot;Remove from selected list&quot;);</b>
+<i class="no-highlight">199</i>&nbsp;				} else {
+<b class="nc"><i class="no-highlight">200</i>&nbsp;					addButton.setText(&quot;Add to selected list&quot;);</b>
+<i class="no-highlight">201</i>&nbsp;				}
+<i class="no-highlight">202</i>&nbsp;
+<b class="nc"><i class="no-highlight">203</i>&nbsp;				cP.revalidate();</b>
+<i class="no-highlight">204</i>&nbsp;			});
+<i class="no-highlight">205</i>&nbsp;
+<b class="fc"><i class="no-highlight">206</i>&nbsp;			cP.add(addButton);</b>
+<b class="fc"><i class="no-highlight">207</i>&nbsp;			jd.add(cP);</b>
+<b class="fc"><i class="no-highlight">208</i>&nbsp;			jd.setMinimumSize(new Dimension(300,300));</b>
+<b class="fc"><i class="no-highlight">209</i>&nbsp;			jd.setVisible(true);</b>
+<i class="no-highlight">210</i>&nbsp;		});
+<i class="no-highlight">211</i>&nbsp;
+<b class="fc"><i class="no-highlight">212</i>&nbsp;		JButton addAReviewButton = new JButton(&quot;Leave a review&quot;);</b>
+<b class="fc"><i class="no-highlight">213</i>&nbsp;		addAReviewButton.addActionListener(e-&gt;{</b>
+<b class="fc"><i class="no-highlight">214</i>&nbsp;			JDialog jd = new JDialog();</b>
+<b class="fc"><i class="no-highlight">215</i>&nbsp;			jd.setDefaultCloseOperation(DISPOSE_ON_CLOSE);</b>
+<b class="fc"><i class="no-highlight">216</i>&nbsp;			JPanel cp = new JPanel();</b>
+<b class="fc"><i class="no-highlight">217</i>&nbsp;			cp.setLayout(new BoxLayout(cp,BoxLayout.Y_AXIS));</b>
+<i class="no-highlight">218</i>&nbsp;
+<i class="no-highlight">219</i>&nbsp;			//im unsure how to make this less wide.
+<b class="fc"><i class="no-highlight">220</i>&nbsp;			Integer value = 1;</b>
+<b class="fc"><i class="no-highlight">221</i>&nbsp;			Integer min = 1;</b>
+<b class="fc"><i class="no-highlight">222</i>&nbsp;			Integer max = 5;</b>
+<b class="fc"><i class="no-highlight">223</i>&nbsp;			Integer step = 1;</b>
+<b class="fc"><i class="no-highlight">224</i>&nbsp;			SpinnerNumberModel numberspinmodel = new SpinnerNumberModel(value,min,max,step);</b>
+<b class="fc"><i class="no-highlight">225</i>&nbsp;			JSpinner ratingspinner = new JSpinner(numberspinmodel);</b>
+<b class="fc"><i class="no-highlight">226</i>&nbsp;			ratingspinner.setMaximumSize(new Dimension(50,20));</b>
+<b class="fc"><i class="no-highlight">227</i>&nbsp;			reviewTextArea = new JTextArea(10,15);</b>
+<i class="no-highlight">228</i>&nbsp;
+<b class="fc"><i class="no-highlight">229</i>&nbsp;			reviewPane = new JScrollPane(reviewTextArea);</b>
+<b class="fc"><i class="no-highlight">230</i>&nbsp;			reviewPane.setBackground(avgColor);</b>
+<i class="no-highlight">231</i>&nbsp;
+<b class="fc"><i class="no-highlight">232</i>&nbsp;			reviewTextArea.setLineWrap(true);</b>
+<i class="no-highlight">233</i>&nbsp;
+<b class="fc"><i class="no-highlight">234</i>&nbsp;			saveReviewButton = new JButton(&quot;Save&quot;);</b>
+<b class="fc"><i class="no-highlight">235</i>&nbsp;			saveReviewButton.addActionListener(a -&gt; {</b>
+<i class="no-highlight">236</i>&nbsp;				try {
+<b class="fc"><i class="no-highlight">237</i>&nbsp;					Integer rating = (Integer) ratingspinner.getValue();</b>
+<b class="fc"><i class="no-highlight">238</i>&nbsp;					String review = reviewTextArea.getText();</b>
+<b class="fc"><i class="no-highlight">239</i>&nbsp;					Review userReview = new Review(AccountPage.getUser(), MoviePage.movie,rating,review);</b>
+<b class="fc"><i class="no-highlight">240</i>&nbsp;					AccountPage.getUser().addReview(userReview);</b>
+<b class="fc"><i class="no-highlight">241</i>&nbsp;					MoviePage.movie.addReview(userReview);</b>
+<b class="fc"><i class="no-highlight">242</i>&nbsp;					SimpleDialog sd = new SimpleDialog(&quot;Review Added&quot;, &quot;Review Added!&quot;);</b>
+<b class="fc"><i class="no-highlight">243</i>&nbsp;					sd.setMaximumSize(new Dimension(400,100)); sd.setMinimumSize(new Dimension(400,100));</b>
+<b class="fc"><i class="no-highlight">244</i>&nbsp;					jd.dispose();</b>
+<b class="fc"><i class="no-highlight">245</i>&nbsp;					sd.revalidate();</b>
+<b class="fc"><i class="no-highlight">246</i>&nbsp;					reviewsList.removeAll();</b>
+<b class="fc"><i class="no-highlight">247</i>&nbsp;					contentPanel.revalidate();</b>
+<b class="fc"><i class="no-highlight">248</i>&nbsp;					populateReviews(movie);</b>
+<b class="nc"><i class="no-highlight">249</i>&nbsp;				}catch(NullPointerException f){</b>
+<b class="nc"><i class="no-highlight">250</i>&nbsp;					SimpleDialog sd = new SimpleDialog(&quot;Error...&quot;, &quot;Error&quot;);</b>
+<b class="nc"><i class="no-highlight">251</i>&nbsp;					System.out.println(f.getMessage());</b>
+<b class="nc"><i class="no-highlight">252</i>&nbsp;					sd.setMaximumSize(new Dimension(400,100)); sd.setMinimumSize(new Dimension(400,100));</b>
+<b class="nc"><i class="no-highlight">253</i>&nbsp;					jd.dispose();</b>
+<b class="nc"><i class="no-highlight">254</i>&nbsp;					sd.revalidate();</b>
+<i class="no-highlight">255</i>&nbsp;					return;
+<b class="fc"><i class="no-highlight">256</i>&nbsp;				}</b>
+<i class="no-highlight">257</i>&nbsp;
+<i class="no-highlight">258</i>&nbsp;			});
+<i class="no-highlight">259</i>&nbsp;
+<b class="fc"><i class="no-highlight">260</i>&nbsp;			ratingLabel.setAlignmentY(TOP_ALIGNMENT); ratingLabel.setAlignmentX(LEFT_ALIGNMENT);</b>
+<b class="fc"><i class="no-highlight">261</i>&nbsp;			cp.add(ratingLabel);</b>
+<b class="fc"><i class="no-highlight">262</i>&nbsp;			ratingspinner.setAlignmentY(TOP_ALIGNMENT); ratingspinner.setAlignmentX(LEFT_ALIGNMENT);</b>
+<b class="fc"><i class="no-highlight">263</i>&nbsp;			cp.add(ratingspinner);</b>
+<b class="fc"><i class="no-highlight">264</i>&nbsp;			cp.add(new Box.Filler(new Dimension(0,10),new Dimension(0,10),new Dimension(0,10)));</b>
+<b class="fc"><i class="no-highlight">265</i>&nbsp;			reviewPane.setAlignmentY(TOP_ALIGNMENT); reviewPane.setAlignmentX(LEFT_ALIGNMENT);</b>
+<b class="fc"><i class="no-highlight">266</i>&nbsp;			cp.add(reviewLabel);</b>
+<b class="fc"><i class="no-highlight">267</i>&nbsp;			reviewPane.setAlignmentY(TOP_ALIGNMENT); reviewPane.setAlignmentX(LEFT_ALIGNMENT);</b>
+<b class="fc"><i class="no-highlight">268</i>&nbsp;			cp.add(reviewPane);</b>
+<b class="fc"><i class="no-highlight">269</i>&nbsp;			saveReviewButton.setAlignmentY(TOP_ALIGNMENT); saveReviewButton.setAlignmentX(LEFT_ALIGNMENT);</b>
+<b class="fc"><i class="no-highlight">270</i>&nbsp;			cp.add(saveReviewButton);</b>
+<i class="no-highlight">271</i>&nbsp;
+<i class="no-highlight">272</i>&nbsp;
+<b class="fc"><i class="no-highlight">273</i>&nbsp;			cp.setMinimumSize(new Dimension(400,400));</b>
+<b class="fc"><i class="no-highlight">274</i>&nbsp;			cp.setMaximumSize(new Dimension(400,400));</b>
+<b class="fc"><i class="no-highlight">275</i>&nbsp;			jd.setMinimumSize(new Dimension(425,425));</b>
+<b class="fc"><i class="no-highlight">276</i>&nbsp;			jd.add(cp);</b>
+<b class="fc"><i class="no-highlight">277</i>&nbsp;			jd.setVisible(true);</b>
+<i class="no-highlight">278</i>&nbsp;		});
+<i class="no-highlight">279</i>&nbsp;
+<i class="no-highlight">280</i>&nbsp;
+<i class="no-highlight">281</i>&nbsp;		//This entire bit adds the user reviews
+<b class="fc"><i class="no-highlight">282</i>&nbsp;		JLabel userReviewsLabel = new JLabel(&quot;Reviews:&quot;);</b>
+<b class="fc"><i class="no-highlight">283</i>&nbsp;		userReviewsLabel.setBackground(avgColor);</b>
+<b class="fc"><i class="no-highlight">284</i>&nbsp;		userReviewsLabel.setForeground(contrastColor);</b>
+<i class="no-highlight">285</i>&nbsp;		//ReviewsList is what contains all the review entries
+<b class="fc"><i class="no-highlight">286</i>&nbsp;		reviewsList = new JPanel();</b>
+<b class="fc"><i class="no-highlight">287</i>&nbsp;		reviewsList.setBackground(avgColor);</b>
+<b class="fc"><i class="no-highlight">288</i>&nbsp;		reviewsList.setLayout(new BoxLayout(reviewsList,BoxLayout.Y_AXIS));</b>
+<i class="no-highlight">289</i>&nbsp;		//ReviewListPane is added to the contentPanel and scrolls through reviewsList
+<b class="fc"><i class="no-highlight">290</i>&nbsp;		reviewsListPane = new JScrollPane(reviewsList);</b>
+<b class="fc"><i class="no-highlight">291</i>&nbsp;		populateReviews(movie);</b>
+<i class="no-highlight">292</i>&nbsp;
+<i class="no-highlight">293</i>&nbsp;
+<i class="no-highlight">294</i>&nbsp;
+<b class="fc"><i class="no-highlight">295</i>&nbsp;		movieInfoPanel.add(movieTitleLabel, Component.CENTER_ALIGNMENT);</b>
+<b class="fc"><i class="no-highlight">296</i>&nbsp;		movieInfoPanel.add(new Box.Filler(new Dimension(0,5),new Dimension(0,5),new Dimension(0,5)));</b>
+<b class="fc"><i class="no-highlight">297</i>&nbsp;		movieInfoPanel.add(movieActorsLabel, Component.CENTER_ALIGNMENT);</b>
+<b class="fc"><i class="no-highlight">298</i>&nbsp;		movieInfoPanel.add(new Box.Filler(new Dimension(0,5),new Dimension(0,5),new Dimension(0,5)));</b>
+<b class="fc"><i class="no-highlight">299</i>&nbsp;		movieInfoPanel.add(movieDirectorLabel,Component.CENTER_ALIGNMENT);</b>
+<b class="fc"><i class="no-highlight">300</i>&nbsp;		movieInfoPanel.add(new Box.Filler(new Dimension(0,5),new Dimension(0,5),new Dimension(0,5)));</b>
+<b class="fc"><i class="no-highlight">301</i>&nbsp;		movieInfoPanel.add(movieWritersLabel,Component.CENTER_ALIGNMENT);</b>
+<b class="fc"><i class="no-highlight">302</i>&nbsp;		movieInfoPanel.add(new Box.Filler(new Dimension(0,5),new Dimension(0,5),new Dimension(0,5)));</b>
+<b class="fc"><i class="no-highlight">303</i>&nbsp;		movieInfoPanel.add(movieGenresLabel,Component.CENTER_ALIGNMENT);</b>
+<b class="fc"><i class="no-highlight">304</i>&nbsp;		movieInfoPanel.add(new Box.Filler(new Dimension(0,5),new Dimension(0,5),new Dimension(0,5)));</b>
+<b class="fc"><i class="no-highlight">305</i>&nbsp;		movieInfoPanel.add(movieReleaseLabel,Component.CENTER_ALIGNMENT);</b>
+<b class="fc"><i class="no-highlight">306</i>&nbsp;		movieInfoPanel.add(new Box.Filler(new Dimension(0,5),new Dimension(0,5),new Dimension(0,5)));</b>
+<b class="fc"><i class="no-highlight">307</i>&nbsp;		movieInfoPanel.add(movieRuntimesLabel,Component.CENTER_ALIGNMENT);</b>
+<b class="fc"><i class="no-highlight">308</i>&nbsp;		movieInfoPanel.add(new Box.Filler(new Dimension(0,5),new Dimension(0,5),new Dimension(0,5)));</b>
+<b class="fc"><i class="no-highlight">309</i>&nbsp;		movieInfoPanel.add(moviePlotLabel,Component.CENTER_ALIGNMENT);</b>
+<i class="no-highlight">310</i>&nbsp;
+<b class="fc"><i class="no-highlight">311</i>&nbsp;		userReviewPanel.add(addToFavoritesButton, Component.CENTER_ALIGNMENT);</b>
+<b class="fc"><i class="no-highlight">312</i>&nbsp;		userReviewPanel.add(new Box.Filler(new Dimension(0,5),new Dimension(0,5),new Dimension(0,5)));</b>
+<b class="fc"><i class="no-highlight">313</i>&nbsp;		if(AccountPage.getUser().getMovieLists().size() &gt; 0) {</b>
+<b class="fc"><i class="no-highlight">314</i>&nbsp;			userReviewPanel.add(addToCustomListButton);</b>
+<i class="no-highlight">315</i>&nbsp;		}
+<b class="fc"><i class="no-highlight">316</i>&nbsp;		userReviewPanel.add(new Box.Filler(new Dimension(0,5),new Dimension(0,5),new Dimension(0,5)));</b>
+<b class="fc"><i class="no-highlight">317</i>&nbsp;		userReviewPanel.add(addAReviewButton);</b>
+<b class="fc"><i class="no-highlight">318</i>&nbsp;		userReviewPanel.add(new Box.Filler(new Dimension(0,20),new Dimension(0,20),new Dimension(0,20)));</b>
+<i class="no-highlight">319</i>&nbsp;
+<b class="fc"><i class="no-highlight">320</i>&nbsp;		contentPanel.add(new Box.Filler(new Dimension(0,10),new Dimension(0,10),new Dimension(0,10)));</b>
+<b class="fc"><i class="no-highlight">321</i>&nbsp;		contentPanel.add(movieInfoPanel, Component.CENTER_ALIGNMENT);</b>
+<b class="fc"><i class="no-highlight">322</i>&nbsp;		if (u.getEntitlementType()){</b>
+<b class="fc"><i class="no-highlight">323</i>&nbsp;			contentPanel.add(userReviewPanel, Component.CENTER_ALIGNMENT);</b>
+<b class="fc"><i class="no-highlight">324</i>&nbsp;			contentPanel.add(new Box.Filler(new Dimension(0,10),new Dimension(0,10),new Dimension(0,10)));</b>
+<i class="no-highlight">325</i>&nbsp;
+<i class="no-highlight">326</i>&nbsp;		}
+<b class="fc"><i class="no-highlight">327</i>&nbsp;		contentPanel.add(reviewsListPane);</b>
+<b class="fc"><i class="no-highlight">328</i>&nbsp;		contentPanel.setPreferredSize(new Dimension(700,950));</b>
+<b class="fc"><i class="no-highlight">329</i>&nbsp;		contentPanel.setMaximumSize(new Dimension(700,950));</b>
+<i class="no-highlight">330</i>&nbsp;
+<b class="fc"><i class="no-highlight">331</i>&nbsp;		add(contentPanel,Component.CENTER_ALIGNMENT);</b>
+<i class="no-highlight">332</i>&nbsp;	}
+<i class="no-highlight">333</i>&nbsp;
+<i class="no-highlight">334</i>&nbsp;	/**
+<i class="no-highlight">335</i>&nbsp;	 * averageColor returns the avgColor of inputted BufferedImage bi.
+<i class="no-highlight">336</i>&nbsp;	 * @param bi
+<i class="no-highlight">337</i>&nbsp;	 * @return
+<i class="no-highlight">338</i>&nbsp;	 */
+<i class="no-highlight">339</i>&nbsp;	public static Color averageColor(BufferedImage bi) {
+<b class="fc"><i class="no-highlight">340</i>&nbsp;		int step = 5;</b>
+<i class="no-highlight">341</i>&nbsp;
+<b class="fc"><i class="no-highlight">342</i>&nbsp;		int sampled = 0;</b>
+<b class="fc"><i class="no-highlight">343</i>&nbsp;		long sumr = 0, sumg = 0, sumb = 0;</b>
+<b class="fc"><i class="no-highlight">344</i>&nbsp;		for (int x = 0; x &lt; bi.getWidth(); x++) {</b>
+<b class="fc"><i class="no-highlight">345</i>&nbsp;			for (int y = 0; y &lt; bi.getHeight(); y++) {</b>
+<b class="fc"><i class="no-highlight">346</i>&nbsp;				if (x % step == 0 &amp;&amp; y % step == 0) {</b>
+<b class="fc"><i class="no-highlight">347</i>&nbsp;					Color pixel = new Color(bi.getRGB(x, y));</b>
+<b class="fc"><i class="no-highlight">348</i>&nbsp;					sumr += pixel.getRed();</b>
+<b class="fc"><i class="no-highlight">349</i>&nbsp;					sumg += pixel.getGreen();</b>
+<b class="fc"><i class="no-highlight">350</i>&nbsp;					sumb += pixel.getBlue();</b>
+<b class="fc"><i class="no-highlight">351</i>&nbsp;					sampled++;</b>
+<i class="no-highlight">352</i>&nbsp;				}
+<i class="no-highlight">353</i>&nbsp;			}
+<i class="no-highlight">354</i>&nbsp;		}
+<i class="no-highlight">355</i>&nbsp;		//int dim = bi.getWidth()*bi.getHeight();
+<b class="fc"><i class="no-highlight">356</i>&nbsp;		return new Color(Math.round(sumr / sampled), Math.round(sumg / sampled), Math.round(sumb / sampled));</b>
+<i class="no-highlight">357</i>&nbsp;	}
+<i class="no-highlight">358</i>&nbsp;
+<i class="no-highlight">359</i>&nbsp;	public static Color getContrastColor(Color color) {
+<b class="fc"><i class="no-highlight">360</i>&nbsp;		double y = (299 * color.getRed() + 587 * color.getGreen() + 114 * color.getBlue()) / 1000;</b>
+<b class="fc"><i class="no-highlight">361</i>&nbsp;		return y &gt;= 128 ? Color.black : Color.white;</b>
+<i class="no-highlight">362</i>&nbsp;	}
+<i class="no-highlight">363</i>&nbsp;
+<i class="no-highlight">364</i>&nbsp;	/**
+<i class="no-highlight">365</i>&nbsp;	 * populates and refreshes the list of reviews for a specific movie
+<i class="no-highlight">366</i>&nbsp;	 * @param m
+<i class="no-highlight">367</i>&nbsp;	 */
+<i class="no-highlight">368</i>&nbsp;	public static void populateReviews(Movie m){
+<i class="no-highlight">369</i>&nbsp;		//removes all of reviewsList. This helps when refreshing it.
+<b class="fc"><i class="no-highlight">370</i>&nbsp;		reviewsList.removeAll();</b>
+<i class="no-highlight">371</i>&nbsp;		//Iterates through every the movie has.
+<b class="fc"><i class="no-highlight">372</i>&nbsp;		movie.getUserReviews().forEach(r-&gt;{</b>
+<b class="fc"><i class="no-highlight">373</i>&nbsp;			System.out.println(r.getBody());</b>
+<b class="fc"><i class="no-highlight">374</i>&nbsp;			JPanel reviewEntry = new JPanel(); reviewEntry.setLayout(new BoxLayout(reviewEntry,BoxLayout.Y_AXIS));</b>
+<b class="fc"><i class="no-highlight">375</i>&nbsp;			reviewEntry.setBackground(avgColor);</b>
+<b class="fc"><i class="no-highlight">376</i>&nbsp;			reviewEntry.setAlignmentX(CENTER_ALIGNMENT); reviewEntry.setAlignmentY(TOP_ALIGNMENT);</b>
+<b class="fc"><i class="no-highlight">377</i>&nbsp;			reviewEntry.setBorder(BorderFactory.createLineBorder(avgColor.brighter().brighter(),3));</b>
+<b class="fc"><i class="no-highlight">378</i>&nbsp;			reviewEntry.setMaximumSize(new Dimension(700,300));</b>
+<i class="no-highlight">379</i>&nbsp;			//Header contains a label of the author and a button to delete.
+<b class="fc"><i class="no-highlight">380</i>&nbsp;			JPanel reviewHeader = new JPanel(); reviewHeader.setLayout(new BoxLayout(reviewHeader,BoxLayout.X_AXIS));</b>
+<b class="fc"><i class="no-highlight">381</i>&nbsp;			reviewHeader.setBackground(avgColor);</b>
+<b class="fc"><i class="no-highlight">382</i>&nbsp;			reviewHeader.setAlignmentX(CENTER_ALIGNMENT);</b>
+<i class="no-highlight">383</i>&nbsp;			//Header
+<i class="no-highlight">384</i>&nbsp;			{
+<b class="fc"><i class="no-highlight">385</i>&nbsp;				JLabel reviewAuthor = new JLabel(&quot;Author: &quot; + r.getAuthor().getUserName() + &quot; gave this movie a rating of &quot; + r.getRating().toString());</b>
+<b class="fc"><i class="no-highlight">386</i>&nbsp;				reviewAuthor.setForeground(contrastColor);</b>
+<b class="fc"><i class="no-highlight">387</i>&nbsp;				reviewHeader.add(reviewAuthor, Component.LEFT_ALIGNMENT);</b>
+<i class="no-highlight">388</i>&nbsp;				//ensures the label and delete button are seperated
+<b class="fc"><i class="no-highlight">389</i>&nbsp;				reviewHeader.add(Box.createHorizontalGlue());</b>
+<i class="no-highlight">390</i>&nbsp;
+<i class="no-highlight">391</i>&nbsp;				//if user made that review a delete button is there if they want to remove it.
+<b class="fc"><i class="no-highlight">392</i>&nbsp;				if (u.getUserName().equals(r.getAuthor().getUserName())){</b>
+<b class="fc"><i class="no-highlight">393</i>&nbsp;					JButton deleteReviewButton = new JButton(&quot;Delete Review&quot;);</b>
+<b class="fc"><i class="no-highlight">394</i>&nbsp;					deleteReviewButton.addActionListener(e -&gt; {</b>
+<i class="no-highlight">395</i>&nbsp;						//removes everything from this specific entry and just replaces it with a label indicating the review was deleted.
+<b class="fc"><i class="no-highlight">396</i>&nbsp;						reviewEntry.removeAll();</b>
+<b class="fc"><i class="no-highlight">397</i>&nbsp;						JLabel deletedReview = new JLabel(&quot;Review Deleted&quot;);</b>
+<b class="fc"><i class="no-highlight">398</i>&nbsp;						deletedReview.setBackground(avgColor);</b>
+<b class="fc"><i class="no-highlight">399</i>&nbsp;						deletedReview.setForeground(contrastColor);</b>
+<b class="fc"><i class="no-highlight">400</i>&nbsp;						reviewEntry.add(deletedReview);</b>
+<i class="no-highlight">401</i>&nbsp;						//removes the review from UserReviews
+<b class="fc"><i class="no-highlight">402</i>&nbsp;						movie.getUserReviews().remove(r);</b>
+<b class="fc"><i class="no-highlight">403</i>&nbsp;						contentPanel.revalidate();</b>
+<i class="no-highlight">404</i>&nbsp;					});
+<b class="fc"><i class="no-highlight">405</i>&nbsp;					reviewHeader.add(deleteReviewButton, Component.RIGHT_ALIGNMENT);</b>
+<i class="no-highlight">406</i>&nbsp;				}
+<i class="no-highlight">407</i>&nbsp;			}
+<i class="no-highlight">408</i>&nbsp;			//adds the header
+<b class="fc"><i class="no-highlight">409</i>&nbsp;			reviewEntry.add(reviewHeader);</b>
+<i class="no-highlight">410</i>&nbsp;
+<b class="fc"><i class="no-highlight">411</i>&nbsp;			JTextArea reviewText = new JTextArea(r.getBody(),5,25);</b>
+<b class="fc"><i class="no-highlight">412</i>&nbsp;			reviewText.setWrapStyleWord(true); reviewText.setLineWrap(true); reviewText.setEditable(false);</b>
+<b class="fc"><i class="no-highlight">413</i>&nbsp;			reviewText.setMaximumSize(new Dimension(500,300));</b>
+<b class="fc"><i class="no-highlight">414</i>&nbsp;			reviewText.setMinimumSize(new Dimension(500,300));</b>
+<b class="fc"><i class="no-highlight">415</i>&nbsp;			reviewText.setBackground(avgColor);</b>
+<b class="fc"><i class="no-highlight">416</i>&nbsp;			reviewText.setForeground(contrastColor);</b>
+<i class="no-highlight">417</i>&nbsp;
+<b class="fc"><i class="no-highlight">418</i>&nbsp;			JScrollPane reviewTextScroller = new JScrollPane(reviewText);</b>
+<b class="fc"><i class="no-highlight">419</i>&nbsp;			reviewEntry.add(reviewTextScroller, Component.LEFT_ALIGNMENT);</b>
+<i class="no-highlight">420</i>&nbsp;
+<i class="no-highlight">421</i>&nbsp;
+<b class="fc"><i class="no-highlight">422</i>&nbsp;			reviewsList.add(reviewEntry,Component.CENTER_ALIGNMENT);</b>
+<i class="no-highlight">423</i>&nbsp;		});
+<i class="no-highlight">424</i>&nbsp;	}
+<i class="no-highlight">425</i>&nbsp;
+<i class="no-highlight">426</i>&nbsp;	public static void closeMoviePages(){
+<b class="fc"><i class="no-highlight">427</i>&nbsp;		Window[] children = Application.getWindows();</b>
+<b class="fc"><i class="no-highlight">428</i>&nbsp;		for (Window win : children){</b>
+<b class="fc"><i class="no-highlight">429</i>&nbsp;			if (win instanceof JDialog){</b>
+<b class="fc"><i class="no-highlight">430</i>&nbsp;				Component[] comp = ((JDialog) win).getContentPane().getComponents();</b>
+<b class="fc"><i class="no-highlight">431</i>&nbsp;				for (Component c : comp){</b>
+<b class="fc"><i class="no-highlight">432</i>&nbsp;					if (c instanceof MoviePage){</b>
+<b class="fc"><i class="no-highlight">433</i>&nbsp;						win.dispose();</b>
+<i class="no-highlight">434</i>&nbsp;					}
+<i class="no-highlight">435</i>&nbsp;				}
+<i class="no-highlight">436</i>&nbsp;			}
+<i class="no-highlight">437</i>&nbsp;		}
+<i class="no-highlight">438</i>&nbsp;	}
+<i class="no-highlight">439</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-04-21 23:48</div>
+</div>
+</body>
+</html>

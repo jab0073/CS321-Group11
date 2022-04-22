@@ -1,0 +1,198 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Rating</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">edu.uah.cs321.Backend</a>
+</div>
+
+<h1>Coverage Summary for Class: Rating (edu.uah.cs321.Backend)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Rating</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    12.5%
+  </span>
+  <span class="absValue">
+    (1/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    16.7%
+  </span>
+  <span class="absValue">
+    (3/18)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package edu.uah.cs321.Backend;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import java.io.Serializable;
+<i class="no-highlight">4</i>&nbsp;
+<i class="no-highlight">5</i>&nbsp;/***
+<i class="no-highlight">6</i>&nbsp; * File Name: Rating
+<i class="no-highlight">7</i>&nbsp; * Description: 
+<i class="no-highlight">8</i>&nbsp; * @auth justinbushue
+<i class="no-highlight">9</i>&nbsp; * @version 1.0
+<i class="no-highlight">10</i>&nbsp; */
+<i class="no-highlight">11</i>&nbsp;public class Rating implements Serializable {
+<i class="no-highlight">12</i>&nbsp;	// Used to hold the ratings source.
+<i class="no-highlight">13</i>&nbsp;	private String Source;
+<i class="no-highlight">14</i>&nbsp;	// Used to hold the ratings value.
+<i class="no-highlight">15</i>&nbsp;	private String Value;
+<i class="no-highlight">16</i>&nbsp;
+<i class="no-highlight">17</i>&nbsp;	// This is a constructor that sets the source and value to empty strings.
+<b class="fc"><i class="no-highlight">18</i>&nbsp;	public Rating() {</b>
+<b class="fc"><i class="no-highlight">19</i>&nbsp;		Source = &quot;&quot;;</b>
+<b class="fc"><i class="no-highlight">20</i>&nbsp;		Value = &quot;&quot;;</b>
+<i class="no-highlight">21</i>&nbsp;	}
+<i class="no-highlight">22</i>&nbsp;
+<i class="no-highlight">23</i>&nbsp;	// This is a constructor that sets the source and value to the values passed in.
+<b class="nc"><i class="no-highlight">24</i>&nbsp;	public Rating(String source, String value) {</b>
+<b class="nc"><i class="no-highlight">25</i>&nbsp;		Source = source;</b>
+<b class="nc"><i class="no-highlight">26</i>&nbsp;		Value = value;</b>
+<i class="no-highlight">27</i>&nbsp;	}
+<i class="no-highlight">28</i>&nbsp;
+<i class="no-highlight">29</i>&nbsp;	/**
+<i class="no-highlight">30</i>&nbsp;	 * It returns the value of the Source variable.
+<i class="no-highlight">31</i>&nbsp;	 *
+<i class="no-highlight">32</i>&nbsp;	 * @return The Source variable is being returned.
+<i class="no-highlight">33</i>&nbsp;	 */
+<i class="no-highlight">34</i>&nbsp;	public String getSource() {
+<b class="nc"><i class="no-highlight">35</i>&nbsp;		return Source;</b>
+<i class="no-highlight">36</i>&nbsp;	}
+<i class="no-highlight">37</i>&nbsp;
+<i class="no-highlight">38</i>&nbsp;	/**
+<i class="no-highlight">39</i>&nbsp;	 * This function sets the source of the current object to the source passed in as a parameter
+<i class="no-highlight">40</i>&nbsp;	 *
+<i class="no-highlight">41</i>&nbsp;	 * @param source The source of the tweet.
+<i class="no-highlight">42</i>&nbsp;	 */
+<i class="no-highlight">43</i>&nbsp;	public void setSource(String source) {
+<b class="nc"><i class="no-highlight">44</i>&nbsp;		Source = source;</b>
+<i class="no-highlight">45</i>&nbsp;	}
+<i class="no-highlight">46</i>&nbsp;
+<i class="no-highlight">47</i>&nbsp;	/**
+<i class="no-highlight">48</i>&nbsp;	 * This function returns the value of the variable Value
+<i class="no-highlight">49</i>&nbsp;	 *
+<i class="no-highlight">50</i>&nbsp;	 * @return The value of the variable Value.
+<i class="no-highlight">51</i>&nbsp;	 */
+<i class="no-highlight">52</i>&nbsp;	public String getValue() {
+<b class="nc"><i class="no-highlight">53</i>&nbsp;		return Value;</b>
+<i class="no-highlight">54</i>&nbsp;	}
+<i class="no-highlight">55</i>&nbsp;
+<i class="no-highlight">56</i>&nbsp;	/**
+<i class="no-highlight">57</i>&nbsp;	 * This function sets the value of the Value variable to the value of the value parameter.
+<i class="no-highlight">58</i>&nbsp;	 *
+<i class="no-highlight">59</i>&nbsp;	 * @param value The value of the parameter.
+<i class="no-highlight">60</i>&nbsp;	 */
+<i class="no-highlight">61</i>&nbsp;	public void setValue(String value) {
+<b class="nc"><i class="no-highlight">62</i>&nbsp;		Value = value;</b>
+<i class="no-highlight">63</i>&nbsp;	}
+<i class="no-highlight">64</i>&nbsp;
+<i class="no-highlight">65</i>&nbsp;	/**
+<i class="no-highlight">66</i>&nbsp;	 * If the source and value are equal, then the objects are equal.
+<i class="no-highlight">67</i>&nbsp;	 *
+<i class="no-highlight">68</i>&nbsp;	 * @param o The object to compare to.
+<i class="no-highlight">69</i>&nbsp;	 * @return The hashcode of the object.
+<i class="no-highlight">70</i>&nbsp;	 */
+<i class="no-highlight">71</i>&nbsp;	@Override
+<i class="no-highlight">72</i>&nbsp;	public boolean equals(Object o) {
+<b class="nc"><i class="no-highlight">73</i>&nbsp;		if (this == o) return true;</b>
+<b class="nc"><i class="no-highlight">74</i>&nbsp;		if (!(o instanceof Rating)) return false;</b>
+<i class="no-highlight">75</i>&nbsp;
+<b class="nc"><i class="no-highlight">76</i>&nbsp;		Rating rating = (Rating) o;</b>
+<i class="no-highlight">77</i>&nbsp;
+<b class="nc"><i class="no-highlight">78</i>&nbsp;		if (!getSource().equals(rating.getSource())) return false;</b>
+<b class="nc"><i class="no-highlight">79</i>&nbsp;		return getValue().equals(rating.getValue());</b>
+<i class="no-highlight">80</i>&nbsp;	}
+<i class="no-highlight">81</i>&nbsp;
+<i class="no-highlight">82</i>&nbsp;	/**
+<i class="no-highlight">83</i>&nbsp;	 * The hashCode() function returns a unique integer for each unique object
+<i class="no-highlight">84</i>&nbsp;	 *
+<i class="no-highlight">85</i>&nbsp;	 * @return The hash code of the object.
+<i class="no-highlight">86</i>&nbsp;	 */
+<i class="no-highlight">87</i>&nbsp;	@Override
+<i class="no-highlight">88</i>&nbsp;	public int hashCode() {
+<b class="nc"><i class="no-highlight">89</i>&nbsp;		int result = getSource().hashCode();</b>
+<b class="nc"><i class="no-highlight">90</i>&nbsp;		result = 31 * result + getValue().hashCode();</b>
+<b class="nc"><i class="no-highlight">91</i>&nbsp;		return result;</b>
+<i class="no-highlight">92</i>&nbsp;	}
+<i class="no-highlight">93</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-04-21 23:48</div>
+</div>
+</body>
+</html>
